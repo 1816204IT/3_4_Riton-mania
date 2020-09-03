@@ -58,3 +58,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+/Ri-ton/Library
+/Ri-ton/Logs
+/Ri-ton/obj
+/Ri-ton/Assets/Fonts/Molot SDF.asset
+/Ri-ton/Assets/Fonts/Molot SDF.asset.meta

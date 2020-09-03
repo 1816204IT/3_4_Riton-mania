@@ -1,0 +1,60 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class TapEffect : MonoBehaviour
+{
+    [SerializeField]
+    private ParticleSystem hexParticle_L = null;
+    [SerializeField]
+    private ParticleSystem hexParticle_R = null;
+    [SerializeField]
+    private Camera p_camera = null; // パーティクル専用カメラ
+
+    private Vector3 pos_lane_0 = new Vector3(-4.0f, -3.0f, 0.0f);
+    private Vector3 pos_lane_1 = new Vector3(-1.3f, -3.0f, 0.0f);
+    private Vector3 pos_lane_2 = new Vector3(1.3f, -3.0f, 0.0f);
+    private Vector3 pos_lane_3 = new Vector3(4.0f, -3.0f, 0.0f);
+
+    void Start()
+    {
+        if (hexParticle_L == null || hexParticle_R == null || p_camera == null)
+        {
+            Debug.Log("nullを検知");
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            // マウスのワールド座標までパーティクルを移動し、パーティクルエフェクトを1つ生成する
+            var pos = p_camera.ScreenToWorldPoint(Input.mousePosition + p_camera.transform.forward * 10);
+            Debug.Log(pos);
+            hexParticle_L.transform.position = pos;
+            hexParticle_L.Emit(1);
+        }
+
+        if (Input.GetButtonDown("Lane0"))
+        {
+            hexParticle_L.transform.position = pos_lane_0;
+            hexParticle_L.Emit(1);
+        }
+        if (Input.GetButtonDown("Lane1"))
+        {
+            hexParticle_L.transform.position = pos_lane_1;
+            hexParticle_L.Emit(1);
+        }
+        if (Input.GetButtonDown("Lane2"))
+        {
+            hexParticle_R.transform.position = pos_lane_2;
+            hexParticle_R.Emit(1);
+        }
+        if (Input.GetButtonDown("Lane3"))
+        {
+            hexParticle_R.transform.position = pos_lane_3;
+            hexParticle_R.Emit(1);
+        }
+    }
+}

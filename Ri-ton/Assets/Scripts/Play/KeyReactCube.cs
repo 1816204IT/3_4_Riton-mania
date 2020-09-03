@@ -1,0 +1,103 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System;
+
+public class KeyReactCube : MonoBehaviour
+{
+    [SerializeField]
+    float maxIntensity = 1.0f;
+    [SerializeField]
+    float minIntensity = 0.0f;
+
+    public struct CubeBloom
+    {
+        public MeshRenderer renderer;
+        public Color color;
+        public float intensity;
+        public int isHolding; // ノーツホールド中かどうか　ホールド中はレーンの数字を入れる　-1=未ホールド
+    }
+
+    [SerializeField]
+    private GameObject[] cubeObjList;
+    private CubeBloom[] cubeBloomList;
+
+    void Start()
+    {
+        Array.Resize(ref cubeBloomList, cubeObjList.Length);
+
+        for (int i = 0; i < cubeObjList.Length; i++)
+        {
+            cubeBloomList[i].renderer = cubeObjList[i].GetComponent<MeshRenderer>();
+            cubeBloomList[i].color = cubeBloomList[i].renderer.material.GetColor("_EmissionColor");
+            cubeBloomList[i].intensity = minIntensity;
+            cubeBloomList[i].isHolding = -1;
+        }
+    }
+
+    void Update()
+    {
+        for (int laneNum = 0; laneNum <= 6; laneNum++)
+        {
+            KeyCheck(laneNum);
+        }
+
+        for (int i = 0; i < cubeBloomList.Length; i++)
+        {
+            if (cubeBloomList[i].intensity >= minIntensity)
+            {
+                if (cubeBloomList[i].isHolding != -1)
+                {
+                    string key = "Lane" + cubeBloomList[i].isHolding.ToString();
+                    if (Input.GetButton(key))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        cubeBloomList[i].isHolding = -1;
+                    }
+                }
+
+                cubeBloomList[i].intensity -= Time.deltaTime * 7.0f;
+                float intensity = cubeBloomList[i].intensity;
+                Color color = cubeBloomList[i].color;
+                cubeBloomList[i].renderer.material.SetColor("_EmissionColor", new Color(color.r + intensity, color.g + intensity, color.b + intensity, color.a));
+            }
+        }
+    }
+
+    private void KeyCheck(int laneNum)
+    {
+        string key = "Lane" + laneNum.ToString();
+        if (Input.GetButtonDown(key))
+        {
+            List<int> indexList = new List<int>();
+            for (int i = 0; i < cubeBloomList.Length; i++)
+            {
+                indexList.Add(i);
+            }
+
+            for (int i = 0; i < cubeBloomList.Length; i++)
+            {
+                int randNum = UnityEngine.Random.Range(0, indexList.Count);
+                int index = indexList[randNum];
+
+                if (cubeBloomList[index].intensity <= minIntensity)
+                {
+                    cubeBloomList[index].intensity = maxIntensity;
+                    cubeBloomList[index].isHolding = laneNum;
+
+                    float intensity = cubeBloomList[index].intensity;
+                    Color color = cubeBloomList[index].color;
+                    cubeBloomList[index].renderer.material.SetColor("_EmissionColor", new Color(color.r + intensity, color.g + intensity, color.b + intensity, color.a));
+                    break;
+                }
+                else
+                {
+                    indexList.RemoveAt(randNum);//indexListのrandNum番目の要素を削除
+                }
+            }
+        }
+    }
+}
