@@ -23,8 +23,8 @@ public class UserAuth : MonoBehaviour
 {
     private string playerName = null;
     private string password = null;
-    public LogInState loginState = LogInState.non;
-    public SignUpState signUpState = SignUpState.non;
+    private LogInState loginState = LogInState.non;
+    private SignUpState signUpState = SignUpState.non;
     
     private UserAuth instance = null;
     void Awake()
@@ -125,7 +125,6 @@ public class UserAuth : MonoBehaviour
     public LogInState _logInState
     { 
         get { return loginState; }
-        set { loginState = value; }
     }
 
     public SignUpState _signUpState

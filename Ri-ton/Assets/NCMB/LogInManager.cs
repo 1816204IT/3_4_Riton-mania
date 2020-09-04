@@ -80,7 +80,7 @@ public class LogInManager : MonoBehaviour
                 SucceededLogInFunc();
                 reactionText.color = Color.green;
                 reactionText.text = "ログイン成功!";
-                titleSceneManager._buttonState = ButtonState.Normal;    // キャラクター画像は設定済みなのでButtonState.Normalとする
+                titleSceneManager._buttonState = ButtonState.IconFetching;
                 titleSceneManager.ButtonInit();
                 UserPreference._instance._characterIconName = id;
                 UserPreference._instance.CharacterIconFetch(); // サーバーからキャラクター画像を取得

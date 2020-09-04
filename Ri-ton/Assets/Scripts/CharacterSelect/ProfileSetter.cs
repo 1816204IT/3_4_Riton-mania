@@ -25,8 +25,12 @@ public class ProfileSetter : MonoBehaviour
     public void UpdateProfile(Ritonmania.CharacterData data)
     {
         age.text = data.age.ToString();
-        birthDay.text = data.birthDay.ToString();
         like.text = data.like;
         illustrator.text = data.illustrator;
+
+        int month   = data.birthDay / 100;
+        int day     = data.birthDay - (month * 100);
+        birthDay.text = month.ToString("D2") + "月" + day.ToString("D2") + "日";
+
     }
 }

@@ -199,6 +199,11 @@ public class UserPreference : MonoBehaviour
         set { characterIcon.name = value; }
     }
 
+    public IconFetchState _iconFetchState
+    { 
+        get { return characterIcon._iconFetchState; }
+    }
+
     // 0レーン目のノーツX座標
     public float _notePosXOfLaneZero
     {

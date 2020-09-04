@@ -40,6 +40,10 @@ public class PickUpCharacterManager : MonoBehaviour
     [SerializeField]
     private GameObject profile = null;
 
+    [SerializeField]
+    private RectTransform nowArrow = null;
+    private float nowArrowDistanceX = 220;  // 配置しているキャラクター同士の距離
+
     // キャラクター選択画面のホーム(初期画面)にいるか？　ホーム画面とそれ以外でEscapeキーを押した時の挙動が変わる
     enum NOW_STATE
     {
@@ -53,12 +57,18 @@ public class PickUpCharacterManager : MonoBehaviour
     {
         if (characters.Length == 0 || scaleTweens.Length == 0 || moveEndPos == null
             || headerInfo == null|| whiteBackImage == null || colorBackImage == null
-            || characterProfileData == null || characterNameText == null || profile == null)
+            || characterProfileData == null || characterNameText == null || profile == null
+            || nowArrow == null)
         {
             Debug.Log("nullを検知");
         }
 
         profile.SetActive(false);
+
+        // キャラクターの番号を取得
+        pickingCharacterNum = UserPreference._instance._characterNum;
+        // nowの矢印のX座標移動
+        MoveNowArrow();
     }
 
     void Update()
@@ -161,7 +171,7 @@ public class PickUpCharacterManager : MonoBehaviour
         }
 
         // プロフィール表示
-        //profile.SetActive(true);
+        profile.SetActive(true);
 
         nowState = NOW_STATE.CHARACTER_DECIDE;
     }
@@ -205,8 +215,25 @@ public class PickUpCharacterManager : MonoBehaviour
 
     public void ChangeCharacter()
     {
+        // キャラクターの番号を変更
         UserPreference._instance._characterNum = pickingCharacterNum;
+        // nowの矢印のX座標移動
+        MoveNowArrow();
+        // 戻るボタンが押された時の処理をする
         OnClickBackButton();
+    }
+
+    // nowの矢印のX座標移動
+    private void MoveNowArrow()
+    {
+        if ((pickingCharacterNum < 0)  || (pickingCharacterNum > 4))
+        {
+            return;
+        }
+
+        Vector3 p = nowArrow.transform.localPosition;
+        float posX = nowArrowDistanceX * (pickingCharacterNum - 2); // キャラクター番号2のキャラクターが中央に配置されているため -2 する
+        nowArrow.transform.localPosition = new Vector3(posX, p.y, p.z);
     }
 
     public int _pickingCharacterNum

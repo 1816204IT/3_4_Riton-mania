@@ -75,6 +75,11 @@ public class MusicPlayer : MonoBehaviour
             time = audioSource.time;
         }
 
+        if (SceneManager.GetActiveScene().name != "Edit")
+        {
+            return;
+        }
+
         float scrollValue = Input.GetAxis("Mouse ScrollWheel");
 
         if (scrollValue < 0.0f)

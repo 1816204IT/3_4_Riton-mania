@@ -1,6 +1,14 @@
 ﻿using NCMB;
 using System.Collections.Generic;
 
+public enum IconFetchState
+{
+    non,
+    trying,
+    succeeded,
+    failed
+}
+
 // ユーザーIDをキーにしてキャラクター番号を取得する
 namespace NCMB
 {
@@ -8,6 +16,8 @@ namespace NCMB
     {
         public string name { get; set; }
         public int character { get; set; }
+
+        private IconFetchState fetchState = IconFetchState.non;
 
         // コンストラクタ -----------------------------------
         public CharacterIcon(string _name)
@@ -36,6 +46,8 @@ namespace NCMB
         // サーバーからキャラクター番号を取得
         public void Fetch()
         {
+            fetchState = IconFetchState.trying;
+
             // データストアの「CharacterIcon」クラスから、Nameをキーにして検索
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("CharacterIcon");
             query.WhereEqualTo("Name", name);
@@ -57,8 +69,19 @@ namespace NCMB
                     {
                         character = System.Convert.ToInt32(objList[0]["Character"]);
                     }
+
+                    fetchState = IconFetchState.succeeded;
+                }
+                else
+                {
+                    fetchState = IconFetchState.failed;
                 }
             });
+        }
+
+        public IconFetchState _iconFetchState
+        { 
+            get { return fetchState; }
         }
     }
 }

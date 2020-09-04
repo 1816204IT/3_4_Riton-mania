@@ -8,6 +8,7 @@ public enum ButtonState
 {
     LogInWaiting,   // ログイン待ち状態(ログインボタンを表示)
     IconSetting,    // アイコンが登録されてない状態(キャラクター選択ボタンを表示)
+    IconFetching,   // サーバーにアイコン番号をフェッチ中
     Normal,         // 通常状態(プレイボタン、キャラクター選択ボタン、ログアウトボタンを表示)
 }
 
@@ -23,11 +24,6 @@ public class TitleSceneManager : MonoBehaviour
     private GameObject iconSettingObj = null;
 
     private ButtonState buttonState = ButtonState.LogInWaiting;
-
-    // 自動ログイン時にアイコン画像のフェッチに失敗する場合があるので
-    // ログイン後一定秒数毎にアイコン画像が設定されているかチェックする
-    private const float iconImageChackTime = 1.0f; 
-    private float timer = 0.0f;
 
     private void Start()
     {
@@ -51,6 +47,12 @@ public class TitleSceneManager : MonoBehaviour
             logOutingObj.SetActive(false);
             iconSettingObj.SetActive(true);
         }
+        else if (buttonState == ButtonState.IconFetching)
+        {
+            logIningObj.SetActive(false);
+            logOutingObj.SetActive(false);
+            iconSettingObj.SetActive(false);
+        }
         else if (buttonState == ButtonState.Normal)
         {
             logIningObj.SetActive(true);
@@ -62,9 +64,18 @@ public class TitleSceneManager : MonoBehaviour
     private void Update()
     {
         // ログイン後か
-        if (buttonState != ButtonState.Normal)
+        if (buttonState == ButtonState.Normal)
         {
             return;
+        }
+
+        if (buttonState == ButtonState.IconFetching)
+        {
+            if (UserPreference._instance._iconFetchState == IconFetchState.succeeded)
+            {
+                buttonState = ButtonState.Normal;
+                ButtonInit();
+            }
         }
 
         // キャラクター画像が正しく設定されているか
@@ -73,11 +84,15 @@ public class TitleSceneManager : MonoBehaviour
             return;
         }
 
-        timer += Time.deltaTime;
-        if (timer >= iconImageChackTime)
+        // アイコンフェッチ中か
+        if (buttonState == ButtonState.IconFetching)
         {
-            timer = 0.0f;
-            UserPreference._instance.CharacterIconFetch();
+            IconFetchState nowFecthState = UserPreference._instance._iconFetchState;
+            if ((nowFecthState == IconFetchState.non) || (nowFecthState == IconFetchState.failed))
+            {
+                UserPreference._instance.CharacterIconFetch();
+            }
+            return;
         }
     }
 

@@ -64,7 +64,7 @@ public class LoginFlow : MonoBehaviour
         else
         {
             logInManager.InitLogIning();
-            titleSceneManager._buttonState = ButtonState.Normal;
+            titleSceneManager._buttonState = ButtonState.IconFetching;
             titleSceneManager.ButtonInit();
         }
 
