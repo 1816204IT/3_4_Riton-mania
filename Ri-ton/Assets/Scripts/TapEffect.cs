@@ -27,15 +27,6 @@ public class TapEffect : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            // マウスのワールド座標までパーティクルを移動し、パーティクルエフェクトを1つ生成する
-            var pos = p_camera.ScreenToWorldPoint(Input.mousePosition + p_camera.transform.forward * 10);
-            Debug.Log(pos);
-            hexParticle_L.transform.position = pos;
-            hexParticle_L.Emit(1);
-        }
-
         if (Input.GetButtonDown("Lane0"))
         {
             hexParticle_L.transform.position = pos_lane_0;

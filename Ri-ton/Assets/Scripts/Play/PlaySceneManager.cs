@@ -17,17 +17,6 @@ public enum RankNumber
     MAX
 }
 
-namespace PlayScene
-{
-    public enum MenuType
-    {
-        QUIT,
-        RETRY,
-        CONTINUE,
-        MAX
-    }
-}
-
 public class PlaySceneManager : MonoBehaviour
 {
     [SerializeField]
@@ -47,8 +36,6 @@ public class PlaySceneManager : MonoBehaviour
 
     private MusicPlayer musicPlayer = null;
     private JsonManager jsonManager = null;
-
-    private PlayScene.MenuType nowMenuType = PlayScene.MenuType.QUIT;
 
     [SerializeField]
     private Material moveMaskMat = null;
@@ -111,21 +98,6 @@ public class PlaySceneManager : MonoBehaviour
             SaveResultData();
             SceneManager.sceneLoaded += ResultSceneLoaded;
             SceneManager.LoadScene("Result");
-        }
-
-        if (menuObj.activeSelf)
-        {
-            // 途中、後で実装するよ
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                int num = (int)nowMenuType;
-                num = (num + 1) % (int)PlayScene.MenuType.MAX;
-
-            }
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-
-            }
         }
     }
 

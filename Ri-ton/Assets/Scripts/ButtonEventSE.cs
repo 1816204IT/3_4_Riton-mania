@@ -2,23 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 // imageの範囲内にマウスポインタ∸が入った際にSEを鳴らす
 // buttonをクリックした際にSEを鳴らす
 public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public bool isUseDefaultSE = true;
+
+    [SerializeField]
     private AudioSource mouseOverSE = null;
+    [SerializeField]
     private AudioSource menuHitSE = null;
     private bool isOnPointerEnter = false;
 
     private void Start()
     {
-        mouseOverSE = GameObject.FindGameObjectWithTag("MouseOverSE").GetComponent<AudioSource>();
-        menuHitSE = GameObject.FindGameObjectWithTag("MenuHitSE").GetComponent<AudioSource>();
+        if (isUseDefaultSE)
+        {
+            mouseOverSE = GameObject.FindGameObjectWithTag("MouseOverSE").GetComponent<AudioSource>();
+            menuHitSE = GameObject.FindGameObjectWithTag("MenuHitSE").GetComponent<AudioSource>();
+        }
         if (mouseOverSE == null || menuHitSE == null)
         {
             Debug.Log("nullを検知");
         }
+
+        GetComponent<Button>().onClick.AddListener(OnPlayMenuHitSE);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

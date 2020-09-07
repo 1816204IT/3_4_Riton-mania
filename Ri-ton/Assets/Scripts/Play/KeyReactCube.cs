@@ -37,7 +37,7 @@ public class KeyReactCube : MonoBehaviour
 
     void Update()
     {
-        for (int laneNum = 0; laneNum <= 6; laneNum++)
+        for (int laneNum = 0; laneNum <= 3; laneNum++)
         {
             KeyCheck(laneNum);
         }
@@ -88,7 +88,7 @@ public class KeyReactCube : MonoBehaviour
                     cubeBloomList[index].intensity = maxIntensity;
                     cubeBloomList[index].isHolding = laneNum;
 
-                    float intensity = cubeBloomList[index].intensity;
+                    float intensity = maxIntensity;
                     Color color = cubeBloomList[index].color;
                     cubeBloomList[index].renderer.material.SetColor("_EmissionColor", new Color(color.r + intensity, color.g + intensity, color.b + intensity, color.a));
                     break;

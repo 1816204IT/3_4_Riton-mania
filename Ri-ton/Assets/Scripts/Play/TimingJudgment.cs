@@ -136,8 +136,6 @@ public class TimingJudgment : MonoBehaviour
 
             float distance = noteDataConverter.ConvertDistance(note.LPB, note.num);
 
-            Debug.Log("distance = " + distance);
-
             if (distance > missLen)
             {  
                 break;

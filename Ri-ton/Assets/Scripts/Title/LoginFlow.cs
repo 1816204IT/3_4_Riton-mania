@@ -59,6 +59,7 @@ public class LoginFlow : MonoBehaviour
             logInManager.InitLogOuting();
             titleSceneManager._buttonState = ButtonState.LogInWaiting;
             titleSceneManager.ButtonInit();
+            titleSceneManager.PlayBGM();
         }
         // ゲーム起動時ではない、またはゲーム起動時だが過去にユーザー登録を行っている
         else

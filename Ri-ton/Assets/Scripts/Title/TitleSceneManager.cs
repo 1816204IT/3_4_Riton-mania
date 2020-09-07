@@ -23,11 +23,17 @@ public class TitleSceneManager : MonoBehaviour
     [SerializeField]
     private GameObject iconSettingObj = null;
 
+    [SerializeField]
+    private SoundVolumeManager soundVolumeManager = null;
+    [SerializeField]
+    private AudioSource bgm = null;
+
     private ButtonState buttonState = ButtonState.LogInWaiting;
 
     private void Start()
     {
-        if (logIningObj == null || logIningObj == null || iconSettingObj == null)
+        if (logIningObj == null || logIningObj == null || iconSettingObj == null
+            || soundVolumeManager == null || bgm == null)
         {
             Debug.Log("nullを検知");
         }
@@ -75,6 +81,11 @@ public class TitleSceneManager : MonoBehaviour
             {
                 buttonState = ButtonState.Normal;
                 ButtonInit();
+                soundVolumeManager.Init();  // ローカルから読み込んだユーザー設定を元に音量調節を行う
+                if (bgm.isPlaying == false)
+                {
+                    PlayBGM();
+                }
             }
         }
 
@@ -94,6 +105,11 @@ public class TitleSceneManager : MonoBehaviour
             }
             return;
         }
+    }
+
+    public void PlayBGM()
+    {
+        bgm.Play(); // BGM再生スタート
     }
 
     public void ChangeEditSongSelectScene()

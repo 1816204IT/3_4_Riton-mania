@@ -16,6 +16,11 @@ public class SoundVolumeManager : MonoBehaviour
 
     void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         ChangeMusicVolume();
         ChangeSEVolume();
     }

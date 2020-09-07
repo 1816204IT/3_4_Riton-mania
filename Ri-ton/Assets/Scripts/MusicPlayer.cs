@@ -14,8 +14,9 @@ public class MusicPlayer : MonoBehaviour
 
     private float audioSourceOldTime = 0.0f;    // Update毎に更新されない
     private float time = 0.0f;  // Update毎に更新される精度の高い数値
+    private float timeOld;
 
-    private const float startWaitTime = 0.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
+    private const float startWaitTime = -1.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
     private bool isPlaying = false;
 
     private JsonManager jsonManager = null;
@@ -52,14 +53,21 @@ public class MusicPlayer : MonoBehaviour
 
         audioSourceOldTime = audioSource.time;
         time = startWaitTime;
+        timeOld = time;
     }
 
     private void Update()
     {
-        //if ((audioSource.time > 5.0f) && audioSource.isPlaying)
         if (isPlaying)
         {
             time += Time.deltaTime;
+
+            if ( (time >= 0.0f) &&  (timeOld < 0.0f))
+            {
+                audioSource.Play();
+            }
+
+            timeOld = time;
         }
 
         // audioSorce.timeが更新された時にaudioSourceOldTimeを更新
@@ -112,9 +120,11 @@ public class MusicPlayer : MonoBehaviour
 
     public void PlayStart()
     {
-        audioSource.Play();
+        //audioSource.Play();
         audioSource.time = 0.0f;
+        audioSourceOldTime = 0.0f;
         time = startWaitTime;
+        timeOld = time;
         isPlaying = true;
     }
 

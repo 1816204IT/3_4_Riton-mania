@@ -14,6 +14,7 @@ namespace Ritonmania
         public int offsetValueNum;  // -10～10(等倍で使用する)
         public int musicVolume;     // 0～100(/100して使用する)
         public int seVolume;        // 0～100(/100して使用する)
+        public bool isTutorial;     // チュートリアルが完了しているか
 
         public LocalUserData()
         {
@@ -23,6 +24,7 @@ namespace Ritonmania
             offsetValueNum = 0;
             musicVolume = 50;
             seVolume = 50;
+            isTutorial = false;
         }
     }
 }
@@ -41,8 +43,10 @@ public class UserPreference : MonoBehaviour
     private float offsetValueUnit;
     private float offsetValueNum = 0.0f;        // -10.0f～10.0f(1.0刻み)
 
-    private float musicVolume = 0.0f;           // 0.0f～1.0f(0.05刻み)
-    private float seVolume = 0.0f;              // 0.0f～1.0f(0.05刻み)
+    private float musicVolume = 0.5f;           // 0.0f～1.0f(0.05刻み)
+    private float seVolume = 0.5f;              // 0.0f～1.0f(0.05刻み)
+
+    private bool isTutorial = false;
 
     private NCMB.CharacterIcon characterIcon = new NCMB.CharacterIcon(null);
 
@@ -204,6 +208,12 @@ public class UserPreference : MonoBehaviour
         get { return characterIcon._iconFetchState; }
     }
 
+    public bool _isTutorial
+    { 
+        get { return isTutorial; }
+        set { isTutorial = value; }
+    }
+
     // 0レーン目のノーツX座標
     public float _notePosXOfLaneZero
     {
@@ -219,6 +229,7 @@ public class UserPreference : MonoBehaviour
         data.offsetValueNum = (int)_offsetValueNum;
         data.musicVolume = (int)(_musicVolume * 100);
         data.seVolume = (int)(_seVolume * 100);
+        data.isTutorial = isTutorial;
         return data;
     }
 
@@ -230,6 +241,7 @@ public class UserPreference : MonoBehaviour
         _offsetValueNum = (float)data.offsetValueNum;
         _musicVolume = data.musicVolume / 100.0f;
         _seVolume = data.seVolume / 100.0f;
+        _isTutorial = data.isTutorial;
     }
 
     //シングルトン実態を返す

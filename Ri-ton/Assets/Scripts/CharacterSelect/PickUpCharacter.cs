@@ -32,16 +32,17 @@ public class PickUpCharacter : MonoBehaviour
 
     void Start()
     {
-        if (character == null || canvas == null || pickUpCharacterManager == null)
+        Button button = GetComponent<Button>();
+        rectTransform = GetComponent<RectTransform>();
+
+        if (character == null || canvas == null || pickUpCharacterManager == null
+            || button == null)
         {
             Debug.Log("nullを検知");
         }
 
-        rectTransform = GetComponent<RectTransform>();
         defaultScale = rectTransform.localScale;
-
         // キャラクターが選択された時のコールバックを設定
-        Button button = GetComponent<Button>();
         button.onClick.AddListener(OnPickUp);
     }
 
@@ -85,6 +86,7 @@ public class PickUpCharacter : MonoBehaviour
     public void PlayVanishTween()
     {
         CreateVanishTween();
+        this.gameObject.SetActive(false);
         sequence.Play();
     }
 
@@ -92,6 +94,7 @@ public class PickUpCharacter : MonoBehaviour
     public void PlayAppearTween()
     {
         CreateAppearTween();
+        this.gameObject.SetActive(true);
         sequence.Play();
     }
 
