@@ -15,6 +15,6 @@ public class SetCursor : MonoBehaviour
         }
 
         Vector2 hotSpot = new Vector2(180 / 2, 180 / 2);
-        //Cursor.SetCursor(cursor, hotSpot, CursorMode.ForceSoftware);
+        Cursor.SetCursor(cursor, hotSpot, CursorMode.ForceSoftware);
     }
 }

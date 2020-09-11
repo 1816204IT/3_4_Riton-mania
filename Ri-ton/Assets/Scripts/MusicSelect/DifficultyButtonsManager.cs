@@ -28,12 +28,15 @@ public class DifficultyButtonsManager : MonoBehaviour
     private Image[] buttonsImage = new Image[(int)DifficultyType.MAX];
 
     private Image bigNodeBgImage = default;
+    private BigNodeInformation bigNode = null;
     private MusicNodeInformation musicNodeInformation = null;
 
     void Awake()
     {
         bigNodeBgImage = GameObject.FindGameObjectWithTag("BigNode").GetComponent<Image>();
         musicNodeInformation = GameObject.FindGameObjectWithTag("MusicNodesRoot").GetComponent<MusicNodeInformation>();
+        bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
+
         if (buttonImageObj.Easy == null || buttonImageObj.Normal == null || buttonImageObj.Hard == null ||
             buttonImageObj.Expert == null || bigNodeBgImage == null || musicNodeInformation == null)
         {
@@ -121,6 +124,8 @@ public class DifficultyButtonsManager : MonoBehaviour
         {
             scoreView.UpdateResultData();
         }
+        //大画面情報の更新
+        bigNode.InformationUpdate();
     }
 
     public void OnclickEasyButton()

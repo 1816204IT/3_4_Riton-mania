@@ -12,6 +12,8 @@ namespace NCMB
         public int acc { get; set; }
         public int rank { get; set; }
 
+        private FetchState fetchState = FetchState.non;
+
         // コンストラクタ -----------------------------------
         public HighScore(string _name, int _score, int _combo, int _acc, int _rank)
         {
@@ -31,6 +33,8 @@ namespace NCMB
         // サーバーにハイスコアを保存 -----------------------------------
         public void Save()
         {
+            fetchState = FetchState.trying;
+
             // データストアの「HighScore」クラスから、Nameをキーにして検索
             string className = SelectedMap._instance.GetMusicEnglishName() + "_" + SelectedMap._instance._difficultyName;
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
@@ -45,6 +49,12 @@ namespace NCMB
                     objList[0]["Acc"] = acc;
                     objList[0]["Rank"] = rank;
                     objList[0].SaveAsync();
+
+                    fetchState = FetchState.succeeded;
+                }
+                else
+                {
+                    fetchState = FetchState.failed;
                 }
             });
         }
@@ -52,6 +62,8 @@ namespace NCMB
         // サーバーからハイスコアを取得
         public void Fetch()
         {
+            fetchState = FetchState.trying;
+
             // データストアの「HighScore」クラスから、Nameをキーにして検索
             string className = SelectedMap._instance.GetMusicEnglishName() + "_" + SelectedMap._instance._difficultyName;
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
@@ -74,6 +86,12 @@ namespace NCMB
                         acc = System.Convert.ToInt32(objList[0]["Acc"]);
                         rank = System.Convert.ToInt32(objList[0]["Rank"]);
                     }
+
+                    fetchState = FetchState.succeeded;
+                }
+                else
+                {
+                    fetchState = FetchState.failed;
                 }
             });
         }
@@ -81,6 +99,8 @@ namespace NCMB
         // 初めてプレイする曲の場合に初期データを作成する
         public void CreateInitialData()
         {
+            fetchState = FetchState.trying;
+
             // データストアの「HighScore」クラスから、Nameをキーにして検索
             string className = SelectedMap._instance.GetMusicEnglishName() + "_" + SelectedMap._instance._difficultyName;
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
@@ -107,8 +127,19 @@ namespace NCMB
                     {
                         //何もしない
                     }
+
+                    fetchState = FetchState.succeeded;
+                }
+                else
+                {
+                    fetchState = FetchState.failed;
                 }
             });
+        }
+
+        public FetchState _fetchState
+        { 
+            get { return fetchState; }
         }
     }
 }

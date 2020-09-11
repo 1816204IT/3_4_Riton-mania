@@ -77,15 +77,32 @@ public class TitleSceneManager : MonoBehaviour
 
         if (buttonState == ButtonState.IconFetching)
         {
-            if (UserPreference._instance._iconFetchState == IconFetchState.succeeded)
+            // アイコンフェッチ終了したか
+            if (UserPreference._instance._iconFetchState == FetchState.succeeded)
             {
-                buttonState = ButtonState.Normal;
-                ButtonInit();
-                soundVolumeManager.Init();  // ローカルから読み込んだユーザー設定を元に音量調節を行う
-                if (bgm.isPlaying == false)
+                int characterNum = UserPreference._instance._characterNum;
+
+                // キャラクター番号が正常に設定されているか
+                if ( (characterNum >= 0) && (characterNum <= 4) )
                 {
-                    PlayBGM();
+                    buttonState = ButtonState.Normal;
+                    ButtonInit();
+                    soundVolumeManager.Init();  // ローカルから読み込んだユーザー設定を元に音量調節を行う
+                    if (bgm.isPlaying == false)
+                    {
+                        PlayBGM();
+                    }
                 }
+                else
+                {
+                    buttonState = ButtonState.IconSetting;
+                    ButtonInit();
+                    if (bgm.isPlaying == false)
+                    {
+                        PlayBGM();
+                    }
+                }
+
             }
         }
 
@@ -98,8 +115,8 @@ public class TitleSceneManager : MonoBehaviour
         // アイコンフェッチ中か
         if (buttonState == ButtonState.IconFetching)
         {
-            IconFetchState nowFecthState = UserPreference._instance._iconFetchState;
-            if ((nowFecthState == IconFetchState.non) || (nowFecthState == IconFetchState.failed))
+            FetchState nowFecthState = UserPreference._instance._iconFetchState;
+            if ((nowFecthState == FetchState.non) || (nowFecthState == FetchState.failed))
             {
                 UserPreference._instance.CharacterIconFetch();
             }

@@ -39,9 +39,15 @@ public class PlaySceneManager : MonoBehaviour
 
     [SerializeField]
     private Material moveMaskMat = null;
-    private int hexagonAnimSpeed = -1;
+    private const float hexagonAnimSpeed = 0.5f;
 
     private NCMB.HighScore highScore;
+
+    [SerializeField]
+    private GameObject tutorialCanvas = null;
+    private bool isTutorialEnd = false;
+
+    private bool isPlayEnd = false;
 
     private void Start()
     {
@@ -51,7 +57,7 @@ public class PlaySceneManager : MonoBehaviour
         if (musicPlayer == null || menuObj == null || jsonManager == null
              || playStartTimer == null || accCounter == null || comboCounter == null
              || scoreCounter == null || musicName == null || difficultyName == null
-             || moveMaskMat == null)
+             || moveMaskMat == null || tutorialCanvas == null)
         {
             Debug.Log("nullを検知");
         }
@@ -63,6 +69,9 @@ public class PlaySceneManager : MonoBehaviour
         Cursor.visible = false;
         // 六角形のアニメーションを再開する
         PlayHexAnim();
+        // チュートリアル表示
+        tutorialCanvas.SetActive(true);
+
         // 初めて遊ぶ曲の場合にサーバーに初期データを作成する
         string name = FindObjectOfType<UserAuth>()._playerName;
         highScore = new NCMB.HighScore(name, 0);
@@ -83,11 +92,28 @@ public class PlaySceneManager : MonoBehaviour
             PoseHexAnim();
         }
 
-        // 曲が終了したらリザルト画面へ遷移する
+        // チュートリアル終了検知
+        if (isTutorialEnd == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isTutorialEnd = true;
+                playStartTimer._isTutorialEnd = true;
+                tutorialCanvas.SetActive(false);
+            }
+        }
+
+        // 曲が終了したらリザルトデータをサーバーに送信する
         // 曲が終わった瞬間にaudioSource.time = 0になるので曲の長さの0.1秒前に終了させることで安全に判定する
         if (musicPlayer._audioSource.time + 0.1f >= musicPlayer._audioSource.clip.length)
         {
+            musicPlayer._audioSource.Stop();
             SaveResultData();
+        }
+
+        // サーバーにリザルトデータの送信が完了したらリザルトシーンへ遷移
+        if (isPlayEnd && (highScore._fetchState == FetchState.succeeded) )
+        {
             SceneManager.sceneLoaded += ResultSceneLoaded;
             SceneManager.LoadScene("Result");
         }
@@ -96,8 +122,11 @@ public class PlaySceneManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             SaveResultData();
-            SceneManager.sceneLoaded += ResultSceneLoaded;
-            SceneManager.LoadScene("Result");
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            musicPlayer._audioSource.time = 60.0f;
         }
     }
 
@@ -136,6 +165,8 @@ public class PlaySceneManager : MonoBehaviour
         // ハイスコアとしてNCMBに登録
         highScore.rank = (int)rankNum;
         highScore.Save();
+        // プレイ終了フラグを立てる
+        isPlayEnd = true;
     }
 
     // リザルトシーンの変数[resultDataInput]に値をセットする
@@ -173,8 +204,7 @@ public class PlaySceneManager : MonoBehaviour
     {
         if (moveMaskMat.HasProperty("_MoveSpeed"))
         {
-            hexagonAnimSpeed = moveMaskMat.GetInt("_MoveSpeed");
-            moveMaskMat.SetInt("_MoveSpeed", 0);
+            moveMaskMat.SetFloat("_MoveSpeed", 0.0f);
         }
         else
         {
@@ -187,7 +217,7 @@ public class PlaySceneManager : MonoBehaviour
     {
         if (moveMaskMat.HasProperty("_MoveSpeed"))
         {
-            moveMaskMat.SetInt("_MoveSpeed", hexagonAnimSpeed);
+            moveMaskMat.SetFloat("_MoveSpeed", hexagonAnimSpeed);
         }
         else
         {
@@ -197,11 +227,18 @@ public class PlaySceneManager : MonoBehaviour
 
     public void Retry()
     {
+        PlayHexAnim();
         SceneManager.LoadScene("Play");
     }
 
     public void Quit()
     {
+        PlayHexAnim();
         SceneManager.LoadScene(TitleSceneManager._prevSceneName);
+    }
+
+    public bool _isTutorialEnd
+    { 
+        get { return isTutorialEnd; }
     }
 }

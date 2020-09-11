@@ -44,6 +44,9 @@ public class TimingJudgment : MonoBehaviour
     private float holdUpedCheatTime = 0.0f;     // ホールドを離した時の曲の時間
     private MusicDTO.Note judgmentingLongNote;  // 判定中のロングノーツ
 
+    [SerializeField]
+    private PlaySceneManager playSceneManager = null;
+
     void Start()
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
@@ -55,7 +58,8 @@ public class TimingJudgment : MonoBehaviour
 
         if (jsonManager == null || musicPlayer == null || judgmentText == null || audioSource == null
             || comboCounter == null || accCounter == null || scoreCounter == null || keyEffect == null
-            || playingNoteData == null || notesSetter == null || timingText == null || noteDataConverter == null)
+            || playingNoteData == null || notesSetter == null || timingText == null || noteDataConverter == null
+            || playSceneManager == null)
         {
             Debug.Log("nullを検知");
         }
@@ -82,6 +86,11 @@ public class TimingJudgment : MonoBehaviour
 
     void Update()
     {
+        if (playSceneManager._isTutorialEnd == false)
+        {
+            return;
+        }
+       
         string key = "Lane" + laneNum.ToString();
         // 単発ノーツの判定(ロングノーツの始点を含む)
         if (Input.GetButtonDown(key))
@@ -268,7 +277,7 @@ public class TimingJudgment : MonoBehaviour
                 judgmentText.MissJudgment();
                 comboCounter.ComboZero();
                 accCounter.AddMiss();
-                SetTimingText(distance);  // タイミングのズレ
+                timingText.text = "";
 
                 // ロングノーツの始点を判定した場合
                 if (note.type == 1)

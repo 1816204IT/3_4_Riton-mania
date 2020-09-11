@@ -44,6 +44,9 @@ public class PickUpCharacterManager : MonoBehaviour
     private RectTransform nowArrow = null;
     private float nowArrowDistanceX = 220;  // 配置しているキャラクター同士の距離
 
+    [SerializeField]
+    private GameObject pleasePickCharacter = null;
+
     // キャラクター選択画面のホーム(初期画面)にいるか？　ホーム画面とそれ以外でEscapeキーを押した時の挙動が変わる
     enum NOW_STATE
     {
@@ -58,7 +61,7 @@ public class PickUpCharacterManager : MonoBehaviour
         if (characters.Length == 0 || scaleTweens.Length == 0 || moveEndPos == null
             || headerInfo == null|| whiteBackImage == null || colorBackImage == null
             || characterProfileData == null || characterNameText == null || profile == null
-            || nowArrow == null)
+            || nowArrow == null || pleasePickCharacter == null)
         {
             Debug.Log("nullを検知");
         }
@@ -69,6 +72,8 @@ public class PickUpCharacterManager : MonoBehaviour
         pickingCharacterNum = UserPreference._instance._characterNum;
         // nowの矢印のX座標移動
         MoveNowArrow();
+
+        pleasePickCharacter.SetActive(false);
     }
 
     void Update()
@@ -187,11 +192,22 @@ public class PickUpCharacterManager : MonoBehaviour
     // Backボタンが押された時の処理
     public void OnClickBackButton()
     {
-        // キャラクター選択シーンのホーム画面にいるタイトルシーンへ遷移
+        // キャラクター選択シーンのホーム画面にいる場合タイトルシーンへ遷移
         if (nowState == NOW_STATE.HOME)
         {
-            UserPreference._instance.AsyncCharacterIcon();   // サーバー同期
-            SceneManager.LoadScene("Title");
+            // キャラクター未選択なら催促分を表示
+            if ((pickingCharacterNum < 0) || (pickingCharacterNum > 4))
+            {
+                pleasePickCharacter.SetActive(true);
+                // 催促分を指定秒数後に消す
+                Invoke("UnEnablePleasePickCharacterObj", 1.0f);
+            }
+            // キャラクター選択済みならタイトルへ戻る
+            else
+            {
+                UserPreference._instance.AsyncCharacterIcon();   // サーバー同期
+                SceneManager.LoadScene("Title");
+            }
         }
         // 「このキャラクターにしますか？」の画面にいる場合はホームシーンへ遷移
         else if (nowState == NOW_STATE.CHARACTER_DECIDE)
@@ -234,6 +250,11 @@ public class PickUpCharacterManager : MonoBehaviour
         Vector3 p = nowArrow.transform.localPosition;
         float posX = nowArrowDistanceX * (pickingCharacterNum - 2); // キャラクター番号2のキャラクターが中央に配置されているため -2 する
         nowArrow.transform.localPosition = new Vector3(posX, p.y, p.z);
+    }
+
+    private void UnEnablePleasePickCharacterObj()
+    {
+        pleasePickCharacter.SetActive(false);
     }
 
     public int _pickingCharacterNum

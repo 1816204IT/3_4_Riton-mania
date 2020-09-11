@@ -66,6 +66,9 @@ public class TutorialPlaySongSelect : MonoBehaviour
         // 矢印画像を表示しない
         arrow.SetActive(false);
 
+        // ナビゲーションキャラを表示する
+        navigationCharacter.enabled = true;
+
         // シナリオ開始
         Set();
     }

@@ -17,6 +17,8 @@ public class BigNodeInformation : MonoBehaviour
     private Text authorText = null;
     [SerializeField]
     private Text mapperText = null;
+    [SerializeField]
+    private Text difficultyText = null;
 
     private JsonManager jsonManager = null;
 
@@ -24,7 +26,7 @@ public class BigNodeInformation : MonoBehaviour
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         if (jacketImage == null || musicNameText == null || bpmText == null || jsonManager == null
-            || authorText == null || mapperText == null)
+            || authorText == null || mapperText == null || difficultyText == null)
         {
             Debug.Log("nullを検知");
         }
@@ -41,6 +43,9 @@ public class BigNodeInformation : MonoBehaviour
         //BPMの更新
         float bpmTextValue = mapInfo.bpm / 100.0f;
         bpmText.text = "BPM:" + bpmTextValue.ToString();
+        //難易度の更新
+        float difficulty = mapData.difficulty / 10.0f;
+        difficultyText.text = "☆" + difficulty.ToString();
         //作者名の更新
         authorText.text = "Author : " + mapInfo.authorName;
         //マッパー名の更新

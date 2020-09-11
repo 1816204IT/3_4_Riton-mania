@@ -203,7 +203,7 @@ public class UserPreference : MonoBehaviour
         set { characterIcon.name = value; }
     }
 
-    public IconFetchState _iconFetchState
+    public FetchState _iconFetchState
     { 
         get { return characterIcon._iconFetchState; }
     }

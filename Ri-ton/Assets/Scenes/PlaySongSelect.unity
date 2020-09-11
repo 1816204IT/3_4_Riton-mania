@@ -724,6 +724,7 @@ MonoBehaviour:
   bpmText: {fileID: 1597086005}
   authorText: {fileID: 1516008822}
   mapperText: {fileID: 936776083}
+  difficultyText: {fileID: 523677982}
 --- !u!114 &185134188
 MonoBehaviour:
   m_ObjectHideFlags: 0

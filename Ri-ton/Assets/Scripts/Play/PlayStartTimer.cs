@@ -10,6 +10,8 @@ public class PlayStartTimer : MonoBehaviour
 
     float timer = 3.0f;
 
+    bool isTutorialEnd = false;
+
     void Start()
     {
         text = this.GetComponent<Text>();
@@ -26,7 +28,7 @@ public class PlayStartTimer : MonoBehaviour
 
     void Update()
     {
-        if (timer <= 0.0f)
+        if ( (timer <= 0.0f) || (isTutorialEnd == false) )
         {
             return;
         }
@@ -54,5 +56,10 @@ public class PlayStartTimer : MonoBehaviour
     {
         timer = 3.0f;
         text.enabled = true;
+    }
+
+    public bool _isTutorialEnd
+    {
+        set { isTutorialEnd = value; }
     }
 }

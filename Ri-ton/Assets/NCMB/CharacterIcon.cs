@@ -1,7 +1,7 @@
 ﻿using NCMB;
 using System.Collections.Generic;
 
-public enum IconFetchState
+public enum FetchState
 {
     non,
     trying,
@@ -17,7 +17,7 @@ namespace NCMB
         public string name { get; set; }
         public int character { get; set; }
 
-        private IconFetchState fetchState = IconFetchState.non;
+        private FetchState fetchState = FetchState.non;
 
         // コンストラクタ -----------------------------------
         public CharacterIcon(string _name)
@@ -46,7 +46,7 @@ namespace NCMB
         // サーバーからキャラクター番号を取得
         public void Fetch()
         {
-            fetchState = IconFetchState.trying;
+            fetchState = FetchState.trying;
 
             // データストアの「CharacterIcon」クラスから、Nameをキーにして検索
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("CharacterIcon");
@@ -70,16 +70,16 @@ namespace NCMB
                         character = System.Convert.ToInt32(objList[0]["Character"]);
                     }
 
-                    fetchState = IconFetchState.succeeded;
+                    fetchState = FetchState.succeeded;
                 }
                 else
                 {
-                    fetchState = IconFetchState.failed;
+                    fetchState = FetchState.failed;
                 }
             });
         }
 
-        public IconFetchState _iconFetchState
+        public FetchState _iconFetchState
         { 
             get { return fetchState; }
         }
