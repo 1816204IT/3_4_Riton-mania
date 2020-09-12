@@ -2010,7 +2010,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -33.1}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 400, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &526570307
@@ -5078,7 +5078,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterDatas:
   - name: Blue
-    color: {r: 0.6, g: 1, b: 1, a: 1}
     height: 
     age: 
     birthDay: 
@@ -5087,7 +5086,6 @@ MonoBehaviour:
     unLikes: 
     illustrator: ??
   - name: Natsuhiko
-    color: {r: 1, g: 1, b: 0.3137255, a: 1}
     height: 176cm
     age: "152\u624D"
     birthDay: "7\u67085\u65E5"
@@ -5096,7 +5094,6 @@ MonoBehaviour:
     unLikes: "\u7D30\u304B\u3044\u4F5C\u696D"
     illustrator: "\u5927\u77F3 \u6953"
   - name: lime
-    color: {r: 0.6, g: 1, b: 0.6, a: 1}
     height: 165cm
     age: "17\u624D"
     birthDay: "5\u67084\u65E5"
@@ -5105,7 +5102,6 @@ MonoBehaviour:
     unLikes: "\u3058\u3063\u3068\u3059\u308B\u3053\u3068"
     illustrator: "\u4E0B\u5DDD \u4E03\u8056"
   - name: Kureha
-    color: {r: 1, g: 0.6, b: 0.6, a: 1}
     height: "160cm+5cm\uFF08\u30D6\u30FC\u30C4\uFF09"
     age: "19\u624D"
     birthDay: "4\u670815\u65E5"
@@ -5114,7 +5110,6 @@ MonoBehaviour:
     unLikes: "\u304D\u3085\u3046\u308A"
     illustrator: "\u677E\u571F \u77E5\u751F"
   - name: Purple
-    color: {r: 0.8, g: 0.6, b: 1, a: 1}
     height: 
     age: 
     birthDay: 

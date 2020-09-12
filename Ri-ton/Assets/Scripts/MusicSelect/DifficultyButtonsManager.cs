@@ -130,6 +130,11 @@ public class DifficultyButtonsManager : MonoBehaviour
         }
         //大画面情報の更新
         bigNode.InformationUpdate();
+        //ボタンの色を灰色にする
+        foreach (Image img in buttonsImage)
+        {
+            img.color = new Color(0.84f, 0.84f, 0.84f);
+        }
     }
 
     public void OnclickEasyButton()
@@ -139,7 +144,8 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.EASY].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.EASY].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = buttonsImage[(int)DifficultyType.EASY].color;
+        Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
+        buttonsImage[(int)DifficultyType.EASY].color = color;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;
@@ -153,7 +159,8 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.NORMAL].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.NORMAL].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = buttonsImage[(int)DifficultyType.NORMAL].color;
+        Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
+        buttonsImage[(int)DifficultyType.NORMAL].color = color;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;
@@ -167,7 +174,8 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.HARD].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.HARD].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = buttonsImage[(int)DifficultyType.HARD].color;
+        Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
+        buttonsImage[(int)DifficultyType.HARD].color = color;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;
@@ -181,7 +189,8 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.EXPERT].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.EXPERT].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = buttonsImage[(int)DifficultyType.EXPERT].color;
+        Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
+        buttonsImage[(int)DifficultyType.EXPERT].color = color;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;
