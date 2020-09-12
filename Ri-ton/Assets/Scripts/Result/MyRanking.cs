@@ -35,6 +35,12 @@ public class MyRanking : MonoBehaviour
         {
             myRankingText.text = lBoard.currentRank.ToString();
             isRankFetched = true;
+
+            // 1位なら文字色を黄色にする
+            if (lBoard.currentRank == 1)
+            {
+                myRankingText.color = Color.yellow;
+            }
         }
     }
 }

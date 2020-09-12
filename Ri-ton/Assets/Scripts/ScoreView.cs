@@ -144,20 +144,22 @@ public class ScoreView : MonoBehaviour
 
     private void SetHighScoreNode(GameObject node)
     {
-        PathBuilder.Clear();
-
-        PathBuilder.Clear();
         //プレイヤ名を設定
         node.transform.Find("PlayerNameText").GetComponent<Text>().text = highScore.name;
-        //スコアと最大コンボ数を設定
-        PathBuilder.AppendFormat("score : {0} [{1}x]", highScore.score, highScore.combo);
+        //スコアを設定
+        PathBuilder.Clear();
+        PathBuilder.AppendFormat("score : {0}", highScore.score.ToString("N0"));
         node.transform.Find("ScoreText").GetComponent<Text>().text = PathBuilder.ToString();
+        //最大コンボ数を設定
+        PathBuilder.Clear();
+        PathBuilder.AppendFormat("({0}{1})", highScore.combo.ToString("N0"), "x");
+        node.transform.Find("ComboText").GetComponent<Text>().text = PathBuilder.ToString();
         //精度を設定
         PathBuilder.Clear();
         PathBuilder.AppendFormat("{0}%", (highScore.acc / 100.0f).ToString("f2"));
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
         //アイコン画像を設定
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterImageList._instance.GetIconSprite(UserPreference._instance._characterNum);
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList._instance.GetIconSprite(UserPreference._instance._characterNum);
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList._instance.GetSmallSprite(highScore.rank);
         //順位を設定
@@ -169,19 +171,23 @@ public class ScoreView : MonoBehaviour
     {
         NCMB.HighScore rankers = topRankers[i];
 
-        PathBuilder.Clear();
         //プレイヤ名を設定
         node.transform.Find("PlayerNameText").GetComponent<Text>().text = rankers.name;
-        //スコアと最大コンボ数を設定
-        PathBuilder.AppendFormat("score : {0} [{1}x]", rankers.score, rankers.combo);
+        //スコアを設定
+        PathBuilder.Clear();
+        PathBuilder.AppendFormat("score : {0}", rankers.score.ToString("N0"));
         node.transform.Find("ScoreText").GetComponent<Text>().text = PathBuilder.ToString();
+        //最大コンボ数を設定
+        PathBuilder.Clear();
+        PathBuilder.AppendFormat("({0}{1})", rankers.combo.ToString("N0"), "x");
+        node.transform.Find("ComboText").GetComponent<Text>().text = PathBuilder.ToString();
         //精度を設定
         PathBuilder.Clear();
         PathBuilder.AppendFormat("{0}%", (rankers.acc / 100.0f).ToString("f2"));
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
 
         //アイコン画像を設定
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterImageList._instance.GetIconSprite(topRankersIcon[i].character);
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList._instance.GetIconSprite(topRankersIcon[i].character);
 
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList._instance.GetSmallSprite(rankers.rank);

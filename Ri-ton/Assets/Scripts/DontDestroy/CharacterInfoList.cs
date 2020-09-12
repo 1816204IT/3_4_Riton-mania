@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterImageList : MonoBehaviour
+public class CharacterInfoList : MonoBehaviour
 {
     [System.Serializable]
     struct CharacterSprite
     {
         public Sprite sprite;
         public Sprite iconSprite;
+        public Color color;
     }
 
     [SerializeField]
-    private CharacterSprite[] sprites;
+    private CharacterSprite[] infos;
 
     void Awake()
     {
@@ -28,16 +29,21 @@ public class CharacterImageList : MonoBehaviour
 
     public Sprite GetSprite(int characterNum)
     {
-        return sprites[characterNum].sprite;
+        return infos[characterNum].sprite;
     }
 
     public Sprite GetIconSprite(int characterNum)
     {
-        return sprites[characterNum].iconSprite;
+        return infos[characterNum].iconSprite;
+    }
+
+    public Color GetColor(int characterNum)
+    {
+        return infos[characterNum].color;
     }
 
     //シングルトン実態を返す
-    public static CharacterImageList _instance
+    public static CharacterInfoList _instance
     {
         get;
         private set;

@@ -8,7 +8,6 @@ namespace Ritonmania
     public struct CharacterData
     {
         public string name;
-        public Color color;
         public string height;       // 身長
         public string age;
         public string birthDay;     // 誕生日

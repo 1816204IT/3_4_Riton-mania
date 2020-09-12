@@ -20,13 +20,19 @@ public class BigNodeInformation : MonoBehaviour
     [SerializeField]
     private Text difficultyText = null;
 
+    [SerializeField]
+    private Font englishFont = null;
+    [SerializeField]
+    private Font jananeseFont = null;
+
     private JsonManager jsonManager = null;
 
     void Awake()
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         if (jacketImage == null || musicNameText == null || bpmText == null || jsonManager == null
-            || authorText == null || mapperText == null || difficultyText == null)
+            || authorText == null || mapperText == null || difficultyText == null || englishFont == null
+            || jananeseFont == null)
         {
             Debug.Log("nullを検知");
         }
@@ -49,6 +55,7 @@ public class BigNodeInformation : MonoBehaviour
         //作者名の更新
         authorText.text = mapInfo.authorName;
         //マッパー名の更新
+        mapperText.font = englishFont;
         mapperText.text = mapData.mapperName;
         //ジャケット画像の変更
         jacketImage.sprite = MusicInfoList._instance.GetBgImage(SelectedMap._instance._musicIndex);
@@ -68,6 +75,7 @@ public class BigNodeInformation : MonoBehaviour
             || (musicName == "コインランドリー" && diffName == "Hard"))
         {
             //マッパー名の更新
+            mapperText.font = jananeseFont;
             mapperText.text = "出汁男";
         }
 
@@ -77,6 +85,7 @@ public class BigNodeInformation : MonoBehaviour
             if (diffName == "Expert" || diffName == "Hard" || diffName == "Normal")
             {
                 //マッパー名の更新
+                mapperText.font = jananeseFont;
                 mapperText.text = "巻きパン";
             }
         }

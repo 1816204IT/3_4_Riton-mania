@@ -231,9 +231,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
     m_FontSize: 14
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -243,7 +243,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MusicName
+  m_Text: "\u304F\u308B\u304F\u308B"
 --- !u!1 &5354559983822796886
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +374,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isUseDefaultSE: 1
+  mouseOverSE: {fileID: 0}
+  menuHitSE: {fileID: 0}
 --- !u!1 &6273771281141843071
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class HeaderInfo : MonoBehaviour
         {
             Debug.Log("nullを検知");
         }
+
+        SetPlayerNameColor();
     }
 
     private void Update()
@@ -24,5 +26,12 @@ public class HeaderInfo : MonoBehaviour
             playerName = "NOT LOGIN";
         }
         playerNameText.text = playerName;
+    }
+
+    public void SetPlayerNameColor()
+    {
+        int charaNum = UserPreference._instance._characterNum;
+        Color color = CharacterInfoList._instance.GetColor(charaNum);
+        playerNameText.color = color;
     }
 }

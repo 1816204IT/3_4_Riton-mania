@@ -213,7 +213,7 @@ public class TutorialPlaySongSelect : MonoBehaviour
         data.unmaskPos = new Vector3(0, -265, 0);
         data.unmaskSizeDelta = new Vector2(1280, 150);
         data.textPos = new Vector3(0, -110, 0);
-        data.text = "最初に曲を選んで・・";
+        data.text = "最初に曲を選んで・・・";
         data.isArrowButtom = true;
         list.Add(data);
 
@@ -221,7 +221,7 @@ public class TutorialPlaySongSelect : MonoBehaviour
         data.unmaskPos = new Vector3(0, 225, 0);
         data.unmaskSizeDelta = new Vector2(540, 80);
         data.textPos = new Vector3(0, 60, 0);
-        data.text = "次に難易度を選んだら・・";
+        data.text = "次に難易度を選んだら・・・";
         data.isArrowButtom = false;
         list.Add(data);
 
@@ -261,7 +261,7 @@ public class TutorialPlaySongSelect : MonoBehaviour
         data.unmaskPos = new Vector3(-470, 223, 0);
         data.unmaskSizeDelta = new Vector2(290, 60);
         data.textPos = new Vector3(-400, 70, 0);
-        data.text = "切り替えボタンを押すと・・";
+        data.text = "切り替えボタンを押すと・・・";
         data.isArrowButtom = false;
         list.Add(data);
 
@@ -274,25 +274,25 @@ public class TutorialPlaySongSelect : MonoBehaviour
         list.Add(data);
 
         // 13
-        data.unmaskPos = new Vector3(503, 320, 0);
-        data.unmaskSizeDelta = new Vector2(273, 80);
-        data.textPos = new Vector3(395, 160, 0);
+        data.unmaskPos = new Vector3(503, 335, 0);
+        data.unmaskSizeDelta = new Vector2(273, 50);
+        data.textPos = new Vector3(395, 190, 0);
         data.text = "最後はオプションの説明だよ！";
         data.isArrowButtom = false;
         list.Add(data);
 
         // 14
-        data.unmaskPos = new Vector3(503, 320, 0);
-        data.unmaskSizeDelta = new Vector2(273, 80);
-        data.textPos = new Vector3(395, 160, 0);
+        data.unmaskPos = new Vector3(503, 335, 0);
+        data.unmaskSizeDelta = new Vector2(273, 50);
+        data.textPos = new Vector3(395, 190, 0);
         data.text = "ノーツスピードやタイミング調整等";
         data.isArrowButtom = false;
         list.Add(data);
 
         // 15
-        data.unmaskPos = new Vector3(503, 320, 0);
-        data.unmaskSizeDelta = new Vector2(273, 80);
-        data.textPos = new Vector3(395, 160, 0);
+        data.unmaskPos = new Vector3(503, 335, 0);
+        data.unmaskSizeDelta = new Vector2(273, 50);
+        data.textPos = new Vector3(395, 190, 0);
         data.text = "プレイに関係する設定ができるんだよ！";
         data.isArrowButtom = false;
         list.Add(data);
@@ -306,17 +306,17 @@ public class TutorialPlaySongSelect : MonoBehaviour
         list.Add(data);
 
         // 17
-        data.unmaskPos = new Vector3(300, 320, 0);
-        data.unmaskSizeDelta = new Vector2(100, 80);
-        data.textPos = new Vector3(300, 160, 0);
+        data.unmaskPos = new Vector3(300, 335, 0);
+        data.unmaskSizeDelta = new Vector2(100, 50);
+        data.textPos = new Vector3(300, 190, 0);
         data.text = "もしも忘れちゃったらココを押してね";
         data.isArrowButtom = false;
         list.Add(data);
 
         // 18
-        data.unmaskPos = new Vector3(300, 320, 0);
-        data.unmaskSizeDelta = new Vector2(100, 80);
-        data.textPos = new Vector3(300, 160, 0);
+        data.unmaskPos = new Vector3(300, 335, 0);
+        data.unmaskSizeDelta = new Vector2(100, 50);
+        data.textPos = new Vector3(300, 190, 0);
         data.text = "ライムが何度でも説明してあげるから！";
         data.isArrowButtom = false;
         list.Add(data);

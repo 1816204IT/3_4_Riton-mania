@@ -2244,7 +2244,7 @@ SpriteRenderer:
   m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &102465818
@@ -3233,7 +3233,7 @@ GameObject:
   - component: {fileID: 165165779}
   - component: {fileID: 165165778}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Image-Tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3276,7 +3276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 29d4c5fe284e10a4f9e586041dc71fe8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f69777340b205ab4297eab19b6094b96, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5105,7 +5105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &309213593
 Transform:
   m_ObjectHideFlags: 0
@@ -11528,6 +11528,8 @@ MonoBehaviour:
   difficultyName: {fileID: 1961676802}
   moveMaskMat: {fileID: 2100000, guid: 517cc6ba93198074e9e7d27ac3d90d35, type: 2}
   tutorialCanvas: {fileID: 1433610466}
+  BloomCubes: {fileID: 1591363878}
+  hexagons: {fileID: 309213592}
 --- !u!4 &910765998
 Transform:
   m_ObjectHideFlags: 0
@@ -22405,7 +22407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1433610467
 MonoBehaviour:
   m_ObjectHideFlags: 0

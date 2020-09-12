@@ -30,7 +30,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
 
         // キャラクター表示
         int charaNum = UserPreference._instance._characterNum;
-        myCharacter.sprite = CharacterImageList._instance.GetSprite(charaNum);
+        myCharacter.sprite = CharacterInfoList._instance.GetSprite(charaNum);
     }
 
     void Update()

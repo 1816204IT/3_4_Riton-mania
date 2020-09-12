@@ -52,6 +52,11 @@ public class PlaySceneManager : MonoBehaviour
 
     private NCMB.HighScore prePlayHighScore;
 
+    [SerializeField]
+    private GameObject BloomCubes = null;
+    [SerializeField]
+    private GameObject hexagons = null;
+
     private void Start()
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
@@ -60,7 +65,8 @@ public class PlaySceneManager : MonoBehaviour
         if (musicPlayer == null || menuObj == null || jsonManager == null
              || playStartTimer == null || accCounter == null || comboCounter == null
              || scoreCounter == null || musicName == null || difficultyName == null
-             || moveMaskMat == null || tutorialCanvas == null)
+             || moveMaskMat == null || tutorialCanvas == null || BloomCubes == null
+             || hexagons == null)
         {
             Debug.Log("nullを検知");
         }
@@ -82,6 +88,20 @@ public class PlaySceneManager : MonoBehaviour
         // 前回のハイスコア
         prePlayHighScore = new NCMB.HighScore(name, 0);
         prePlayHighScore.Fetch();
+
+        // 背景の選択
+        if (UserPreference._instance._isBloomCubes)
+        {
+            UserPreference._instance._isBloomCubes = false;
+            BloomCubes.SetActive(true);
+            hexagons.SetActive(false);
+        }
+        else
+        {
+            UserPreference._instance._isBloomCubes = true;
+            BloomCubes.SetActive(false);
+            hexagons.SetActive(true);
+        }
     }
 
     void Update()
@@ -150,7 +170,7 @@ public class PlaySceneManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            musicPlayer._audioSource.time = 30.0f;
+            musicPlayer._audioSource.time = 80.0f;
         }
     }
 
@@ -216,6 +236,7 @@ public class PlaySceneManager : MonoBehaviour
         data.goodNum = accCounter._totalGoodNum;
         data.missNum = accCounter._totalMissNum;
         data.rankImageNum = highScore.rank;
+        data.isAciveHighScore = isAchieveHishScore;
         resultDataInput.SetResultShowData(data);
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }

@@ -13,6 +13,7 @@ public struct ResultShowData
     public int goodNum;
     public int missNum;
     public int rankImageNum;
+    public bool isAciveHighScore;
 }
 
 // プレイ終了時のリザルトデータをプレイシーンから受け取るクラス
@@ -34,6 +35,8 @@ public class ResultDataInput : MonoBehaviour
     private Text missText = null;
     [SerializeField]
     private Image rankImage = null;
+    [SerializeField]
+    private Text newRecordText = null;
 
     [SerializeField]
     private Text musicTitleText = null;
@@ -46,7 +49,7 @@ public class ResultDataInput : MonoBehaviour
     {
         if (scoreText == null || accText == null || comboText == null || perfectText == null
              || goodText == null || missText == null || characterImage == null || rankImage == null
-             || difficultyText == null || musicTitleText == null)
+             || difficultyText == null || musicTitleText == null || newRecordText == null)
         {
             Debug.Log("nullを検知");
         }
@@ -58,10 +61,40 @@ public class ResultDataInput : MonoBehaviour
         goodText.text = data.goodNum.ToString();
         missText.text = data.missNum.ToString();
         rankImage.sprite = RankImageList._instance.GetSprite(data.rankImageNum);
+        if (data.isAciveHighScore)
+        {
+            newRecordText.text = "new record!!";
+        }
+        else
+        {
+            newRecordText.text = "";
+        }
 
         musicTitleText.text = SelectedMap._instance._musicName;
         difficultyText.text = SelectedMap._instance._difficultyName;
-        characterImage.sprite = CharacterImageList._instance.GetSprite(UserPreference._instance._characterNum);
+        characterImage.sprite = CharacterInfoList._instance.GetSprite(UserPreference._instance._characterNum);
+
+        // -----最高成績なら文字色を黄色にする-----
+        if ((data.acc / 100.0f) == 100.0f)
+        {
+            accText.color = Color.yellow;
+        }
+        if (data.combo == data.maxCombo)
+        {
+            comboText.color = Color.yellow;
+        }
+        if (data.perfectNum == data.maxCombo)
+        {
+            perfectText.color = Color.yellow;
+        }
+        if (data.goodNum == 0)
+        {
+            goodText.color = Color.yellow;
+        }
+        if (data.missNum == 0)
+        {
+            missText.color = Color.yellow;
+        }
     }
 
     public void SetResultShowData(ResultShowData inData)

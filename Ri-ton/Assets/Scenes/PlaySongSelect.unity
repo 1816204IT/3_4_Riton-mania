@@ -802,6 +802,8 @@ MonoBehaviour:
   authorText: {fileID: 1980785424}
   mapperText: {fileID: 77903013}
   difficultyText: {fileID: 523677982}
+  englishFont: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
+  jananeseFont: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
 --- !u!114 &185134188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3396,11 +3398,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
-    m_FontSize: 32
-    m_FontStyle: 1
+    m_Font: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
+    m_FontSize: 34
+    m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 2
+    m_MinSize: 0
     m_MaxSize: 46
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3408,9 +3410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'MusicName
-
-'
+  m_Text: "\u304F\u308B\u304F\u308B"
 --- !u!222 &771553393
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4846,8 +4846,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -470, y: 223}
-  m_SizeDelta: {x: 290, y: 60}
+  m_AnchoredPosition: {x: 300, y: 335.0598}
+  m_SizeDelta: {x: 100, y: 49.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987737164
 MonoBehaviour:
@@ -5571,7 +5571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -376, y: 139}
+  m_AnchoredPosition: {x: -376, y: 200}
   m_SizeDelta: {x: 600, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1126253494
@@ -5608,9 +5608,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
+    m_Font: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
     m_FontSize: 26
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
@@ -11357,7 +11357,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
+    m_Font: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
     m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
@@ -11369,7 +11369,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Empty
+  m_Text: "\u767D\u77F3\u3055\u3093"
 --- !u!222 &1980785425
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -139,16 +139,17 @@ public class PickUpCharacterManager : MonoBehaviour
     {
         // キャラクターデータの取得
         Ritonmania.CharacterData data = characterProfileData.GetCharacterData(pickingCharacterNum);
+        Color color = CharacterInfoList._instance.GetColor(pickingCharacterNum);
 
         // 背景の名前の色とtextを指定
-        characterNameText.color = data.color;
+        characterNameText.color = color;
         //characterNameText.text = data.name;
 
         characterNameText.text = data.name;
-        characterNameMat.SetColor("_FaceColor", data.color);
+        characterNameMat.SetColor("_FaceColor", color);
 
         // 背景の色を指定
-        colorBackImage.GetComponent<Image>().color = data.color;
+        colorBackImage.GetComponent<Image>().color = color;
         // 背景のTween開始
         whiteBackImage.MoveBG(this.GetComponent<PickUpCharacterManager>());
         colorBackImage.MoveBG(this.GetComponent<PickUpCharacterManager>());
@@ -233,6 +234,8 @@ public class PickUpCharacterManager : MonoBehaviour
     {
         // キャラクターの番号を変更
         UserPreference._instance._characterNum = pickingCharacterNum;
+        // ヘッダーのプレイヤー名の文字色を変更
+        headerInfo.SetPlayerNameColor();
         // nowの矢印のX座標移動
         MoveNowArrow();
         // 戻るボタンが押された時の処理をする

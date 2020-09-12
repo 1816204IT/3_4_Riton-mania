@@ -55,6 +55,8 @@ public class UserPreference : MonoBehaviour
 
     UserAuth userAuth = null;
 
+    private bool isBloomCubes = true;   // プレイ背景がキューブの方か
+
     private void Awake()
     {
         if (_instance != null)
@@ -218,6 +220,12 @@ public class UserPreference : MonoBehaviour
     public float _notePosXOfLaneZero
     {
         get { return -(note_size_x * (max_lane_num / 2)) + (note_size_x / 2); }
+    }
+
+    public bool _isBloomCubes
+    { 
+        get { return isBloomCubes; }
+        set { isBloomCubes = value; }
     }
 
     private Ritonmania.LocalUserData GetCovertData()
