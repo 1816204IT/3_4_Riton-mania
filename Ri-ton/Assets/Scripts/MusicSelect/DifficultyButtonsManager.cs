@@ -31,14 +31,18 @@ public class DifficultyButtonsManager : MonoBehaviour
     private BigNodeInformation bigNode = null;
     private MusicNodeInformation musicNodeInformation = null;
 
+    [SerializeField]
+    private Image playButtonImage = null;
+
     void Awake()
     {
         bigNodeBgImage = GameObject.FindGameObjectWithTag("BigNode").GetComponent<Image>();
         musicNodeInformation = GameObject.FindGameObjectWithTag("MusicNodesRoot").GetComponent<MusicNodeInformation>();
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
 
-        if (buttonImageObj.Easy == null || buttonImageObj.Normal == null || buttonImageObj.Hard == null ||
-            buttonImageObj.Expert == null || bigNodeBgImage == null || musicNodeInformation == null)
+        if (buttonImageObj.Easy == null || buttonImageObj.Normal == null || buttonImageObj.Hard == null
+            || buttonImageObj.Expert == null || bigNodeBgImage == null || musicNodeInformation == null
+            || playButtonImage == null)
         {
             Debug.Log("nullを検知");
         }
@@ -135,8 +139,10 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.EASY].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.EASY].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        bigNodeBgImage.color = buttonsImage[(int)DifficultyType.EASY].color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = buttonsImage[(int)DifficultyType.EASY].color;
+        Color color = buttonsImage[(int)DifficultyType.EASY].color;
+        bigNodeBgImage.color = color;
+        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 
@@ -147,8 +153,10 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.NORMAL].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.NORMAL].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        bigNodeBgImage.color = buttonsImage[(int)DifficultyType.NORMAL].color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = buttonsImage[(int)DifficultyType.NORMAL].color;
+        Color color = buttonsImage[(int)DifficultyType.NORMAL].color;
+        bigNodeBgImage.color = color;
+        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 
@@ -159,8 +167,10 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.HARD].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.HARD].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        bigNodeBgImage.color = buttonsImage[(int)DifficultyType.HARD].color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = buttonsImage[(int)DifficultyType.HARD].color;
+        Color color = buttonsImage[(int)DifficultyType.HARD].color;
+        bigNodeBgImage.color = color;
+        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 
@@ -171,8 +181,10 @@ public class DifficultyButtonsManager : MonoBehaviour
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.EXPERT].sizeDelta;
         buttonsRectTransform[(int)DifficultyType.EXPERT].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        bigNodeBgImage.color = buttonsImage[(int)DifficultyType.EXPERT].color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = buttonsImage[(int)DifficultyType.EXPERT].color;
+        Color color = buttonsImage[(int)DifficultyType.EXPERT].color;
+        bigNodeBgImage.color = color;
+        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 }

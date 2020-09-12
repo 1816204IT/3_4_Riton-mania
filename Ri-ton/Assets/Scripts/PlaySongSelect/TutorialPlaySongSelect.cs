@@ -226,8 +226,8 @@ public class TutorialPlaySongSelect : MonoBehaviour
         list.Add(data);
 
         // 7
-        data.unmaskPos = new Vector3(450, -50, 0);
-        data.unmaskSizeDelta = new Vector2(273, 238);
+        data.unmaskPos = new Vector3(450, -65, 0);
+        data.unmaskSizeDelta = new Vector2(273, 250);
         data.textPos = new Vector3(450, 140, 0);
         data.text = "Playボタンでスタート！";
         data.isArrowButtom = true;
@@ -258,9 +258,9 @@ public class TutorialPlaySongSelect : MonoBehaviour
         list.Add(data);
 
         // 11
-        data.unmaskPos = new Vector3(-342, 232, 0);
-        data.unmaskSizeDelta = new Vector2(60, 50);
-        data.textPos = new Vector3(-342, 90, 0);
+        data.unmaskPos = new Vector3(-470, 223, 0);
+        data.unmaskSizeDelta = new Vector2(290, 60);
+        data.textPos = new Vector3(-400, 70, 0);
         data.text = "切り替えボタンを押すと・・";
         data.isArrowButtom = false;
         list.Add(data);

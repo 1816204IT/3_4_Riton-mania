@@ -11,18 +11,25 @@ public class ScoreCounter : MonoBehaviour
 
     [SerializeField]
     private TimingJudgment timingJudgment = null;
+    [SerializeField]
+    private AccCounter accCounter = null;
 
     void Start()
     {
         text = this.GetComponent<Text>();
 
-        if (text == null || timingJudgment == null)
+        if (text == null || timingJudgment == null || accCounter == null)
         {
             Debug.Log("nullを検知");
         }
 
         //0.1秒後にunitScoreを設定する
         Invoke("SetUnitScore", 0.1f);
+    }
+
+    private void Update()
+    {
+        AllPerfectCheck();
     }
 
     private void SetUnitScore()
@@ -41,7 +48,6 @@ public class ScoreCounter : MonoBehaviour
     public void AddPerfect()
     {
         score += unitScore * 2.0f;
-        ScoreOverCheck();
         int intScore = (int)(score);
         text.text = intScore.ToString();
     }
@@ -49,15 +55,20 @@ public class ScoreCounter : MonoBehaviour
     public void AddGood()
     {
         score += unitScore;
-        ScoreOverCheck();
         int intScore = (int)(score);
         text.text = intScore.ToString();
     }
 
-    // スコアが100万点を超えていたら100万点にする
-    private void ScoreOverCheck()
+    private void AllPerfectCheck()
     {
-        score = (score > 1000000.0f) ? 1000000.0f : score;
+        float acc = accCounter._acc;
+
+        // 仮にMax4000コンボだとすると1コンボ辺りのscore = 250となる
+        if (score >= 999750 && acc == 100.0f)
+        {
+            score = 1000000;
+            text.text = score.ToString();
+        }
     }
 
     public int _score

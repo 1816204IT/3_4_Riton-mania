@@ -42,6 +42,8 @@ public class NotesSetter : MonoBehaviour
     private NoteDataConverter noteDataConverter = null;
     private PlayingNoteData playingNoteData = null;
 
+    private bool isPlayEnd = false;
+
     void Start()
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();

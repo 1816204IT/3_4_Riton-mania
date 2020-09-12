@@ -21,6 +21,8 @@ public class TimingJudgment : MonoBehaviour
     private ScoreCounter scoreCounter = null;
     [SerializeField]
     private Text timingText = null;
+    [SerializeField]
+    private Text fastOrSlowText = null;
 
     private JsonManager jsonManager = null;
     private MusicPlayer musicPlayer = null;
@@ -31,9 +33,9 @@ public class TimingJudgment : MonoBehaviour
 
     private MusicDTO.MapData mapData = new MusicDTO.MapData();
     float secondDistance = 0.0f; //1秒でどれだけ譜面が進むか？
-    private const int perfectFrame = 8; 
-    private const int goodFrame = 14; 
-    private const int missFrame = 20; 
+    private const int perfectFrame = 6; 
+    private const int goodFrame = 10; 
+    private const int missFrame = 14; 
     private float perfectLen = 0.0f;
     private float goodLen = 0.0f;
     private float missLen = 0.0f;
@@ -59,7 +61,7 @@ public class TimingJudgment : MonoBehaviour
         if (jsonManager == null || musicPlayer == null || judgmentText == null || audioSource == null
             || comboCounter == null || accCounter == null || scoreCounter == null || keyEffect == null
             || playingNoteData == null || notesSetter == null || timingText == null || noteDataConverter == null
-            || playSceneManager == null)
+            || playSceneManager == null || fastOrSlowText == null)
         {
             Debug.Log("nullを検知");
         }
@@ -310,14 +312,20 @@ public class TimingJudgment : MonoBehaviour
         if (frame == 0)
         {
             timingText.color = Color.yellow;
+            fastOrSlowText.color = Color.yellow;
+            fastOrSlowText.text = "just";
         }
         else if (frame > 0)
         {
             timingText.color = Color.green;
+            fastOrSlowText.color = Color.green;
+            fastOrSlowText.text = "fast";
         }
         else
         {
             timingText.color = Color.red;
+            fastOrSlowText.color = Color.red;
+            fastOrSlowText.text = "slow";
         }
         timingText.text = frame.ToString();
     }

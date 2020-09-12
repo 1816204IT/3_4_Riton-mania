@@ -9,9 +9,12 @@ namespace Ritonmania
     {
         public string name;
         public Color color;
-        public int age;
-        public int birthDay;    // 6月19日なら0619
-        public string like;
+        public string height;       // 身長
+        public string age;
+        public string birthDay;     // 誕生日
+        public string personality;  // 性格
+        public string likes;        // 好きなもの
+        public string unLikes;      // 嫌いなもの
         public string illustrator;
     }
 }

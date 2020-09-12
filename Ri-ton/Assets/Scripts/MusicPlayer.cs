@@ -72,7 +72,7 @@ public class MusicPlayer : MonoBehaviour
 
         // audioSorce.timeが更新された時にaudioSourceOldTimeを更新
         // timeをaudioSorce.timeに合わせる
-        if (audioSourceOldTime != audioSource.time)
+        if (audioSourceOldTime < audioSource.time)
         {
             if (time - Time.deltaTime > audioSource.time)
             {

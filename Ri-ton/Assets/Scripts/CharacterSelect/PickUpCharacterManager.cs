@@ -72,7 +72,7 @@ public class PickUpCharacterManager : MonoBehaviour
         pickingCharacterNum = UserPreference._instance._characterNum;
         // nowの矢印のX座標移動
         MoveNowArrow();
-
+        // 「キャラクターを選んで下さい」のキャンバスを非表示に
         pleasePickCharacter.SetActive(false);
     }
 

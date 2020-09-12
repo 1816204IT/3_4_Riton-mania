@@ -23,12 +23,13 @@ public class ScoreView : MonoBehaviour
     public List<NCMB.CharacterIcon> topRankersIcon = new List<NCMB.CharacterIcon>();
     private GameObject highScoreNode = null;
 
-    bool isScoreFetched;
-    bool isRankFetched;
-    bool isLeaderBoardFetched;
+    private bool isScoreFetched;
+    private bool isRankFetched;
+    private bool isLeaderBoardFetched;
 
-    private float timer = 0;
-    private const float updateWaitTime = 0.3f;
+    private const float reFetchRankersTime = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
+    private int rankersNum = -1;
+    private float noRankersTimer = 0.0f;
 
     void Start()
     {
@@ -51,18 +52,19 @@ public class ScoreView : MonoBehaviour
 
     public void Update()
     {
-        if (timer > 0.0f)
+        // ランカー0人なら一定時間後に再度フェッチする
+        if (rankersNum == 0)
         {
-            timer -= Time.deltaTime;
-            if (timer <= 0.0f)
+            noRankersTimer += Time.deltaTime;
+            if (noRankersTimer >= reFetchRankersTime)
             {
-                timer = 0.0f;
-                DoUpdate();
+                noRankersTimer = 0.0f;
+                UpdateResultData();
             }
         }
 
         // 現在のハイスコアの取得が完了したら1度だけ実行
-        if (highScore.score != -1 && !isScoreFetched)
+        if ( (highScore.score != -1) && (isScoreFetched == false) )
         {
             lBoard.FetchRank(highScore.score);
             isScoreFetched = true;
@@ -82,19 +84,22 @@ public class ScoreView : MonoBehaviour
         }
 
         // 現在の順位の取得が完了したら1度だけ実行
-        if (lBoard.currentRank != 0 && !isRankFetched)
+        if ( (lBoard.currentRank != 0) && (isRankFetched == false) )
         {
             lBoard.FetchTopRankers();
             isRankFetched = true;
         }
 
         // ランキングの取得が完了したら1度だけ実行
-        if (lBoard.IsIconFetchEnd() && (lBoard.topRankers != null) && !isLeaderBoardFetched)
+        if (lBoard.IsIconFetchEnd() && (lBoard.topRankers != null) && (isLeaderBoardFetched == false) )
         {
             // 取得したトップランキングを表示
             topRankers = lBoard.GetTopRankers();
             topRankersIcon = lBoard.GetTopRankersIcon();
             isLeaderBoardFetched = true;
+
+            // 取得したランカーの人数を保存
+            rankersNum = topRankers.Count;
 
             for(int i = 0; i < topRankers.Count; i++)
             {
@@ -109,11 +114,6 @@ public class ScoreView : MonoBehaviour
 
     public void UpdateResultData()
     {
-        // タイマーが0になったら更新をかける
-        // 短い時間に連続でランキング更新をするとサーバーとの連携の兼ね合いで
-        // ランキングが更新されないことがあるので一定時間待ってから更新する
-        timer = updateWaitTime;
-
         topRankers.Clear();
         topRankersIcon.Clear();
 
@@ -124,6 +124,10 @@ public class ScoreView : MonoBehaviour
         Destroy(highScoreNode);
         nodeObjList.Clear();
         noDataText.text = "";
+        rankersNum = 0;
+
+        // データ取得開始
+        DoUpdate();
     }
 
     private void DoUpdate()

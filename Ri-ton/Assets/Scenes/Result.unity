@@ -414,6 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973debfacd7dfff4780f09e6fce535dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isText: 1
   duration: 1
   appendInterval: 0
 --- !u!1 &202794646
@@ -689,7 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.92, g: 0.92, b: 0.92, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1300,7 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.92, g: 0.92, b: 0.92, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3372,7 +3373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cda6a385dce122d4498aa8182fc63f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iconImage: {fileID: 909799197}
   playerNameText: {fileID: 1687052392}
 --- !u!114 &1657152831
 MonoBehaviour:

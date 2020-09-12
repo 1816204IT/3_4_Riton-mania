@@ -50,8 +50,14 @@ public class AccCounter : MonoBehaviour
     {
         unitAcc = 100.0f / (float)totalNoteNum;
         float accurateAcc = totalPerfectNum * unitAcc + totalGoodNum / 2.0f * unitAcc;
-        acc = accurateAcc * 10000 + 9;
-        acc /= 10000.0f;
+        acc = accurateAcc;
+
+        // 全てPerfectならAcc100%とする
+        if ( (totalMissNum == 0) && (totalGoodNum == 0) )
+        {
+            acc = 100.0f;
+        }
+
         text.text = acc.ToString("f2") + "%";
     }
 

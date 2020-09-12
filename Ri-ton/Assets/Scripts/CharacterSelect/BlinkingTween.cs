@@ -5,6 +5,9 @@ using UnityEngine.UI;
 // 透明度を用いた文字の点滅
 public class BlinkingTween : MonoBehaviour
 {
+    [SerializeField]
+    private bool isText = true;
+
     private Sequence sequence;
     private Tween tween = default;
     [SerializeField]
@@ -13,15 +16,28 @@ public class BlinkingTween : MonoBehaviour
     private float appendInterval = 1.0f;
 
     private Text text = null;
+    private Image image = null;
     private float nowAlpha = 1.0f;
 
     void Start()
     {
-        text = GetComponent<Text>();
-
-        if (text == null)
+        if (isText)
         {
-            Debug.Log("nullを検知");
+            text = GetComponent<Text>();
+
+            if (text == null)
+            {
+                Debug.Log("nullを検知");
+            }
+        }
+        else
+        {
+            image = GetComponent<Image>();
+
+            if (image == null)
+            {
+                Debug.Log("nullを検知");
+            }
         }
 
         CreateTween();
@@ -56,7 +72,15 @@ public class BlinkingTween : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Color c = text.color;
-        text.color = new Color(c.r, c.g, c.b, nowAlpha);
+        if (isText)
+        {
+            Color c = text.color;
+            text.color = new Color(c.r, c.g, c.b, nowAlpha);
+        }
+        else
+        {
+            Color c = image.color;
+            image.color = new Color(c.r, c.g, c.b, nowAlpha);
+        }
     }
 }

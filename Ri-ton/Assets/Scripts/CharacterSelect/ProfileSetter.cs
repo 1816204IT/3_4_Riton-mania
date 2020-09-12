@@ -6,17 +6,23 @@ using UnityEngine.UI;
 public class ProfileSetter : MonoBehaviour
 {
     [SerializeField]
+    private Text height = null;
+    [SerializeField]
     private Text age = null;
     [SerializeField]
     private Text birthDay = null;
     [SerializeField]
-    private Text like = null;
+    private Text personality = null;
+    [SerializeField]
+    private Text likes = null;
+    [SerializeField]
+    private Text unLikes = null;
     [SerializeField]
     private Text illustrator = null;
 
     void Start()
     {
-        if (age == null || birthDay == null || like == null || illustrator == null)
+        if (age == null || birthDay == null || likes == null || illustrator == null)
         {
             Debug.Log("nullを検知");
         }
@@ -24,13 +30,12 @@ public class ProfileSetter : MonoBehaviour
 
     public void UpdateProfile(Ritonmania.CharacterData data)
     {
-        age.text = data.age.ToString();
-        like.text = data.like;
-        illustrator.text = data.illustrator;
-
-        int month   = data.birthDay / 100;
-        int day     = data.birthDay - (month * 100);
-        birthDay.text = month.ToString("D2") + "月" + day.ToString("D2") + "日";
-
+        height.text         = "  " + data.height;
+        age.text            = "  " + data.age;
+        birthDay.text       = "  " + data.birthDay;
+        personality.text    = "  " + data.personality;
+        likes.text          = "  " + data.likes;
+        unLikes.text        = "  " + data.unLikes;
+        illustrator.text    = "  " + data.illustrator;
     }
 }

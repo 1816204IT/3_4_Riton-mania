@@ -48,6 +48,9 @@ public class PlaySceneManager : MonoBehaviour
     private bool isTutorialEnd = false;
 
     private bool isPlayEnd = false;
+    private bool isAchieveHishScore = false;    // ハイスコアを達成したか
+
+    private NCMB.HighScore prePlayHighScore;
 
     private void Start()
     {
@@ -72,14 +75,33 @@ public class PlaySceneManager : MonoBehaviour
         // チュートリアル表示
         tutorialCanvas.SetActive(true);
 
-        // 初めて遊ぶ曲の場合にサーバーに初期データを作成する
+        // ハイスコアクラスのインスタンス
         string name = FindObjectOfType<UserAuth>()._playerName;
         highScore = new NCMB.HighScore(name, 0);
-        highScore.CreateInitialData();
+
+        // 前回のハイスコア
+        prePlayHighScore = new NCMB.HighScore(name, 0);
+        prePlayHighScore.Fetch();
     }
 
     void Update()
     {
+        // チュートリアル終了検知
+        if (isTutorialEnd == false)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isTutorialEnd = true;
+                playStartTimer._isTutorialEnd = true;
+                tutorialCanvas.SetActive(false);
+            }
+        }
+
+        if (isTutorialEnd == false)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             musicPlayer.PlayPause();
@@ -92,17 +114,6 @@ public class PlaySceneManager : MonoBehaviour
             PoseHexAnim();
         }
 
-        // チュートリアル終了検知
-        if (isTutorialEnd == false)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                isTutorialEnd = true;
-                playStartTimer._isTutorialEnd = true;
-                tutorialCanvas.SetActive(false);
-            }
-        }
-
         // 曲が終了したらリザルトデータをサーバーに送信する
         // 曲が終わった瞬間にaudioSource.time = 0になるので曲の長さの0.1秒前に終了させることで安全に判定する
         if (musicPlayer._audioSource.time + 0.1f >= musicPlayer._audioSource.clip.length)
@@ -111,11 +122,24 @@ public class PlaySceneManager : MonoBehaviour
             SaveResultData();
         }
 
-        // サーバーにリザルトデータの送信が完了したらリザルトシーンへ遷移
-        if (isPlayEnd && (highScore._fetchState == FetchState.succeeded) )
+        // プレイが終わったか
+        if (isPlayEnd)
         {
-            SceneManager.sceneLoaded += ResultSceneLoaded;
-            SceneManager.LoadScene("Result");
+            // ハイスコア達成か
+            if (isAchieveHishScore)
+            {
+                // サーバーにリザルトデータの送信が完了したか
+                if (highScore._fetchState == FetchState.succeeded)
+                {
+                    SceneManager.sceneLoaded += ResultSceneLoaded;
+                    SceneManager.LoadScene("Result");
+                }
+            }
+            else
+            {
+                SceneManager.sceneLoaded += ResultSceneLoaded;
+                SceneManager.LoadScene("Result");
+            }
         }
 
         // デバッグ用　Rキーでリザルト画面へ遷移
@@ -126,7 +150,7 @@ public class PlaySceneManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            musicPlayer._audioSource.time = 60.0f;
+            musicPlayer._audioSource.time = 30.0f;
         }
     }
 
@@ -137,7 +161,7 @@ public class PlaySceneManager : MonoBehaviour
         highScore.acc = (int)(accCounter._acc * 100);      // accの100倍を代入
 
         RankNumber rankNum;
-        if (highScore.score >= 999900)
+        if (highScore.score >= 1000000)
         {
             rankNum = RankNumber.SS;
         }
@@ -162,9 +186,18 @@ public class PlaySceneManager : MonoBehaviour
             rankNum = RankNumber.D;
         }
 
-        // ハイスコアとしてNCMBに登録
         highScore.rank = (int)rankNum;
-        highScore.Save();
+
+
+        // ハイスコア更新したかどうか
+        if (highScore.score > prePlayHighScore.score)
+        {
+            // ハイスコアとしてNCMBに登録
+            highScore.Save();
+            // ハイスコア達成フラグを立てる
+            isAchieveHishScore = true;
+        }
+
         // プレイ終了フラグを立てる
         isPlayEnd = true;
     }

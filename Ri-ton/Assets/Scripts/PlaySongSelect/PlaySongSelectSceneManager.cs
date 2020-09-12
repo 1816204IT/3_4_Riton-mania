@@ -11,16 +11,14 @@ public class PlaySongSelectSceneManager : MonoBehaviour
     [SerializeField]
     private GameObject settingCanvas = null;
 
-    // 自動ログイン時にアイコン画像のフェッチに失敗する場合があるので
-    // ログイン後一定秒数毎にアイコン画像が設定されているかチェックする
-    private const float iconImageChackTime = 1.0f;
-    private float timer = 0.0f;
+    [SerializeField]
+    private Image myCharacter = null;
 
     private void Start()
     {
         TitleSceneManager._prevSceneName = "PlaySongSelect";
         
-        if (playerName == null || settingCanvas == null)
+        if (playerName == null || settingCanvas == null || myCharacter == null)
         {
             Debug.Log("nullを検知");
         }
@@ -29,6 +27,10 @@ public class PlaySongSelectSceneManager : MonoBehaviour
 
         // カーソルの表示をONにする
         Cursor.visible = true;
+
+        // キャラクター表示
+        int charaNum = UserPreference._instance._characterNum;
+        myCharacter.sprite = CharacterImageList._instance.GetSprite(charaNum);
     }
 
     void Update()
@@ -52,13 +54,6 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         if (UserPreference._instance._characterNum != 5)
         {
             return;
-        }
-
-        timer += Time.deltaTime;
-        if (timer >= iconImageChackTime)
-        {
-            timer = 0.0f;
-            UserPreference._instance.CharacterIconFetch();
         }
     }
 

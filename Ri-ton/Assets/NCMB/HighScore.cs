@@ -44,17 +44,32 @@ namespace NCMB
                 // 検索成功したら
                 if (e == null)
                 {
-                    objList[0]["Score"] = score;
-                    objList[0]["Combo"] = combo;
-                    objList[0]["Acc"] = acc;
-                    objList[0]["Rank"] = rank;
-                    objList[0].SaveAsync();
+                    // ハイスコアが未登録だったら
+                    if (objList.Count == 0)
+                    {
+                        NCMBObject obj  = new NCMBObject(className);
+                        obj["Name"]     = name;
+                        obj["Score"]    = score;
+                        obj["Combo"]    = combo;
+                        obj["Acc"]      = acc;
+                        obj["Rank"]     = rank;
+                        obj.SaveAsync();
+                    }
+                    // ハイスコアが登録済みだったら
+                    else
+                    {
+                        objList[0]["Score"] = score;
+                        objList[0]["Combo"] = combo;
+                        objList[0]["Acc"]   = acc;
+                        objList[0]["Rank"]  = rank;
+                        objList[0].SaveAsync();
+                    }
 
                     fetchState = FetchState.succeeded;
                 }
                 else
                 {
-                    fetchState = FetchState.failed;
+                    fetchState = FetchState.succeeded;
                 }
             });
         }
@@ -85,47 +100,6 @@ namespace NCMB
                         combo = System.Convert.ToInt32(objList[0]["Combo"]);
                         acc = System.Convert.ToInt32(objList[0]["Acc"]);
                         rank = System.Convert.ToInt32(objList[0]["Rank"]);
-                    }
-
-                    fetchState = FetchState.succeeded;
-                }
-                else
-                {
-                    fetchState = FetchState.failed;
-                }
-            });
-        }
-
-        // 初めてプレイする曲の場合に初期データを作成する
-        public void CreateInitialData()
-        {
-            fetchState = FetchState.trying;
-
-            // データストアの「HighScore」クラスから、Nameをキーにして検索
-            string className = SelectedMap._instance.GetMusicEnglishName() + "_" + SelectedMap._instance._difficultyName;
-            NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
-            query.WhereEqualTo("Name", name);
-            query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
-            {
-                // 検索成功したら
-                if (e == null)
-                {
-                    // ハイスコアが未登録だったら
-                    if (objList.Count == 0)
-                    {
-                        NCMBObject obj = new NCMBObject(className);
-                        obj["Name"] = name;
-                        obj["Score"] = 0;
-                        obj["Combo"] = 0;
-                        obj["Acc"] = 0;
-                        obj["Rank"] = 0;
-                        obj.SaveAsync();
-                        score = 0;
-                    }
-                    // ハイスコアが登録済みだったら
-                    else
-                    {
-                        //何もしない
                     }
 
                     fetchState = FetchState.succeeded;
