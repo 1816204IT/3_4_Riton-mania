@@ -26,6 +26,7 @@ public class DifficultyButtonsManager : MonoBehaviour
     private DifficultyButtons buttonImageObj = default;
     private RectTransform[] buttonsRectTransform = new RectTransform[(int)DifficultyType.MAX];
     private Image[] buttonsImage = new Image[(int)DifficultyType.MAX];
+    private Text[] buttonsText = new Text[(int)DifficultyType.MAX];
 
     private Image bigNodeBgImage = default;
     private BigNodeInformation bigNode = null;
@@ -63,6 +64,11 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsImage[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.GetComponent<Image>();
         buttonsImage[(int)DifficultyType.HARD] = buttonImageObj.Hard.GetComponent<Image>();
         buttonsImage[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.GetComponent<Image>();
+
+        buttonsText[(int)DifficultyType.EASY] = buttonImageObj.Easy.transform.Find("Text").GetComponent<Text>();
+        buttonsText[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.transform.Find("Text").GetComponent<Text>();
+        buttonsText[(int)DifficultyType.HARD] = buttonImageObj.Hard.transform.Find("Text").GetComponent<Text>();
+        buttonsText[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.transform.Find("Text").GetComponent<Text>();
     }
 
     private void Update()
@@ -135,6 +141,11 @@ public class DifficultyButtonsManager : MonoBehaviour
         {
             img.color = new Color(0.84f, 0.84f, 0.84f);
         }
+        //ボタンの文字を灰色にする
+        foreach (Text text in buttonsText)
+        {
+            text.color = new Color(0.84f, 0.84f, 0.84f);
+        }
     }
 
     public void OnclickEasyButton()
@@ -146,6 +157,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsRectTransform[(int)DifficultyType.EASY].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
         Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
         buttonsImage[(int)DifficultyType.EASY].color = color;
+        buttonsText[(int)DifficultyType.EASY].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;
@@ -161,6 +173,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsRectTransform[(int)DifficultyType.NORMAL].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
         Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
         buttonsImage[(int)DifficultyType.NORMAL].color = color;
+        buttonsText[(int)DifficultyType.NORMAL].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;
@@ -176,6 +189,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsRectTransform[(int)DifficultyType.HARD].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
         Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
         buttonsImage[(int)DifficultyType.HARD].color = color;
+        buttonsText[(int)DifficultyType.HARD].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;
@@ -191,6 +205,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsRectTransform[(int)DifficultyType.EXPERT].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
         Color color = ColorOfDifficulty._instance.GetColorOfDifficulty();
         buttonsImage[(int)DifficultyType.EXPERT].color = color;
+        buttonsText[(int)DifficultyType.EXPERT].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         playButtonImage.color = color;

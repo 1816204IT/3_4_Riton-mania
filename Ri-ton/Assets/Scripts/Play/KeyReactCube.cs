@@ -59,10 +59,15 @@ public class KeyReactCube : MonoBehaviour
                     }
                 }
 
-                cubeBloomList[i].intensity -= Time.deltaTime * 7.0f;
+                cubeBloomList[i].intensity -= Time.deltaTime * 5.0f;
                 float intensity = cubeBloomList[i].intensity;
                 Color color = cubeBloomList[i].color;
-                cubeBloomList[i].renderer.material.SetColor("_EmissionColor", new Color(color.r + intensity, color.g + intensity, color.b + intensity, color.a));
+                //float factor = Mathf.Pow(2, intensity);
+                cubeBloomList[i].renderer.material.SetColor("_EmissionColor", new Color(color.r * intensity, color.g * intensity, color.b * intensity, color.a));
+            }
+            else
+            {
+                cubeBloomList[i].renderer.material.SetColor("_EmissionColor", new Color(0, 0, 0));
             }
         }
     }
@@ -88,9 +93,9 @@ public class KeyReactCube : MonoBehaviour
                     cubeBloomList[index].intensity = maxIntensity;
                     cubeBloomList[index].isHolding = laneNum;
 
-                    float intensity = maxIntensity;
                     Color color = cubeBloomList[index].color;
-                    cubeBloomList[index].renderer.material.SetColor("_EmissionColor", new Color(color.r + intensity, color.g + intensity, color.b + intensity, color.a));
+                    //float factor = Mathf.Pow(2, maxIntensity);
+                    cubeBloomList[index].renderer.material.SetColor("_EmissionColor", new Color(color.r * maxIntensity, color.g * maxIntensity, color.b * maxIntensity, color.a));
                     break;
                 }
                 else

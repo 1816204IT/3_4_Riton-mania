@@ -24923,7 +24923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddbfe974261de364fafa06ed3077ab6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIntensity: 5.5
+  maxIntensity: 5.2
   minIntensity: 0
   cubeObjList:
   - {fileID: 170426556}
