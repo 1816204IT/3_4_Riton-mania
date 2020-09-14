@@ -45,15 +45,9 @@ public class PlaySongSelectSceneManager : MonoBehaviour
             SceneManager.LoadScene("Title");
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if ( Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) )
         {
             OnClickPlayButton();
-        }
-
-        // キャラクター画像が正しく設定されているか
-        if (UserPreference._instance._characterNum != 5)
-        {
-            return;
         }
     }
 

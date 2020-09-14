@@ -5470,8 +5470,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infos:
-  - sprite: {fileID: 21300000, guid: be126493110178a4f9dd150d0ba34c84, type: 3}
-    iconSprite: {fileID: 21300000, guid: 40492d450c745cb428150c5af1a36193, type: 3}
+  - sprite: {fileID: 21300000, guid: 3ab52741b87210b44b18db1c9f27d8c8, type: 3}
+    iconSprite: {fileID: 21300000, guid: 232c17c8cc1748e48bcf3cbd1aaec0b9, type: 3}
     color: {r: 0.6, g: 1, b: 1, a: 1}
   - sprite: {fileID: 21300000, guid: 5bf6b2b37c59b344c9641579ca1acfc5, type: 3}
     iconSprite: {fileID: 21300000, guid: 5c12dbeacb7b0b4408351adaa1d1987f, type: 3}
@@ -5482,8 +5482,8 @@ MonoBehaviour:
   - sprite: {fileID: 21300000, guid: 6d023ede823155942aed770c943d856c, type: 3}
     iconSprite: {fileID: 21300000, guid: ab4ecf869f53a7549ab0523e530077a3, type: 3}
     color: {r: 1, g: 0.6, b: 0.6, a: 1}
-  - sprite: {fileID: 21300000, guid: 8ed91c8938549814c81298827fb6eb25, type: 3}
-    iconSprite: {fileID: 21300000, guid: 8ed91c8938549814c81298827fb6eb25, type: 3}
+  - sprite: {fileID: 21300000, guid: e326af7042702fe4a80721f88c1a88fc, type: 3}
+    iconSprite: {fileID: 21300000, guid: 8e224fc33122c3641b29198b38907cb1, type: 3}
     color: {r: 0.8, g: 0.6, b: 1, a: 1}
 --- !u!4 &1790231318
 Transform:
@@ -6016,7 +6016,7 @@ GameObject:
   - component: {fileID: 2008477361}
   - component: {fileID: 2008477360}
   m_Layer: 5
-  m_Name: "Text-\u6570\u5B57\u306E\u307F"
+  m_Name: "Text-\u82F1\u8A9E\u6570\u5B57\u306E\u307F"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6072,7 +6072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uFF08\u6570\u5B57\u306E\u307F6\u6587\u5B57\u307E\u3067\uFF09"
+  m_Text: "\uFF08\u82F1\u6570\u5B57\u306E\u307F6\u6587\u5B57\u307E\u3067\uFF09"
 --- !u!222 &2008477361
 CanvasRenderer:
   m_ObjectHideFlags: 0

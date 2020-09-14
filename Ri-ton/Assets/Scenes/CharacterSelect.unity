@@ -167,7 +167,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 519.25867, y: 611}
-  m_SizeDelta: {x: 150, y: 150}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &70399109
 MonoBehaviour:
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -269,8 +269,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: b88ce071980b3c3499c4b90b22d40dd9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1788,17 +1788,17 @@ PrefabInstance:
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -118.6
       objectReference: {fileID: 0}
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 230
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 230
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
@@ -1813,28 +1813,43 @@ PrefabInstance:
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.258819
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659259
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -30
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -14.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 4343360755619352137, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8ed91c8938549814c81298827fb6eb25,
+      objectReference: {fileID: 21300000, guid: e326af7042702fe4a80721f88c1a88fc,
         type: 3}
     - target: {fileID: 6960609750000439696, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6960609750000439696, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
@@ -1854,7 +1869,7 @@ PrefabInstance:
     - target: {fileID: 6960609750000439696, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_text
-      value: purple
+      value: kyou
       objectReference: {fileID: 0}
     - target: {fileID: 7082671209972233917, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
@@ -3726,7 +3741,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
+    m_Font: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
     m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
@@ -5077,17 +5092,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterDatas:
-  - name: Blue
-    height: 
-    age: 
-    birthDay: 
-    personality: 
-    likes: 
-    unLikes: 
-    illustrator: ??
+  - name: Aoi
+    height: 158cm
+    age: "15\u6B73"
+    birthDay: "4\u67083\u65E5"
+    personality: "\u30AF\u30FC\u30EB"
+    likes: "\u6C34\u65CF\u9928"
+    unLikes: "\u304A\u5316\u3051\u5C4B\u6577"
+    illustrator: "\u4E2D\u6FA4 \u5C06\u4EBA"
   - name: Natsuhiko
     height: 176cm
-    age: "152\u624D"
+    age: "152\u6B73"
     birthDay: "7\u67085\u65E5"
     personality: "\u5927\u4EBA\u3057\u3044"
     likes: "\u82B1\u3001\u308F\u3089\u3073\u9905"
@@ -5095,7 +5110,7 @@ MonoBehaviour:
     illustrator: "\u5927\u77F3 \u6953"
   - name: lime
     height: 165cm
-    age: "17\u624D"
+    age: "17\u6B73"
     birthDay: "5\u67084\u65E5"
     personality: "\u660E\u308B\u304F\u5143\u6C17"
     likes: "\u30B9\u30DD\u30FC\u30C4\u3001\u30A8\u30CA\u30B8\u30FC\u30C9\u30EA\u30F3\u30AF"
@@ -5103,20 +5118,20 @@ MonoBehaviour:
     illustrator: "\u4E0B\u5DDD \u4E03\u8056"
   - name: Kureha
     height: "160cm+5cm\uFF08\u30D6\u30FC\u30C4\uFF09"
-    age: "19\u624D"
+    age: "19\u6B73"
     birthDay: "4\u670815\u65E5"
     personality: "\u3084\u3093\u3061\u3083"
     likes: "\u30E9\u30A4\u30D6\u3001\u30C1\u30E7\u30B3\u30EC\u30FC\u30C8\u30A2\u30A4\u30B9\u7CFB"
     unLikes: "\u304D\u3085\u3046\u308A"
     illustrator: "\u677E\u571F \u77E5\u751F"
-  - name: Purple
-    height: 
-    age: 
-    birthDay: 
-    personality: 
-    likes: 
-    unLikes: 
-    illustrator: ??
+  - name: kyou
+    height: 171cm
+    age: "17\u6B73"
+    birthDay: "3\u670830\u65E5"
+    personality: "\u30CD\u30AC\u30C6\u30A3\u30D6\u601D\u8003\u306EA\u578B"
+    likes: "\u72AC\u3001\u30B0\u30E9\u30BF\u30F3"
+    unLikes: "\u81EA\u5206\u3001\u6CB9\u3063\u3053\u3044\u3082\u306E"
+    illustrator: "\u91CE\u6D25 \u6B69\u7F8E"
 --- !u!4 &1461727856
 Transform:
   m_ObjectHideFlags: 0
@@ -5260,7 +5275,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
+    m_Font: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -7216,7 +7231,68 @@ PrefabInstance:
     - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -85.6
+      value: -126.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352136, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343360755619352137, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ab52741b87210b44b18db1c9f27d8c8,
+        type: 3}
+    - target: {fileID: 6960609750000439696, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_text
+      value: aoi
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960609750000439696, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7082671209972233917, guid: 46a6daffc2e99cb4d91d56db78af5cdb,
         type: 3}

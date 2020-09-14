@@ -163,15 +163,15 @@ public class PlaySceneManager : MonoBehaviour
         }
 
         // デバッグ用　Rキーでリザルト画面へ遷移
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SaveResultData();
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    SaveResultData();
+        //}
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            musicPlayer._audioSource.time = 80.0f;
-        }
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    musicPlayer._audioSource.time = 80.0f;
+        //}
     }
 
     void SaveResultData()
