@@ -28,6 +28,9 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private float nodeWidth = 0.0f;
     private bool isMoving = false;
 
+    [SerializeField]
+    private GameObject tutorialCanvas = null;
+
     private enum ScrollDir
     {
         LEFT,
@@ -55,7 +58,8 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
         musicSelect = GameObject.FindGameObjectWithTag("MusicSelect").GetComponent<MusicSelect>();
 
-        if (nodeList.Count == 0 || bigNode == null || musicSelect == null || menuHitSE == null)
+        if (nodeList.Count == 0 || bigNode == null || musicSelect == null || menuHitSE == null
+            || tutorialCanvas == null)
         {
             Debug.Log("nullを検知");
         }
@@ -85,6 +89,11 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void AddScrollInput()
     {
+        if (tutorialCanvas.activeSelf == true)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             AddRightScrollInput();

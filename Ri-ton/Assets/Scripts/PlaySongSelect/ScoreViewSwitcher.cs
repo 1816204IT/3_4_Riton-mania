@@ -16,7 +16,7 @@ public class ScoreViewSwitcher : MonoBehaviour
     private GameObject noDataTextObj = null;
 
     // 自身のハイスコア表示中か(falseならランキング表示中)
-    bool isModeHighScore = true;
+    bool isModeHighScore = false;
 
     void Start()
     {

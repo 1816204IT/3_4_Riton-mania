@@ -14,11 +14,15 @@ public class PlaySongSelectSceneManager : MonoBehaviour
     [SerializeField]
     private Image myCharacter = null;
 
+    [SerializeField]
+    private GameObject tutorialCanvas = null;
+
     private void Start()
     {
         TitleSceneManager._prevSceneName = "PlaySongSelect";
         
-        if (playerName == null || settingCanvas == null || myCharacter == null)
+        if (playerName == null || settingCanvas == null || myCharacter == null
+            || tutorialCanvas == null)
         {
             Debug.Log("nullを検知");
         }
@@ -35,6 +39,11 @@ public class PlaySongSelectSceneManager : MonoBehaviour
 
     void Update()
     {
+        if (tutorialCanvas.activeSelf == true)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (settingCanvas.activeSelf)
@@ -45,7 +54,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
             SceneManager.LoadScene("Title");
         }
 
-        if ( Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space) )
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             OnClickPlayButton();
         }
