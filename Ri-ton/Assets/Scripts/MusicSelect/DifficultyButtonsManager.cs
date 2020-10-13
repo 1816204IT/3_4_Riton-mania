@@ -139,12 +139,12 @@ public class DifficultyButtonsManager : MonoBehaviour
         //ボタンの色を灰色にする
         foreach (Image img in buttonsImage)
         {
-            //img.color = new Color(0.84f, 0.84f, 0.84f);
+            img.color = new Color(0.84f, 0.84f, 0.84f);
         }
         //ボタンの文字を灰色にする
         foreach (Text text in buttonsText)
         {
-            //text.color = new Color(0.84f, 0.84f, 0.84f);
+            text.color = new Color(0.84f, 0.84f, 0.84f);
         }
     }
 
@@ -160,7 +160,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsText[(int)DifficultyType.EASY].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        //playButtonImage.color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 
@@ -176,7 +176,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsText[(int)DifficultyType.NORMAL].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        //playButtonImage.color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 
@@ -192,7 +192,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsText[(int)DifficultyType.HARD].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        //playButtonImage.color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 
@@ -208,7 +208,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         buttonsText[(int)DifficultyType.EXPERT].color = Color.white;
         bigNodeBgImage.color = color;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        //playButtonImage.color = color;
+        playButtonImage.color = color;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 }
