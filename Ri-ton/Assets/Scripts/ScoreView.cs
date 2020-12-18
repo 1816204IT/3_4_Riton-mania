@@ -163,7 +163,6 @@ public class ScoreView : MonoBehaviour
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList._instance.GetSmallSprite(highScore.rank);
         //順位を設定
-        //node.transform.Find("RankNumber").GetComponent<Text>().text = lBoard.currentRank.ToString();
         node.transform.Find("RankNumber").GetComponent<Text>().text = "";
     }
 
