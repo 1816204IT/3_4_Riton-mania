@@ -65,6 +65,11 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         SceneManager.LoadScene("Play");
     }
 
+    public void OnClickEditButton()
+    {
+        SceneManager.LoadScene("Edit");
+    }
+
     public void OnClickBackButton()
     {
         if (settingCanvas.activeSelf)
