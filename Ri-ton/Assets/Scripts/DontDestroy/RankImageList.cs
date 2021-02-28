@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ランク画像（S,A,B,C,D）の情報を持ったクラス
+/// </summary>
 public class RankImageList : MonoBehaviour
 { 
     [System.Serializable]

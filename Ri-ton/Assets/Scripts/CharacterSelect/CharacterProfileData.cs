@@ -18,10 +18,11 @@ namespace Ritonmania
     }
 }
 
+/// <summary>
+/// キャラクタープロフィール情報
+/// </summary>
 public class CharacterProfileData : MonoBehaviour
 {
-
-
     [SerializeField]
     private Ritonmania.CharacterData[] characterDatas;
 

@@ -6,7 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-//曲選択画面で曲アイコンを横スクロールさせる
+/// <summary>
+/// 曲選択画面で曲アイコンを横スクロールさせる
+/// </summary>
 public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]

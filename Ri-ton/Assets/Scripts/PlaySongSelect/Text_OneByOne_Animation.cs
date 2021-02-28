@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-// 文字を1文字ずつアニメーションさせるクラス
+/// <summary>
+/// 文字を1文字ずつアニメーションさせるクラス
+/// </summary>
 public class Text_OneByOne_Animation : MonoBehaviour
 {
     [System.Serializable]

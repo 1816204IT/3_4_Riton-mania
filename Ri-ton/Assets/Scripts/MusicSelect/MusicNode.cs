@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 曲パネルクラス
+/// </summary>
 public class MusicNode : MonoBehaviour
 {
     private int myNodeNum = -1;

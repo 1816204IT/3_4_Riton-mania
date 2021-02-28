@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 曲のBPMに合わせて音を鳴らすクラス
+/// </summary>
 public class RhythmKeeper : MonoBehaviour
 {
     private MusicPlayer musicPlayer = null;
@@ -26,10 +29,21 @@ public class RhythmKeeper : MonoBehaviour
 
     void Update()
     {
-        if (musicPlayer.offsetedTime >= pool)
+        float time = musicPlayer.offsetedTime;
+        float span = musicPlayer._clapSpan;
+
+        //シークバー操作で曲が巻き戻された場合
+        if (time < prevPool)
+        {
+            pool = time - (time % span) + span;
+            prevPool = pool - span;
+        }
+
+        //音を鳴らすタイミングか
+        if (time >= pool)
         {
             prevPool = pool;
-            pool += musicPlayer._clapSpan;
+            pool += span;
 
             if (mapInfoSettings._isOffsetChangeMode)
             {
@@ -37,10 +51,11 @@ public class RhythmKeeper : MonoBehaviour
             }
         }
 
-        //シークバーが操作された時にPoolの値を調整する
-        if (musicPlayer.offsetedTime < prevPool)
+        //シークバー操作で曲が進められていた場合
+        if (pool < time)
         {
-            pool = musicPlayer.offsetedTime - (musicPlayer.offsetedTime % musicPlayer._clapSpan);
+            float ajustTime = time - (time % span);
+            pool = time + span;
         }
     }
 }

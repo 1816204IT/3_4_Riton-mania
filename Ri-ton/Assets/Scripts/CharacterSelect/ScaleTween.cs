@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
+/// <summary>
+/// Easingを用いた拡大縮小を行う
+/// </summary>
 public class ScaleTween : MonoBehaviour
 {
     private Tween tween = null;
@@ -28,7 +31,6 @@ public class ScaleTween : MonoBehaviour
             duration);
 
         // Easingの設定
-        //tween.SetEase(Ease.OutBack);
         tween.SetEase(Ease.OutQuint);
 
         tween.Play();
@@ -41,7 +43,6 @@ public class ScaleTween : MonoBehaviour
             duration);
 
         // Easingの設定
-        //tween.SetEase(Ease.OutBack);
         tween.SetEase(Ease.OutQuint);
 
         tween.Play();

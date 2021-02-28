@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 曲開始前のカウントダウン
+/// </summary>
 public class PlayStartTimer : MonoBehaviour
 {
     private Text text = null;

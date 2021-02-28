@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// このスクリプトがアタッチされたオブジェクトを対象オブジェクトの
+/// 位置に追従する
+/// </summary>
 public class RecttransformFollow : MonoBehaviour
 {
     [SerializeField]

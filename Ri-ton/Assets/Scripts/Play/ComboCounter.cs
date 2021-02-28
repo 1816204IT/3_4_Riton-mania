@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// コンボ数管理クラス
+/// </summary>
 public class ComboCounter : MonoBehaviour
 {
     private Text text = null;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>
+/// キー押下時の六角形エフェクト表示クラス
+/// </summary>
 public class TapEffect : MonoBehaviour
 {
     [SerializeField]

@@ -5,7 +5,9 @@ using System;
 using UnityEngine.UI;
 using NoteEditor.DTO;
 
-//Edit画面でノーツを配置(jsonファイルに書き込み)
+/// <summary>
+/// Edit画面でノーツを配置するクラス(jsonファイルに書き込み)
+/// </summary>
 public class NotesEditor : MonoBehaviour
 {
     private bool notesSetMode = false;
@@ -58,37 +60,6 @@ public class NotesEditor : MonoBehaviour
         if (mouseFollowNote.activeSelf == false)
         {
             return;
-        }
-
-        //デバッグ用
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            Vector3 mousePos = new Vector3();
-            float time = 0;
-
-            if (IsClickedPosValid(ref mousePos, ref time) == false)
-            {
-                Debug.Log("ノーツ設置不可の場所です");
-                //return;
-            }
-
-            //設置ノーツデータを作成
-            var debugNote = new MusicDTO.Note();
-            debugNote.LPB = LPB;
-            debugNote.num = noteDataConverter.ConvertBeatNum(time, LPB);
-            debugNote.lane = GetLaneNum(mousePos.x);
-
-            //string s1 = "【レーン】 : " + debugNote.lane.ToString();
-            //Debug.Log(s1);
-
-            //s1 = "【ビートスパン】 : " + debugNote.LPB.ToString();
-            //Debug.Log(s1);
-
-            string s1 = "【ビート番号】 : " + debugNote.num.ToString();
-            Debug.Log(s1);
-
-            s1 = "【time】 : " + time.ToString();
-            Debug.Log(s1);
         }
 
         //マウス左クリック押下でノーツ書き込み開始（左クリックを離した際に確定）

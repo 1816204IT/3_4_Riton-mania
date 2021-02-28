@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// リザルト画面管理クラス
+/// </summary>
 public class ResultSceneManager : MonoBehaviour
 {
     private JsonManager jsonManager = null;

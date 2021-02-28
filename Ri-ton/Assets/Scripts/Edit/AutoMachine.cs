@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// オート君クラス
+/// </summary>
 public class AutoMachine : MonoBehaviour
 {
     [SerializeField]
@@ -50,17 +53,26 @@ public class AutoMachine : MonoBehaviour
         ClapCheck(ref pool4, ref prevPool4, 4, ref isClaped);
         ClapCheck(ref pool6, ref prevPool6, 6, ref isClaped);
         ClapCheck(ref pool8, ref prevPool8, 8, ref isClaped);
-
-        ReverseTime(ref pool4, ref prevPool4, 4);
-        ReverseTime(ref pool6, ref prevPool6, 6);
-        ReverseTime(ref pool8, ref prevPool8, 8);
     }
 
     private void ClapCheck(ref float pool, ref float prevPool, int LPB, ref bool isClaped)
     {
-        if (musicPlayer._offsetedTimeOrigin >= pool)
+        float time = musicPlayer._offsetedTimeOrigin;
+        float span = (musicPlayer._clapSpan / LPB);
+
+
+        //シークバー操作で曲が巻き戻された場合
+        if (time < prevPool)
         {
-            int num = noteDataConverter.ConvertBeatNum(musicPlayer._offsetedTimeOrigin, LPB);
+            float ajustTime = time - (time % span);
+            pool = ajustTime + span;
+            prevPool = pool - span;
+        }
+
+        //音を鳴らすタイミングか
+        if (time >= pool)
+        {
+            int num = noteDataConverter.ConvertBeatNum(time, LPB);
             if (notesSetter.IsNote(LPB, num, laneNumer))
             {
                 if (isClaped == false)
@@ -72,16 +84,24 @@ public class AutoMachine : MonoBehaviour
             }
             //プール値加算
             prevPool = pool;
-            pool += musicPlayer._clapSpan / LPB;
+            pool += span;
+
+            //シークバー操作で曲が進められていた場合
+            if (pool < time)
+            {
+                float ajustTime = time - (time % span);
+                pool = ajustTime + span;
+            }
         }
     }
 
-    private void ReverseTime(ref float pool, ref float prevPool, int LPB)
-    {
-        //シークバーによって曲を巻き戻ししたとき
-        if (musicPlayer._offsetedTimeOrigin < prevPool)
-        {
-            pool = musicPlayer._offsetedTimeOrigin - (musicPlayer._offsetedTimeOrigin % (musicPlayer._clapSpan / LPB));
-        }
-    }
+    //シークバーによる操作が行われたとき
+    //private void ReverseTime(ref float pool, ref float prevPool, int LPB)
+    //{
+    //    //曲を巻き戻したとき
+    //    if (musicPlayer._offsetedTimeOrigin < prevPool)
+    //    {
+    //        pool = musicPlayer._offsetedTimeOrigin - (musicPlayer._offsetedTimeOrigin % (musicPlayer._clapSpan / LPB));
+    //    }
+    //}
 }

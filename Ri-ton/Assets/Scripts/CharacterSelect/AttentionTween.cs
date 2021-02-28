@@ -1,6 +1,9 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
+/// <summary>
+/// 上下に動くTween
+/// </summary>
 public class AttentionTween : MonoBehaviour
 {
     private Sequence sequence;
@@ -16,6 +19,7 @@ public class AttentionTween : MonoBehaviour
     private float endPosY = default;
 
     private RectTransform rectTransform = null;
+
 
     void Start()
     {

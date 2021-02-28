@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
+/// <summary>
+/// キー押下時のエフェクト表示クラス
+/// </summary>
 public class KeyEffect : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer = null;

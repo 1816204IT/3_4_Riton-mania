@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// タイトルシーンにてログインの管理をする
-// 過去にログイン履歴があるか等からどのフローへ進むか判断する
+/// <summary>
+/// タイトルシーンにてログインの管理をする
+/// 過去にログイン履歴があるか等からどのフローへ進むか判断する
+/// </summary>
 public class LoginFlow : MonoBehaviour
 {
     [SerializeField]

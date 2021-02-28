@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 難易度ボタン管理クラス
+/// </summary>
 public class DifficultyButtonsManager : MonoBehaviour
 {
     [System.Serializable]

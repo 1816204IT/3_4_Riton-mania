@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 曲選択画面の背景画像を動かす
+/// </summary>
 public class PlaySongSelectBGMove : MonoBehaviour
 {
     [SerializeField]

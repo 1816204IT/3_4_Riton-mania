@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 曲進捗バークラス
+/// </summary>
 public class MusicProgressBar : MonoBehaviour
 {
     private MusicPlayer musicPlayer = null;
@@ -25,8 +28,6 @@ public class MusicProgressBar : MonoBehaviour
         Vector3 pos = this.transform.position;
         float posX = musicPlayer.GetSeekBarPosition() * 1280.0f;
         this.transform.position = new Vector3(posX, pos.y, pos.z);
-        //rectTransform.localPosition = new Vector3(pos.x, pos.y, pos.x);
-        //this.transform.position = GetWorldPositionFromRectPosition(rectTransform);
     }
 
     private Vector3 GetWorldPositionFromRectPosition(RectTransform rect)

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// マウスカーソルを任意の画像に変更する
+/// </summary>
 public class SetCursor : MonoBehaviour
 {
     [SerializeField]

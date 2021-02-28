@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 曲選択の矢印画像が右矢印と左矢印の2個あり
-// これら2個のアニメーションを同期させる管理スクリプト
+/// <summary>
+/// 曲選択の矢印画像が右矢印と左矢印の2個あり
+/// これら2個のアニメーションを同期させる管理スクリプト
+/// </summary>
 public class ArrowAnimationSynchro : MonoBehaviour
 {
     [SerializeField]

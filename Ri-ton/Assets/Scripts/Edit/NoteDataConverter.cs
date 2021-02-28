@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// ノーツデータを様々な形式に変換するクラス
+/// </summary>
 public class NoteDataConverter : MonoBehaviour
 {
     [SerializeField]
@@ -28,14 +31,6 @@ public class NoteDataConverter : MonoBehaviour
         basePos = JudgmentBar.transform.position.y + UserPreference._instance._userOffset;
         baseBeatSpanLen = (musicPlayer._clapSpan * UserPreference._instance._notesSpeed);
     }
-
-    //Y座標を曲の位置に変換する
-    //public float ConvertTiming(float posY)
-    //{
-    //    float len = posY - basePos;
-    //    float test = len / (musicPlayer._clapSpan * UserPreference._instance._notesSpeed);
-    //    return musicPlayer.offsetedTime + musicPlayer._clapSpan * test;
-    //}
 
     //曲の位置をbeatNumに変換する
     public int ConvertBeatNum(float time, int LPB)

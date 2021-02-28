@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+/// <summary>
+/// 現在選択中の曲情報を管理するクラス
+/// </summary>
 public class BigNodeInformation : MonoBehaviour
 {
     [SerializeField]

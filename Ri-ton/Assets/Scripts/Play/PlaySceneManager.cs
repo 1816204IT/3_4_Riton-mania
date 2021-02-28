@@ -17,6 +17,9 @@ public enum RankNumber
     MAX
 }
 
+/// <summary>
+/// プレイシーン管理クラス
+/// </summary>
 public class PlaySceneManager : MonoBehaviour
 {
     [SerializeField]

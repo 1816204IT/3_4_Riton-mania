@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// 曲選択画面管理クラス
+/// </summary>
 public class PlaySongSelectSceneManager : MonoBehaviour
 {
     [SerializeField]

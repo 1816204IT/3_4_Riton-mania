@@ -4,6 +4,10 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
+/// <summary>
+/// 透明度を用いた点滅表現
+/// Imageに対応
+/// </summary>
 public class ColorTween : MonoBehaviour
 {
     private Tween tween = null;
@@ -11,6 +15,7 @@ public class ColorTween : MonoBehaviour
     private float duration = 0.1f;
     private float alpha = 0.3f;
     private Image image = null;
+
 
     void Start()
     {

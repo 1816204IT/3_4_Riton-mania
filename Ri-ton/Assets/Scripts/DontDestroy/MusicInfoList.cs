@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//シングルトンクラス
-//曲名、BG、音声ファイルを保管
+/// <summary>
+/// 曲名、BG、音声ファイルを保管
+/// </summary>
 public class MusicInfoList : MonoBehaviour
 {
     [SerializeField]

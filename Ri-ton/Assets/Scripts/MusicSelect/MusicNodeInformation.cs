@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 曲パネルの情報を設定するクラス
+/// </summary>
 public class MusicNodeInformation : MonoBehaviour
 {
     [SerializeField]

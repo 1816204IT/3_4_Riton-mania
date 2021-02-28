@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Acc（精度）計算クラス
+/// </summary>
 public class AccCounter : MonoBehaviour
 {
     private Text text = null;

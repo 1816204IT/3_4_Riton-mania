@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// 指定のオブジェクトのサイズと同期する
+/// <summary>
+/// 指定のオブジェクトのサイズと同期する
+/// </summary>
 public class SyncSizeDelta : MonoBehaviour
 {
     [SerializeField]

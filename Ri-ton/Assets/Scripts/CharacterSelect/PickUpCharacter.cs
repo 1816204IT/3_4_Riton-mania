@@ -4,7 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
+/// <summary>
 /// キャラクター選択画面にてキャラクターが選択された時にキャラクターを両サイドから消す
+/// </summary>
 public class PickUpCharacter : MonoBehaviour
 {
     [SerializeField]

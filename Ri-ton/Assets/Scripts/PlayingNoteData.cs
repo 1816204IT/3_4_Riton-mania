@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using NoteEditor.DTO;
 
-// ノーツデータを管理する
-// プレイ中に判定されたノーツを排除していく
+/// <summary>
+/// プレイ中のノーツデータを管理する
+/// プレイ中に判定されたノーツを排除していく
+/// </summary>
 public class PlayingNoteData : MonoBehaviour
 {
     private JsonManager jsonManager = null;
@@ -20,8 +22,11 @@ public class PlayingNoteData : MonoBehaviour
         }
 
         // ノーツデータの読み込み
-        nowMapData = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
-    }   
+
+        // DEBUG
+        nowMapData = jsonManager.LoadMapData("くるくる", "Easy");
+        // nowMapData = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
+    }
 
     public ref MusicDTO.MapData GetNowMapData()
     {

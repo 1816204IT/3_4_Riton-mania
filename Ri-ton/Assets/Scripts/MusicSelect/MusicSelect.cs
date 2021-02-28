@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//曲選択
-//プレイシーン、編集譜面選択シーンで使用する
+/// <summary>
+/// 曲選択クラス
+/// </summary>
 public class MusicSelect : MonoBehaviour
 {
     private int musicNameIndex = 0;

@@ -3,6 +3,9 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// オンラインランキングビューを表示する
+/// </summary>
 public class ScoreView : MonoBehaviour
 {
     [SerializeField]

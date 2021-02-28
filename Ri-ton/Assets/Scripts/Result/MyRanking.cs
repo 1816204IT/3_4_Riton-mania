@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// リザルトシーンにて今回のスコアが全体の何位かを検索する
+/// <summary>
+/// リザルトシーンにて今回のスコアが全体の何位かを検索する
+/// </summary>
 public class MyRanking : MonoBehaviour
 {
     private LeaderBoard lBoard = new LeaderBoard();

@@ -12,6 +12,9 @@ public enum ButtonState
     Normal,         // 通常状態(プレイボタン、キャラクター選択ボタン、ログアウトボタンを表示)
 }
 
+/// <summary>
+/// タイトルシーン管理クラス
+/// </summary>
 public class TitleSceneManager : MonoBehaviour
 {
     private static string prevSceneName = "";

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ヘッダー情報表示クラス
+/// プレイヤ名
+/// </summary>
 public class HeaderInfo : MonoBehaviour
 {
     [SerializeField]

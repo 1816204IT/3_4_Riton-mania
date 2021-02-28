@@ -1,106 +1,85 @@
 ﻿using NoteEditor.DTO;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
-//プレイヤがノーツを叩いた際に判定を行う
+/// <summary>
+/// プレイヤがノーツを叩いた際に判定を行う
+/// 判定が終了したノーツをPlayingNoteDataから削除する
+/// </summary>
 public class TimingJudgment : MonoBehaviour
 {
+    // SerializeField関連
     [SerializeField]
     private int laneNum = 0;
     [SerializeField]
-    private JudgmentText judgmentText = null;
+    private Text timingText = null;
     [SerializeField]
     private KeyEffect keyEffect = null;
     [SerializeField]
-    private ComboCounter comboCounter = null;
+    private Text fastSlowText = null;
     [SerializeField]
     private AccCounter accCounter = null;
     [SerializeField]
+    private JudgmentText judgmentText = null;
+    [SerializeField]
+    private ComboCounter comboCounter = null;
+    [SerializeField]
     private ScoreCounter scoreCounter = null;
-    [SerializeField]
-    private Text timingText = null;
-    [SerializeField]
-    private Text fastOrSlowText = null;
 
+    // Find関連
     private JsonManager jsonManager = null;
     private MusicPlayer musicPlayer = null;
-    private PlayingNoteData playingNoteData = null;
     private NotesSetter notesSetter = null;
     private AudioSource audioSource = null;
+    private PlayingNoteData playingNoteData = null;
     private NoteDataConverter noteDataConverter = null;
 
-    private MusicDTO.MapData mapData = new MusicDTO.MapData();
-    float secondDistance = 0.0f; //1秒でどれだけ譜面が進むか？
-    private const int perfectFrame = 6; 
-    private const int goodFrame = 10; 
-    private const int missFrame = 14; 
-    private float perfectLen = 0.0f;
-    private float goodLen = 0.0f;
+    // 判定フレーム数
+    private const int missFrame = 14;
+    private const int goodFrame = 10;
+    private const int perfectFrame = 6;
     private float missLen = 0.0f;
+    private float goodLen = 0.0f;
+    private float perfectLen = 0.0f;
 
     // ロングノーツ関連
     private bool isNowLongNote = false;         // ロングノーツの始点から終点の間のみtureとする
     private bool isHoldValid = false;           // 長押しの際にロングノーツとの判定を取るか(連続したロングノーツや、ロングノーツの始点前からホールドしていた際のチェック用)
-    private float holdUpedCheatTime = 0.0f;     // ホールドを離した時の曲の時間
+    private float holdUpedCheatTime = 0.0f;     // ホールドの最後は判定を緩くする。ホールドを離した後はgood判定分のチートタイムを設ける
     private MusicDTO.Note judgmentingLongNote;  // 判定中のロングノーツ
 
-    [SerializeField]
-    private PlaySceneManager playSceneManager = null;
+    private MusicDTO.MapData mapData = new MusicDTO.MapData();
+    float secondDistance = 0.0f; // 1秒間で進む距離
 
     void Start()
     {
-        jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
-        musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
-        playingNoteData = GameObject.FindGameObjectWithTag("PlayingNoteData").GetComponent<PlayingNoteData>();
-        notesSetter = GameObject.FindGameObjectWithTag("NotesSetter").GetComponent<NotesSetter>();
-        audioSource = this.GetComponent<AudioSource>();
-        noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
-
-        if (jsonManager == null || musicPlayer == null || judgmentText == null || audioSource == null
-            || comboCounter == null || accCounter == null || scoreCounter == null || keyEffect == null
-            || playingNoteData == null || notesSetter == null || timingText == null || noteDataConverter == null
-            || playSceneManager == null || fastOrSlowText == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        FindObjects();
+        NullCheck();
 
         mapData = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
         LongNoteDisassembly();
         SortNoteData();
 
-        //1秒でどれだけ譜面が進むか？
+        // 1秒間で進む距離
         secondDistance = musicPlayer._clapSpan * UserPreference._instance._notesSpeed;
-        //判定の長さを代入
-        perfectLen = secondDistance / 60.0f * (float)perfectFrame;
-        goodLen = secondDistance / 60.0f * (float)goodFrame;
+
+        // 判定の長さを代入(秒)
         missLen = secondDistance / 60.0f * (float)missFrame;
-
-        //Debug.Log("ノーツ速度 [ " + UserPreference._instance._notesSpeed + " ]");
-        //Debg.Log("PerfectDistance = " + perfectLen);
-        //Debug.Log("goodDistance = " + goodLen);
-        //Debug.Log("missDistance = " + missLen);
-
-        Debug.Log("secondDistance = " + secondDistance.ToString());
-        Debug.Log("frameDistance = " + (secondDistance / 60.0f).ToString());
+        goodLen = secondDistance / 60.0f * (float)goodFrame;
+        perfectLen = secondDistance / 60.0f * (float)perfectFrame;
     }
 
     void Update()
     {
-        if (playSceneManager._isTutorialEnd == false)
-        {
-            return;
-        }
-       
         string key = "Lane" + laneNum.ToString();
+
         // 単発ノーツの判定(ロングノーツの始点を含む)
         if (Input.GetButtonDown(key))
         {
-            audioSource.Stop();
-            audioSource.PlayOneShot(audioSource.clip);
+            PlayHitSound();
             NoteJudgment();
-            isHoldValid = isNowLongNote ? true : false;
+            isHoldValid = (isNowLongNote ? true : false);
             keyEffect.EffictStart();
 
             if (judgmentingLongNote != null)
@@ -108,19 +87,22 @@ public class TimingJudgment : MonoBehaviour
                 notesSetter.AddHoldingLongNote(judgmentingLongNote); // 光らせるロングノーツとして登録
             }
         }
-        // ロングノーツの判定(押しっぱなしノーツ)
+
+        // ロングノーツの判定
         if (Input.GetButton(key))
         {
             LongNoteJudgment();
             keyEffect.EffictStart();
         }
+
         // チートタイムのロングノーツ判定
         if (holdUpedCheatTime > 0)
         {
             LongNoteJudgment();
             keyEffect.EffictStart();
         }
-        //叩き損なったノーツの処理
+
+        // 叩き損なったノーツの処理
         CheckLostNote();
 
         if (Input.GetButtonUp(key))
@@ -133,14 +115,17 @@ public class TimingJudgment : MonoBehaviour
                 notesSetter.RemoveHoldingLongNote(judgmentingLongNote);
             }
         }
-        holdUpedCheatTime =  (holdUpedCheatTime > 0) ? holdUpedCheatTime - Time.deltaTime : 0;
+
+        holdUpedCheatTime = (holdUpedCheatTime > 0) ? holdUpedCheatTime - Time.deltaTime : 0;
     }
 
+    // 単発ノーツの判定を行う(ロングノーツの始点を含む)
     private void NoteJudgment()
     {
         foreach (MusicDTO.Note note in mapData.notes)
         {
-            if (note.isJudgment || laneNum != note.lane || note.type == 2)
+            // 判定済み、レーン番号違い、ロングノーツの終点　の場合は判定しない
+            if (note.isJudgment || (laneNum != note.lane) || (note.type == 2))
             {
                 continue;
             }
@@ -148,20 +133,16 @@ public class TimingJudgment : MonoBehaviour
             float distance = noteDataConverter.ConvertDistance(note.LPB, note.num);
 
             if (distance > missLen)
-            {  
+            {
                 break;
             }
 
             // Perfect判定
-            if ((distance > - perfectLen) && (distance < perfectLen))
+            if ((distance > -perfectLen) && (distance < perfectLen))
             {
                 note.isJudgment = true;
-                judgmentText.PerfectJudgment();
-                comboCounter.AddCombo();
-                accCounter.AddPerfect();
-                scoreCounter.AddPerfect();
-                SetTimingText(distance);  // タイミングのズレ
-                RemoveNote(note);   // 叩いたノーツを消す
+                PerfectJudgmentSetting(distance);
+                RemoveNote(note);
 
                 // ロングノーツの始点を判定した場合
                 if (note.type == 1)
@@ -173,16 +154,13 @@ public class TimingJudgment : MonoBehaviour
 
                 break;
             }
+
             // Good判定
             if ((distance > -goodLen) && (distance < goodLen))
             {
                 note.isJudgment = true;
-                judgmentText.GoodJudgment();
-                comboCounter.AddCombo();
-                accCounter.AddGood();
-                scoreCounter.AddGood();
-                SetTimingText(distance);  // タイミングのズレ
-                RemoveNote(note);   // 叩いたノーツを消す
+                GoodJudgmentSetting(distance);
+                RemoveNote(note);
 
                 // ロングノーツの始点を判定した場合
                 if (note.type == 1)
@@ -194,15 +172,79 @@ public class TimingJudgment : MonoBehaviour
 
                 break;
             }
+
             // Miss判定
             if ((distance > -missLen) && (distance < missLen))
             {
                 note.isJudgment = true;
-                judgmentText.MissJudgment();
-                comboCounter.ComboZero();
-                accCounter.AddMiss();
-                SetTimingText(distance);  // タイミングのズレ
-                RemoveNote(note);   // 叩いたノーツを消す
+                MissJudgmentSetting(distance);
+                RemoveNote(note);
+
+                // ロングノーツの始点を判定した場合
+                if (note.type == 1)
+                {
+                    isNowLongNote = true;
+                    isHoldValid = false;
+                    judgmentingLongNote = note; // 現在判定中のロングノーツ
+                }
+
+                break;
+            }
+        }
+
+
+        // 未判定ノーツリストを全検索
+        foreach (MusicDTO.Note note in mapData.notes)
+        {
+            // 判定ラインからの距離を算出
+            float distance = noteDataConverter.ConvertDistance(note.LPB, note.num);
+
+            // 以下Perfect、Good、Missの判定を行う
+
+
+
+            // Perfect判定
+            if ((distance > -perfectLen) && (distance < perfectLen))
+            {
+                note.isJudgment = true;
+                PerfectJudgmentSetting(distance);
+                RemoveNote(note);
+
+                // ロングノーツの始点を判定した場合
+                if (note.type == 1)
+                {
+                    isNowLongNote = true;
+                    notesSetter.AddHoldingLongNote(note); // 光らせるロングノーツとして登録
+                    judgmentingLongNote = note; // 現在判定中のロングノーツ
+                }
+
+                break;
+            }
+
+            // Good判定
+            if ((distance > -goodLen) && (distance < goodLen))
+            {
+                note.isJudgment = true;
+                GoodJudgmentSetting(distance);
+                RemoveNote(note);
+
+                // ロングノーツの始点を判定した場合
+                if (note.type == 1)
+                {
+                    isNowLongNote = true;
+                    notesSetter.AddHoldingLongNote(note); // 光らせるロングノーツとして登録
+                    judgmentingLongNote = note; // 現在判定中のロングノーツ
+                }
+
+                break;
+            }
+
+            // Miss判定
+            if ((distance > -missLen) && (distance < missLen))
+            {
+                note.isJudgment = true;
+                MissJudgmentSetting(distance);
+                RemoveNote(note);
 
                 // ロングノーツの始点を判定した場合
                 if (note.type == 1)
@@ -217,6 +259,7 @@ public class TimingJudgment : MonoBehaviour
         }
     }
 
+    // ロングノーツの判定を行う
     private void LongNoteJudgment()
     {
         if (isHoldValid == false)
@@ -236,24 +279,15 @@ public class TimingJudgment : MonoBehaviour
             // Perfect判定
             if (distance <= (secondDistance / 60.0f))
             {
-                Debug.Log(distance);
-                Debug.Log(secondDistance / 60.0f);
-
                 note.isJudgment = true;
-                judgmentText.PerfectJudgment();
-                comboCounter.AddCombo();
-                accCounter.AddPerfect();
-                scoreCounter.AddPerfect();
-                SetTimingText(distance);  // タイミングのズレ
+                PerfectJudgmentSetting(distance);
 
                 // ロングノーツの終点を判定した場合
                 if (note.type == 2)
                 {
+                    PlayHitSound();
                     isNowLongNote = false;
                     isHoldValid = false;
-                    // SE再生
-                    audioSource.Stop();
-                    audioSource.PlayOneShot(audioSource.clip);
                     judgmentingLongNote = null; // 判定中のロングノーツなし
                 }
                 break;
@@ -261,6 +295,7 @@ public class TimingJudgment : MonoBehaviour
         }
     }
 
+    // 叩き損なったノーツを判定する
     private void CheckLostNote()
     {
         foreach (MusicDTO.Note note in mapData.notes)
@@ -273,13 +308,10 @@ public class TimingJudgment : MonoBehaviour
             float distance = noteDataConverter.ConvertDistance(note.LPB, note.num);
 
             // Miss判定
-            if (distance <  - goodLen)
+            if (distance < -goodLen)
             {
                 note.isJudgment = true;
-                judgmentText.MissJudgment();
-                comboCounter.ComboZero();
-                accCounter.AddMiss();
-                timingText.text = "";
+                MissJudgmentSetting(distance);
 
                 // ロングノーツの始点を判定した場合
                 if (note.type == 1)
@@ -297,40 +329,89 @@ public class TimingJudgment : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Perfect判定の場合に設定する項目群
+    /// </summary>
+    /// <param name="distance">判定ラインからの距離</param>
+    private void PerfectJudgmentSetting(in float distance)
+    {
+        judgmentText.PerfectJudgment();
+        comboCounter.AddCombo();
+        accCounter.AddPerfect();
+        scoreCounter.AddPerfect();
+        SetTimingText(distance);
+    }
+
+    /// <summary>
+    /// Good判定の場合に設定する項目群
+    /// </summary>
+    /// <param name="distance">判定ラインからの距離</param>
+    private void GoodJudgmentSetting(in float distance)
+    {
+        judgmentText.GoodJudgment();
+        comboCounter.AddCombo();
+        accCounter.AddGood();
+        scoreCounter.AddGood();
+        SetTimingText(distance);
+    }
+
+    /// <summary>
+    /// Miss判定の場合に設定する項目群
+    /// </summary>
+    /// <param name="distance">判定ラインからの距離</param>
+    private void MissJudgmentSetting(in float distance)
+    {
+        judgmentText.MissJudgment();
+        comboCounter.ComboZero();
+        accCounter.AddMiss();
+        timingText.text = "";
+        fastSlowText.text = "";
+    }
+
+    /// <summary>
+    /// 判定済みノーツを削除する
+    /// </summary>
+    /// <param name="note">削除対象のノーツ</param>
     private void RemoveNote(MusicDTO.Note note)
     {
-        // 単発ノーツに限り叩いたノーツを消す
+        // 単発ノーツの場合のみ削除する
         if (note.type == 0)
         {
             playingNoteData.RemoveNote(note);
         }
     }
 
+    /// <summary>
+    /// just、fast、slowのテキストを設定する
+    /// </summary>
+    /// <param name="posY">判定ラインからの距離</param>
     private void SetTimingText(float posY)
     {
         int frame = (int)(posY / (secondDistance / 60.0f));
+
         if (frame == 0)
         {
             timingText.color = Color.yellow;
-            fastOrSlowText.color = Color.yellow;
-            fastOrSlowText.text = "just";
+            fastSlowText.color = Color.yellow;
+            fastSlowText.text = "just";
         }
         else if (frame > 0)
         {
             timingText.color = Color.green;
-            fastOrSlowText.color = Color.green;
-            fastOrSlowText.text = "fast";
+            fastSlowText.color = Color.green;
+            fastSlowText.text = "fast";
         }
         else
         {
             timingText.color = Color.red;
-            fastOrSlowText.color = Color.red;
-            fastOrSlowText.text = "slow";
+            fastSlowText.color = Color.red;
+            fastSlowText.text = "slow";
         }
+
         timingText.text = frame.ToString();
     }
 
-    //ロングノーツを単発ノーツに分解する
+    // ロングノーツを単発ノーツに分解する
     private void LongNoteDisassembly()
     {
         List<MusicDTO.Note> addNoteList = new List<MusicDTO.Note>();
@@ -370,6 +451,81 @@ public class TimingJudgment : MonoBehaviour
         }
     }
 
+    // ヒットサウンドを鳴らす
+    private void PlayHitSound()
+    {
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioSource.clip);
+    }
+
+    // オブジェクトの検索を行う
+    private void FindObjects()
+    {
+        audioSource = this.GetComponent<AudioSource>();
+        jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
+        musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
+        notesSetter = GameObject.FindGameObjectWithTag("NotesSetter").GetComponent<NotesSetter>();
+        playingNoteData = GameObject.FindGameObjectWithTag("PlayingNoteData").GetComponent<PlayingNoteData>();
+        noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
+    }
+
+    // Nullチェックを行う
+    private void NullCheck()
+    {
+        if (jsonManager == null)
+        {
+            Debug.LogError("jsonManager is Null");
+        }
+        if (musicPlayer == null)
+        {
+            Debug.LogError("musicPlayer is Null");
+        }
+        if (judgmentText == null)
+        {
+            Debug.LogError("judgmentText is Null");
+        }
+        if (audioSource == null)
+        {
+            Debug.LogError("audioSource is Null");
+        }
+        if (comboCounter == null)
+        {
+            Debug.LogError("comboCounter is Null");
+        }
+        if (accCounter == null)
+        {
+            Debug.LogError("accCounter is Null");
+        }
+        if (scoreCounter == null)
+        {
+            Debug.LogError("scoreCounter is Null");
+        }
+        if (keyEffect == null)
+        {
+            Debug.LogError("keyEffect is Null");
+        }
+        if (playingNoteData == null)
+        {
+            Debug.LogError("playingNoteData is Null");
+        }
+        if (notesSetter == null)
+        {
+            Debug.LogError("notesSetter is Null");
+        }
+        if (timingText == null)
+        {
+            Debug.LogError("timingText is Null");
+        }
+        if (noteDataConverter == null)
+        {
+            Debug.LogError("noteDataConverter is Null");
+        }
+        if (fastSlowText == null)
+        {
+            Debug.LogError("fastOrSlowText is Null");
+        }
+    }
+
     //ノーツデータを昇順ソートする
     private void SortNoteData()
     {
@@ -380,15 +536,5 @@ public class TimingJudgment : MonoBehaviour
     public int GetMaxComboNum()
     {
         return mapData.notes.Count;
-    }
-
-    public float _perfectLen
-    {
-        get { return perfectLen; }
-    }
-
-    public float _goodLen
-    { 
-        get { return goodLen; }
     }
 }

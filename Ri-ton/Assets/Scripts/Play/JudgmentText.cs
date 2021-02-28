@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// タイミング判定表示クラス
+/// PERFECT,GOOD,MISS
+/// </summary>
 public class JudgmentText : MonoBehaviour
 {
     private Text text = null;

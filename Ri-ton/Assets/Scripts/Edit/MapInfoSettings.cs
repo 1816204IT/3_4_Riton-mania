@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 譜面情報を設定するクラス
+/// オフセット、BPM、難易度
+/// </summary>
 public class MapInfoSettings : MonoBehaviour
 {
     private JsonManager jsonManager = null;
@@ -49,6 +53,7 @@ public class MapInfoSettings : MonoBehaviour
         bpmGroup.inputField.text = textValue.ToString();
 
         diffGroup.slider.value = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName).difficulty;
+
         textValue = diffGroup.slider.value / 10.0f;
         diffGroup.inputField.text = textValue.ToString();
 

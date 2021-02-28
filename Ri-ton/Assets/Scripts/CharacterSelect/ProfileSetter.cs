@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// キャラクタープロフィール情報設定クラス
+/// </summary>
 public class ProfileSetter : MonoBehaviour
 {
     [SerializeField]

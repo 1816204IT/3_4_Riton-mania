@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// キャラクター選択画面の管理クラス
+/// </summary>
 public class PickUpCharacterManager : MonoBehaviour
 {
     [SerializeField]
@@ -46,6 +49,7 @@ public class PickUpCharacterManager : MonoBehaviour
 
     [SerializeField]
     private GameObject pleasePickCharacter = null;
+
 
     // キャラクター選択画面のホーム(初期画面)にいるか？　ホーム画面とそれ以外でEscapeキーを押した時の挙動が変わる
     enum NOW_STATE
@@ -101,7 +105,6 @@ public class PickUpCharacterManager : MonoBehaviour
         }
     }
 
-    // 
     public void OnPickDown()
     {
         foreach (PickUpCharacter c in characters)

@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// 譜面編集画面管理クラス
+/// </summary>
 public class EditSceneManager : MonoBehaviour
 {
     [SerializeField]
@@ -24,7 +27,7 @@ public class EditSceneManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene(TitleSceneManager._prevSceneName);
+            SceneManager.LoadScene("EditSongSelect");
         }
 
         if (Input.GetKeyDown(KeyCode.Space))

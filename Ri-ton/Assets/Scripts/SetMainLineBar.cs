@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//小節線のバー(太いバー)を配置する
+/// <summary>
+/// 小節線バー(太いバー)を配置する
+/// </summary>
 public class SetMainLineBar : MonoBehaviour
 {
     [SerializeField]

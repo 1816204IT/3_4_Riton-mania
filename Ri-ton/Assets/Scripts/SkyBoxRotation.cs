@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// スカイボックスを回転させる
+/// </summary>
 public class SkyBoxRotation : MonoBehaviour
 {
     public float _anglePerFrame = 0.1f;    // 1フレームに何度回すか[unit : deg]

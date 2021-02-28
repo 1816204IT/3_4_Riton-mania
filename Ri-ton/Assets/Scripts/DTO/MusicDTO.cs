@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
 
+/// <summary>
+/// ノーツデータクラス
+/// </summary>
 namespace NoteEditor.DTO
 {
     [System.Serializable]

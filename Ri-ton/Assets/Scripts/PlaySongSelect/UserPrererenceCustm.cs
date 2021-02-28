@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// ユーザーオプションクラス
+/// </summary>
 public class UserPrererenceCustm : MonoBehaviour
 {
     private enum SliderType

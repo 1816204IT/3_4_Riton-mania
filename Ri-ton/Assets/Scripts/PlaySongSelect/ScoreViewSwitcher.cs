@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 自己ベストとオンラインランキングを切り替える
+/// </summary>
 public class ScoreViewSwitcher : MonoBehaviour
 {
     [SerializeField]

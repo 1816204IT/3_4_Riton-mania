@@ -1,6 +1,10 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
+/// <summary>
+/// Easingを用いた移動を行う
+/// キャラクター選択画面等で使用している
+/// </summary>
 public class MoveTween : MonoBehaviour
 {
     private Sequence sequence;

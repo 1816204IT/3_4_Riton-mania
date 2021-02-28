@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 以下の情報を持ったクラス
+/// キャラクターの立ち絵画像、アイコン画像、色
+/// </summary>
 public class CharacterInfoList : MonoBehaviour
 {
     [System.Serializable]

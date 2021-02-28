@@ -16,7 +16,9 @@ public struct ResultShowData
     public bool isAciveHighScore;
 }
 
-// プレイ終了時のリザルトデータをプレイシーンから受け取るクラス
+/// <summary>
+/// プレイ終了時のリザルトデータをプレイシーンから受け取るクラス
+/// </summary>
 public class ResultDataInput : MonoBehaviour
 {
     private ResultShowData data = new ResultShowData();

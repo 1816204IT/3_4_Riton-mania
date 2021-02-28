@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 曲のシークバー管理クラス
+/// </summary>
 public class SeekBar : MonoBehaviour
 {
     private MusicPlayer musicPlayer = null;
@@ -27,7 +30,6 @@ public class SeekBar : MonoBehaviour
         seekBar.value = musicPlayer.GetSeekBarPosition();
     }
 
-    //再生ボタンを押した時のイベント
     public void AdjustMusicOfSeekBar()
     {
         musicPlayer.AdjustAudioSourceTime(seekBar.value);

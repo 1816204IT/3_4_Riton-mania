@@ -6,6 +6,9 @@ using NoteEditor.DTO;
 using System;
 using System.Text;
 
+/// <summary>
+/// Jsonファイルの読み込みと書き込みを行うクラス
+/// </summary>
 public class JsonManager : MonoBehaviour
 {
     StringBuilder PathBuilder;

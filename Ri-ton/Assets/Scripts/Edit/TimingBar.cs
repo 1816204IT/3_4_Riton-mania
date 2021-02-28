@@ -4,7 +4,9 @@ using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
-//Editシーンにてタイミングバーを配置する
+/// <summary>
+/// Editシーンにてタイミングバーを配置するクラス
+/// </summary>
 public class TimingBar : MonoBehaviour
 {
     [SerializeField]

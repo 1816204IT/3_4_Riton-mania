@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//譜面データを元にノーツを配置する
+/// <summary>
+/// 譜面データを元にノーツを配置する
+/// </summary>
 public class NotesSetter : MonoBehaviour
 {
     [System.Serializable]
@@ -185,7 +187,6 @@ public class NotesSetter : MonoBehaviour
                 float posX = UserPreference._instance._notePosXOfLaneZero + note.lane * UserPreference._instance._note_size_x;
                 float posY = noteDataConverter.ConvertDistance(note.LPB, note.num);
                 posY += timingBar.position.y;
-                //posY += UserPreference._instance._userOffset;
                 if (posY > 0 && posY < 2400)
                 {
                     n.transform.position = new Vector3(posX, posY, tmpPos.z);
@@ -209,12 +210,10 @@ public class NotesSetter : MonoBehaviour
             }
 
             float noteStartPosY = noteDataConverter.ConvertDistance(note.LPB, note.num) + timingBar.position.y;
-            //noteStartPosY += UserPreference._instance._userOffset;
             float noteEndPosY = 0;
             foreach (MusicDTO.Note endNote in note.endNote)
             {
                 noteEndPosY = noteDataConverter.ConvertDistance(endNote.LPB, endNote.num) + timingBar.position.y;
-                //noteEndPosY += UserPreference._instance._userOffset;
             }
 
             //ロングノーツが画面内にない場合は処理しない

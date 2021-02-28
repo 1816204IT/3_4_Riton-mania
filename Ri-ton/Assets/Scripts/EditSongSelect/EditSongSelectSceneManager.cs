@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 編集譜面選択画面の管理クラス
+/// </summary>
 public class EditSongSelectSceneManager : MonoBehaviour
 {
     private void Start()

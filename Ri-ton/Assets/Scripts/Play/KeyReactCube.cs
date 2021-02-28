@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// キー入力に応じてキューブを光らせる
+/// </summary>
 public class KeyReactCube : MonoBehaviour
 {
     [SerializeField]

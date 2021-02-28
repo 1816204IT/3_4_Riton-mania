@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// オブジェクトをマウスに追従させるクラス
+/// </summary>
 public class MouseFollow : MonoBehaviour
 {
     //X, Y座標の移動可能範囲

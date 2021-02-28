@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// スコア計算クラス
+/// </summary>
 public class ScoreCounter : MonoBehaviour
 {
     private Text text = null;

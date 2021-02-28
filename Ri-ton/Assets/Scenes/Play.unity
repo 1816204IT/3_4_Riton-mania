@@ -1318,14 +1318,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laneNum: 2
-  judgmentText: {fileID: 141070269}
-  keyEffect: {fileID: 6625645700753983701}
-  comboCounter: {fileID: 1911288860}
-  accCounter: {fileID: 1709794380}
-  scoreCounter: {fileID: 179817491}
   timingText: {fileID: 1006163201}
-  fastOrSlowText: {fileID: 907252873}
-  playSceneManager: {fileID: 910765997}
+  keyEffect: {fileID: 6625645700753983701}
+  fastSlowText: {fileID: 907252873}
+  accCounter: {fileID: 1709794380}
+  judgmentText: {fileID: 141070269}
+  comboCounter: {fileID: 1911288860}
+  scoreCounter: {fileID: 179817491}
 --- !u!82 &59367830
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1701,14 +1700,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laneNum: 1
-  judgmentText: {fileID: 141070269}
-  keyEffect: {fileID: 6625645702047846622}
-  comboCounter: {fileID: 1911288860}
-  accCounter: {fileID: 1709794380}
-  scoreCounter: {fileID: 179817491}
   timingText: {fileID: 1006163201}
-  fastOrSlowText: {fileID: 907252873}
-  playSceneManager: {fileID: 910765997}
+  keyEffect: {fileID: 6625645702047846622}
+  fastSlowText: {fileID: 907252873}
+  accCounter: {fileID: 1709794380}
+  judgmentText: {fileID: 141070269}
+  comboCounter: {fileID: 1911288860}
+  scoreCounter: {fileID: 179817491}
 --- !u!82 &76368760
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4462,12 +4460,39 @@ PrefabInstance:
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 70
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5200196545119050171, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3339c5a78d9241f4cba75b48815e9d02, type: 3}
@@ -8559,12 +8584,12 @@ PrefabInstance:
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 70
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
@@ -8575,6 +8600,33 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.spaceCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5200196545119050171, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3339c5a78d9241f4cba75b48815e9d02, type: 3}
@@ -13559,14 +13611,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laneNum: 0
-  judgmentText: {fileID: 141070269}
-  keyEffect: {fileID: 6625645701040814058}
-  comboCounter: {fileID: 1911288860}
-  accCounter: {fileID: 1709794380}
-  scoreCounter: {fileID: 179817491}
   timingText: {fileID: 1006163201}
-  fastOrSlowText: {fileID: 907252873}
-  playSceneManager: {fileID: 910765997}
+  keyEffect: {fileID: 6625645701040814058}
+  fastSlowText: {fileID: 907252873}
+  accCounter: {fileID: 1709794380}
+  judgmentText: {fileID: 141070269}
+  comboCounter: {fileID: 1911288860}
+  scoreCounter: {fileID: 179817491}
 --- !u!82 &1081563706
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15294,12 +15345,39 @@ PrefabInstance:
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_fontSize
-      value: 70
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 70
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5200196545119050171, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3339c5a78d9241f4cba75b48815e9d02, type: 3}
@@ -25525,14 +25603,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laneNum: 3
-  judgmentText: {fileID: 141070269}
-  keyEffect: {fileID: 6625645701237642520}
-  comboCounter: {fileID: 1911288860}
-  accCounter: {fileID: 1709794380}
-  scoreCounter: {fileID: 179817491}
   timingText: {fileID: 1006163201}
-  fastOrSlowText: {fileID: 907252873}
-  playSceneManager: {fileID: 910765997}
+  keyEffect: {fileID: 6625645701237642520}
+  fastSlowText: {fileID: 907252873}
+  accCounter: {fileID: 1709794380}
+  judgmentText: {fileID: 141070269}
+  comboCounter: {fileID: 1911288860}
+  scoreCounter: {fileID: 179817491}
 --- !u!82 &1621045686
 AudioSource:
   m_ObjectHideFlags: 0

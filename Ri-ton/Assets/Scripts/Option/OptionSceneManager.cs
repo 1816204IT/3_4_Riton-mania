@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// オプション画面管理クラス
+/// </summary>
 public class OptionSceneManager : MonoBehaviour
 {
     [SerializeField]

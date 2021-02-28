@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// imageの範囲内にマウスポインタ∸が入った際にSEを鳴らす
-// buttonをクリックした際にSEを鳴らす
+/// <summary>
+/// imageの範囲内にマウスポインタ∸が入った際にSEを鳴らす
+/// buttonをクリックした際にSEを鳴らす
+/// </summary>
 public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public bool isUseDefaultSE = true;

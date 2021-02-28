@@ -11,8 +11,9 @@ public enum DifficultyType
     MAX
 }
 
-//現在選択中の譜面(曲名+難易度)を記憶しておく
-//シングルトンクラス
+/// <summary>
+/// 現在選択中の譜面(曲名+難易度)を記憶しておくクラス
+/// </summary>
 public class SelectedMap : MonoBehaviour
 {
     private int musicIndex = 0;
@@ -33,7 +34,11 @@ public class SelectedMap : MonoBehaviour
 
         //起動時にデフォルトで選択される曲と難易度
         musicIndex = 0;
-        musicName = MusicInfoList._instance.GetMusicName(musicIndex);
+
+        // DEBUG
+        musicName = "くるくる";
+        //musicName = MusicInfoList._instance.GetMusicName(musicIndex);
+        // DEBUG
         difficultyName = "Easy";
     }
 

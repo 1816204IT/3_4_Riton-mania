@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-//音楽再生プレイヤ
-//シングルトンクラス
+
+/// <summary>
+/// 音楽再生プレイヤークラス
+/// </summary>
 public class MusicPlayer : MonoBehaviour
 {
     private AudioSource audioSource = null;
@@ -13,7 +15,7 @@ public class MusicPlayer : MonoBehaviour
     private float offset = 0.0f;
 
     private float audioSourceOldTime = 0.0f;    // Update毎に更新されない
-    private float time = 0.0f;  // Update毎に更新される精度の高い数値
+    private float time = 0.0f;  // Update毎に更新される精度の高いAudioSource.time
     private float timeOld;
 
     private const float startWaitTime = -1.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
@@ -23,6 +25,12 @@ public class MusicPlayer : MonoBehaviour
 
     void Awake()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            PlayPause();
+        }
+
+
         audioSource = this.GetComponent<AudioSource>();
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
 
@@ -38,8 +46,11 @@ public class MusicPlayer : MonoBehaviour
         }
         else
         {
-            mapInfo = jsonManager.LoadMapInfo(SelectedMap._instance._musicName);
-            audioSource.clip = MusicInfoList._instance.GetMusic(mapInfo.musicName);
+            // DEBUG
+            mapInfo = jsonManager.LoadMapInfo("くるくる");
+            //mapInfo = jsonManager.LoadMapInfo(SelectedMap._instance._musicName);
+            audioSource.clip = MusicInfoList._instance.GetMusic("くるくる");
+            //audioSource.clip = MusicInfoList._instance.GetMusic(mapInfo.musicName);
         }
 
         offset = mapInfo.offset / 100.0f;
@@ -109,13 +120,12 @@ public class MusicPlayer : MonoBehaviour
     }
 
     //シークバーが操作された時に曲の位置を調整する
-    public void AdjustAudioSourceTime(float time)
+    public void AdjustAudioSourceTime(float adjustTime)
     {
-        if (time >= 1.0f)
-        {
-            return;
-        }
-        audioSource.time = (float)time * audioSource.clip.length;
+        audioSource.time = (float)adjustTime * audioSource.clip.length;
+
+        time = audioSource.time;
+        timeOld = audioSource.time;
     }
 
     public void PlayStart()

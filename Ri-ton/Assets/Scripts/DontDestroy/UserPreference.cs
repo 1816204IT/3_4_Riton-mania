@@ -29,8 +29,9 @@ namespace Ritonmania
     }
 }
 
-//ノーツ速度、ユーザーオフセット、カーソルカラーなどの設定
-//シングルトンクラス
+/// <summary>
+/// ノーツ速度、ユーザーオフセット、カーソルカラーなどの設定
+/// </summary>
 public class UserPreference : MonoBehaviour
 {
     private const int max_note_speed = 4000;    // ノーツ速度の最大値

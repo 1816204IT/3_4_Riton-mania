@@ -5,8 +5,10 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using UnityEngine.UI;
 
-// 曲選択の矢印画像のアニメーション
-// マウスポインターが画像の上に来た際に画像を拡大する
+/// <summary>
+/// 曲選択の矢印画像のアニメーション
+/// マウスポインターが画像の上に来た際に画像を拡大する
+/// </summary>
 public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     private bool isOnPointerEnter = false;
@@ -52,10 +54,8 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         sequence
             .Append(expansionTween)
-            //.AppendInterval(0.1f)
             .Append(shurinkTween)
             .AppendInterval(1.0f);
-
 
         sequence.Play();
     }

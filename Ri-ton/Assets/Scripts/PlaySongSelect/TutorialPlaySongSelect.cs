@@ -13,6 +13,9 @@ public struct TutorialData
     public bool isArrowButtom;  // 矢印画像が下にくるか
 }
 
+/// <summary>
+/// チュートリアルクラス
+/// </summary>
 public class TutorialPlaySongSelect : MonoBehaviour
 {
     private List<TutorialData> list = new List<TutorialData>();

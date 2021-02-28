@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 2D画像をアニメーション表示する
+/// </summary>
 public class UILoopAnimation : MonoBehaviour
 {
     [SerializeField]

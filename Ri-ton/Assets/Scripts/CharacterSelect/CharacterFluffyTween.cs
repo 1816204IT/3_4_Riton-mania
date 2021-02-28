@@ -1,6 +1,9 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
+/// <summary>
+/// 曲選択画面でキャラクターがふわふわしている動きで使用している
+/// </summary>
 public class CharacterFluffyTween : MonoBehaviour
 {
     private Sequence sequence;
@@ -16,6 +19,7 @@ public class CharacterFluffyTween : MonoBehaviour
     private float endPosY = default;
 
     private RectTransform rectTransform = null;
+
 
     void Start()
     {
