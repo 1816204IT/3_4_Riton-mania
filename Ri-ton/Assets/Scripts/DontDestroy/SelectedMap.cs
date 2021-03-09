@@ -35,10 +35,7 @@ public class SelectedMap : MonoBehaviour
         //起動時にデフォルトで選択される曲と難易度
         musicIndex = 0;
 
-        // DEBUG
-        musicName = "くるくる";
-        //musicName = MusicInfoList._instance.GetMusicName(musicIndex);
-        // DEBUG
+        musicName = MusicInfoList._instance.GetMusicName(musicIndex);
         difficultyName = "Easy";
     }
 

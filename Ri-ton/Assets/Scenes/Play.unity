@@ -4494,6 +4494,16 @@ PrefabInstance:
       propertyPath: m_textAlignment
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3339c5a78d9241f4cba75b48815e9d02, type: 3}
 --- !u!1 &262302629
@@ -8627,6 +8637,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textAlignment
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3339c5a78d9241f4cba75b48815e9d02, type: 3}
@@ -15378,6 +15398,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textAlignment
       value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3339c5a78d9241f4cba75b48815e9d02, type: 3}

@@ -11,7 +11,7 @@ public class MusicInfoList : MonoBehaviour
     [SerializeField]
     private string[] musicNames = null;
     [SerializeField]
-    private string[] musicEnglishNames = null;  // サーバーのクラスデータが英語でないといけないので曲名の英語版を用意する
+    private string[] musicEnglishNames = null;  // サーバーのクラスデータ名が英語でないといけないので英語版の曲名を用意する
     [SerializeField]
     private Sprite[] bgImages = null;
     [SerializeField]
@@ -27,8 +27,6 @@ public class MusicInfoList : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
-
-    ///====================以下プロパティ====================
     
     public int _musicNum
     {

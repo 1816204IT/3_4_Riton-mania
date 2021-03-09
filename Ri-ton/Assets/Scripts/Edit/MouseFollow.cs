@@ -20,6 +20,11 @@ public class MouseFollow : MonoBehaviour
 
     private NotesEditor notesEditor = null;
 
+    [SerializeField]
+    private UnityEngine.UI.Text text = null;
+
+    public NoteDataConverter noteDataConverter = null;
+
     void Start()
     {
         notesEditor = GameObject.FindGameObjectWithTag("NotesEditor").GetComponent<NotesEditor>();
@@ -48,6 +53,12 @@ public class MouseFollow : MonoBehaviour
         //ノーツが置ける位置にスナップさせる
         Vector3 pos = notesEditor.GetSnappedPos(targetPos);
         transform.position = pos;
+
+        float time = 0.0f;
+        notesEditor.IsClickedPosValid(ref pos, ref time);
+        text.text = "FollowNoteNumber = " + noteDataConverter.ConvertBeatNum(time, notesEditor._LPB);
+
+        
     }
 
     //マウス座標をプレイエリア平面座標に変換する

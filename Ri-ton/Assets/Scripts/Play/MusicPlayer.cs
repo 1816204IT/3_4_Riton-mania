@@ -46,11 +46,8 @@ public class MusicPlayer : MonoBehaviour
         }
         else
         {
-            // DEBUG
-            mapInfo = jsonManager.LoadMapInfo("くるくる");
-            //mapInfo = jsonManager.LoadMapInfo(SelectedMap._instance._musicName);
-            audioSource.clip = MusicInfoList._instance.GetMusic("くるくる");
-            //audioSource.clip = MusicInfoList._instance.GetMusic(mapInfo.musicName);
+            mapInfo = jsonManager.LoadMapInfo(SelectedMap._instance._musicName);
+            audioSource.clip = MusicInfoList._instance.GetMusic(mapInfo.musicName);
         }
 
         offset = mapInfo.offset / 100.0f;

@@ -22,10 +22,7 @@ public class PlayingNoteData : MonoBehaviour
         }
 
         // ノーツデータの読み込み
-
-        // DEBUG
-        nowMapData = jsonManager.LoadMapData("くるくる", "Easy");
-        // nowMapData = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
+        nowMapData = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
     }
 
     public ref MusicDTO.MapData GetNowMapData()

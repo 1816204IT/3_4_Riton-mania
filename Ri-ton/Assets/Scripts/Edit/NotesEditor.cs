@@ -34,6 +34,9 @@ public class NotesEditor : MonoBehaviour
     //設置するノーツデータ
     MusicDTO.Note clickDownNote = new MusicDTO.Note();
 
+    [SerializeField]
+    private Text text = null;
+
     void Start()
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
@@ -74,6 +77,9 @@ public class NotesEditor : MonoBehaviour
                 return;
             }
 
+
+            var debugPos = mouseFollow.GetMouseFollowNotePos();
+
             //設置ノーツデータを作成
             clickDownNote.LPB = LPB;
             clickDownNote.num = noteDataConverter.ConvertBeatNum(time, LPB);
@@ -103,6 +109,8 @@ public class NotesEditor : MonoBehaviour
             //クリック開始位置と終了位置が同じ場合
             if ((clickDownNote.lane == clickUpNote.lane) && (clickDownNote.num == clickUpNote.num))
             {
+                text.text = "WriteNoteNumber = " + clickUpNote.num.ToString();
+
                 clickUpNote.type = 0;
                 clickUpNote.isLongNote = false;
                 playingNoteData.AddNote(clickUpNote);
@@ -175,10 +183,11 @@ public class NotesEditor : MonoBehaviour
     }
 
     //クリックした際のマウス座標が有効かどうか
-    private bool IsClickedPosValid(ref Vector3 mousePos, ref float time)
+    public bool IsClickedPosValid(ref Vector3 mousePos, ref float time)
     {
         if (mouseFollow.IsMousePosValid() == false)
         {
+            Debug.LogError("MousePos not Valid");
             return false;
         }
 
@@ -187,6 +196,7 @@ public class NotesEditor : MonoBehaviour
 
         if (time < 0)
         {
+            Debug.LogError("time < 0 reutrn");
             return false;
         }
 
