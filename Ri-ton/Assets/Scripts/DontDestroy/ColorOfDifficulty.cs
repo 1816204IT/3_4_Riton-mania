@@ -3,62 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 難易度に対応した色情報を持ったクラス
+/// 難易度に対応する色情報を持ったクラス
 /// </summary>
-public class ColorOfDifficulty : MonoBehaviour
+[CreateAssetMenu(menuName = "ScriptableObjects/ColorOfDifficulty")]
+public class ColorOfDifficulty : ScriptableObject
 {
-    [System.Serializable]
-    public struct DifficultyColor
-    {
-        public Color easy;
-        public Color normal;
-        public Color hard;
-        public Color expert;
-    }
-
     [SerializeField]
-    private DifficultyColor difficultyColor = default;
+    private Color easy;
+    [SerializeField]
+    private Color normal;
+    [SerializeField]
+    private Color hard;
+    [SerializeField]
+    private Color expert;
 
-    void Awake()
+    public Color GetColorOfDifficulty(string difficultyName)
     {
-        if (_instance != null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        _instance = this;
-        DontDestroyOnLoad(this.gameObject);
-    }
-
-    public Color GetColorOfDifficulty()
-    {
-        string difficultyName = SelectedMap._instance._difficultyName;
-
         if (difficultyName == "Easy")
         {
-            return difficultyColor.easy;
+            return Easy;
         }
         else if (difficultyName == "Normal")
         {
-            return difficultyColor.normal;
+            return Normal;
         }
         else if (difficultyName == "Hard")
         {
-            return difficultyColor.hard;
+            return Hard;
         }
         else if (difficultyName == "Expert")
         {
-            return difficultyColor.expert;
+            return Expert;
         }
 
-        Debug.Log("無効な難易度名が設定されています");
+        Debug.LogError("無効な難易度名が設定されています");
         return Color.black;
     }
 
-    //シングルトン実態を返す
-    public static ColorOfDifficulty _instance
+    public Color Easy
+    { 
+        get { return easy; }
+    }
+
+    public Color Normal
     {
-        get;
-        private set;
+        get { return normal; }
+    }
+
+    public Color Hard
+    {
+        get { return hard; }
+    }
+
+    public Color Expert
+    {
+        get { return expert; }
     }
 }

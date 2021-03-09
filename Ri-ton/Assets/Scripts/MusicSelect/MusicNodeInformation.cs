@@ -15,6 +15,9 @@ public class MusicNodeInformation : MonoBehaviour
     private List<Image> nodeImages = new List<Image>();
     private Image bigNodeBgImage = null;
 
+    [SerializeField]
+    private ColorOfDifficulty colorOfDifficulty;
+
     void Start()
     {
         bigNodeBgImage = GameObject.FindGameObjectWithTag("BigNode").GetComponent<Image>();
@@ -35,14 +38,16 @@ public class MusicNodeInformation : MonoBehaviour
 
     public void UpdateInformationByChangeDifficulty()
     {
-        bigNodeBgImage.color = ColorOfDifficulty._instance.GetColorOfDifficulty();
+        Color color = colorOfDifficulty.GetColorOfDifficulty(SelectedMap._instance._difficultyName);
+
+        bigNodeBgImage.color = color;
         foreach (Image image in nodeImages)
         {
-            image.color = ColorOfDifficulty._instance.GetColorOfDifficulty();
+            image.color = color;
         }
         foreach (GameObject obj in nodeList)
         {
-            obj.transform.Find("inLine").gameObject.GetComponent<Image>().color = ColorOfDifficulty._instance.GetColorOfDifficulty();
+            obj.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         }
     }
 }
