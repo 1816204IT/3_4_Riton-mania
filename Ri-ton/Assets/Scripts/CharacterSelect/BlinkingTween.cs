@@ -1,25 +1,35 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// 透明度を用いた点滅表現を行う
-/// TextとImageに対応
+/// Text/TextMeshPro/Imageに対応
 /// </summary>
 public class BlinkingTween : MonoBehaviour
 {
+    // 点滅描画に対応しているUI種別
+    private enum UIType
+    { 
+        Text,
+        TextMeshPro,
+        Image,
+    }
+
+    // 点滅描画対象のUI種別
     [SerializeField]
-    private bool isText = true;
+    private UIType uiType = UIType.Text;
+
+    // 不透明から透明、透明から不透明になるまでの時間
     [SerializeField]
-    private float duration = 0.35f;
+    private float duration = 0.5f;
+
+    // 次の点滅までのインターバル時間
     [SerializeField]
     private float appendInterval = 1.0f;
 
-    private Text text = null;
-    private Image image = null;
-
-    private float nowAlpha = 1.0f; // 現在の透明度
-
+    private MaskableGraphic ui = null;
 
     void Start()
     {
@@ -27,20 +37,7 @@ public class BlinkingTween : MonoBehaviour
         CreateTween();
     }
 
-    void Update()
-    {
-        if (isText)
-        {
-            Color c = text.color;
-            text.color = new Color(c.r, c.g, c.b, nowAlpha);
-        }
-        else
-        {
-            Color c = image.color;
-            image.color = new Color(c.r, c.g, c.b, nowAlpha);
-        }
-    }
-
+    // 点滅表示用Tweenの生成
     private void CreateTween()
     {
         Sequence sequence = DOTween.Sequence();
@@ -49,14 +46,14 @@ public class BlinkingTween : MonoBehaviour
         // Easingの設定
         tween.SetEase(Ease.OutQuint);
         // 透明にするTween
-        tween = DOTween.To(() => nowAlpha, alpah => nowAlpha = alpah, 0.0f, duration);
+        tween = DOTween.ToAlpha(() => ui.color, color => ui.color = color, 0.0f, duration);
         // sequenceに追加
         sequence.Append(tween);
 
         // Easingの設定
         tween.SetEase(Ease.InQuint);
         // 透明から元に戻すTween
-        tween = DOTween.To(() => nowAlpha, alpah => nowAlpha = alpah, 1.0f, duration);
+        tween = DOTween.ToAlpha(() => ui.color, color => ui.color = color, 1.0f, duration);
         // sequenceに追加
         sequence.Append(tween);
 
@@ -71,23 +68,24 @@ public class BlinkingTween : MonoBehaviour
     // Nullチェックを行う
     private void NullCheck()
     {
-        if (isText)
+        switch (uiType)
         {
-            text = GetComponent<Text>();
+            case UIType.Text:
+                ui = GetComponent<Text>();
+                break;
 
-            if (text == null)
-            {
-                Debug.LogError("text is Null");
-            }
+            case UIType.TextMeshPro:
+                ui = GetComponent<TextMeshProUGUI>();
+                break;
+
+            case UIType.Image:
+                ui = GetComponent<Image>();
+                break;
         }
-        else
-        {
-            image = GetComponent<Image>();
 
-            if (image == null)
-            {
-                Debug.Log("image is Null");
-            }
+        if (ui == null)
+        {
+            Debug.LogError("ui is Null\nPlease check uiType settings");
         }
     }
 }
