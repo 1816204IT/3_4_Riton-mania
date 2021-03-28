@@ -16,6 +16,8 @@ public enum DifficultyType
 /// </summary>
 public class SelectedMap : MonoBehaviour
 {
+    public static SelectedMap instance { get; private set; }
+
     private int musicIndex = 0;
     private string musicName = "";
     private string difficultyName = "";
@@ -24,18 +26,18 @@ public class SelectedMap : MonoBehaviour
 
     void Awake()
     {
-        if (_instance != null)
+        if (instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        _instance = this;
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
 
         //起動時にデフォルトで選択される曲と難易度
         musicIndex = 0;
 
-        musicName = MusicInfoList._instance.GetMusicName(musicIndex);
+        musicName = MusicInfoList.instance.GetMusicName(musicIndex);
         difficultyName = "Easy";
     }
 
@@ -65,13 +67,6 @@ public class SelectedMap : MonoBehaviour
 
     public string GetMusicEnglishName()
     {
-        return MusicInfoList._instance.GetMusicEnglishName(musicIndex);
-    }
-
-    //シングルトン実態を返す
-    public static SelectedMap _instance
-    {
-        get;
-        private set;
+        return MusicInfoList.instance.GetMusicEnglishName(musicIndex);
     }
 }

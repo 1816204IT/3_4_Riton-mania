@@ -6,7 +6,9 @@ using UnityEngine;
 /// ランク画像（S,A,B,C,D）の情報を持ったクラス
 /// </summary>
 public class RankImageList : MonoBehaviour
-{ 
+{
+    public static RankImageList instance { get; private set; }
+
     [System.Serializable]
     struct CharacterSprite
     {
@@ -19,12 +21,12 @@ public class RankImageList : MonoBehaviour
 
     void Awake()
     {
-        if (_instance != null)
+        if (instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        _instance = this;
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -37,12 +39,4 @@ public class RankImageList : MonoBehaviour
     {
         return sprites[characterNum].smallSprite;
     }
-
-    //シングルトン実態を返す
-    public static RankImageList _instance
-    {
-        get;
-        private set;
-    }
 }
-

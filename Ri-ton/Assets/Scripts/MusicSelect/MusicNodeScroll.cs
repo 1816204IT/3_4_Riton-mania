@@ -56,7 +56,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Start()
     {
-        nodeList = this.GetComponent<MusicNodeInstance>()._nodeRectTransformList;
+        nodeList = this.GetComponent<MusicNodeInstance>().nodeRectTransformList;
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
         musicSelect = GameObject.FindGameObjectWithTag("MusicSelect").GetComponent<MusicSelect>();
 
@@ -74,7 +74,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
         nodeWidth = nodeList[0].sizeDelta.x * smallScall;
-        SelectedNodeChangesFunc(SelectedMap._instance._musicIndex, SelectedMap._instance._musicName);
+        SelectedNodeChangesFunc(SelectedMap.instance._musicIndex, SelectedMap.instance._musicName);
     }
 
     private void Update()
@@ -129,17 +129,17 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        int musicIndex = SelectedMap._instance._musicIndex;
+        int musicIndex = SelectedMap.instance._musicIndex;
         for (int i = 0; i < scrollInputList.Count; i++)
         {
             ScrollDir dir = scrollInputList[i];
             scrollInputList.RemoveAt(i);
             if (dir == ScrollDir.LEFT)
             {
-                if (musicIndex < MusicInfoList._instance._musicNum - 1)
+                if (musicIndex < MusicInfoList.instance._musicNum - 1)
                 {
                     musicIndex++;
-                    SelectedNodeChangesFunc(musicIndex, MusicInfoList._instance.GetMusicName(musicIndex));
+                    SelectedNodeChangesFunc(musicIndex, MusicInfoList.instance.GetMusicName(musicIndex));
                     break;
                 }
             }
@@ -148,7 +148,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 if (musicIndex > 0)
                 {
                     musicIndex--;
-                    SelectedNodeChangesFunc(musicIndex, MusicInfoList._instance.GetMusicName(musicIndex));
+                    SelectedNodeChangesFunc(musicIndex, MusicInfoList.instance.GetMusicName(musicIndex));
                     break;
                 }
             }
@@ -163,7 +163,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        int musicNum = MusicInfoList._instance._musicNum;
+        int musicNum = MusicInfoList.instance._musicNum;
         int moveEndNodeCnt = 0;
         for (int i = 0; i < musicNum; i++)
         {
@@ -182,7 +182,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             isMoving = false;
             //曲を再生
-            musicSelect.SetNewMusic(SelectedMap._instance._musicIndex);
+            musicSelect.SetNewMusic(SelectedMap.instance._musicIndex);
             //ランキング更新
             if (SceneManager.GetActiveScene().name == "PlaySongSelect")
             {
@@ -249,8 +249,8 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        SelectedMap._instance._musicIndex = musicIndex;
-        SelectedMap._instance._musicName = musicName;
+        SelectedMap.instance._musicIndex = musicIndex;
+        SelectedMap.instance._musicName = musicName;
         //大画面情報の更新
         bigNode.InformationUpdate();
         //ノードの移動情報をセットする
@@ -264,14 +264,14 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         movementInfoList.Clear();   // リストクリア
         isMoving = true;
         float posX = 0;
-        int musicNum = MusicInfoList._instance._musicNum;
+        int musicNum = MusicInfoList.instance._musicNum;
 
         for (int i = 0; i < musicNum; i++)
         {
             MovementInfo info = new MovementInfo();
             
             //座標の移動
-            int distanceFromMedian = i - SelectedMap._instance._musicIndex;
+            int distanceFromMedian = i - SelectedMap.instance._musicIndex;
             posX = nodeWidth * distanceFromMedian;
             posX += spacing * distanceFromMedian;
             if (distanceFromMedian > 0)
@@ -287,7 +287,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             info.addPos = (info.movedPos - nowPos) * (1.0f / moveCompleteTime);
 
             //スケーリング
-            if (i == SelectedMap._instance._musicIndex)
+            if (i == SelectedMap.instance._musicIndex)
             {
                 info.movedScale = Vector3.one;
             }

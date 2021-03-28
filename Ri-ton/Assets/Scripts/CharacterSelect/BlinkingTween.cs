@@ -9,18 +9,6 @@ using TMPro;
 /// </summary>
 public class BlinkingTween : MonoBehaviour
 {
-    // 点滅描画に対応しているUI種別
-    private enum UIType
-    { 
-        Text,
-        TextMeshPro,
-        Image,
-    }
-
-    // 点滅描画対象のUI種別
-    [SerializeField]
-    private UIType uiType = UIType.Text;
-
     // 不透明から透明、透明から不透明になるまでの時間
     [SerializeField]
     private float duration = 0.5f;
@@ -29,7 +17,7 @@ public class BlinkingTween : MonoBehaviour
     [SerializeField]
     private float appendInterval = 1.0f;
 
-    private MaskableGraphic ui = null;
+    private MaskableGraphic uiComponent = null;
 
     void Start()
     {
@@ -46,14 +34,14 @@ public class BlinkingTween : MonoBehaviour
         // Easingの設定
         tween.SetEase(Ease.OutQuint);
         // 透明にするTween
-        tween = DOTween.ToAlpha(() => ui.color, color => ui.color = color, 0.0f, duration);
+        tween = DOTween.ToAlpha(() => uiComponent.color, color => uiComponent.color = color, 0.0f, duration);
         // sequenceに追加
         sequence.Append(tween);
 
         // Easingの設定
         tween.SetEase(Ease.InQuint);
         // 透明から元に戻すTween
-        tween = DOTween.ToAlpha(() => ui.color, color => ui.color = color, 1.0f, duration);
+        tween = DOTween.ToAlpha(() => uiComponent.color, color => uiComponent.color = color, 1.0f, duration);
         // sequenceに追加
         sequence.Append(tween);
 
@@ -68,24 +56,11 @@ public class BlinkingTween : MonoBehaviour
     // Nullチェックを行う
     private void NullCheck()
     {
-        switch (uiType)
+        uiComponent = GetComponent<MaskableGraphic>();
+
+        if (uiComponent == null)
         {
-            case UIType.Text:
-                ui = GetComponent<Text>();
-                break;
-
-            case UIType.TextMeshPro:
-                ui = GetComponent<TextMeshProUGUI>();
-                break;
-
-            case UIType.Image:
-                ui = GetComponent<Image>();
-                break;
-        }
-
-        if (ui == null)
-        {
-            Debug.LogError("ui is Null\nPlease check uiType settings");
+            Debug.LogError("uiComponent is Null");
         }
     }
 }

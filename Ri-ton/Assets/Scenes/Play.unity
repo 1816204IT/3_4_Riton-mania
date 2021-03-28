@@ -8325,7 +8325,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973debfacd7dfff4780f09e6fce535dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isText: 1
   duration: 0.35
   appendInterval: 1
 --- !u!1 &548843092
@@ -10841,7 +10840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cad8a3d42876694993f46830937318f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timingBar: {fileID: 1320446098}
+  judgmentBarTransform: {fileID: 1320446098}
   evenNumberLongNoteColor:
     defaultColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     holdingColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}

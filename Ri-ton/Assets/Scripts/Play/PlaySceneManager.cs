@@ -74,8 +74,8 @@ public class PlaySceneManager : MonoBehaviour
             Debug.Log("nullを検知");
         }
 
-        musicName.text = SelectedMap._instance._musicName;
-        difficultyName.text = SelectedMap._instance._difficultyName;
+        musicName.text = SelectedMap.instance._musicName;
+        difficultyName.text = SelectedMap.instance._difficultyName;
 
         // カーソルの表示をOFFにする
         Cursor.visible = false;
@@ -93,15 +93,15 @@ public class PlaySceneManager : MonoBehaviour
         prePlayHighScore.Fetch();
 
         // 背景の選択
-        if (UserPreference._instance._isBloomCubes)
+        if (UserPreference.instance.isBloomCubes)
         {
-            UserPreference._instance._isBloomCubes = false;
+            UserPreference.instance.isBloomCubes = false;
             BloomCubes.SetActive(true);
             hexagons.SetActive(false);
         }
         else
         {
-            UserPreference._instance._isBloomCubes = true;
+            UserPreference.instance.isBloomCubes = true;
             BloomCubes.SetActive(false);
             hexagons.SetActive(true);
         }
@@ -115,7 +115,7 @@ public class PlaySceneManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isTutorialEnd = true;
-                playStartTimer._isTutorialEnd = true;
+                playStartTimer.isTutorialEnd = true;
                 tutorialCanvas.SetActive(false);
             }
         }
@@ -139,9 +139,9 @@ public class PlaySceneManager : MonoBehaviour
 
         // 曲が終了したらリザルトデータをサーバーに送信する
         // 曲が終わった瞬間にaudioSource.time = 0になるので曲の長さの0.1秒前に終了させることで安全に判定する
-        if (musicPlayer._audioSource.time + 0.1f >= musicPlayer._audioSource.clip.length)
+        if (musicPlayer.audioSource.time + 0.1f >= musicPlayer.audioSource.clip.length)
         {
-            musicPlayer._audioSource.Stop();
+            musicPlayer.audioSource.Stop();
             SaveResultData();
         }
 
@@ -174,15 +174,15 @@ public class PlaySceneManager : MonoBehaviour
         // デバッグ用、曲を指定時間までスキップする
         if (Input.GetKeyDown(KeyCode.T))
         {
-            musicPlayer._audioSource.time = 80.0f;
+            musicPlayer.audioSource.time = 80.0f;
         }
     }
 
     void SaveResultData()
     {
-        highScore.score = scoreCounter._score;
-        highScore.combo = comboCounter._maxCombo;
-        highScore.acc = (int)(accCounter._acc * 100);      // accの100倍を代入
+        highScore.score = scoreCounter.GetScore();
+        highScore.combo = comboCounter.maxCombo;
+        highScore.acc = (int)(accCounter.acc * 100);      // accの100倍を代入
 
         RankNumber rankNum;
         if (highScore.score >= 1000000)
@@ -234,11 +234,11 @@ public class PlaySceneManager : MonoBehaviour
         ResultShowData data = new ResultShowData();
         data.score = highScore.score;
         data.acc = highScore.acc;
-        data.maxCombo = accCounter._totalNoteNum;
+        data.maxCombo = accCounter.totalNoteNum;
         data.combo = highScore.combo;
-        data.perfectNum = accCounter._totalPerfectNum;
-        data.goodNum = accCounter._totalGoodNum;
-        data.missNum = accCounter._totalMissNum;
+        data.perfectNum = accCounter.totalPerfectNum;
+        data.goodNum = accCounter.totalGoodNum;
+        data.missNum = accCounter.totalMissNum;
         data.rankImageNum = highScore.rank;
         data.isAciveHighScore = isAchieveHishScore;
         resultDataInput.SetResultShowData(data);
@@ -292,11 +292,6 @@ public class PlaySceneManager : MonoBehaviour
     public void Quit()
     {
         PlayHexAnim();
-        SceneManager.LoadScene(TitleSceneManager._prevSceneName);
-    }
-
-    public bool _isTutorialEnd
-    { 
-        get { return isTutorialEnd; }
+        SceneManager.LoadScene(TitleSceneManager.prevSceneName);
     }
 }

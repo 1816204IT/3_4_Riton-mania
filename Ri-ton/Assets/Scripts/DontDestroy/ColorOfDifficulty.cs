@@ -8,55 +8,35 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/ColorOfDifficulty")]
 public class ColorOfDifficulty : ScriptableObject
 {
-    [SerializeField]
-    private Color easy;
-    [SerializeField]
-    private Color normal;
-    [SerializeField]
-    private Color hard;
-    [SerializeField]
-    private Color expert;
+    [field: SerializeField]
+    public Color easy { get; private set; }
+    [field: SerializeField]
+    public Color normal { get; private set; }
+    [field: SerializeField]
+    public Color hard { get; private set; }
+    [field: SerializeField]
+    public Color expert { get; private set; }
 
     public Color GetColorOfDifficulty(string difficultyName)
     {
         if (difficultyName == "Easy")
         {
-            return Easy;
+            return easy;
         }
         else if (difficultyName == "Normal")
         {
-            return Normal;
+            return normal;
         }
         else if (difficultyName == "Hard")
         {
-            return Hard;
+            return hard;
         }
         else if (difficultyName == "Expert")
         {
-            return Expert;
+            return expert;
         }
 
-        Debug.LogError("無効な難易度名が設定されています");
+        Debug.LogError("無効な難易度名です");
         return Color.black;
-    }
-
-    public Color Easy
-    { 
-        get { return easy; }
-    }
-
-    public Color Normal
-    {
-        get { return normal; }
-    }
-
-    public Color Hard
-    {
-        get { return hard; }
-    }
-
-    public Color Expert
-    {
-        get { return expert; }
     }
 }

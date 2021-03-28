@@ -13,7 +13,7 @@ namespace BrunoMikoski.TextJuicer.Effects
 
         public override void Apply(CharacterData characterData, ref UIVertex uiVertex)
         {
-            float parsedAmount = rangeAmount * forceCurve.Evaluate(characterData.Progress);
+            float parsedAmount = rangeAmount * forceCurve.Evaluate(characterData.progress);
             uiVertex.position.x = uiVertex.position.x + Random.Range(-parsedAmount, parsedAmount);
         }
     }

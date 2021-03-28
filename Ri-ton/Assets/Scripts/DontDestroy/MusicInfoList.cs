@@ -8,6 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 public class MusicInfoList : MonoBehaviour
 {
+    public static MusicInfoList instance { get; private set; }
+
     [SerializeField]
     private string[] musicNames = null;
     [SerializeField]
@@ -19,12 +21,12 @@ public class MusicInfoList : MonoBehaviour
 
     void Awake()
     {
-        if (_instance != null)
+        if (instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        _instance = this;
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
     
@@ -89,12 +91,5 @@ public class MusicInfoList : MonoBehaviour
             Debug.Log("無効な曲名です");
         }
         return music[i];
-    }
-
-    //シングルトン実態を返す
-    public static MusicInfoList _instance
-    {
-        get;
-        private set;
     }
 }

@@ -21,7 +21,7 @@ public class TimingBar : MonoBehaviour
     private NotesEditor notesEditor = null;
     private bool isShowBar = true;
     private int whiteBarPutNum = 0;
-    private float barBasePosY = 0;
+    public float barBasePosY { get; private set; } = 0;
 
     void Start()
     {
@@ -53,8 +53,8 @@ public class TimingBar : MonoBehaviour
 
     void Update()
     {
-        float jPosY = JudgmentBar.transform.position.y + UserPreference._instance._userOffset;
-        float length = (musicPlayer.offsetedTime % (musicPlayer._clapSpan * 4)) * UserPreference._instance._notesSpeed;
+        float jPosY = JudgmentBar.transform.position.y + UserPreference.instance._userOffset;
+        float length = (musicPlayer.offsetedTime % (musicPlayer._clapSpan * 4)) * UserPreference.instance._notesSpeed;
 
         //判定バーに最も近いタイミングバーを基点とする
         barBasePosY = jPosY - length;
@@ -102,7 +102,7 @@ public class TimingBar : MonoBehaviour
     //バーを色分けして配置する
     private void DivideCaseLPB(ref float tmpPosY, ref int usedBarNumMain, ref int usedBarNumWhite, ref int usedBarNumRed, ref int usedBarNumBlue, ref int usedBarNumPurple, ref int usedBarNumYellow, bool isSetUpper)
     {
-        for (int i = 0; i < notesEditor._LPB +1; i++)
+        for (int i = 0; i < notesEditor.LPB +1; i++)
         {
             if (i == 0)
             {
@@ -110,7 +110,7 @@ public class TimingBar : MonoBehaviour
             }
 
             // 1/1白線を配置
-            if (i == notesEditor._LPB)
+            if (i == notesEditor.LPB)
             {
                 int num = 0;
                 foreach (GameObject bar in whiteBars)
@@ -123,7 +123,7 @@ public class TimingBar : MonoBehaviour
                         if ((whiteBarPutNum % 4) == 0)
                         {
                             // この場合は小節線(太い線)を別Scriptで配置するためskipする
-                            float len = musicPlayer._clapSpan * (UserPreference._instance._notesSpeed / notesEditor._LPB);
+                            float len = musicPlayer._clapSpan * (UserPreference.instance._notesSpeed / notesEditor.LPB);
                             tmpPosY = isSetUpper ? (tmpPosY + len) : (tmpPosY - len);
                         }
                         else
@@ -137,8 +137,8 @@ public class TimingBar : MonoBehaviour
             }
 
             // 1/2赤線を配置
-            bool isEvenLPB = ((notesEditor._LPB % 2) == 0); // LPBが偶数か(1/1や1/2ならtrue、1/3ならfalse)
-            if (isEvenLPB && (i == notesEditor._LPB / 2))
+            bool isEvenLPB = ((notesEditor.LPB % 2) == 0); // LPBが偶数か(1/1や1/2ならtrue、1/3ならfalse)
+            if (isEvenLPB && (i == notesEditor.LPB / 2))
             {
                 int num = 0;
                 foreach (GameObject bar in redBars)
@@ -155,7 +155,7 @@ public class TimingBar : MonoBehaviour
             }
 
             // 1/3,1/6紫線を配置
-            bool isPurple = ((notesEditor._LPB % 3) == 0);
+            bool isPurple = ((notesEditor.LPB % 3) == 0);
             if (isPurple && (i == 1 || i == 2 || i == 4 || i == 5))
             {
                 int num = 0;
@@ -173,13 +173,13 @@ public class TimingBar : MonoBehaviour
             }
 
             // 1/4青線を配置
-            bool isBlue = ((notesEditor._LPB % 4) == 0);
+            bool isBlue = ((notesEditor.LPB % 4) == 0);
             bool indexCheck = false;
-            if (notesEditor._LPB == 4)
+            if (notesEditor.LPB == 4)
             {
                 indexCheck = (i == 1 || i == 3 || i == 4 || i == 5);
             }
-            if (notesEditor._LPB == 8)
+            if (notesEditor.LPB == 8)
             {
                 indexCheck = (i == 2 || i == 6);
             }
@@ -200,7 +200,7 @@ public class TimingBar : MonoBehaviour
             }
 
             //1/8黄色線を配置
-            bool isYellow = ((notesEditor._LPB % 8) == 0);
+            bool isYellow = ((notesEditor.LPB % 8) == 0);
             if (isYellow && (i % 2 != 0))
             {
                 int num = 0;
@@ -233,7 +233,7 @@ public class TimingBar : MonoBehaviour
     ///@param isSetUpper 上方向にセットしていくか
     private void SetBarPosition(GameObject bar, ref float tmpPosY, bool isSetUpper, int LPB)
     {
-        float len = musicPlayer._clapSpan * (UserPreference._instance._notesSpeed / notesEditor._LPB);
+        float len = musicPlayer._clapSpan * (UserPreference.instance._notesSpeed / notesEditor.LPB);
 
         tmpPosY = isSetUpper ? (tmpPosY + len) : (tmpPosY - len);
         if ((tmpPosY > 0) && (tmpPosY < 1500))
@@ -244,11 +244,6 @@ public class TimingBar : MonoBehaviour
                 bar.transform.position = new Vector3(pos.x, tmpPosY, pos.z);
             }
         }
-    }
-
-    public float _barBasePosY
-    { 
-        get { return barBasePosY; }
     }
 
     public void ToggleShowColorBar()

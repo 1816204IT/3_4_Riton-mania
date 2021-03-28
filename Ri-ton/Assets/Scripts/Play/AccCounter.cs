@@ -10,12 +10,12 @@ public class AccCounter : MonoBehaviour
 {
     private Text text = null;
 
-    private float acc = 0.0f;
+    public float acc { get; private set; } = 0.0f;
     private float unitAcc = 0.0f; // perfect判定を取った時に増加するAcc量
-    private int totalNoteNum = 0;
-    private int totalPerfectNum = 0;
-    private int totalGoodNum = 0;
-    private int totalMissNum = 0;
+    public int totalNoteNum { get; private set; } = 0;
+    public int totalPerfectNum { get; private set; } = 0;
+    public int totalGoodNum { get; private set; } = 0;
+    public int totalMissNum { get; private set; } = 0;
 
     void Start()
     {
@@ -62,30 +62,5 @@ public class AccCounter : MonoBehaviour
         }
 
         text.text = acc.ToString("f2") + "%";
-    }
-
-    public int _totalNoteNum
-    { 
-        get { return totalNoteNum; }
-    }
-
-    public int _totalPerfectNum
-    {
-        get { return totalPerfectNum; }
-    }
-
-    public int _totalGoodNum
-    {
-        get { return totalGoodNum; }
-    }
-
-    public int _totalMissNum
-    {
-        get { return totalMissNum; }
-    }
-
-    public float _acc
-    {
-        get { return acc; }
     }
 }

@@ -19,9 +19,9 @@ public class OptionSceneManager : MonoBehaviour
             Debug.Log("nullを検知");
         }
 
-        SelectedMap._instance._musicName = "castle";
-        SelectedMap._instance._difficultyName = "Easy";
-        offsetText.text = UserPreference._instance._userOffset.ToString();
+        SelectedMap.instance._musicName = "castle";
+        SelectedMap.instance._difficultyName = "Easy";
+        offsetText.text = UserPreference.instance._userOffset.ToString();
     }
 
     void Update()
@@ -34,23 +34,23 @@ public class OptionSceneManager : MonoBehaviour
 
     public void NotesSpeedUp()
     {
-        UserPreference._instance.NotesSpeedUp();
+        UserPreference.instance.NotesSpeedUp();
     }
 
     public void NotesSpeedDown()
     {
-        UserPreference._instance.NotesSpeedDown();
+        UserPreference.instance.NotesSpeedDown();
     }
 
     public void AddOffset()
     {
-        UserPreference._instance.AddOffset();
-        offsetText.text = UserPreference._instance._userOffset.ToString();
+        UserPreference.instance.AddOffset();
+        offsetText.text = UserPreference.instance._userOffset.ToString();
     }
 
     public void SubtractOffset()
     {
-        UserPreference._instance.SubtractOffset();
-        offsetText.text = UserPreference._instance._userOffset.ToString();
+        UserPreference.instance.SubtractOffset();
+        offsetText.text = UserPreference.instance._userOffset.ToString();
     }
 }

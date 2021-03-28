@@ -50,7 +50,7 @@ public class TutorialPlaySongSelect : MonoBehaviour
 
         TutorialScenarioInit();
 
-        if (UserPreference._instance._isTutorial == false)
+        if (UserPreference.instance.isTutorial == false)
         {
             TutorialStart();
         }
@@ -162,8 +162,8 @@ public class TutorialPlaySongSelect : MonoBehaviour
             {
                 tutorialCanvas.SetActive(false);
                 // チュートリアル終了フラグを立てて保存する
-                UserPreference._instance._isTutorial = true;
-                UserPreference._instance.Save();
+                UserPreference.instance.isTutorial = true;
+                UserPreference.instance.Save();
             }
         }
     }

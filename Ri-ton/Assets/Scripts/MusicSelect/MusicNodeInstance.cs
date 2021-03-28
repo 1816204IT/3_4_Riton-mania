@@ -11,8 +11,8 @@ public class MusicNodeInstance : MonoBehaviour
     [SerializeField]
     private GameObject prefab = null;
 
-    private List<GameObject> nodeGameObjectList = new List<GameObject>();
-    private List<RectTransform> nodeRectTransformList = new List<RectTransform>();
+    public List<GameObject> nodeGameObjectList { get; } = new List<GameObject>();
+    public List<RectTransform> nodeRectTransformList { get; } = new List<RectTransform>();
 
     void Awake()
     {
@@ -21,28 +21,18 @@ public class MusicNodeInstance : MonoBehaviour
 
     private void PrefabInstance()
     {
-        for(int i = 0; i < MusicInfoList._instance._musicNum; i++)
+        for(int i = 0; i < MusicInfoList.instance._musicNum; i++)
         {
             nodeGameObjectList.Add(Instantiate(prefab, this.transform, false));
             nodeRectTransformList.Add(nodeGameObjectList[i].GetComponent<RectTransform>());
         }
 
-        for(int i = 0; i < MusicInfoList._instance._musicNum; i++)
+        for(int i = 0; i < MusicInfoList.instance._musicNum; i++)
         {
             MusicNode musicNode = nodeGameObjectList[i].GetComponent<MusicNode>();
-            musicNode._myNodeNum = i;
+            musicNode.myNodeNum = i;
             musicNode.SetMusicNameText();
             musicNode.SetJacketImage();
         }
-    }
-
-    public List<GameObject> _nodeGameObjectList
-    {
-        get { return nodeGameObjectList; }
-    }
-
-    public List<RectTransform> _nodeRectTransformList
-    { 
-        get { return nodeRectTransformList; }
     }
 }

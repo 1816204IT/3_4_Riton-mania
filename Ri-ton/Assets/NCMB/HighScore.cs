@@ -36,7 +36,7 @@ namespace NCMB
             fetchState = FetchState.trying;
 
             // データストアの「HighScore」クラスから、Nameをキーにして検索
-            string className = SelectedMap._instance.GetMusicEnglishName() + "_" + SelectedMap._instance._difficultyName;
+            string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance._difficultyName;
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
             query.WhereEqualTo("Name", name);
             query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
@@ -80,7 +80,7 @@ namespace NCMB
             fetchState = FetchState.trying;
 
             // データストアの「HighScore」クラスから、Nameをキーにして検索
-            string className = SelectedMap._instance.GetMusicEnglishName() + "_" + SelectedMap._instance._difficultyName;
+            string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance._difficultyName;
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
             query.WhereEqualTo("Name", name);
             query.FindAsync((List<NCMBObject> objList, NCMBException e) =>

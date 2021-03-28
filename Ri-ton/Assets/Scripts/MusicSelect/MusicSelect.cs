@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 public class MusicSelect : MonoBehaviour
 {
     private int musicNameIndex = 0;
-    private string diffName = "";
 
     [SerializeField]
     private AudioSource audioPlayer = null;
@@ -22,14 +21,14 @@ public class MusicSelect : MonoBehaviour
             Debug.Log("nullを検知");
         }
 
-        diffName = SelectedMap._instance._difficultyName;
-        SetNewMusic(SelectedMap._instance._musicIndex);
+        //diffName = SelectedMap.instance._difficultyName;
+        SetNewMusic(SelectedMap.instance._musicIndex);
     }
 
     public void SetNewMusic(int inMusicNameIndex)
     {
         musicNameIndex = inMusicNameIndex;
-        audioPlayer.clip = MusicInfoList._instance.GetMusic(inMusicNameIndex);
+        audioPlayer.clip = MusicInfoList.instance.GetMusic(inMusicNameIndex);
         audioPlayer.Play();
     }
 
@@ -41,9 +40,6 @@ public class MusicSelect : MonoBehaviour
 
     public void SceneChangeToPlay()
     {
-        SelectedMap._instance._musicName = MusicInfoList._instance.GetMusicName(musicNameIndex);
-        SelectedMap._instance._difficultyName = diffName;
-
         string sceneName = SceneManager.GetActiveScene().name;
         if (sceneName == "PlaySongSelect")
         {
@@ -57,10 +53,5 @@ public class MusicSelect : MonoBehaviour
         {
             Debug.Log("無効なシーン名です");
         }
-    }
-
-    public string _diffName
-    {
-        get { return diffName; }
     }
 }

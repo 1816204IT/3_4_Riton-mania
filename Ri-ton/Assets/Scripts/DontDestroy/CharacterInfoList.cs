@@ -20,14 +20,16 @@ public class CharacterInfoList : MonoBehaviour
     [SerializeField]
     private CharacterSprite[] infos;
 
+    public static CharacterInfoList instance { get; private set; }
+
     void Awake()
     {
-        if (_instance != null)
+        if (instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        _instance = this;
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -43,13 +45,11 @@ public class CharacterInfoList : MonoBehaviour
 
     public Color GetColor(int characterNum)
     {
-        return infos[characterNum].color;
-    }
+        if (characterNum >= infos.Length)
+        {
+            return Color.white;
+        }
 
-    //シングルトン実態を返す
-    public static CharacterInfoList _instance
-    {
-        get;
-        private set;
+        return infos[characterNum].color;
     }
 }

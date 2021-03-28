@@ -4393,7 +4393,7 @@ PrefabInstance:
     - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnclickExpertButton
+      value: OnClickExpertButton
       objectReference: {fileID: 0}
     - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
@@ -4404,6 +4404,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: InformationUpdate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DifficultyButtonsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8973467089438143827, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
@@ -7764,7 +7769,7 @@ PrefabInstance:
     - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnclickNormalButton
+      value: OnClickNormalButton
       objectReference: {fileID: 0}
     - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
@@ -7775,6 +7780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DifficultyButtonsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8973467089438143827, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
@@ -9172,7 +9182,7 @@ PrefabInstance:
     - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnclickHardButton
+      value: OnClickHardButton
       objectReference: {fileID: 0}
     - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
@@ -9183,6 +9193,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: InformationUpdate
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DifficultyButtonsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8973467089438143827, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
@@ -9711,7 +9726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973debfacd7dfff4780f09e6fce535dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isText: 0
   duration: 1
   appendInterval: 0
 --- !u!1 &1826663306
@@ -11732,6 +11746,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 185134187}
+    - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DifficultyButtonsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8973467089438143825, guid: d17a537b6fbb25647b350152fb395e2a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClickEasyButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8973467089438143827, guid: d17a537b6fbb25647b350152fb395e2a,
         type: 3}
       propertyPath: m_AnchoredPosition.y

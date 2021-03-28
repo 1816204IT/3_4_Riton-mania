@@ -197,8 +197,7 @@ namespace BrunoMikoski.TextJuicer
 
                 for (int i = 0; i < charCount; i++)
                 {
-                    charactersData[i] = new CharacterData(delay * i,
-                        duration, i);
+                    charactersData[i] = new CharacterData(delay * i, duration, i);
                 }
 
                 isDirty = false;

@@ -18,7 +18,7 @@ public class SkyBoxRotation : MonoBehaviour
     {
         _rot += _anglePerFrame;
         if (_rot >= 360.0f)
-        {    // 0～360°の範囲におさめたい
+        {
             _rot -= 360.0f;
         }
         RenderSettings.skybox.SetFloat("_Rotation", _rot);    // 回す

@@ -16,7 +16,6 @@ public class ColorTween : MonoBehaviour
     private float alpha = 0.3f;
     private Image image = null;
 
-
     void Start()
     {
         image = GetComponent<Image>();

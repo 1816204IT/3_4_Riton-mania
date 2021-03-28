@@ -52,14 +52,14 @@ public class LoginFlow : MonoBehaviour
         // ゲーム起動時なら、ローカルデータのユーザー設定を取得する
         if (isGameStart)
         {
-            isUserRegistered = UserPreference._instance.Load();
+            isUserRegistered = UserPreference.instance.Load();
         }
 
         // ゲーム起動時かつユーザー登録を1度も行っていないなら
         if (isGameStart && (isUserRegistered == false))
         {
             logInManager.InitLogOuting();
-            titleSceneManager._buttonState = ButtonState.LogInWaiting;
+            titleSceneManager.buttonState = ButtonState.LogInWaiting;
             titleSceneManager.ButtonInit();
             titleSceneManager.PlayBGM();
         }
@@ -67,7 +67,7 @@ public class LoginFlow : MonoBehaviour
         else
         {
             logInManager.InitLogIning();
-            titleSceneManager._buttonState = ButtonState.IconFetching;
+            titleSceneManager.buttonState = ButtonState.IconFetching;
             titleSceneManager.ButtonInit();
         }
 

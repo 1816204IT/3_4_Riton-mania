@@ -43,7 +43,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -118,6 +118,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
@@ -239,6 +241,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -271,7 +274,7 @@ SpriteRenderer:
   m_Size: {x: 1.2, y: 1.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &492203361
@@ -562,12 +565,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!95 &1337622381 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9103391825537874059, guid: fc94ac8f66bb8ea44ac4f8ff3adcadf1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1397671284}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1397671284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -732,9 +729,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d79b055003d8e741898d38fe54918b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScale: 8
-  subScale: 0.03
-  animator: {fileID: 1337622381}
 --- !u!114 &1919698975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -750,6 +744,7 @@ MonoBehaviour:
   m_Material: {fileID: 2100000, guid: 5a7a3626ec4169c4dad7e7b484b9bf10, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

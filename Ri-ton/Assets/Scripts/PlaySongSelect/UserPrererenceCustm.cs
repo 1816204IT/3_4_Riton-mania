@@ -68,17 +68,17 @@ public class UserPrererenceCustm : MonoBehaviour
         AlphaOffCircleImageAndText();
         speedItem.image.color   = Color.white;
         speedItem.num.color     = Color.white;
-        slider.value = UserPreference._instance._noteSpeedNum * 2;
+        slider.value = UserPreference.instance.noteSpeedNum * 2;
         // ノーツ速度
-        speedItem.num.text = UserPreference._instance._noteSpeedNum.ToString("f1");
+        speedItem.num.text = UserPreference.instance.noteSpeedNum.ToString("f1");
         // オフセット
-        timingItem.num.text = UserPreference._instance._offsetValueNum.ToString("f1");
+        timingItem.num.text = UserPreference.instance.offsetValueNum.ToString("f1");
         // 曲ボリューム
-        float musicVolume = UserPreference._instance._musicVolume;
+        float musicVolume = UserPreference.instance.musicVolume;
         musicVolume *= 10;
         musicItem.num.text = musicVolume.ToString("f1");
         // SEボリューム
-        float seVolume = UserPreference._instance._seVolume;
+        float seVolume = UserPreference.instance.seVolume;
         seVolume *= 10;
         seItem.num.text = seVolume.ToString("f1");
     }
@@ -125,26 +125,26 @@ public class UserPrererenceCustm : MonoBehaviour
 
             value /= 2;
             speedItem.num.text = value.ToString("f1");
-            UserPreference._instance.ChangeNoteSpeed(value);
+            UserPreference.instance.ChangeNoteSpeed(value);
         }
         else if (sliderType == SliderType.TIMING)
         {
             value -= 10.0f;
             timingItem.num.text = value.ToString("f1");
-            UserPreference._instance.ChangeOffsetValue(value);
+            UserPreference.instance.ChangeOffsetValue(value);
         }
         else if (sliderType == SliderType.MUSIC)
         {
             value /= 2.0f;
             musicItem.num.text = value.ToString("f1");
-            UserPreference._instance._musicVolume = value / 10.0f;
+            UserPreference.instance.musicVolume = value / 10.0f;
             soundVolumeManager.ChangeMusicVolume();
         }
         else
         {
             value /= 2.0f;
             seItem.num.text = value.ToString("f1");
-            UserPreference._instance._seVolume = value / 10.0f;
+            UserPreference.instance.seVolume = value / 10.0f;
             soundVolumeManager.ChangeSEVolume();
         }
 
@@ -176,7 +176,7 @@ public class UserPrererenceCustm : MonoBehaviour
         sliderMinValueText.text = "0.0";
         speedItem.image.color   = Color.white;
         speedItem.num.color     = Color.white;
-        float speedValue = UserPreference._instance._noteSpeedNum;  // 0～10
+        float speedValue = UserPreference.instance.noteSpeedNum;  // 0～10
         slider.value =  speedValue * 2;     // sliderは0～20の範囲なので2倍する
     }
 
@@ -187,7 +187,7 @@ public class UserPrererenceCustm : MonoBehaviour
         sliderMinValueText.text = "-10.0";
         timingItem.image.color  = Color.white;
         timingItem.num.color    = Color.white;
-        float offsetValue = UserPreference._instance._offsetValueNum;   // -10～10
+        float offsetValue = UserPreference.instance.offsetValueNum;   // -10～10
         slider.value = offsetValue + 10.0f; // 0をスライダーの真ん中に持っていきたいので+10する
     }
 
@@ -198,7 +198,7 @@ public class UserPrererenceCustm : MonoBehaviour
         sliderMinValueText.text = "0.0";
         musicItem.image.color   = Color.white;
         musicItem.num.color     = Color.white;
-        float volume = UserPreference._instance._musicVolume;   // 0.0f～1.0f
+        float volume = UserPreference.instance.musicVolume;   // 0.0f～1.0f
         slider.value = volume * 20.0f;  // sliderは0～20の範囲なので20倍する
     }
 
@@ -209,7 +209,7 @@ public class UserPrererenceCustm : MonoBehaviour
         sliderMinValueText.text = "0.0";
         seItem.image.color  = Color.white;
         seItem.num.color    = Color.white;
-        float volume = UserPreference._instance._seVolume;   // 0.0f～1.0f
+        float volume = UserPreference.instance.seVolume;   // 0.0f～1.0f
         slider.value = volume * 20.0f;  // sliderは0～20の範囲なので20倍する
     }
     #endregion

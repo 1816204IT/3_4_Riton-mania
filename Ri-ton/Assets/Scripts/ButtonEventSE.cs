@@ -48,9 +48,4 @@ public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         menuHitSE.Play();
     }
-
-    public bool _isOnPointerEnter
-    {
-        get { return isOnPointerEnter; }
-    }
 }

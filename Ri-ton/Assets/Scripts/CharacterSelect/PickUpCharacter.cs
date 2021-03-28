@@ -105,7 +105,7 @@ public class PickUpCharacter : MonoBehaviour
     {
         GameObject obj = CopyMyCharacterImage();
         pickUpCharacterManager.OnPickUp(obj, myCharacterColor);
-        pickUpCharacterManager._pickingCharacterNum = characterNum;
+        pickUpCharacterManager.pickingCharacterNum = characterNum;
     }
 
     // 自身のキャラクター画像(image)のクローンを作成する

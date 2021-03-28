@@ -34,20 +34,21 @@ namespace Ritonmania
 /// </summary>
 public class UserPreference : MonoBehaviour
 {
+    public static UserPreference instance { get; private set; }
+    public bool isBloomCubes { get; set; } = true;  // プレイ背景がキューブの方か
+    public float noteSpeedNum { get; private set; } = 1.0f;     // 1.0f～10.0f(0.5刻み)
+    public float offsetValueNum { get; private set; } = 0.0f;   // -10.0f～10.0f(1.0刻み)
+    public float musicVolume { get; set; } = 0.5f;  // 0.0f～1.0f(0.05刻み)
+    public float seVolume { get; set; } = 0.5f;     // 0.0f～1.0f(0.05刻み)
+    public bool isTutorial { get; set; }
+
     private const int max_note_speed = 4000;    // ノーツ速度の最大値
     private const int min_note_speed = 400;     // ノーツ速度の最小値
-    private float noteSpeedUnit;
-    private float noteSpeedNum = 1.0f;          // 1.0f～10.0f(0.5刻み)
+    private float noteSpeedUnit;      
 
     private const float max_offset_value = 0.04f;
     private const float min_offset_value = -0.04f;
     private float offsetValueUnit;
-    private float offsetValueNum = 0.0f;        // -10.0f～10.0f(1.0刻み)
-
-    private float musicVolume = 0.5f;           // 0.0f～1.0f(0.05刻み)
-    private float seVolume = 0.5f;              // 0.0f～1.0f(0.05刻み)
-
-    private bool isTutorial = false;
 
     private NCMB.CharacterIcon characterIcon = new NCMB.CharacterIcon(null);
 
@@ -56,16 +57,14 @@ public class UserPreference : MonoBehaviour
 
     UserAuth userAuth = null;
 
-    private bool isBloomCubes = true;   // プレイ背景がキューブの方か
-
     private void Awake()
     {
-        if (_instance != null)
+        if (instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        _instance = this;
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
 
         userAuth = FindObjectOfType<UserAuth>();
@@ -154,40 +153,14 @@ public class UserPreference : MonoBehaviour
         offsetValueNum = (offsetValueNum > -100.0f) ? offsetValueNum - 2 : offsetValueNum;
     }
 
-    ///====================以下プロパティ====================
-
     public float _notesSpeed
     {
         get { return noteSpeedUnit * noteSpeedNum; }
     }
 
-    public float _noteSpeedNum
-    {
-        get { return noteSpeedNum; }
-        set { noteSpeedNum = value; }
-    }
-
     public float _userOffset
     {
         get { return offsetValueUnit * offsetValueNum; }
-    }
-
-    public float _offsetValueNum
-    {
-        get { return offsetValueNum; }
-        set { offsetValueNum = value; }
-    }
-
-    public float _musicVolume
-    {
-        get { return musicVolume; }
-        set { musicVolume = value; }
-    }
-
-    public float _seVolume
-    {
-        get { return seVolume; }
-        set { seVolume = value; }
     }
 
     public float _note_size_x
@@ -211,22 +184,10 @@ public class UserPreference : MonoBehaviour
         get { return characterIcon._iconFetchState; }
     }
 
-    public bool _isTutorial
-    { 
-        get { return isTutorial; }
-        set { isTutorial = value; }
-    }
-
     // 0レーン目のノーツX座標
     public float _notePosXOfLaneZero
     {
         get { return -(note_size_x * (max_lane_num / 2)) + (note_size_x / 2); }
-    }
-
-    public bool _isBloomCubes
-    { 
-        get { return isBloomCubes; }
-        set { isBloomCubes = value; }
     }
 
     private Ritonmania.LocalUserData GetCovertData()
@@ -234,10 +195,10 @@ public class UserPreference : MonoBehaviour
         Ritonmania.LocalUserData data = new Ritonmania.LocalUserData();
         data.playerName = userAuth._playerName;
         data.password = userAuth._password;
-        data.noteSpeedNum = (int)(_noteSpeedNum * 10);
-        data.offsetValueNum = (int)_offsetValueNum;
-        data.musicVolume = (int)(_musicVolume * 100);
-        data.seVolume = (int)(_seVolume * 100);
+        data.noteSpeedNum = (int)(noteSpeedNum * 10);
+        data.offsetValueNum = (int)offsetValueNum;
+        data.musicVolume = (int)(musicVolume * 100);
+        data.seVolume = (int)(seVolume * 100);
         data.isTutorial = isTutorial;
         return data;
     }
@@ -246,17 +207,10 @@ public class UserPreference : MonoBehaviour
     {
         userAuth._playerName = data.playerName;
         userAuth._password = data.password;
-        _noteSpeedNum = data.noteSpeedNum / 10.0f;
-        _offsetValueNum = (float)data.offsetValueNum;
-        _musicVolume = data.musicVolume / 100.0f;
-        _seVolume = data.seVolume / 100.0f;
-        _isTutorial = data.isTutorial;
-    }
-
-    //シングルトン実態を返す
-    public static UserPreference _instance
-    {
-        get;
-        private set;
+        noteSpeedNum = data.noteSpeedNum / 10.0f;
+        offsetValueNum = (float)data.offsetValueNum;
+        musicVolume = data.musicVolume / 100.0f;
+        seVolume = data.seVolume / 100.0f;
+        isTutorial = data.isTutorial;
     }
 }

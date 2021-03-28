@@ -36477,7 +36477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cad8a3d42876694993f46830937318f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timingBar: {fileID: 198032537}
+  judgmentBarTransform: {fileID: 198032537}
   evenNumberLongNoteColor:
     defaultColor: {r: 1, g: 1, b: 1, a: 1}
     holdingColor: {r: 1, g: 1, b: 1, a: 1}

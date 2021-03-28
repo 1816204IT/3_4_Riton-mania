@@ -85,9 +85,4 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         sequence.Play();
     }
-
-    public bool _isOnPointerEnter
-    {
-        get { return isOnPointerEnter; }
-    }
 }

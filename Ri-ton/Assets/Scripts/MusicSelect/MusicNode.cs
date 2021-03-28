@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class MusicNode : MonoBehaviour
 {
-    private int myNodeNum = -1;
+    public int myNodeNum { get; set; } = -1;
     private MusicNodeScroll musicNodeScroll = null;
     private BigNodeInformation bigNode = null;
     [SerializeField]
@@ -34,21 +34,16 @@ public class MusicNode : MonoBehaviour
 
     void OnClickNode()
     {
-        musicNodeScroll.SelectedNodeChangesFunc(myNodeNum, MusicInfoList._instance.GetMusicName(myNodeNum));
+        musicNodeScroll.SelectedNodeChangesFunc(myNodeNum, MusicInfoList.instance.GetMusicName(myNodeNum));
     }
 
     public void SetMusicNameText()
     {
-        musicNameText.text = MusicInfoList._instance.GetMusicName(myNodeNum);
+        musicNameText.text = MusicInfoList.instance.GetMusicName(myNodeNum);
     }
 
     public void SetJacketImage()
     {
-        jacketImage.sprite = MusicInfoList._instance.GetBgImage(myNodeNum);
-    }
-
-    public int _myNodeNum
-    {
-        set { myNodeNum = value; }
+        jacketImage.sprite = MusicInfoList.instance.GetBgImage(myNodeNum);
     }
 }

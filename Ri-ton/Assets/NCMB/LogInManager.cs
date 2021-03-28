@@ -80,10 +80,10 @@ public class LogInManager : MonoBehaviour
                 SucceededLogInFunc();
                 reactionText.color = Color.green;
                 reactionText.text = "ログイン成功!";
-                titleSceneManager._buttonState = ButtonState.IconFetching;
+                titleSceneManager.buttonState = ButtonState.IconFetching;
                 titleSceneManager.ButtonInit();
-                UserPreference._instance._characterIconName = id;
-                UserPreference._instance.CharacterIconFetch(); // サーバーからキャラクター画像を取得
+                UserPreference.instance._characterIconName = id;
+                UserPreference.instance.CharacterIconFetch(); // サーバーからキャラクター画像を取得
             }
             // ログイン失敗
             if (userAuth._logInState == LogInState.failed)
@@ -103,10 +103,10 @@ public class LogInManager : MonoBehaviour
                 SucceededLogInFunc();
                 reactionText.color = Color.green;
                 reactionText.text = "ユーザー登録成功!";
-                titleSceneManager._buttonState = ButtonState.IconSetting;    // キャラクター画像未登録なのでButtonState.IconSettingとする
+                titleSceneManager.buttonState = ButtonState.IconSetting;    // キャラクター画像未登録なのでButtonState.IconSettingとする
                 titleSceneManager.ButtonInit();
-                UserPreference._instance._characterIconName = id;
-                UserPreference._instance.CharacterIconFetch(); // サーバーからキャラクター画像を取得
+                UserPreference.instance._characterIconName = id;
+                UserPreference.instance.CharacterIconFetch(); // サーバーからキャラクター画像を取得
             }
             // サインアップ失敗
             if (userAuth._signUpState == SignUpState.failed)
@@ -160,9 +160,9 @@ public class LogInManager : MonoBehaviour
         logOutingObj.SetActive(true);
         logIningObj.SetActive(false);
         reactionText.text = "";
-        titleSceneManager._buttonState = ButtonState.LogInWaiting;
+        titleSceneManager.buttonState = ButtonState.LogInWaiting;
         titleSceneManager.ButtonInit();
-        UserPreference._instance.characterIconLogOut();
+        UserPreference.instance.characterIconLogOut();
     }
 
     // 新規登録ボタンが押されたら
@@ -194,7 +194,7 @@ public class LogInManager : MonoBehaviour
         logOutingObj.SetActive(false);
         logIningObj.SetActive(true);
         userAuth._password = inputFieldPassword.text;
-        UserPreference._instance.Save();
+        UserPreference.instance.Save();
         logIningText.text = id + "  " + "でログイン中";
         time = waitTime;    // ログイン後の待ち時間
     }

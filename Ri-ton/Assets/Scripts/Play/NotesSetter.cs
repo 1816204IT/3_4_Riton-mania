@@ -13,18 +13,19 @@ public class NotesSetter : MonoBehaviour
         public Color defaultColor;
         public Color holdingColor;
     }
-
-    // PlayingNoteDataクラスが持っているnowMapDataの参照
-    private MusicDTO.MapData mapData = new MusicDTO.MapData();
-
+    
     [SerializeField]
-    private Transform timingBar = null;
+    private Transform judgmentBarTransform = null;
 
     [SerializeField]
     private Colors evenNumberLongNoteColor;
     [SerializeField]
     private Colors oddNumberLongNoteColor;
 
+    // PlayingNoteDataクラスが持っているnowMapDataの参照
+    private MusicDTO.MapData mapData = new MusicDTO.MapData();
+
+    // ノーツオブジェクトのリスト
     private List<GameObject> evenNumberNoteList = new List<GameObject>();
     private List<GameObject> oddNumberNoteList = new List<GameObject>();
 
@@ -48,6 +49,37 @@ public class NotesSetter : MonoBehaviour
 
     void Start()
     {
+        FindObjects();
+
+        if (musicPlayer == null || jsonManager == null ||  noteDataConverter == null
+            || playingNoteData == null || judgmentBarTransform == null)
+        {
+            Debug.Log("nullを検知");
+        }
+
+        // 譜面データの参照を読み込む
+        mapData = playingNoteData.GetNowMapData();
+    }
+
+    void Update()
+    {
+        // 全てのノーツを画面外に移動(setActiveは重い処理のようなので座標移動で誤魔化す)
+        NoteMoveOutOfScreen(evenNumberNoteList);
+        NoteMoveOutOfScreen(oddNumberNoteList);
+        NoteMoveOutOfScreen(evenNumberNoteList);
+        LongNoteMoveOutOfScreen(evenNumberNongNoteInfo.objList);
+        LongNoteMoveOutOfScreen(oddNumberNongNoteInfo.objList);
+
+        // 全てのロングノーツの色をリセット
+        ResetLongNoteBrightness(ref evenNumberNongNoteInfo.spriteRendererList, evenNumberLongNoteColor.defaultColor);
+        ResetLongNoteBrightness(ref oddNumberNongNoteInfo.spriteRendererList, oddNumberLongNoteColor.defaultColor);
+
+        SetNotes();
+        SetLongNotes();
+    }
+
+    private void FindObjects()
+    {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
@@ -57,7 +89,7 @@ public class NotesSetter : MonoBehaviour
         evenNumberNongNoteInfo.spriteRendererList = new List<SpriteRenderer>();
         oddNumberNongNoteInfo.objList = new List<GameObject>();
         oddNumberNongNoteInfo.spriteRendererList = new List<SpriteRenderer>();
-        
+
         FindAndAddList(ref evenNumberNoteList, "NoteEvenNumber");
         FindAndAddList(ref oddNumberNoteList, "NoteOddNumber");
         FindAndAddList(ref evenNumberNongNoteInfo.objList, "LongNoteEvenNumber");
@@ -65,15 +97,6 @@ public class NotesSetter : MonoBehaviour
 
         AddSpriteRendererList(ref evenNumberNongNoteInfo);
         AddSpriteRendererList(ref oddNumberNongNoteInfo);
-
-        if (musicPlayer == null || jsonManager == null ||  noteDataConverter == null
-            || playingNoteData == null || timingBar == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
-        // 譜面データの参照を読み込む
-        mapData = playingNoteData.GetNowMapData();
     }
 
     private void FindAndAddList(ref List<GameObject> list, string tagName)
@@ -95,23 +118,6 @@ public class NotesSetter : MonoBehaviour
         {
             info.spriteRendererList.Add(obj.GetComponent<SpriteRenderer>());
         }
-    }
-
-    void Update()
-    {
-        // 全てのノーツを画面外に移動(setActiveは重い処理のようなので座標移動で誤魔化す)
-        NoteMoveOutOfScreen(evenNumberNoteList);
-        NoteMoveOutOfScreen(oddNumberNoteList);
-        NoteMoveOutOfScreen(evenNumberNoteList);
-        LongNoteMoveOutOfScreen(evenNumberNongNoteInfo.objList);
-        LongNoteMoveOutOfScreen(oddNumberNongNoteInfo.objList);
-
-        // 全てのロングノーツの色をリセット
-        ResetLongNoteBrightness(ref evenNumberNongNoteInfo.spriteRendererList, evenNumberLongNoteColor.defaultColor);
-        ResetLongNoteBrightness(ref oddNumberNongNoteInfo.spriteRendererList, oddNumberLongNoteColor.defaultColor);
-
-        SetNotes();
-        SetLongNotes();
     }
 
     private void NoteMoveOutOfScreen(List<GameObject> list)
@@ -184,9 +190,9 @@ public class NotesSetter : MonoBehaviour
             if (num > usedNoteNum)
             {
                 Vector3 tmpPos = n.transform.position;
-                float posX = UserPreference._instance._notePosXOfLaneZero + note.lane * UserPreference._instance._note_size_x;
+                float posX = UserPreference.instance._notePosXOfLaneZero + note.lane * UserPreference.instance._note_size_x;
                 float posY = noteDataConverter.ConvertDistance(note.LPB, note.num);
-                posY += timingBar.position.y;
+                posY += judgmentBarTransform.position.y;
                 if (posY > 0 && posY < 2400)
                 {
                     n.transform.position = new Vector3(posX, posY, tmpPos.z);
@@ -209,11 +215,11 @@ public class NotesSetter : MonoBehaviour
                 continue;
             }
 
-            float noteStartPosY = noteDataConverter.ConvertDistance(note.LPB, note.num) + timingBar.position.y;
+            float noteStartPosY = noteDataConverter.ConvertDistance(note.LPB, note.num) + judgmentBarTransform.position.y;
             float noteEndPosY = 0;
             foreach (MusicDTO.Note endNote in note.endNote)
             {
-                noteEndPosY = noteDataConverter.ConvertDistance(endNote.LPB, endNote.num) + timingBar.position.y;
+                noteEndPosY = noteDataConverter.ConvertDistance(endNote.LPB, endNote.num) + judgmentBarTransform.position.y;
             }
 
             //ロングノーツが画面内にない場合は処理しない
@@ -286,7 +292,7 @@ public class NotesSetter : MonoBehaviour
     private Vector3 GetLongNotePosition(MusicDTO.Note note, ref float scale)
     {
         float startNotePosY = noteDataConverter.ConvertDistance(note.LPB, note.num);
-        startNotePosY += timingBar.position.y;
+        startNotePosY += judgmentBarTransform.position.y;
 
         MusicDTO.Note eNote = new MusicDTO.Note();
         foreach (MusicDTO.Note endNote in note.endNote)
@@ -295,9 +301,9 @@ public class NotesSetter : MonoBehaviour
         }
 
         float endNotePosY = noteDataConverter.ConvertDistance(eNote.LPB, eNote.num);
-        endNotePosY += timingBar.position.y;
+        endNotePosY += judgmentBarTransform.position.y;
         scale = endNotePosY - startNotePosY + 1;
-        float notePosX = UserPreference._instance._notePosXOfLaneZero + note.lane * UserPreference._instance._note_size_x;
+        float notePosX = UserPreference.instance._notePosXOfLaneZero + note.lane * UserPreference.instance._note_size_x;
         return new Vector3(notePosX, (startNotePosY + scale / 2), 1); ;
     }
 

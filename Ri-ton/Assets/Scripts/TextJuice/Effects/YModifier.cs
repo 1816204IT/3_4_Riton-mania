@@ -10,7 +10,7 @@ namespace BrunoMikoski.TextJuicer.Effects
 
         public override void Apply(CharacterData characterData, ref UIVertex uiVertex)
         {
-            uiVertex.position.y *= curve.Evaluate(characterData.Progress);
+            uiVertex.position.y *= curve.Evaluate(characterData.progress);
         }
     }
 }

@@ -10,7 +10,7 @@ public class ComboCounter : MonoBehaviour
 {
     private Text text = null;
     private int comboCnt = 0;
-    private int maxCombo = 0;
+    public int maxCombo { get; private set; } = 0;
     private int defauliFontSize = 0;
     private float fontSize = 0;
 
@@ -51,10 +51,5 @@ public class ComboCounter : MonoBehaviour
     {
         comboCnt = 0;
         text.text = "";
-    }
-
-    public int _maxCombo
-    {
-        get { return maxCombo; }
     }
 }

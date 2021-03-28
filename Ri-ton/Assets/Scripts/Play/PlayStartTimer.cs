@@ -11,9 +11,9 @@ public class PlayStartTimer : MonoBehaviour
     private Text text = null;
     private MusicPlayer musicPlayer = null;
 
-    float timer = 3.0f;
+    private float timer = 3.0f;
 
-    bool isTutorialEnd = false;
+    public bool isTutorialEnd { get; set; } = false;
 
     void Start()
     {
@@ -44,7 +44,7 @@ public class PlayStartTimer : MonoBehaviour
         {
             text.enabled = false;
 
-            if (musicPlayer._audioSource.time <= 0.0f)
+            if (musicPlayer.audioSource.time <= 0.0f)
             {
                 musicPlayer.PlayStart();
             }
@@ -59,10 +59,5 @@ public class PlayStartTimer : MonoBehaviour
     {
         timer = 3.0f;
         text.enabled = true;
-    }
-
-    public bool _isTutorialEnd
-    {
-        set { isTutorialEnd = value; }
     }
 }

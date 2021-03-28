@@ -22,7 +22,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
 
     private void Start()
     {
-        TitleSceneManager._prevSceneName = "PlaySongSelect";
+        TitleSceneManager.prevSceneName = "PlaySongSelect";
         
         if (playerName == null || settingCanvas == null || myCharacter == null
             || tutorialCanvas == null)
@@ -36,8 +36,8 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         Cursor.visible = true;
 
         // キャラクター表示
-        int charaNum = UserPreference._instance._characterNum;
-        myCharacter.sprite = CharacterInfoList._instance.GetSprite(charaNum);
+        int charaNum = UserPreference.instance._characterNum;
+        myCharacter.sprite = CharacterInfoList.instance.GetSprite(charaNum);
     }
 
     void Update()
@@ -79,7 +79,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         {
             settingCanvas.SetActive(false);
             // ユーザー設定をローカルデータとして保存
-            UserPreference._instance.Save();
+            UserPreference.instance.Save();
             return;
         }
         SceneManager.LoadScene("Title");

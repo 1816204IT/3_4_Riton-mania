@@ -4,15 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 /// <summary>
 /// 音楽再生プレイヤークラス
 /// </summary>
 public class MusicPlayer : MonoBehaviour
 {
-    private AudioSource audioSource = null;
-    private float BPM = 100.0f;
-    private float offset = 0.0f;
+    public AudioSource audioSource { get; private set; } = null;
+    public float bpm { get; set; } = 100.0f;
+    public float offset { get; set; } = 0.0f;
 
     private float audioSourceOldTime = 0.0f;    // Update毎に更新されない
     private float time = 0.0f;  // Update毎に更新される精度の高いAudioSource.time
@@ -46,18 +45,18 @@ public class MusicPlayer : MonoBehaviour
         }
         else
         {
-            mapInfo = jsonManager.LoadMapInfo(SelectedMap._instance._musicName);
-            audioSource.clip = MusicInfoList._instance.GetMusic(mapInfo.musicName);
+            mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance._musicName);
+            audioSource.clip = MusicInfoList.instance.GetMusic(mapInfo.musicName);
         }
 
         offset = mapInfo.offset / 100.0f;
 
         if (SceneManager.GetActiveScene().name != "Edit")
         {
-            offset += UserPreference._instance._userOffset;
+            offset += UserPreference.instance._userOffset;
         }
 
-        BPM = mapInfo.bpm / 100.0f;
+        bpm = mapInfo.bpm / 100.0f;
 
         audioSourceOldTime = audioSource.time;
         time = startWaitTime;
@@ -189,25 +188,8 @@ public class MusicPlayer : MonoBehaviour
         get { return audioSource.time - offset; }
     }
 
-    public AudioSource _audioSource
-    { 
-        get { return audioSource; }
-    }
-
-    public float _BPM
-    {
-        get { return BPM; }
-        set { BPM = value; }
-    }
-
     public float _clapSpan
     {
-        get { return 60.0f / BPM; }
-    }
-
-    public float _offset
-    {
-        get { return offset; }
-        set { offset = value; }
+        get { return 60.0f / bpm; }
     }
 }

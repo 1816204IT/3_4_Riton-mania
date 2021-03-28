@@ -27,7 +27,7 @@ public class PickUpCharacterManager : MonoBehaviour
     [SerializeField]
     private HeaderInfo headerInfo = null;
 
-    private int pickingCharacterNum = -1; // 選択中のキャラクター画像番号
+    public int pickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号
 
     [SerializeField]
     private MoveTween whiteBackImage = null;
@@ -73,7 +73,7 @@ public class PickUpCharacterManager : MonoBehaviour
         profile.SetActive(false);
 
         // キャラクターの番号を取得
-        pickingCharacterNum = UserPreference._instance._characterNum;
+        pickingCharacterNum = UserPreference.instance._characterNum;
         // nowの矢印のX座標移動
         MoveNowArrow();
         // 「キャラクターを選んで下さい」のキャンバスを非表示に
@@ -142,7 +142,7 @@ public class PickUpCharacterManager : MonoBehaviour
     {
         // キャラクターデータの取得
         Ritonmania.CharacterData data = characterProfileData.GetCharacterData(pickingCharacterNum);
-        Color color = CharacterInfoList._instance.GetColor(pickingCharacterNum);
+        Color color = CharacterInfoList.instance.GetColor(pickingCharacterNum);
 
         // 背景の名前の色とtextを指定
         characterNameText.color = color;
@@ -209,7 +209,7 @@ public class PickUpCharacterManager : MonoBehaviour
             // キャラクター選択済みならタイトルへ戻る
             else
             {
-                UserPreference._instance.AsyncCharacterIcon();   // サーバー同期
+                UserPreference.instance.AsyncCharacterIcon();   // サーバー同期
                 SceneManager.LoadScene("Title");
             }
         }
@@ -236,7 +236,7 @@ public class PickUpCharacterManager : MonoBehaviour
     public void ChangeCharacter()
     {
         // キャラクターの番号を変更
-        UserPreference._instance._characterNum = pickingCharacterNum;
+        UserPreference.instance._characterNum = pickingCharacterNum;
         // ヘッダーのプレイヤー名の文字色を変更
         headerInfo.SetPlayerNameColor();
         // nowの矢印のX座標移動
@@ -261,10 +261,5 @@ public class PickUpCharacterManager : MonoBehaviour
     private void UnEnablePleasePickCharacterObj()
     {
         pleasePickCharacter.SetActive(false);
-    }
-
-    public int _pickingCharacterNum
-    {
-        set { pickingCharacterNum = value; }
     }
 }

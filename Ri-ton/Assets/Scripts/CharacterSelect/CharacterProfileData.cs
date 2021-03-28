@@ -7,14 +7,14 @@ namespace Ritonmania
     [System.Serializable]
     public struct CharacterData
     {
-        public string name;
+        public string name;         // 名前
         public string height;       // 身長
-        public string age;
+        public string age;          // 年齢
         public string birthDay;     // 誕生日
         public string personality;  // 性格
         public string likes;        // 好きなもの
         public string unLikes;      // 嫌いなもの
-        public string illustrator;
+        public string illustrator;  // 作者
     }
 }
 

@@ -2,22 +2,12 @@ namespace BrunoMikoski.TextJuicer
 {
     public struct CharacterData
     {
-        private float progress;
-
-        public float Progress
-        {
-            get { return progress; }
-        }
+        public float progress { get; private set; }
 
         private float startingTime;
 
         private float totalAnimationTime;
-        private int order;
-
-        public int Order
-        {
-            get { return order; }
-        }
+        public int order { get; }
 
         public CharacterData(float startTime, float targetAnimationTime, int targetOrder)
         {

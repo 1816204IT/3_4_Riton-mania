@@ -81,46 +81,46 @@ public class DifficultyButtonsManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            int num = (int)SelectedMap._instance._nowDifficulty;
+            int num = (int)SelectedMap.instance._nowDifficulty;
             num = (num + 1) % (int)DifficultyType.MAX;
             
             if (num == (int)DifficultyType.EASY)
             {
-                OnclickEasyButton();
+                OnClickEasyButton();
             }
             else if (num == (int)DifficultyType.NORMAL)
             {
-                OnclickNormalButton();
+                OnClickNormalButton();
             }
             else if (num == (int)DifficultyType.HARD)
             {
-                OnclickHardButton();
+                OnClickHardButton();
             }
             else
             {
-                OnclickExpertButton();
+                OnClickExpertButton();
             }
         }
     }
 
     public void Initialize()
     {
-        string diffName = SelectedMap._instance._difficultyName;
+        string diffName = SelectedMap.instance._difficultyName;
         if (diffName == "Easy")
         {
-            OnclickEasyButton();
+            OnClickEasyButton();
         }
         else if (diffName == "Normal")
         {
-            OnclickNormalButton();
+            OnClickNormalButton();
         }
         else if (diffName == "Hard")
         {
-            OnclickHardButton();
+            OnClickHardButton();
         }
         else if (diffName == "Expert")
         {
-            OnclickExpertButton();
+            OnClickExpertButton();
         }
         else
         {
@@ -154,66 +154,38 @@ public class DifficultyButtonsManager : MonoBehaviour
         }
     }
 
-    public void OnclickEasyButton()
+    private void OnClickDifficultyButton(string diffName, DifficultyType diffType, Color diffColor)
     {
-        SelectedMap._instance._difficultyName = "Easy";
-        SelectedMap._instance._nowDifficulty = DifficultyType.EASY;
+        SelectedMap.instance._difficultyName = diffName;
+        SelectedMap.instance._nowDifficulty = diffType;
         AllButtonsHeightReset();
-        Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.EASY].sizeDelta;
-        buttonsRectTransform[(int)DifficultyType.EASY].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = colorOfDifficulty.Easy;
-        buttonsImage[(int)DifficultyType.EASY].color = color;
-        buttonsText[(int)DifficultyType.EASY].color = Color.white;
-        bigNodeBgImage.color = color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        playButtonImage.color = color;
+        Vector2 tmpSize = buttonsRectTransform[(int)diffType].sizeDelta;
+        buttonsRectTransform[(int)diffType].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
+        buttonsImage[(int)diffType].color = diffColor;
+        buttonsText[(int)diffType].color = Color.white;
+        bigNodeBgImage.color = diffColor;
+        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = diffColor;
+        playButtonImage.color = diffColor;
         musicNodeInformation.UpdateInformationByChangeDifficulty();
     }
 
-    public void OnclickNormalButton()
+    public void OnClickEasyButton()
     {
-        SelectedMap._instance._difficultyName = "Normal";
-        SelectedMap._instance._nowDifficulty = DifficultyType.NORMAL;
-        AllButtonsHeightReset();
-        Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.NORMAL].sizeDelta;
-        buttonsRectTransform[(int)DifficultyType.NORMAL].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = colorOfDifficulty.Normal;
-        buttonsImage[(int)DifficultyType.NORMAL].color = color;
-        buttonsText[(int)DifficultyType.NORMAL].color = Color.white;
-        bigNodeBgImage.color = color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        playButtonImage.color = color;
-        musicNodeInformation.UpdateInformationByChangeDifficulty();
+        OnClickDifficultyButton("Easy", DifficultyType.EASY, colorOfDifficulty.easy);
     }
 
-    public void OnclickHardButton()
+    public void OnClickNormalButton()
     {
-        SelectedMap._instance._difficultyName = "Hard";
-        SelectedMap._instance._nowDifficulty = DifficultyType.HARD;
-        AllButtonsHeightReset();
-        Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.HARD].sizeDelta;
-        buttonsRectTransform[(int)DifficultyType.HARD].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = colorOfDifficulty.Hard;
-        buttonsImage[(int)DifficultyType.HARD].color = color;
-        buttonsText[(int)DifficultyType.HARD].color = Color.white;
-        bigNodeBgImage.color = color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        playButtonImage.color = color;
+        OnClickDifficultyButton("Normal", DifficultyType.NORMAL, colorOfDifficulty.normal);
     }
 
-    public void OnclickExpertButton()
+    public void OnClickHardButton()
     {
-        SelectedMap._instance._difficultyName = "Expert";
-        SelectedMap._instance._nowDifficulty = DifficultyType.EXPERT;
-        AllButtonsHeightReset();
-        Vector2 tmpSize = buttonsRectTransform[(int)DifficultyType.EXPERT].sizeDelta;
-        buttonsRectTransform[(int)DifficultyType.EXPERT].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        Color color = colorOfDifficulty.Expert;
-        buttonsImage[(int)DifficultyType.EXPERT].color = color;
-        buttonsText[(int)DifficultyType.EXPERT].color = Color.white;
-        bigNodeBgImage.color = color;
-        bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
-        playButtonImage.color = color;
-        musicNodeInformation.UpdateInformationByChangeDifficulty();
+        OnClickDifficultyButton("Hard", DifficultyType.HARD, colorOfDifficulty.hard);
+    }
+
+    public void OnClickExpertButton()
+    {
+        OnClickDifficultyButton("Expert", DifficultyType.EXPERT, colorOfDifficulty.expert);
     }
 }

@@ -34,8 +34,8 @@ public class HeaderInfo : MonoBehaviour
 
     public void SetPlayerNameColor()
     {
-        int charaNum = UserPreference._instance._characterNum;
-        Color color = CharacterInfoList._instance.GetColor(charaNum);
+        int charaNum = UserPreference.instance._characterNum;
+        Color color = CharacterInfoList.instance.GetColor(charaNum);
         playerNameText.color = color;
     }
 }

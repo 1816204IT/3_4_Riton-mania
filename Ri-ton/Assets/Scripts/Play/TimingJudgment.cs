@@ -57,12 +57,12 @@ public class TimingJudgment : MonoBehaviour
         FindObjects();
         NullCheck();
 
-        mapData = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
+        mapData = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
         LongNoteDisassembly();
         SortNoteData();
 
         // 1秒間で進む距離
-        secondDistance = musicPlayer._clapSpan * UserPreference._instance._notesSpeed;
+        secondDistance = musicPlayer._clapSpan * UserPreference.instance._notesSpeed;
 
         // 判定の長さを代入(秒)
         missLen = secondDistance / 60.0f * (float)missFrame;

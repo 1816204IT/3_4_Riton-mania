@@ -62,7 +62,7 @@ public class ResultDataInput : MonoBehaviour
         perfectText.text = data.perfectNum.ToString();
         goodText.text = data.goodNum.ToString();
         missText.text = data.missNum.ToString();
-        rankImage.sprite = RankImageList._instance.GetSprite(data.rankImageNum);
+        rankImage.sprite = RankImageList.instance.GetSprite(data.rankImageNum);
         if (data.isAciveHighScore)
         {
             newRecordText.text = "new record!!";
@@ -72,9 +72,9 @@ public class ResultDataInput : MonoBehaviour
             newRecordText.text = "";
         }
 
-        musicTitleText.text = SelectedMap._instance._musicName;
-        difficultyText.text = SelectedMap._instance._difficultyName;
-        characterImage.sprite = CharacterInfoList._instance.GetSprite(UserPreference._instance._characterNum);
+        musicTitleText.text = SelectedMap.instance._musicName;
+        difficultyText.text = SelectedMap.instance._difficultyName;
+        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.instance._characterNum);
 
         // -----最高成績なら文字色を黄色にする-----
         if ((data.acc / 100.0f) == 100.0f)
@@ -104,8 +104,8 @@ public class ResultDataInput : MonoBehaviour
         data = inData;
     }
 
-    public int _score
+    public int GetScore()
     { 
-        get { return data.score; }
+        return data.score;
     }
 }

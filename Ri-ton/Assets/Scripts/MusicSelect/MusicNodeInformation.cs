@@ -27,7 +27,7 @@ public class MusicNodeInformation : MonoBehaviour
             Debug.Log("nullを検知");
         }
 
-        nodeList = this.GetComponent<MusicNodeInstance>()._nodeGameObjectList;
+        nodeList = this.GetComponent<MusicNodeInstance>().nodeGameObjectList;
         foreach (GameObject obj in nodeList)
         {
             nodeImages.Add(obj.GetComponent<Image>());
@@ -38,16 +38,12 @@ public class MusicNodeInformation : MonoBehaviour
 
     public void UpdateInformationByChangeDifficulty()
     {
-        Color color = colorOfDifficulty.GetColorOfDifficulty(SelectedMap._instance._difficultyName);
+        Color color = colorOfDifficulty.GetColorOfDifficulty(SelectedMap.instance._difficultyName);
 
         bigNodeBgImage.color = color;
         foreach (Image image in nodeImages)
         {
             image.color = color;
-        }
-        foreach (GameObject obj in nodeList)
-        {
-            obj.transform.Find("inLine").gameObject.GetComponent<Image>().color = color;
         }
     }
 }

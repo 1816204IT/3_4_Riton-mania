@@ -10,7 +10,7 @@ using NoteEditor.DTO;
 /// </summary>
 public class NotesEditor : MonoBehaviour
 {
-    private bool notesSetMode = false;
+    public bool notesSetMode { get; private set; }
 
     private MusicPlayer musicPlayer = null;
     private GameObject mouseFollowNote = null;
@@ -19,8 +19,7 @@ public class NotesEditor : MonoBehaviour
     private MouseFollow mouseFollow = null;
     private NoteDataConverter noteDataConverter = null;
     private PlayingNoteData playingNoteData = null;
-    private int LPB = 1;
-    private const int maxLPB = 8;
+    public int LPB { get; private set; } = 1;
 
     [SerializeField]
     private GameObject judgmentBar = null;
@@ -76,7 +75,6 @@ public class NotesEditor : MonoBehaviour
                 clickDownNote.num = int.MinValue;
                 return;
             }
-
 
             var debugPos = mouseFollow.GetMouseFollowNotePos();
 
@@ -207,22 +205,22 @@ public class NotesEditor : MonoBehaviour
     private int GetLaneNum(float posX)
     {
         posX += 300; // この300は何だろう
-        return (int)(posX / UserPreference._instance._note_size_x);
+        return (int)(posX / UserPreference.instance._note_size_x);
     }
 
     //クリックしたY座標がaudioSource.timeの何秒に当たるかを返す
     private float GetAudioSourceTime(float mousePosY)
     {
-        float len = mousePosY - judgmentBar.transform.position.y/* + UserPreference._instance._userOffset*/;
-        len -= musicPlayer._offset * UserPreference._instance._notesSpeed;
-        return musicPlayer._audioSource.time + (len / UserPreference._instance._notesSpeed);
+        float len = mousePosY - judgmentBar.transform.position.y;
+        len -= musicPlayer.offset * UserPreference.instance._notesSpeed;
+        return musicPlayer.audioSource.time + (len / UserPreference.instance._notesSpeed);
     }
 
     public Vector3 GetSnappedPos(Vector3 pos)
     {
-        float posX = UserPreference._instance._notePosXOfLaneZero + GetLaneNum(pos.x) * UserPreference._instance._note_size_x;
-        float unit = musicPlayer._clapSpan * (UserPreference._instance._notesSpeed / LPB);
-        float basePos = timingBar._barBasePosY;
+        float posX = UserPreference.instance._notePosXOfLaneZero + GetLaneNum(pos.x) * UserPreference.instance._note_size_x;
+        float unit = musicPlayer._clapSpan * (UserPreference.instance._notesSpeed / LPB);
+        float basePos = timingBar.barBasePosY;
         float num = basePos - pos.y;
         float len = num % unit;
         float posY = pos.y + len;
@@ -277,20 +275,5 @@ public class NotesEditor : MonoBehaviour
             LPB = 1;
             beatSpanText.text = "1/1";
         }
-    }
-
-    public int _LPB
-    {
-        get { return LPB; }
-    }
-
-    public int _maxLPB
-    {
-        get { return maxLPB; }
-    }
-
-    public bool _notesSetMode
-    {
-        get { return notesSetMode; }
     }
 }

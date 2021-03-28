@@ -42,8 +42,8 @@ public class SetMainLineBar : MonoBehaviour
             bar.transform.position = new Vector3(oldPos.x, 4000, oldPos.z);
         }
 
-        float jPosY = JudgmentBar.transform.position.y + UserPreference._instance._userOffset;
-        float length = (musicPlayer.offsetedTime % (musicPlayer._clapSpan * 4)) * UserPreference._instance._notesSpeed;
+        float jPosY = JudgmentBar.transform.position.y + UserPreference.instance._userOffset;
+        float length = (musicPlayer.offsetedTime % (musicPlayer._clapSpan * 4)) * UserPreference.instance._notesSpeed;
 
         //判定バーに最も近いタイミングバーを基点とする
         Vector3 tPos = baseTimingBar.transform.position;
@@ -55,7 +55,7 @@ public class SetMainLineBar : MonoBehaviour
 
     void SetMianLineBar(float basePosY)
     {
-        float len = musicPlayer._clapSpan * 4 * UserPreference._instance._notesSpeed;
+        float len = musicPlayer._clapSpan * 4 * UserPreference.instance._notesSpeed;
         float tmpPosY = basePosY;
         int usedMainBarNum = 0;
 

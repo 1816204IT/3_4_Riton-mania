@@ -60,7 +60,6 @@ public class AutoMachine : MonoBehaviour
         float time = musicPlayer._offsetedTimeOrigin;
         float span = (musicPlayer._clapSpan / LPB);
 
-
         //シークバー操作で曲が巻き戻された場合
         if (time < prevPool)
         {
@@ -94,14 +93,4 @@ public class AutoMachine : MonoBehaviour
             }
         }
     }
-
-    //シークバーによる操作が行われたとき
-    //private void ReverseTime(ref float pool, ref float prevPool, int LPB)
-    //{
-    //    //曲を巻き戻したとき
-    //    if (musicPlayer._offsetedTimeOrigin < prevPool)
-    //    {
-    //        pool = musicPlayer._offsetedTimeOrigin - (musicPlayer._offsetedTimeOrigin % (musicPlayer._clapSpan / LPB));
-    //    }
-    //}
 }

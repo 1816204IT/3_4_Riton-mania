@@ -29,7 +29,7 @@ public class MyRanking : MonoBehaviour
     {
         if (isRankFetched == false)
         {
-            lBoard.FetchRank(resultDataInput._score);
+            lBoard.FetchRank(resultDataInput.GetScore());
         }
 
         // 現在の順位の取得が完了したら1度だけ実行

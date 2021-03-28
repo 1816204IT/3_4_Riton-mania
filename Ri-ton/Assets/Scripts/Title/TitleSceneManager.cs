@@ -17,7 +17,8 @@ public enum ButtonState
 /// </summary>
 public class TitleSceneManager : MonoBehaviour
 {
-    private static string prevSceneName = "";
+    public static string prevSceneName { get; set; } = ""; 
+    public ButtonState buttonState { get; set; } = ButtonState.LogInWaiting;
 
     [SerializeField]
     private GameObject logIningObj = null;  // ログイン中に表示するオブジェクト
@@ -30,8 +31,6 @@ public class TitleSceneManager : MonoBehaviour
     private SoundVolumeManager soundVolumeManager = null;
     [SerializeField]
     private AudioSource bgm = null;
-
-    private ButtonState buttonState = ButtonState.LogInWaiting;
 
     private void Start()
     {
@@ -81,9 +80,9 @@ public class TitleSceneManager : MonoBehaviour
         if (buttonState == ButtonState.IconFetching)
         {
             // アイコンフェッチ終了したか
-            if (UserPreference._instance._iconFetchState == FetchState.succeeded)
+            if (UserPreference.instance._iconFetchState == FetchState.succeeded)
             {
-                int characterNum = UserPreference._instance._characterNum;
+                int characterNum = UserPreference.instance._characterNum;
 
                 // キャラクター番号が正常に設定されているか
                 if ( (characterNum >= 0) && (characterNum <= 4) )
@@ -110,7 +109,7 @@ public class TitleSceneManager : MonoBehaviour
         }
 
         // キャラクター画像が正しく設定されているか
-        if (UserPreference._instance._characterNum != 5)
+        if (UserPreference.instance._characterNum != 5)
         {
             return;
         }
@@ -118,10 +117,10 @@ public class TitleSceneManager : MonoBehaviour
         // アイコンフェッチ中か
         if (buttonState == ButtonState.IconFetching)
         {
-            FetchState nowFecthState = UserPreference._instance._iconFetchState;
+            FetchState nowFecthState = UserPreference.instance._iconFetchState;
             if ((nowFecthState == FetchState.non) || (nowFecthState == FetchState.failed))
             {
-                UserPreference._instance.CharacterIconFetch();
+                UserPreference.instance.CharacterIconFetch();
             }
             return;
         }
@@ -145,16 +144,5 @@ public class TitleSceneManager : MonoBehaviour
     public void ChangeCharacterSelectScene()
     {
         SceneManager.LoadScene("CharacterSelect");
-    }
-
-    public ButtonState _buttonState
-    {
-        set { buttonState = value; }
-    }
-
-    public static string _prevSceneName
-    {
-        get { return prevSceneName; }
-        set { prevSceneName = value; }
     }
 }

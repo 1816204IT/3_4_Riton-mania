@@ -10,7 +10,7 @@ public class EditSongSelectSceneManager : MonoBehaviour
 {
     private void Start()
     {
-        TitleSceneManager._prevSceneName = "EditSongSelect";
+        TitleSceneManager.prevSceneName = "EditSongSelect";
     }
 
     void Update()

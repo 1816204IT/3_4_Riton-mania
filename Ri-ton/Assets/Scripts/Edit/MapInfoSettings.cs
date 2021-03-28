@@ -26,7 +26,7 @@ public class MapInfoSettings : MonoBehaviour
     MapInfoGroup bpmGroup;
     [SerializeField]
     MapInfoGroup diffGroup;
-    private bool isOffsetChangeMode = true;
+    public bool isOffsetChangeMode { get; set; } = true;
 
     void Start()
     {
@@ -44,15 +44,15 @@ public class MapInfoSettings : MonoBehaviour
             Debug.Log("nullを検知");
         }
 
-        offsetGroup.slider.value = musicPlayer._offset * 100;
+        offsetGroup.slider.value = musicPlayer.offset * 100;
         float textValue = offsetGroup.slider.value / 100.0f;
         offsetGroup.inputField.text = textValue.ToString();
 
-        bpmGroup.slider.value = musicPlayer._BPM * 100;
+        bpmGroup.slider.value = musicPlayer.bpm * 100;
         textValue = bpmGroup.slider.value / 100.0f;
         bpmGroup.inputField.text = textValue.ToString();
 
-        diffGroup.slider.value = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName).difficulty;
+        diffGroup.slider.value = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName).difficulty;
 
         textValue = diffGroup.slider.value / 10.0f;
         diffGroup.inputField.text = textValue.ToString();
@@ -71,7 +71,7 @@ public class MapInfoSettings : MonoBehaviour
         }
 
         offsetGroup.slider.value = num; ;
-        musicPlayer._offset = offsetGroup.slider.value / 100.0f;
+        musicPlayer.offset = offsetGroup.slider.value / 100.0f;
     }
 
     public void OnEndEditBpmInputField()
@@ -85,7 +85,7 @@ public class MapInfoSettings : MonoBehaviour
         }
 
         bpmGroup.slider.value = num;
-        musicPlayer._offset = bpmGroup.slider.value / 100.0f;
+        musicPlayer.offset = bpmGroup.slider.value / 100.0f;
     }
 
     public void OnEndEditDifficultyInputField()
@@ -103,14 +103,14 @@ public class MapInfoSettings : MonoBehaviour
 
     public void OnValueChangedOffsetSlider()
     {
-        musicPlayer._offset = offsetGroup.slider.value / 100.0f;
+        musicPlayer.offset = offsetGroup.slider.value / 100.0f;
         float textValue = offsetGroup.slider.value / 100.0f;
         offsetGroup.inputField.text = textValue.ToString();
     }
 
     public void OnValueChangedBpmSlider()
     {
-        musicPlayer._BPM = bpmGroup.slider.value / 100.0f;
+        musicPlayer.bpm = bpmGroup.slider.value / 100.0f;
         float textValue = bpmGroup.slider.value / 100.0f;
         bpmGroup.inputField.text = textValue.ToString();
     }
@@ -140,27 +140,22 @@ public class MapInfoSettings : MonoBehaviour
 
     public void SaveOffset()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap._instance._musicName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance._musicName);
         mapInfo.offset = (int)offsetGroup.slider.value;
         jsonManager.SaveMapInfo(mapInfo);
     }
 
     public void SaveBPM()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap._instance._musicName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance._musicName);
         mapInfo.bpm = (int)bpmGroup.slider.value;
         jsonManager.SaveMapInfo(mapInfo);
     }
 
     public void SaveDifficulty()
     {
-        var mapData = jsonManager.LoadMapData(SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
+        var mapData = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
         mapData.difficulty = (int)diffGroup.slider.value;
-        jsonManager.SaveNotesData(mapData, SelectedMap._instance._musicName, SelectedMap._instance._difficultyName);
-    }
-
-    public bool _isOffsetChangeMode
-    {
-        get { return isOffsetChangeMode; }
+        jsonManager.SaveNotesData(mapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
     }
 }

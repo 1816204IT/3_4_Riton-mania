@@ -11,12 +11,12 @@ namespace BrunoMikoski.TextJuicer.Effects
         private Color[] colors;
         public override void Apply(CharacterData characterData, ref UIVertex uiVertex)
         {
-            Color targetColor = colors[characterData.Order%colors.Length];
+            Color targetColor = colors[characterData.order % colors.Length];
             Color currentColor = uiVertex.color;
 
 
-            targetColor = targetColor*curve.Evaluate(characterData.Progress);
-            currentColor = currentColor*(1f - curve.Evaluate(characterData.Progress));
+            targetColor = targetColor*curve.Evaluate(characterData.progress);
+            currentColor = currentColor*(1f - curve.Evaluate(characterData.progress));
 
             uiVertex.color = currentColor + targetColor;
         }

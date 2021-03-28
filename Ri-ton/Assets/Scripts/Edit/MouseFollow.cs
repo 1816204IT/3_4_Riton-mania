@@ -56,9 +56,7 @@ public class MouseFollow : MonoBehaviour
 
         float time = 0.0f;
         notesEditor.IsClickedPosValid(ref pos, ref time);
-        text.text = "FollowNoteNumber = " + noteDataConverter.ConvertBeatNum(time, notesEditor._LPB);
-
-        
+        text.text = "FollowNoteNumber = " + noteDataConverter.ConvertBeatNum(time, notesEditor.LPB);
     }
 
     //マウス座標をプレイエリア平面座標に変換する
