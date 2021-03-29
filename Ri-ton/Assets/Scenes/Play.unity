@@ -10808,8 +10808,8 @@ GameObject:
   - component: {fileID: 773045870}
   - component: {fileID: 773045871}
   m_Layer: 0
-  m_Name: NotesSetter
-  m_TagString: NotesSetter
+  m_Name: NoteSetter
+  m_TagString: NoteSetter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10840,13 +10840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cad8a3d42876694993f46830937318f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteColor: {fileID: 11400000, guid: df3247a30d39c6a4f9b0557ac854833d, type: 2}
   judgmentBarTransform: {fileID: 1320446098}
-  evenNumberLongNoteColor:
-    defaultColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    holdingColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  oddNumberLongNoteColor:
-    defaultColor: {r: 0, g: 0.3947369, b: 0.5, a: 1}
-    holdingColor: {r: 0, g: 0.78431374, b: 1, a: 1}
 --- !u!1 &780454984
 GameObject:
   m_ObjectHideFlags: 0

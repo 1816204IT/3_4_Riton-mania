@@ -13,7 +13,7 @@ namespace NoteEditor.DTO
         {
             public string mapperName;   // 譜面制作者名
             public int difficulty;      // 難易度名
-            public List<Note> notes;
+            public List<Note> noteList;
         }
 
         // ノーツクラス

@@ -39,7 +39,7 @@ public class DifficultyButtonsManager : MonoBehaviour
     private Image playButtonImage = null;
 
     [SerializeField]
-    private ColorOfDifficulty colorOfDifficulty;
+    private DifficultyColor difficultyColor;
 
     void Awake()
     {
@@ -171,21 +171,21 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     public void OnClickEasyButton()
     {
-        OnClickDifficultyButton("Easy", DifficultyType.EASY, colorOfDifficulty.easy);
+        OnClickDifficultyButton("Easy", DifficultyType.EASY, difficultyColor.easy);
     }
 
     public void OnClickNormalButton()
     {
-        OnClickDifficultyButton("Normal", DifficultyType.NORMAL, colorOfDifficulty.normal);
+        OnClickDifficultyButton("Normal", DifficultyType.NORMAL, difficultyColor.normal);
     }
 
     public void OnClickHardButton()
     {
-        OnClickDifficultyButton("Hard", DifficultyType.HARD, colorOfDifficulty.hard);
+        OnClickDifficultyButton("Hard", DifficultyType.HARD, difficultyColor.hard);
     }
 
     public void OnClickExpertButton()
     {
-        OnClickDifficultyButton("Expert", DifficultyType.EXPERT, colorOfDifficulty.expert);
+        OnClickDifficultyButton("Expert", DifficultyType.EXPERT, difficultyColor.expert);
     }
 }

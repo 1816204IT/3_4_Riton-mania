@@ -3711,8 +3711,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1996890842}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: NotesSpeedDown
+        m_TargetAssemblyTypeName: EditSceneManager, Assembly-CSharp
+        m_MethodName: NoteSpeedDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10878,8 +10878,8 @@ GameObject:
   - component: {fileID: 480171184}
   - component: {fileID: 480171183}
   m_Layer: 0
-  m_Name: NotesEditor
-  m_TagString: NotesEditor
+  m_Name: NoteEditor
+  m_TagString: NoteEditor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26616,8 +26616,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1996890842}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: NotesSpeedUp
+        m_TargetAssemblyTypeName: EditSceneManager, Assembly-CSharp
+        m_MethodName: NoteSpeedUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36445,8 +36445,8 @@ GameObject:
   - component: {fileID: 1612195178}
   - component: {fileID: 1612195179}
   m_Layer: 0
-  m_Name: NotesSetter
-  m_TagString: NotesSetter
+  m_Name: NoteSetter
+  m_TagString: NoteSetter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36477,13 +36477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cad8a3d42876694993f46830937318f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteColor: {fileID: 11400000, guid: df3247a30d39c6a4f9b0557ac854833d, type: 2}
   judgmentBarTransform: {fileID: 198032537}
-  evenNumberLongNoteColor:
-    defaultColor: {r: 1, g: 1, b: 1, a: 1}
-    holdingColor: {r: 1, g: 1, b: 1, a: 1}
-  oddNumberLongNoteColor:
-    defaultColor: {r: 0, g: 0.78431374, b: 1, a: 1}
-    holdingColor: {r: 0, g: 0.7843138, b: 1, a: 1}
 --- !u!1 &1613140605
 GameObject:
   m_ObjectHideFlags: 0
@@ -45092,8 +45087,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 480171183}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleNotesSetMode
+        m_TargetAssemblyTypeName: NoteEdit, Assembly-CSharp
+        m_MethodName: ToggleNoteSetMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

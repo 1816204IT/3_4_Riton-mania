@@ -133,12 +133,12 @@ public class UserPreference : MonoBehaviour
         offsetValueNum = offsetNum;
     }
 
-    public void NotesSpeedUp()
+    public void NoteSpeedUp()
     {
         noteSpeedNum = (noteSpeedNum <= 9.5f) ? noteSpeedNum + 0.5f : noteSpeedNum;
     }
 
-    public void NotesSpeedDown()
+    public void NoteSpeedDown()
     {
         noteSpeedNum = (noteSpeedNum > 1.0f) ? noteSpeedNum - 0.5f : noteSpeedNum;
     }
@@ -153,7 +153,7 @@ public class UserPreference : MonoBehaviour
         offsetValueNum = (offsetValueNum > -100.0f) ? offsetValueNum - 2 : offsetValueNum;
     }
 
-    public float _notesSpeed
+    public float _noteSpeed
     {
         get { return noteSpeedUnit * noteSpeedNum; }
     }

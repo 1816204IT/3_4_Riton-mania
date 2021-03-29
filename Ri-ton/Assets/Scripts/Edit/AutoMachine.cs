@@ -10,9 +10,9 @@ public class AutoMachine : MonoBehaviour
     [SerializeField]
     private int laneNumer = 0;
     private AudioSource audioSource = null;
-    private NotesSetter notesSetter = null;
+    private NoteSetter noteSetter = null;
     private TimingBar timingBar = null;
-    private NotesEditor notesEditor = null;
+    private NoteEdit noteEditor = null;
     private MusicPlayer musicPlayer = null;
     private NoteDataConverter noteDataConverter = null;
 
@@ -29,13 +29,13 @@ public class AutoMachine : MonoBehaviour
     void Start()
     {
         audioSource = this.GetComponent<AudioSource>();
-        notesSetter = GameObject.FindGameObjectWithTag("NotesSetter").GetComponent<NotesSetter>();
+        noteSetter = GameObject.FindGameObjectWithTag("NoteSetter").GetComponent<NoteSetter>();
         timingBar = GameObject.FindGameObjectWithTag("TimingBarManager").GetComponent<TimingBar>();
-        notesEditor = GameObject.FindGameObjectWithTag("NotesEditor").GetComponent<NotesEditor>();
+        noteEditor = GameObject.FindGameObjectWithTag("NoteEditor").GetComponent<NoteEdit>();
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
 
-        if (audioSource == null || timingBar == null || notesEditor == null
+        if (audioSource == null || timingBar == null || noteEditor == null
              || musicPlayer == null || noteDataConverter == null)
         {
             Debug.Log("nullを検知");
@@ -72,7 +72,7 @@ public class AutoMachine : MonoBehaviour
         if (time >= pool)
         {
             int num = noteDataConverter.ConvertBeatNum(time, LPB);
-            if (notesSetter.IsNote(LPB, num, laneNumer))
+            if (noteSetter.IsNote(LPB, num, laneNumer))
             {
                 if (isClaped == false)
                 {

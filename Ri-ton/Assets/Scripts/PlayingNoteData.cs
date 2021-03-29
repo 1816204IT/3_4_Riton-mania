@@ -38,8 +38,8 @@ public class PlayingNoteData : MonoBehaviour
             return;
         }
         //ノーツを追加&昇順ソートしてセーブ
-        nowMapData.notes.Add(note);
-        nowMapData.notes.Sort((a, b) => (int)(a.num / (float)a.LPB * 1000) - (int)(b.num / (float)b.LPB * 1000));
+        nowMapData.noteList.Add(note);
+        nowMapData.noteList.Sort((a, b) => (int)(a.num / (float)a.LPB * 1000) - (int)(b.num / (float)b.LPB * 1000));
         //セーブ
         SaveNoteData();
     }
@@ -47,7 +47,7 @@ public class PlayingNoteData : MonoBehaviour
     //追加するノーツデータに被りがないかチェックする
     private bool IsNoteExist(MusicDTO.Note note)
     {
-        foreach (MusicDTO.Note n in nowMapData.notes)
+        foreach (MusicDTO.Note n in nowMapData.noteList)
         {
             //同一位置のノーツをはじく
             float a = n.num / (float)n.LPB;
@@ -63,14 +63,14 @@ public class PlayingNoteData : MonoBehaviour
     //ノーツデータを削除する
     public void RemoveNote(MusicDTO.Note note)
     {
-        foreach (MusicDTO.Note n in nowMapData.notes)
+        foreach (MusicDTO.Note n in nowMapData.noteList)
         {
             //同一位置のノーツを削除
             float a = n.num / (float)n.LPB;
             float b = note.num / (float)note.LPB;
             if ((a == b) && (n.lane == note.lane))
             {
-                nowMapData.notes.Remove(n);
+                nowMapData.noteList.Remove(n);
                 break;
             }
         }
@@ -78,6 +78,6 @@ public class PlayingNoteData : MonoBehaviour
 
     public void SaveNoteData()
     {
-        jsonManager.SaveNotesData(nowMapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        jsonManager.SaveNoteData(nowMapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
     }
 }

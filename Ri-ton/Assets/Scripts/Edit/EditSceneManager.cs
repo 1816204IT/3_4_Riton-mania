@@ -36,15 +36,15 @@ public class EditSceneManager : MonoBehaviour
         }
     }
 
-    public void NotesSpeedUp()
+    public void NoteSpeedUp()
     {
-        UserPreference.instance.NotesSpeedUp();
+        UserPreference.instance.NoteSpeedUp();
         noteDataConverter.Init();
     }
 
-    public void NotesSpeedDown()
+    public void NoteSpeedDown()
     {
-        UserPreference.instance.NotesSpeedDown();
+        UserPreference.instance.NoteSpeedDown();
         noteDataConverter.Init();
     }
 }

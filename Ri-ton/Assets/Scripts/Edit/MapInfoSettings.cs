@@ -156,6 +156,6 @@ public class MapInfoSettings : MonoBehaviour
     {
         var mapData = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
         mapData.difficulty = (int)diffGroup.slider.value;
-        jsonManager.SaveNotesData(mapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        jsonManager.SaveNoteData(mapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
     }
 }

@@ -18,7 +18,7 @@ public class MouseFollow : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask = 0;
 
-    private NotesEditor notesEditor = null;
+    private NoteEdit noteEditor = null;
 
     [SerializeField]
     private UnityEngine.UI.Text text = null;
@@ -27,9 +27,9 @@ public class MouseFollow : MonoBehaviour
 
     void Start()
     {
-        notesEditor = GameObject.FindGameObjectWithTag("NotesEditor").GetComponent<NotesEditor>();
+        noteEditor = GameObject.FindGameObjectWithTag("NoteEditor").GetComponent<NoteEdit>();
 
-        if (notesEditor == null)
+        if (noteEditor == null)
         {
             Debug.Log("nullを検知");
         }
@@ -51,12 +51,12 @@ public class MouseFollow : MonoBehaviour
 
         //このスクリプトがアタッチされたゲームオブジェクトを、マウス位置に追従
         //ノーツが置ける位置にスナップさせる
-        Vector3 pos = notesEditor.GetSnappedPos(targetPos);
+        Vector3 pos = noteEditor.GetSnappedPos(targetPos);
         transform.position = pos;
 
         float time = 0.0f;
-        notesEditor.IsClickedPosValid(ref pos, ref time);
-        text.text = "FollowNoteNumber = " + noteDataConverter.ConvertBeatNum(time, notesEditor.LPB);
+        noteEditor.IsClickedPosValid(ref pos, ref time);
+        text.text = "FollowNoteNumber = " + noteDataConverter.ConvertBeatNum(time, noteEditor.LPB);
     }
 
     //マウス座標をプレイエリア平面座標に変換する

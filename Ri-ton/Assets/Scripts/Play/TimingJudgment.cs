@@ -30,7 +30,7 @@ public class TimingJudgment : MonoBehaviour
     // Find関連
     private JsonManager jsonManager = null;
     private MusicPlayer musicPlayer = null;
-    private NotesSetter notesSetter = null;
+    private NoteSetter noteSetter = null;
     private AudioSource audioSource = null;
     private PlayingNoteData playingNoteData = null;
     private NoteDataConverter noteDataConverter = null;
@@ -62,7 +62,7 @@ public class TimingJudgment : MonoBehaviour
         SortNoteData();
 
         // 1秒間で進む距離
-        secondDistance = musicPlayer._clapSpan * UserPreference.instance._notesSpeed;
+        secondDistance = musicPlayer._clapSpan * UserPreference.instance._noteSpeed;
 
         // 判定の長さを代入(秒)
         missLen = secondDistance / 60.0f * (float)missFrame;
@@ -84,7 +84,7 @@ public class TimingJudgment : MonoBehaviour
 
             if (judgmentingLongNote != null)
             {
-                notesSetter.AddHoldingLongNote(judgmentingLongNote); // 光らせるロングノーツとして登録
+                noteSetter.AddHoldingLongNote(judgmentingLongNote); // 光らせるロングノーツとして登録
             }
         }
 
@@ -112,7 +112,7 @@ public class TimingJudgment : MonoBehaviour
 
             if (judgmentingLongNote != null)
             {
-                notesSetter.RemoveHoldingLongNote(judgmentingLongNote);
+                noteSetter.RemoveHoldingLongNote(judgmentingLongNote);
             }
         }
 
@@ -122,7 +122,7 @@ public class TimingJudgment : MonoBehaviour
     // 単発ノーツの判定を行う(ロングノーツの始点を含む)
     private void NoteJudgment()
     {
-        foreach (MusicDTO.Note note in mapData.notes)
+        foreach (MusicDTO.Note note in mapData.noteList)
         {
             // 判定済み、レーン番号違い、ロングノーツの終点　の場合は判定しない
             if (note.isJudgment || (laneNum != note.lane) || (note.type == 2))
@@ -148,7 +148,7 @@ public class TimingJudgment : MonoBehaviour
                 if (note.type == 1)
                 {
                     isNowLongNote = true;
-                    notesSetter.AddHoldingLongNote(note); // 光らせるロングノーツとして登録
+                    noteSetter.AddHoldingLongNote(note); // 光らせるロングノーツとして登録
                     judgmentingLongNote = note; // 現在判定中のロングノーツ
                 }
 
@@ -166,7 +166,7 @@ public class TimingJudgment : MonoBehaviour
                 if (note.type == 1)
                 {
                     isNowLongNote = true;
-                    notesSetter.AddHoldingLongNote(note); // 光らせるロングノーツとして登録
+                    noteSetter.AddHoldingLongNote(note); // 光らせるロングノーツとして登録
                     judgmentingLongNote = note; // 現在判定中のロングノーツ
                 }
 
@@ -201,7 +201,7 @@ public class TimingJudgment : MonoBehaviour
             return;
         }
 
-        foreach (MusicDTO.Note note in mapData.notes)
+        foreach (MusicDTO.Note note in mapData.noteList)
         {
             if (note.isJudgment || laneNum != note.lane || note.isLongNote == false || note.type == 1)
             {
@@ -232,7 +232,7 @@ public class TimingJudgment : MonoBehaviour
     // 叩き損なったノーツを判定する
     private void CheckLostNote()
     {
-        foreach (MusicDTO.Note note in mapData.notes)
+        foreach (MusicDTO.Note note in mapData.noteList)
         {
             if (note.isJudgment || laneNum != note.lane)
             {
@@ -349,7 +349,7 @@ public class TimingJudgment : MonoBehaviour
     private void LongNoteDisassembly()
     {
         List<MusicDTO.Note> addNoteList = new List<MusicDTO.Note>();
-        foreach (MusicDTO.Note note in mapData.notes)
+        foreach (MusicDTO.Note note in mapData.noteList)
         {
             if (note.type == 0)
             {
@@ -381,7 +381,7 @@ public class TimingJudgment : MonoBehaviour
 
         foreach (MusicDTO.Note note in addNoteList)
         {
-            mapData.notes.Add(note);
+            mapData.noteList.Add(note);
         }
     }
 
@@ -398,7 +398,7 @@ public class TimingJudgment : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
-        notesSetter = GameObject.FindGameObjectWithTag("NotesSetter").GetComponent<NotesSetter>();
+        noteSetter = GameObject.FindGameObjectWithTag("NoteSetter").GetComponent<NoteSetter>();
         playingNoteData = GameObject.FindGameObjectWithTag("PlayingNoteData").GetComponent<PlayingNoteData>();
         noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
     }
@@ -442,7 +442,7 @@ public class TimingJudgment : MonoBehaviour
         {
             Debug.LogError("playingNoteData is Null");
         }
-        if (notesSetter == null)
+        if (noteSetter == null)
         {
             Debug.LogError("notesSetter is Null");
         }
@@ -463,12 +463,12 @@ public class TimingJudgment : MonoBehaviour
     //ノーツデータを昇順ソートする
     private void SortNoteData()
     {
-        mapData.notes.Sort((a, b) => (int)(a.num / (float)a.LPB * 1000) - (int)(b.num / (float)b.LPB * 1000));
+        mapData.noteList.Sort((a, b) => (int)(a.num / (float)a.LPB * 1000) - (int)(b.num / (float)b.LPB * 1000));
     }
 
     //最大コンボ数(ノーツの総数)を返す
     public int GetMaxComboNum()
     {
-        return mapData.notes.Count;
+        return mapData.noteList.Count;
     }
 }

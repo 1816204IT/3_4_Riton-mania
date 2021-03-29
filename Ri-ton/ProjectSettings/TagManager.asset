@@ -6,6 +6,28 @@ TagManager:
   tags:
   - MenuHitSE
   - MouseOverSE
+  - JsonManager
+  - NoteOddNumber
+  - LongNoteEvenNumber
+  - LongNoteOddNumber
+  - TimingBarMain
+  - NoteEvenNumber
+  - PlayingNoteData
+  - MusicPlayer
+  - NoteDataConverter
+  - BigNode
+  - MusicSelect
+  - MusicNodesRoot
+  - NoteSetter
+  - TimingBarYellow
+  - TimingBarBlue
+  - TimingBarRed
+  - TimingBarPurple
+  - TimingBarWhite
+  - MapInfoSettings
+  - MouseFollowNote
+  - TimingBarManager
+  - NoteEditor
   layers:
   - Default
   - TransparentFX

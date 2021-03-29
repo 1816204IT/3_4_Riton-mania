@@ -23,12 +23,9 @@ public class AttentionTween : MonoBehaviour
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        TryGetComponent(out rectTransform);
 
-        if (rectTransform == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         startPosY = rectTransform.position.y;
         endPosY = startPosY + moveDistance;
@@ -86,5 +83,13 @@ public class AttentionTween : MonoBehaviour
     public void MoveDirUp()
     {
         moveDistance = Mathf.Abs(moveDistance);
+    }
+
+    private void NullCheck()
+    {
+        if (rectTransform == null)
+        {
+            Debug.LogError("rectTransform is Null");
+        }
     }
 }

@@ -32,14 +32,14 @@ public class OptionSceneManager : MonoBehaviour
         }
     }
 
-    public void NotesSpeedUp()
+    public void NoteSpeedUp()
     {
-        UserPreference.instance.NotesSpeedUp();
+        UserPreference.instance.NoteSpeedUp();
     }
 
-    public void NotesSpeedDown()
+    public void NoteSpeedDown()
     {
-        UserPreference.instance.NotesSpeedDown();
+        UserPreference.instance.NoteSpeedDown();
     }
 
     public void AddOffset()

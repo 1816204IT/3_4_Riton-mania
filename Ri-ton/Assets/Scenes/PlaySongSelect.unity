@@ -7152,7 +7152,7 @@ MonoBehaviour:
     Hard: {fileID: 1707433258}
     Expert: {fileID: 948944180}
   playButtonImage: {fileID: 921759250}
-  colorOfDifficulty: {fileID: 11400000, guid: 13677e46ac76cc540b00f2efbb6d0f80, type: 2}
+  difficultyColor: {fileID: 11400000, guid: 13677e46ac76cc540b00f2efbb6d0f80, type: 2}
 --- !u!1 &1394229925
 GameObject:
   m_ObjectHideFlags: 0
@@ -10585,7 +10585,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficultyButtonsManager: {fileID: 1381601593}
-  colorOfDifficulty: {fileID: 11400000, guid: 13677e46ac76cc540b00f2efbb6d0f80, type: 2}
+  difficultyColor: {fileID: 11400000, guid: 13677e46ac76cc540b00f2efbb6d0f80, type: 2}
 --- !u!114 &1910739254
 MonoBehaviour:
   m_ObjectHideFlags: 0

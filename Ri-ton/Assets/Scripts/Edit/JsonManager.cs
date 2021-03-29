@@ -77,7 +77,7 @@ public class JsonManager : MonoBehaviour
     }
 
     //難易度別にノーツデータをセーブ
-    public void SaveNotesData(MusicDTO.MapData mapData, string musicName, string difficultyName)
+    public void SaveNoteData(MusicDTO.MapData mapData, string musicName, string difficultyName)
     {
         CreatePathBuilder();
 
@@ -116,7 +116,7 @@ public class JsonManager : MonoBehaviour
         if (File.Exists(filePath) == false)
         {
             MusicDTO.MapData mapData = new MusicDTO.MapData();
-            SaveNotesData(mapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+            SaveNoteData(mapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
         }
 
         StreamReader reader = new StreamReader(filePath, System.Text.Encoding.GetEncoding("utf-8"));

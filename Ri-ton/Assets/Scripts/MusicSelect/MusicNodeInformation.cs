@@ -16,7 +16,7 @@ public class MusicNodeInformation : MonoBehaviour
     private Image bigNodeBgImage = null;
 
     [SerializeField]
-    private ColorOfDifficulty colorOfDifficulty;
+    private DifficultyColor difficultyColor;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class MusicNodeInformation : MonoBehaviour
 
     public void UpdateInformationByChangeDifficulty()
     {
-        Color color = colorOfDifficulty.GetColorOfDifficulty(SelectedMap.instance._difficultyName);
+        Color color = difficultyColor.GetDifficultyColor(SelectedMap.instance._difficultyName);
 
         bigNodeBgImage.color = color;
         foreach (Image image in nodeImages)
