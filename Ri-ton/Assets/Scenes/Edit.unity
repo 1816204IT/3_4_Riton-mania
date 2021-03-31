@@ -35732,7 +35732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7f02d6805511142ac5706a793b2b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JudgmentBar: {fileID: 198032535}
+  judgmentBar: {fileID: 198032535}
 --- !u!4 &1572308560
 Transform:
   m_ObjectHideFlags: 0

@@ -40,14 +40,7 @@ public class TutorialPlaySongSelect : MonoBehaviour
     void Start()
     {
         textNowTween = text.transform.GetComponent<AttentionTween>();
-
-        if (tutorialCanvas == null || unMask == null || text == null
-            || arrow == null || textNowTween == null || navigationCharacter == null
-            || blackUnderLay == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         TutorialScenarioInit();
 
         if (UserPreference.instance.isTutorial == false)
@@ -339,5 +332,16 @@ public class TutorialPlaySongSelect : MonoBehaviour
         data.text = "以上、ナビゲーターのライムでした！";
         data.isArrowButtom = true; // 矢印画像を表示しないので意味ない
         list.Add(data);
+    }
+
+    private void NullCheck()
+    {
+        tutorialCanvas.IsNull(nameof(tutorialCanvas));
+        unMask.IsNull(nameof(unMask));
+        text.IsNull(nameof(text));
+        arrow.IsNull(nameof(arrow));
+        textNowTween.IsNull(nameof(textNowTween));
+        navigationCharacter.IsNull(nameof(navigationCharacter));
+        blackUnderLay.IsNull(nameof(blackUnderLay));
     }
 }

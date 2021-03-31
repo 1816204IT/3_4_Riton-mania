@@ -18,10 +18,7 @@ public class MyRanking : MonoBehaviour
 
     void Start()
     {
-        if (resultDataInput == null || myRankingText == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     // Update is called once per frame
@@ -44,5 +41,11 @@ public class MyRanking : MonoBehaviour
                 myRankingText.color = Color.yellow;
             }
         }
+    }
+
+    private void NullCheck()
+    {
+        resultDataInput.IsNull(nameof(resultDataInput));
+        myRankingText.IsNull(nameof(myRankingText));
     }
 }

@@ -32,17 +32,7 @@ public class MapInfoSettings : MonoBehaviour
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
-
-        if (jsonManager == null || musicPlayer == null
-            || offsetGroup.obj == null || offsetGroup.slider == null
-            || offsetGroup.inputField == null 
-            || bpmGroup.obj == null || bpmGroup.slider == null
-            || bpmGroup.inputField == null 
-            || diffGroup.obj == null || diffGroup.slider == null
-            || diffGroup.inputField == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         offsetGroup.slider.value = musicPlayer.offset * 100;
         float textValue = offsetGroup.slider.value / 100.0f;
@@ -52,7 +42,7 @@ public class MapInfoSettings : MonoBehaviour
         textValue = bpmGroup.slider.value / 100.0f;
         bpmGroup.inputField.text = textValue.ToString();
 
-        diffGroup.slider.value = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName).difficulty;
+        diffGroup.slider.value = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName).difficulty;
 
         textValue = diffGroup.slider.value / 10.0f;
         diffGroup.inputField.text = textValue.ToString();
@@ -140,22 +130,37 @@ public class MapInfoSettings : MonoBehaviour
 
     public void SaveOffset()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance._musicName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
         mapInfo.offset = (int)offsetGroup.slider.value;
         jsonManager.SaveMapInfo(mapInfo);
     }
 
     public void SaveBPM()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance._musicName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
         mapInfo.bpm = (int)bpmGroup.slider.value;
         jsonManager.SaveMapInfo(mapInfo);
     }
 
     public void SaveDifficulty()
     {
-        var mapData = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        var mapData = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
         mapData.difficulty = (int)diffGroup.slider.value;
-        jsonManager.SaveNoteData(mapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        jsonManager.SaveNoteData(mapData, SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
+    }
+
+    private void NullCheck()
+    {
+        jsonManager.IsNull(nameof(jsonManager));
+        musicPlayer.IsNull(nameof(musicPlayer));
+        offsetGroup.obj.IsNull(nameof(offsetGroup.obj));
+        offsetGroup.slider.IsNull(nameof(offsetGroup.slider));
+        offsetGroup.inputField.IsNull(nameof(offsetGroup.inputField));
+        bpmGroup.obj.IsNull(nameof(bpmGroup.obj));
+        bpmGroup.slider.IsNull(nameof(bpmGroup.slider));
+        bpmGroup.inputField.IsNull(nameof(bpmGroup.inputField));
+        diffGroup.obj.IsNull(nameof(diffGroup.obj));
+        diffGroup.slider.IsNull(nameof(diffGroup.slider));
+        diffGroup.inputField.IsNull(nameof(diffGroup.inputField));
     }
 }

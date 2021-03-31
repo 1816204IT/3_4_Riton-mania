@@ -23,12 +23,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
     private void Start()
     {
         TitleSceneManager.prevSceneName = "PlaySongSelect";
-        
-        if (playerName == null || settingCanvas == null || myCharacter == null
-            || tutorialCanvas == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         playerName.text = FindObjectOfType<UserAuth>()._playerName;
 
@@ -91,5 +86,13 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         {
             settingCanvas.SetActive(true);
         }
+    }
+
+    private void NullCheck()
+    {
+        playerName.IsNull(nameof(playerName));
+        settingCanvas.IsNull(nameof(settingCanvas));
+        myCharacter.IsNull(nameof(myCharacter));
+        tutorialCanvas.IsNull(nameof(tutorialCanvas));
     }
 }

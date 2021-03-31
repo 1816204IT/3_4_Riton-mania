@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Ritonmania;
 
 /// <summary>
 /// 難易度ボタン管理クラス
@@ -47,9 +48,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         musicNodeInformation = GameObject.FindGameObjectWithTag("MusicNodesRoot").GetComponent<MusicNodeInformation>();
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
 
-        if (buttonImageObj.Easy == null || buttonImageObj.Normal == null || buttonImageObj.Hard == null
-            || buttonImageObj.Expert == null || bigNodeBgImage == null || musicNodeInformation == null
-            || playButtonImage == null)
+
         {
             Debug.Log("nullを検知");
         }
@@ -81,7 +80,7 @@ public class DifficultyButtonsManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            int num = (int)SelectedMap.instance._nowDifficulty;
+            int num = (int)SelectedMap.instance.nowDifficulty;
             num = (num + 1) % (int)DifficultyType.MAX;
             
             if (num == (int)DifficultyType.EASY)
@@ -105,7 +104,7 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     public void Initialize()
     {
-        string diffName = SelectedMap.instance._difficultyName;
+        string diffName = SelectedMap.instance.difficultyName;
         if (diffName == "Easy")
         {
             OnClickEasyButton();
@@ -156,8 +155,8 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     private void OnClickDifficultyButton(string diffName, DifficultyType diffType, Color diffColor)
     {
-        SelectedMap.instance._difficultyName = diffName;
-        SelectedMap.instance._nowDifficulty = diffType;
+        SelectedMap.instance.difficultyName = diffName;
+        SelectedMap.instance.nowDifficulty = diffType;
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransform[(int)diffType].sizeDelta;
         buttonsRectTransform[(int)diffType].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
@@ -187,5 +186,16 @@ public class DifficultyButtonsManager : MonoBehaviour
     public void OnClickExpertButton()
     {
         OnClickDifficultyButton("Expert", DifficultyType.EXPERT, difficultyColor.expert);
+    }
+
+    private void NullCheck()
+    {
+        buttonImageObj.Easy.IsNull(nameof(buttonImageObj.Easy));
+        buttonImageObj.Normal.IsNull(nameof(buttonImageObj.Normal));
+        buttonImageObj.Hard.IsNull(nameof(buttonImageObj.Hard));
+        buttonImageObj.Expert.IsNull(nameof(buttonImageObj.Expert));
+        bigNodeBgImage.IsNull(nameof(bigNodeBgImage));
+        musicNodeInformation.IsNull(nameof(musicNodeInformation));
+        playButtonImage.IsNull(nameof(playButtonImage));
     }
 }

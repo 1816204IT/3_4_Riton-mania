@@ -33,22 +33,17 @@ public class BigNodeInformation : MonoBehaviour
     void Awake()
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
-        if (jacketImage == null || musicNameText == null || bpmText == null || jsonManager == null
-            || authorText == null || mapperText == null || difficultyText == null || englishFont == null
-            || jananeseFont == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
         InformationUpdate();
     }
 
     public void InformationUpdate()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance._musicName);
-        MusicDTO.MapData mapData = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
+        MusicDTO.MapData mapData = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
 
         //曲名の更新
-        musicNameText.text = SelectedMap.instance._musicName;
+        musicNameText.text = SelectedMap.instance.musicName;
         //BPMの更新
         float bpmTextValue = mapInfo.bpm / 100.0f;
         bpmText.text = bpmTextValue.ToString();
@@ -61,7 +56,7 @@ public class BigNodeInformation : MonoBehaviour
         mapperText.font = englishFont;
         mapperText.text = mapData.mapperName;
         //ジャケット画像の変更
-        jacketImage.sprite = MusicInfoList.instance.GetBgImage(SelectedMap.instance._musicIndex);
+        jacketImage.sprite = MusicInfoList.instance.GetBgImage(SelectedMap.instance.musicIndex);
 
         //文字化け対策用チェック
         MapperNameSpecialCheck();
@@ -70,8 +65,8 @@ public class BigNodeInformation : MonoBehaviour
     // マッパー名の日本語が文字化けするので特別にチェック関数を用意
     private void MapperNameSpecialCheck()
     {
-        string musicName = SelectedMap.instance._musicName;
-        string diffName = SelectedMap.instance._difficultyName;
+        string musicName = SelectedMap.instance.musicName;
+        string diffName = SelectedMap.instance.difficultyName;
 
         // 出汁男のチェック
         if ( (musicName == "くるくる" && diffName == "Hard") 
@@ -92,5 +87,18 @@ public class BigNodeInformation : MonoBehaviour
                 mapperText.text = "巻きパン";
             }
         }
+    }
+
+    private void NullCheck()
+    {
+        jacketImage.IsNull(nameof(jacketImage));
+        musicNameText.IsNull(nameof(musicNameText));
+        bpmText.IsNull(nameof(bpmText));
+        jsonManager.IsNull(nameof(jsonManager));
+        authorText.IsNull(nameof(authorText));
+        mapperText.IsNull(nameof(mapperText));
+        difficultyText.IsNull(nameof(difficultyText));
+        englishFont.IsNull(nameof(englishFont));
+        jananeseFont.IsNull(nameof(jananeseFont));
     }
 }

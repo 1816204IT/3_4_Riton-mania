@@ -21,6 +21,7 @@ public class BlinkingTween : MonoBehaviour
 
     void Start()
     {
+        uiComponent = GetComponent<MaskableGraphic>();
         NullCheck();
         CreateTween();
     }
@@ -56,11 +57,6 @@ public class BlinkingTween : MonoBehaviour
     // Nullチェックを行う
     private void NullCheck()
     {
-        uiComponent = GetComponent<MaskableGraphic>();
-
-        if (uiComponent == null)
-        {
-            Debug.LogError("uiComponent is Null");
-        }
+        uiComponent.IsNull(nameof(uiComponent));
     }
 }

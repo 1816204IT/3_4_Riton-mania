@@ -62,16 +62,8 @@ public class PickUpCharacterManager : MonoBehaviour
 
     void Start()
     {
-        if (characters.Length == 0 || scaleTweens.Length == 0 || moveEndPos == null
-            || headerInfo == null|| whiteBackImage == null || colorBackImage == null
-            || characterProfileData == null || characterNameText == null || profile == null
-            || nowArrow == null || pleasePickCharacter == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         profile.SetActive(false);
-
         // キャラクターの番号を取得
         pickingCharacterNum = UserPreference.instance._characterNum;
         // nowの矢印のX座標移動
@@ -261,5 +253,23 @@ public class PickUpCharacterManager : MonoBehaviour
     private void UnEnablePleasePickCharacterObj()
     {
         pleasePickCharacter.SetActive(false);
+    }
+
+    private void NullCheck()
+    {
+        moveEndPos.IsNull(nameof(moveEndPos));
+        headerInfo.IsNull(nameof(headerInfo));
+        whiteBackImage.IsNull(nameof(whiteBackImage));
+        colorBackImage.IsNull(nameof(colorBackImage));
+        characterProfileData.IsNull(nameof(characterProfileData));
+        characterNameText.IsNull(nameof(characterNameText));
+        profile.IsNull(nameof(profile));
+        nowArrow.IsNull(nameof(nowArrow));
+        pleasePickCharacter.IsNull(nameof(pleasePickCharacter));
+
+        if (characters.Length == 0)
+        {
+            Debug.LogError("characters is Null");
+        }
     }
 }

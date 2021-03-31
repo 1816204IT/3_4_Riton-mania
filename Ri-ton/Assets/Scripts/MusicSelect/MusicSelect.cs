@@ -16,13 +16,8 @@ public class MusicSelect : MonoBehaviour
 
     void Start()
     {
-        if (audioPlayer == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
-        //diffName = SelectedMap.instance._difficultyName;
-        SetNewMusic(SelectedMap.instance._musicIndex);
+        NullCheck();
+        SetNewMusic(SelectedMap.instance.musicIndex);
     }
 
     public void SetNewMusic(int inMusicNameIndex)
@@ -32,7 +27,6 @@ public class MusicSelect : MonoBehaviour
         audioPlayer.Play();
     }
 
-    //====================ボタン押下時のイベント====================
     public void SceneChangeToEdit()
     {
         SceneManager.LoadScene("Edit");
@@ -53,5 +47,10 @@ public class MusicSelect : MonoBehaviour
         {
             Debug.Log("無効なシーン名です");
         }
+    }
+
+    private void NullCheck()
+    {
+        audioPlayer.IsNull(nameof(audioPlayer));
     }
 }

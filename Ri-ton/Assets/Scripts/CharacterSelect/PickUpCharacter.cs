@@ -36,13 +36,7 @@ public class PickUpCharacter : MonoBehaviour
     {
         Button button = GetComponent<Button>();
         rectTransform = GetComponent<RectTransform>();
-
-        if (character == null || canvas == null || pickUpCharacterManager == null
-            || button == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         defaultScale = rectTransform.localScale;
         // キャラクターが選択された時のコールバックを設定
         button.onClick.AddListener(OnPickUp);
@@ -116,5 +110,12 @@ public class PickUpCharacter : MonoBehaviour
         obj.transform.position = character.transform.position;
         obj.GetComponent<Image>().raycastTarget = false;    // レイキャストターゲットOFF
         return obj;
+    }
+
+    private void NullCheck()
+    {
+        character.IsNull(nameof(character));
+        canvas.IsNull(nameof(canvas));
+        pickUpCharacterManager.IsNull(nameof(pickUpCharacterManager));
     }
 }

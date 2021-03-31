@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class TimingBar : MonoBehaviour
 {
     [SerializeField]
-    private GameObject JudgmentBar = null;
+    private GameObject judgmentBar = null;
 
     private MusicPlayer musicPlayer = null;
     private List<GameObject> whiteBars = new List<GameObject>();
@@ -34,12 +34,7 @@ public class TimingBar : MonoBehaviour
         FindColorBarObject(purpleBars, "TimingBarPurple");
         FindColorBarObject(yellowBars, "TimingBarYellow");
 
-        if (JudgmentBar == null || noteEditor == null
-            || whiteBars.Count == 0 || redBars.Count == 0 || 
-            blueBars.Count == 0 || purpleBars.Count == 0 || yellowBars.Count == 0 || musicPlayer == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     private void FindColorBarObject(in List<GameObject> barList, string tagName)
@@ -53,7 +48,7 @@ public class TimingBar : MonoBehaviour
 
     void Update()
     {
-        float jPosY = JudgmentBar.transform.position.y + UserPreference.instance._userOffset;
+        float jPosY = judgmentBar.transform.position.y + UserPreference.instance._userOffset;
         float length = (musicPlayer.offsetedTime % (musicPlayer._clapSpan * 4)) * UserPreference.instance._noteSpeed;
 
         //判定バーに最も近いタイミングバーを基点とする
@@ -249,5 +244,32 @@ public class TimingBar : MonoBehaviour
     public void ToggleShowColorBar()
     {
         isShowBar = !isShowBar;
+    }
+
+    private void NullCheck()
+    {
+        judgmentBar.IsNull(nameof(judgmentBar));
+        noteEditor.IsNull(nameof(noteEditor));
+        musicPlayer.IsNull(nameof(musicPlayer));
+        if (whiteBars.Count == 0)
+        {
+            Debug.LogError("whiteBars.Count is Null");
+        }
+        if (redBars.Count == 0)
+        {
+            Debug.LogError("redBars is Null");
+        }
+        if (blueBars.Count == 0)
+        {
+            Debug.LogError("blueBars.Count == 0 is Null");
+        }
+        if (purpleBars.Count == 0)
+        {
+            Debug.LogError("purpleBars is Null");
+        }
+        if (yellowBars.Count == 0)
+        {
+            Debug.LogError("yellowBars is Null");
+        }
     }
 }

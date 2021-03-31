@@ -21,11 +21,7 @@ public class MusicNodeInformation : MonoBehaviour
     void Start()
     {
         bigNodeBgImage = GameObject.FindGameObjectWithTag("BigNode").GetComponent<Image>();
-
-        if (difficultyButtonsManager == null || bigNodeBgImage == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         nodeList = this.GetComponent<MusicNodeInstance>().nodeGameObjectList;
         foreach (GameObject obj in nodeList)
@@ -38,12 +34,18 @@ public class MusicNodeInformation : MonoBehaviour
 
     public void UpdateInformationByChangeDifficulty()
     {
-        Color color = difficultyColor.GetDifficultyColor(SelectedMap.instance._difficultyName);
+        Color color = difficultyColor.GetDifficultyColor(SelectedMap.instance.difficultyName);
 
         bigNodeBgImage.color = color;
         foreach (Image image in nodeImages)
         {
             image.color = color;
         }
+    }
+
+    private void NullCheck()
+    {
+        difficultyButtonsManager.IsNull(nameof(difficultyButtonsManager));
+        bigNodeBgImage.IsNull(nameof(bigNodeBgImage));
     }
 }

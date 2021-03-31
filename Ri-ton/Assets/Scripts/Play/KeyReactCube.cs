@@ -27,6 +27,7 @@ public class KeyReactCube : MonoBehaviour
 
     void Start()
     {
+        NullCheck();
         Array.Resize(ref cubeBloomList, cubeObjList.Length);
 
         for (int i = 0; i < cubeObjList.Length; i++)
@@ -104,6 +105,14 @@ public class KeyReactCube : MonoBehaviour
                     indexList.RemoveAt(randNum);//indexListのrandNum番目の要素を削除
                 }
             }
+        }
+    }
+
+    private void NullCheck()
+    {
+        if (cubeObjList.Length == 0)
+        {
+            Debug.LogError("cubeObjList is Null");
         }
     }
 }

@@ -14,13 +14,9 @@ public class OptionSceneManager : MonoBehaviour
 
     void Awake()
     {
-        if (offsetText == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
-        SelectedMap.instance._musicName = "castle";
-        SelectedMap.instance._difficultyName = "Easy";
+        NullCheck();
+        SelectedMap.instance.musicName = "castle";
+        SelectedMap.instance.difficultyName = "Easy";
         offsetText.text = UserPreference.instance._userOffset.ToString();
     }
 
@@ -52,5 +48,10 @@ public class OptionSceneManager : MonoBehaviour
     {
         UserPreference.instance.SubtractOffset();
         offsetText.text = UserPreference.instance._userOffset.ToString();
+    }
+
+    private void NullCheck()
+    {
+        offsetText.IsNull(nameof(offsetText));
     }
 }

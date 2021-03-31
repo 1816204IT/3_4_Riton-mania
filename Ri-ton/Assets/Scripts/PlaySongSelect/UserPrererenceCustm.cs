@@ -53,11 +53,7 @@ public class UserPrererenceCustm : MonoBehaviour
     void Start()
     {
         mouseOverSE = GameObject.FindGameObjectWithTag("MouseOverSE").GetComponent<AudioSource>();
-
-        if (slider == null || sliderMinValueText == null || mouseOverSE == null || soundVolumeManager == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         SettingItemInit(ref speedItem,  ref speedSettingObj);
         SettingItemInit(ref timingItem, ref timingSettingObj);
@@ -213,4 +209,12 @@ public class UserPrererenceCustm : MonoBehaviour
         slider.value = volume * 20.0f;  // sliderは0～20の範囲なので20倍する
     }
     #endregion
+
+    private void NullCheck()
+    {
+        slider.IsNull(nameof(slider));
+        sliderMinValueText.IsNull(nameof(sliderMinValueText));
+        mouseOverSE.IsNull(nameof(mouseOverSE));
+        soundVolumeManager.IsNull(nameof(soundVolumeManager));
+    }
 }

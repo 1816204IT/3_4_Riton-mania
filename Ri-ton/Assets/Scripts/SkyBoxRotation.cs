@@ -10,10 +10,6 @@ public class SkyBoxRotation : MonoBehaviour
     public float _anglePerFrame = 0.1f;    // 1フレームに何度回すか[unit : deg]
     float _rot = 0.0f;
 
-    void Start()
-    {
-    }
-
     void Update()
     {
         _rot += _anglePerFrame;

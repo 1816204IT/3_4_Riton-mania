@@ -15,11 +15,7 @@ public class KeyEffect : MonoBehaviour
     void Start()
     {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
-
-        if (spriteRenderer == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         color = spriteRenderer.color;
     }
@@ -41,5 +37,10 @@ public class KeyEffect : MonoBehaviour
     {
         alpha = 1.0f;
         maxVisibleCnt = 0.3f;
+    }
+
+    private void NullCheck()
+    {
+        spriteRenderer.IsNull(nameof(spriteRenderer));
     }
 }

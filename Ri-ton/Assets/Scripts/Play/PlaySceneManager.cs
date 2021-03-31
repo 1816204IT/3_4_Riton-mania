@@ -56,7 +56,7 @@ public class PlaySceneManager : MonoBehaviour
     private NCMB.HighScore prePlayHighScore;
 
     [SerializeField]
-    private GameObject BloomCubes = null;
+    private GameObject bloomCubes = null;
     [SerializeField]
     private GameObject hexagons = null;
 
@@ -64,18 +64,10 @@ public class PlaySceneManager : MonoBehaviour
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
+        NullCheck();
 
-        if (musicPlayer == null || menuObj == null || jsonManager == null
-             || playStartTimer == null || accCounter == null || comboCounter == null
-             || scoreCounter == null || musicName == null || difficultyName == null
-             || moveMaskMat == null || tutorialCanvas == null || BloomCubes == null
-             || hexagons == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
-        musicName.text = SelectedMap.instance._musicName;
-        difficultyName.text = SelectedMap.instance._difficultyName;
+        musicName.text = SelectedMap.instance.musicName;
+        difficultyName.text = SelectedMap.instance.difficultyName;
 
         // カーソルの表示をOFFにする
         Cursor.visible = false;
@@ -96,13 +88,13 @@ public class PlaySceneManager : MonoBehaviour
         if (UserPreference.instance.isBloomCubes)
         {
             UserPreference.instance.isBloomCubes = false;
-            BloomCubes.SetActive(true);
+            bloomCubes.SetActive(true);
             hexagons.SetActive(false);
         }
         else
         {
             UserPreference.instance.isBloomCubes = true;
-            BloomCubes.SetActive(false);
+            bloomCubes.SetActive(false);
             hexagons.SetActive(true);
         }
     }
@@ -279,7 +271,7 @@ public class PlaySceneManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("shaderのパラメーター名が存在しません");
+            Debug.LogError("shaderのパラメーター名が存在しません");
         }
     }
 
@@ -293,5 +285,22 @@ public class PlaySceneManager : MonoBehaviour
     {
         PlayHexAnim();
         SceneManager.LoadScene(TitleSceneManager.prevSceneName);
+    }
+
+    private void NullCheck()
+    {
+        musicPlayer.IsNull(nameof(musicPlayer));
+        menuObj.IsNull(nameof(menuObj));
+        jsonManager.IsNull(nameof(jsonManager));
+        playStartTimer.IsNull(nameof(playStartTimer));
+        accCounter.IsNull(nameof(accCounter));
+        comboCounter.IsNull(nameof(comboCounter));
+        scoreCounter.IsNull(nameof(scoreCounter));
+        musicName.IsNull(nameof(musicName));
+        difficultyName.IsNull(nameof(difficultyName));
+        moveMaskMat.IsNull(nameof(moveMaskMat));
+        tutorialCanvas.IsNull(nameof(tutorialCanvas));
+        bloomCubes.IsNull(nameof(bloomCubes));
+        hexagons.IsNull(nameof(hexagons));
     }
 }

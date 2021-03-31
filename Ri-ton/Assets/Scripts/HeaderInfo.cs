@@ -14,11 +14,7 @@ public class HeaderInfo : MonoBehaviour
 
     void Start()
     {
-        if (playerNameText == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         SetPlayerNameColor();
     }
 
@@ -37,5 +33,10 @@ public class HeaderInfo : MonoBehaviour
         int charaNum = UserPreference.instance._characterNum;
         Color color = CharacterInfoList.instance.GetColor(charaNum);
         playerNameText.color = color;
+    }
+
+    private void NullCheck()
+    {
+	    playerNameText.IsNull(nameof(playerNameText));
     }
 }

@@ -36,13 +36,8 @@ public class ScoreView : MonoBehaviour
 
     void Start()
     {
-        if (nodePrefab == null || rankingContent == null || noDataText == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         PathBuilder = new StringBuilder();
-
         lBoard = new LeaderBoard();
 
         // フラグ初期化
@@ -195,5 +190,12 @@ public class ScoreView : MonoBehaviour
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.instance.GetSmallSprite(rankers.rank);
         //順位を設定
         node.transform.Find("RankNumber").GetComponent<Text>().text = (i + 1).ToString();
+    }
+
+    private void NullCheck()
+    {
+        nodePrefab.IsNull(nameof(nodePrefab));
+        rankingContent.IsNull(nameof(rankingContent));
+        noDataText.IsNull(nameof(noDataText));
     }
 }

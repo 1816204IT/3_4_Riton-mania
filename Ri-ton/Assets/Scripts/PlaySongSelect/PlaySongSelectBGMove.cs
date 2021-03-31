@@ -20,11 +20,7 @@ public class PlaySongSelectBGMove : MonoBehaviour
     void Start()
     {
         rt = GetComponent<RectTransform>();
-
-        if (rt == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -50,5 +46,10 @@ public class PlaySongSelectBGMove : MonoBehaviour
                 isRotAdd = true;
             }
         }
+    }
+
+    private void NullCheck()
+    {
+	    rt.IsNull(nameof(rt));
     }
 }

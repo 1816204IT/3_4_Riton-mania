@@ -19,11 +19,7 @@ public class PlayStartTimer : MonoBehaviour
     {
         text = this.GetComponent<Text>();
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
-
-        if (text == null || musicPlayer == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         int timeText = ((int)timer * 10 + 19) / 10;
         text.text = timeText.ToString();
@@ -59,5 +55,11 @@ public class PlayStartTimer : MonoBehaviour
     {
         timer = 3.0f;
         text.enabled = true;
+    }
+
+    private void NullCheck()
+    {
+        text.IsNull(nameof(text));
+        musicPlayer.IsNull(nameof(musicPlayer));
     }
 }

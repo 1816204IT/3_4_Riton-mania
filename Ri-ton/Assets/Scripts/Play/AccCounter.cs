@@ -20,11 +20,7 @@ public class AccCounter : MonoBehaviour
     void Start()
     {
         text = this.GetComponent<Text>();
-
-        if (text == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
         text.text = "100.00%";
     }
 
@@ -62,5 +58,10 @@ public class AccCounter : MonoBehaviour
         }
 
         text.text = acc.ToString("f2") + "%";
+    }
+
+    private void NullCheck()
+    {
+        text.IsNull(nameof(text));
     }
 }

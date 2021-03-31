@@ -16,11 +16,7 @@ public class ScaleTween : MonoBehaviour
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
-        if (rectTransform == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         rectTransform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
@@ -46,5 +42,10 @@ public class ScaleTween : MonoBehaviour
         tween.SetEase(Ease.OutQuint);
 
         tween.Play();
+    }
+
+    private void NullCheck()
+    {
+        rectTransform.IsNull(nameof(rectTransform));
     }
 }

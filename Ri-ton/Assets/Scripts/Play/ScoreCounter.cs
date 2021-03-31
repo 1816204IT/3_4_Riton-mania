@@ -20,11 +20,7 @@ public class ScoreCounter : MonoBehaviour
     void Start()
     {
         text = this.GetComponent<Text>();
-
-        if (text == null || timingJudgment == null || accCounter == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         //0.1秒後にunitScoreを設定する
         Invoke("SetUnitScore", 0.1f);
@@ -77,5 +73,12 @@ public class ScoreCounter : MonoBehaviour
     public int GetScore()
     { 
         return (int)score;
+    }
+
+    private void NullCheck()
+    {
+        text.IsNull(nameof(text));
+        timingJudgment.IsNull(nameof(timingJudgment));
+        accCounter.IsNull(nameof(accCounter));
     }
 }

@@ -16,11 +16,7 @@ public class EditSceneManager : MonoBehaviour
     void Start()
     {
         noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
-        
-        if (noteDataConverter == null || musicPlayButton == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -46,5 +42,11 @@ public class EditSceneManager : MonoBehaviour
     {
         UserPreference.instance.NoteSpeedDown();
         noteDataConverter.Init();
+    }
+
+    private void NullCheck()
+    {
+        noteDataConverter.IsNull(nameof(noteDataConverter));
+        musicPlayButton.IsNull(nameof(musicPlayButton));
     }
 }

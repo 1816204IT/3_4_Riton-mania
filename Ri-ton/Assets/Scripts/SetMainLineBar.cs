@@ -25,10 +25,7 @@ public class SetMainLineBar : MonoBehaviour
             mainBars.Add(bar);
         }
 
-        if (musicPlayer == null || JudgmentBar == null || baseTimingBar == null || mainBars.Count == 0)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -96,6 +93,18 @@ public class SetMainLineBar : MonoBehaviour
                 }
             }
             tmpPosY = tmpPosY + len;
+        }
+    }
+
+    private void NullCheck()
+    {
+        musicPlayer.IsNull(nameof(musicPlayer));
+        JudgmentBar.IsNull(nameof(JudgmentBar));
+        baseTimingBar.IsNull(nameof(baseTimingBar));
+
+        if (mainBars.Count == 0)
+        {
+            Debug.Log("mainBars is Null");
         }
     }
 }

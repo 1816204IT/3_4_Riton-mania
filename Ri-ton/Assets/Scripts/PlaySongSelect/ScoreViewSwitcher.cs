@@ -23,12 +23,7 @@ public class ScoreViewSwitcher : MonoBehaviour
 
     void Start()
     {
-        if (rankingView == null || myBestView == null || rankingTextObj == null
-            || myBestTextObj == null || noDataTextObj == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         Init();
     }
 
@@ -56,5 +51,14 @@ public class ScoreViewSwitcher : MonoBehaviour
     {
         isModeHighScore = !isModeHighScore;
         Init();
+    }
+
+    private void NullCheck()
+    {
+        rankingView.IsNull(nameof(rankingView));
+        myBestView.IsNull(nameof(myBestView));
+        rankingTextObj.IsNull(nameof(rankingTextObj));
+        myBestTextObj.IsNull(nameof(myBestTextObj));
+        noDataTextObj.IsNull(nameof(noDataTextObj));
     }
 }

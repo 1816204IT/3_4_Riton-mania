@@ -17,15 +17,7 @@ public class LoginFlow : MonoBehaviour
 
     void Start()
     {
-        Init();
-    }
-
-    private void Init()
-    {
-        if (logInManager == null || titleSceneManager == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     private void Update()
@@ -72,5 +64,11 @@ public class LoginFlow : MonoBehaviour
         }
 
         isOnce = true;
+    }
+
+    private void NullCheck()
+    {
+        logInManager.IsNull(nameof(logInManager));
+        titleSceneManager.IsNull(nameof(titleSceneManager));
     }
 }

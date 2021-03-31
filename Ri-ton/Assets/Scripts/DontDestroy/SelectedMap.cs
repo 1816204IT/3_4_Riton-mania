@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ritonmania;
 
-public enum DifficultyType
+namespace Ritonmania
 {
-    EASY,
-    NORMAL,
-    HARD,
-    EXPERT,
-    MAX
+    public enum DifficultyType
+    {
+        EASY,
+        NORMAL,
+        HARD,
+        EXPERT,
+        MAX
+    }
 }
 
 /// <summary>
@@ -17,12 +21,11 @@ public enum DifficultyType
 public class SelectedMap : MonoBehaviour
 {
     public static SelectedMap instance { get; private set; }
+    public int musicIndex { get; set; } = 0;
+    public string musicName { get; set; } = "";
+    public string difficultyName { get; set; } = "";
 
-    private int musicIndex = 0;
-    private string musicName = "";
-    private string difficultyName = "";
-
-    private DifficultyType nowDifficulty = DifficultyType.EASY;
+    public DifficultyType nowDifficulty { get; set; } = DifficultyType.EASY;
 
     void Awake()
     {
@@ -39,30 +42,6 @@ public class SelectedMap : MonoBehaviour
 
         musicName = MusicInfoList.instance.GetMusicName(musicIndex);
         difficultyName = "Easy";
-    }
-
-    public int _musicIndex
-    {
-        get { return musicIndex; }
-        set { musicIndex = value; }
-    }
-
-    public string _musicName
-    {
-        get { return musicName; }
-        set { musicName = value; }
-    }
-
-    public string _difficultyName
-    {
-        get { return difficultyName; }
-        set { difficultyName = value; }
-    }
-
-    public DifficultyType _nowDifficulty
-    {
-        get { return nowDifficulty; }
-        set { nowDifficulty = value; }
     }
 
     public string GetMusicEnglishName()

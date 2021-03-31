@@ -116,7 +116,7 @@ public class JsonManager : MonoBehaviour
         if (File.Exists(filePath) == false)
         {
             MusicDTO.MapData mapData = new MusicDTO.MapData();
-            SaveNoteData(mapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+            SaveNoteData(mapData, SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
         }
 
         StreamReader reader = new StreamReader(filePath, System.Text.Encoding.GetEncoding("utf-8"));

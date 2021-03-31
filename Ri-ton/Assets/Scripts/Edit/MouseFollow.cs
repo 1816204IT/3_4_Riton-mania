@@ -28,11 +28,7 @@ public class MouseFollow : MonoBehaviour
     void Start()
     {
         noteEditor = GameObject.FindGameObjectWithTag("NoteEditor").GetComponent<NoteEdit>();
-
-        if (noteEditor == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -84,5 +80,10 @@ public class MouseFollow : MonoBehaviour
     public Vector3 GetMouseFollowNotePos()
     {
         return transform.position;
+    }
+
+    private void NullCheck()
+    {
+        noteEditor.IsNull(nameof(noteEditor));
     }
 }

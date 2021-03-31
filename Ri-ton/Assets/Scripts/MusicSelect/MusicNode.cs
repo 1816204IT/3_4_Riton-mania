@@ -22,12 +22,7 @@ public class MusicNode : MonoBehaviour
     {
         musicNodeScroll = this.transform.parent.gameObject.GetComponent<MusicNodeScroll>();
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
-
-        if (musicNodeScroll == null || button == null || musicNameText == null
-            || bigNode == null || jacketImage == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         button.onClick.AddListener(OnClickNode);
     }
@@ -45,5 +40,14 @@ public class MusicNode : MonoBehaviour
     public void SetJacketImage()
     {
         jacketImage.sprite = MusicInfoList.instance.GetBgImage(myNodeNum);
+    }
+
+    private void NullCheck()
+    {
+        musicNodeScroll.IsNull(nameof(musicNodeScroll));
+        button.IsNull(nameof(button));
+        musicNameText.IsNull(nameof(musicNameText));
+        bigNode.IsNull(nameof(bigNode));
+        jacketImage.IsNull(nameof(jacketImage));
     }
 }

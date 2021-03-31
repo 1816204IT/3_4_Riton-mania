@@ -34,11 +34,7 @@ public class TitleSceneManager : MonoBehaviour
 
     private void Start()
     {
-        if (logIningObj == null || logIningObj == null || iconSettingObj == null
-            || soundVolumeManager == null || bgm == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     public void ButtonInit()
@@ -144,5 +140,14 @@ public class TitleSceneManager : MonoBehaviour
     public void ChangeCharacterSelectScene()
     {
         SceneManager.LoadScene("CharacterSelect");
+    }
+
+    private void NullCheck()
+    {
+        logIningObj.IsNull(nameof(logIningObj));
+        logIningObj.IsNull(nameof(logIningObj));
+        iconSettingObj.IsNull(nameof(iconSettingObj));
+        soundVolumeManager.IsNull(nameof(soundVolumeManager));
+        bgm.IsNull(nameof(bgm));
     }
 }

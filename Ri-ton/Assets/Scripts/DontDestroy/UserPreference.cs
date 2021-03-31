@@ -68,10 +68,7 @@ public class UserPreference : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         userAuth = FindObjectOfType<UserAuth>();
-        if (userAuth == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         noteSpeedUnit = (max_note_speed - min_note_speed) / 10.0f;
         offsetValueUnit = (max_offset_value - min_offset_value) / 10.0f;
@@ -212,5 +209,10 @@ public class UserPreference : MonoBehaviour
         musicVolume = data.musicVolume / 100.0f;
         seVolume = data.seVolume / 100.0f;
         isTutorial = data.isTutorial;
+    }
+
+    private void NullCheck()
+    {
+        userAuth.IsNull(nameof(userAuth));
     }
 }

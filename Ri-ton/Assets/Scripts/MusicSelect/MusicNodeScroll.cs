@@ -60,8 +60,6 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
         musicSelect = GameObject.FindGameObjectWithTag("MusicSelect").GetComponent<MusicSelect>();
 
-        if (nodeList.Count == 0 || bigNode == null || musicSelect == null || menuHitSE == null
-            || tutorialCanvas == null)
         {
             Debug.Log("nullを検知");
         }
@@ -74,7 +72,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
 
         nodeWidth = nodeList[0].sizeDelta.x * smallScall;
-        SelectedNodeChangesFunc(SelectedMap.instance._musicIndex, SelectedMap.instance._musicName);
+        SelectedNodeChangesFunc(SelectedMap.instance.musicIndex, SelectedMap.instance.musicName);
     }
 
     private void Update()
@@ -129,14 +127,14 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        int musicIndex = SelectedMap.instance._musicIndex;
+        int musicIndex = SelectedMap.instance.musicIndex;
         for (int i = 0; i < scrollInputList.Count; i++)
         {
             ScrollDir dir = scrollInputList[i];
             scrollInputList.RemoveAt(i);
             if (dir == ScrollDir.LEFT)
             {
-                if (musicIndex < MusicInfoList.instance._musicNum - 1)
+                if (musicIndex < MusicInfoList.instance.MusicNum - 1)
                 {
                     musicIndex++;
                     SelectedNodeChangesFunc(musicIndex, MusicInfoList.instance.GetMusicName(musicIndex));
@@ -163,7 +161,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        int musicNum = MusicInfoList.instance._musicNum;
+        int musicNum = MusicInfoList.instance.MusicNum;
         int moveEndNodeCnt = 0;
         for (int i = 0; i < musicNum; i++)
         {
@@ -182,7 +180,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             isMoving = false;
             //曲を再生
-            musicSelect.SetNewMusic(SelectedMap.instance._musicIndex);
+            musicSelect.SetNewMusic(SelectedMap.instance.musicIndex);
             //ランキング更新
             if (SceneManager.GetActiveScene().name == "PlaySongSelect")
             {
@@ -249,8 +247,8 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        SelectedMap.instance._musicIndex = musicIndex;
-        SelectedMap.instance._musicName = musicName;
+        SelectedMap.instance.musicIndex = musicIndex;
+        SelectedMap.instance.musicName = musicName;
         //大画面情報の更新
         bigNode.InformationUpdate();
         //ノードの移動情報をセットする
@@ -264,14 +262,14 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         movementInfoList.Clear();   // リストクリア
         isMoving = true;
         float posX = 0;
-        int musicNum = MusicInfoList.instance._musicNum;
+        int musicNum = MusicInfoList.instance.MusicNum;
 
         for (int i = 0; i < musicNum; i++)
         {
             MovementInfo info = new MovementInfo();
             
             //座標の移動
-            int distanceFromMedian = i - SelectedMap.instance._musicIndex;
+            int distanceFromMedian = i - SelectedMap.instance.musicIndex;
             posX = nodeWidth * distanceFromMedian;
             posX += spacing * distanceFromMedian;
             if (distanceFromMedian > 0)
@@ -287,7 +285,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             info.addPos = (info.movedPos - nowPos) * (1.0f / moveCompleteTime);
 
             //スケーリング
-            if (i == SelectedMap.instance._musicIndex)
+            if (i == SelectedMap.instance.musicIndex)
             {
                 info.movedScale = Vector3.one;
             }
@@ -351,5 +349,18 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public void OnPointerExit(PointerEventData eventData)
     {
         isOnPointerEnter = false;
+    }
+
+    private void NullCheck()
+    {
+        if (nodeList.Count == 0)
+        {
+            Debug.LogError("nodeList is Null");
+        }
+
+        bigNode.IsNull(nameof(bigNode));
+        musicSelect.IsNull(nameof(musicSelect));
+        menuHitSE.IsNull(nameof(menuHitSE));
+        tutorialCanvas.IsNull(nameof(tutorialCanvas));
     }
 }

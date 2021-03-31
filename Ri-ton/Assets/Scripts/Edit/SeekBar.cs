@@ -18,11 +18,7 @@ public class SeekBar : MonoBehaviour
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         rhythmKeeper = GameObject.Find("RhythmKeeper").GetComponent<RhythmKeeper>();
         seekBar = this.GetComponent<Slider>();
-
-        if (seekBar == null || rhythmKeeper == null || musicPlayer == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -33,5 +29,12 @@ public class SeekBar : MonoBehaviour
     public void AdjustMusicOfSeekBar()
     {
         musicPlayer.AdjustAudioSourceTime(seekBar.value);
+    }
+
+    private void NullCheck()
+    {
+        musicPlayer.IsNull(nameof(musicPlayer));
+        rhythmKeeper.IsNull(nameof(rhythmKeeper));
+        musicPlayer.IsNull(nameof(musicPlayer));
     }
 }

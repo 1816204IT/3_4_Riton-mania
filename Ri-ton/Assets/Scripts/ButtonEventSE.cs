@@ -25,10 +25,7 @@ public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             mouseOverSE = GameObject.FindGameObjectWithTag("MouseOverSE").GetComponent<AudioSource>();
             menuHitSE = GameObject.FindGameObjectWithTag("MenuHitSE").GetComponent<AudioSource>();
         }
-        if (mouseOverSE == null || menuHitSE == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         GetComponent<Button>().onClick.AddListener(OnPlayMenuHitSE);
     }
@@ -47,5 +44,11 @@ public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPlayMenuHitSE()
     {
         menuHitSE.Play();
+    }
+
+    private void NullCheck()
+    {
+        mouseOverSE.IsNull(nameof(mouseOverSE));
+        menuHitSE.IsNull(nameof(menuHitSE));
     }
 }

@@ -22,10 +22,7 @@ public class TapEffect : MonoBehaviour
 
     void Start()
     {
-        if (hexParticle_L == null || hexParticle_R == null || p_camera == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -50,5 +47,12 @@ public class TapEffect : MonoBehaviour
             hexParticle_R.transform.position = pos_lane_3;
             hexParticle_R.Emit(1);
         }
+    }
+
+    private void NullCheck()
+    {
+        hexParticle_L.IsNull(nameof(hexParticle_L));
+        hexParticle_R.IsNull(nameof(hexParticle_R));
+        p_camera.IsNull(nameof(p_camera));
     }
 }

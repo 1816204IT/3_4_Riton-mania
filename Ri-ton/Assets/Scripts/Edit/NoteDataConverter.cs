@@ -17,12 +17,7 @@ public class NoteDataConverter : MonoBehaviour
     void Start()
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
-
-        if (JudgmentBar == null || musicPlayer == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         Init();
     }
 
@@ -45,5 +40,11 @@ public class NoteDataConverter : MonoBehaviour
         float timeIgnoredPos =  (baseBeatSpanLen / LPB) * num; // 曲再生時間0の時のY座標
         float timeLen = musicPlayer.offsetedTime * UserPreference.instance._noteSpeed; // 現在の曲の再生で進んだ距離
         return timeIgnoredPos - timeLen;
+    }
+
+    private void NullCheck()
+    {
+        JudgmentBar.IsNull(nameof(JudgmentBar));
+        musicPlayer.IsNull(nameof(musicPlayer));
     }
 }

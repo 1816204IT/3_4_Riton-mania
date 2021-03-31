@@ -16,11 +16,7 @@ public class MusicProgressBar : MonoBehaviour
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         rectTransform = this.GetComponent<RectTransform>();
-
-        if (musicPlayer == null || rectTransform == null || canvas == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -42,5 +38,12 @@ public class MusicProgressBar : MonoBehaviour
         RectTransformUtility.ScreenPointToWorldPointInRectangle(rect, screenPos, canvas.worldCamera, out result);
 
         return result;
+    }
+
+    private void NullCheck()
+    {
+        musicPlayer.IsNull(nameof(musicPlayer));
+        rectTransform.IsNull(nameof(rectTransform));
+        canvas.IsNull(nameof(canvas));
     }
 }

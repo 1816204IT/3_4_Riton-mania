@@ -30,7 +30,7 @@ public class MusicInfoList : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
     
-    public int _musicNum
+    public int MusicNum
     {
         get { return musicNames.Length; }
     }

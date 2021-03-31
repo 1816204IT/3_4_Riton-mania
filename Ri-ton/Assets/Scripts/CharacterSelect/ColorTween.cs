@@ -19,14 +19,10 @@ public class ColorTween : MonoBehaviour
     void Start()
     {
         image = GetComponent<Image>();
+        NullCheck();
         Color c = image.color;
         AlphaSet(ref c);
         image.color = c;
-
-        if (image == null)
-        {
-            Debug.Log("nullを検知");
-        }
     }
 
     public void PlayColorTween(Color changeColor)
@@ -46,5 +42,10 @@ public class ColorTween : MonoBehaviour
     {
         Color c = color;
         color = new Color(c.r, c.g, c.b, alpha);
+    }
+
+    private void NullCheck()
+    {
+        image.IsNull(nameof(image));
     }
 }

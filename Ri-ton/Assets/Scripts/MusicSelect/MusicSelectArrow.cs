@@ -32,11 +32,7 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     void Start()
     {
-        if (arrowRectTransform == null || animSynchro == null || arrowImage == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         TweenInit();
         defaultColor = arrowImage.color;
     }
@@ -84,5 +80,12 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void PlayAnimation()
     {
         sequence.Play();
+    }
+
+    private void NullCheck()
+    {
+        arrowRectTransform.IsNull(nameof(arrowRectTransform));
+        animSynchro.IsNull(nameof(animSynchro));
+        arrowImage.IsNull(nameof(arrowImage));
     }
 }

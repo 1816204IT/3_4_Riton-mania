@@ -15,14 +15,10 @@ public class PlayingNoteData : MonoBehaviour
     void Awake()
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
-
-        if (jsonManager == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         // ノーツデータの読み込み
-        nowMapData = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        nowMapData = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
     }
 
     public ref MusicDTO.MapData GetNowMapData()
@@ -78,6 +74,11 @@ public class PlayingNoteData : MonoBehaviour
 
     public void SaveNoteData()
     {
-        jsonManager.SaveNoteData(nowMapData, SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        jsonManager.SaveNoteData(nowMapData, SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
+    }
+
+    private void NullCheck()
+    {
+        jsonManager.IsNull(nameof(jsonManager));
     }
 }

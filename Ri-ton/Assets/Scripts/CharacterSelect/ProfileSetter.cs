@@ -25,10 +25,7 @@ public class ProfileSetter : MonoBehaviour
 
     void Start()
     {
-        if (age == null || birthDay == null || likes == null || illustrator == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     public void UpdateProfile(Ritonmania.CharacterData data)
@@ -40,5 +37,13 @@ public class ProfileSetter : MonoBehaviour
         likes.text          = data.likes;
         unLikes.text        = data.unLikes;
         illustrator.text    = data.illustrator;
+    }
+
+    private void NullCheck()
+    {
+        age.IsNull(nameof(age));
+        birthDay.IsNull(nameof(birthDay));
+        likes.IsNull(nameof(likes));
+        illustrator.IsNull(nameof(illustrator));
     }
 }

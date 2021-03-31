@@ -11739,7 +11739,7 @@ MonoBehaviour:
   difficultyName: {fileID: 1961676802}
   moveMaskMat: {fileID: 2100000, guid: 517cc6ba93198074e9e7d27ac3d90d35, type: 2}
   tutorialCanvas: {fileID: 1433610466}
-  BloomCubes: {fileID: 1591363878}
+  bloomCubes: {fileID: 1591363878}
   hexagons: {fileID: 309213592}
 --- !u!4 &910765998
 Transform:

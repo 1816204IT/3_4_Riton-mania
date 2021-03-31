@@ -15,14 +15,17 @@ public class SyncSizeDelta : MonoBehaviour
     void Start()
     {
         myRectTransform = GetComponent<RectTransform>();
-        if (myRectTransform == null || targetRectTransform == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
     {
         myRectTransform.sizeDelta = targetRectTransform.sizeDelta;
+    }
+
+    private void NullCheck()
+    {
+        myRectTransform.IsNull(nameof(myRectTransform));
+        targetRectTransform.IsNull(nameof(targetRectTransform));
     }
 }

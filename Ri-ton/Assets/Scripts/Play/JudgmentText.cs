@@ -15,11 +15,7 @@ public class JudgmentText : MonoBehaviour
     void Start()
     {
         text = this.GetComponent<Text>();
-
-        if (text == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -53,5 +49,10 @@ public class JudgmentText : MonoBehaviour
         alpha = 255;
         text.color = new Color(255, 0, 0, alpha);
         text.text = "MISS";
+    }
+
+    private void NullCheck()
+    {
+        text.IsNull(nameof(text));
     }
 }

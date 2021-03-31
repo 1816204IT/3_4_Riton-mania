@@ -24,19 +24,9 @@ public class MusicPlayer : MonoBehaviour
 
     void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayPause();
-        }
-
-
         audioSource = this.GetComponent<AudioSource>();
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
-
-        if (audioSource == null || jsonManager == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         MapInfo mapInfo;
         if (SceneManager.GetActiveScene().name == "Option")
@@ -45,7 +35,7 @@ public class MusicPlayer : MonoBehaviour
         }
         else
         {
-            mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance._musicName);
+            mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
             audioSource.clip = MusicInfoList.instance.GetMusic(mapInfo.musicName);
         }
 
@@ -191,5 +181,11 @@ public class MusicPlayer : MonoBehaviour
     public float _clapSpan
     {
         get { return 60.0f / bpm; }
+    }
+
+    private void NullCheck()
+    {
+        audioSource.IsNull(nameof(audioSource));
+        jsonManager.IsNull(nameof(jsonManager));
     }
 }

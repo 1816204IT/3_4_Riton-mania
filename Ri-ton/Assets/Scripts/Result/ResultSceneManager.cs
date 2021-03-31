@@ -12,10 +12,7 @@ public class ResultSceneManager : MonoBehaviour
    void Start()
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
-        if (jsonManager == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         // カーソルの表示をONにする
         Cursor.visible = true;
@@ -32,5 +29,10 @@ public class ResultSceneManager : MonoBehaviour
     public void OnClickBackButton()
     {
         SceneManager.LoadScene("PlaySongSelect");
+    }
+
+    private void NullCheck()
+    {
+        jsonManager.IsNull(nameof(jsonManager));
     }
 }

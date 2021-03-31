@@ -57,7 +57,7 @@ public class TimingJudgment : MonoBehaviour
         FindObjects();
         NullCheck();
 
-        mapData = jsonManager.LoadMapData(SelectedMap.instance._musicName, SelectedMap.instance._difficultyName);
+        mapData = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
         LongNoteDisassembly();
         SortNoteData();
 
@@ -403,63 +403,6 @@ public class TimingJudgment : MonoBehaviour
         noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
     }
 
-    // Nullチェックを行う
-    private void NullCheck()
-    {
-        if (jsonManager == null)
-        {
-            Debug.LogError("jsonManager is Null");
-        }
-        if (musicPlayer == null)
-        {
-            Debug.LogError("musicPlayer is Null");
-        }
-        if (judgmentText == null)
-        {
-            Debug.LogError("judgmentText is Null");
-        }
-        if (audioSource == null)
-        {
-            Debug.LogError("audioSource is Null");
-        }
-        if (comboCounter == null)
-        {
-            Debug.LogError("comboCounter is Null");
-        }
-        if (accCounter == null)
-        {
-            Debug.LogError("accCounter is Null");
-        }
-        if (scoreCounter == null)
-        {
-            Debug.LogError("scoreCounter is Null");
-        }
-        if (keyEffect == null)
-        {
-            Debug.LogError("keyEffect is Null");
-        }
-        if (playingNoteData == null)
-        {
-            Debug.LogError("playingNoteData is Null");
-        }
-        if (noteSetter == null)
-        {
-            Debug.LogError("notesSetter is Null");
-        }
-        if (timingText == null)
-        {
-            Debug.LogError("timingText is Null");
-        }
-        if (noteDataConverter == null)
-        {
-            Debug.LogError("noteDataConverter is Null");
-        }
-        if (fastSlowText == null)
-        {
-            Debug.LogError("fastOrSlowText is Null");
-        }
-    }
-
     //ノーツデータを昇順ソートする
     private void SortNoteData()
     {
@@ -470,5 +413,23 @@ public class TimingJudgment : MonoBehaviour
     public int GetMaxComboNum()
     {
         return mapData.noteList.Count;
+    }
+
+    // Nullチェックを行う
+    private void NullCheck()
+    {
+        jsonManager.IsNull(nameof(jsonManager));
+        musicPlayer.IsNull(nameof(musicPlayer));
+        judgmentText.IsNull(nameof(judgmentText));
+        audioSource.IsNull(nameof(audioSource));
+        comboCounter.IsNull(nameof(comboCounter));
+        accCounter.IsNull(nameof(accCounter));
+        scoreCounter.IsNull(nameof(scoreCounter));
+        keyEffect.IsNull(nameof(keyEffect));
+        playingNoteData.IsNull(nameof(playingNoteData));
+        noteSetter.IsNull(nameof(noteSetter));
+        timingText.IsNull(nameof(timingText));
+        noteDataConverter.IsNull(nameof(noteDataConverter));
+        fastSlowText.IsNull(nameof(fastSlowText));
     }
 }

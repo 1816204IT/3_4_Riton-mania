@@ -25,10 +25,7 @@ public class CharacterFluffyTween : MonoBehaviour
     {
         rectTransform = GetComponent<RectTransform>();
 
-        if (rectTransform == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         startPosY = rectTransform.position.y;
         endPosY = startPosY + moveDistance;
@@ -60,5 +57,10 @@ public class CharacterFluffyTween : MonoBehaviour
         sequence.SetLoops(-1, LoopType.Yoyo);
 
         sequence.Play();
+    }
+
+    private void NullCheck()
+    {
+        rectTransform.IsNull(nameof(rectTransform));
     }
 }

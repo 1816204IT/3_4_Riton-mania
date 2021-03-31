@@ -13,14 +13,9 @@ public class ArrowAnimationSynchro : MonoBehaviour
     [SerializeField]
     private MusicSelectArrow rightArrow = null;
 
-    private bool isOnPointerEnter = false;
-
     void Start()
     {
-        if (leftArrow == null || rightArrow == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     public void PauseAnimation()
@@ -33,5 +28,11 @@ public class ArrowAnimationSynchro : MonoBehaviour
     {
         leftArrow.PlayAnimation();
         rightArrow.PlayAnimation();
+    }
+
+    private void NullCheck()
+    {
+        leftArrow.IsNull(nameof(leftArrow));
+        rightArrow.IsNull(nameof(rightArrow));
     }
 }

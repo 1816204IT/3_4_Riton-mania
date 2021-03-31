@@ -35,11 +35,7 @@ public class AutoMachine : MonoBehaviour
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
 
-        if (audioSource == null || timingBar == null || noteEditor == null
-             || musicPlayer == null || noteDataConverter == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -92,5 +88,14 @@ public class AutoMachine : MonoBehaviour
                 pool = ajustTime + span;
             }
         }
+    }
+
+    private void NullCheck()
+    {
+        audioSource.IsNull(nameof(audioSource));
+        timingBar.IsNull(nameof(timingBar));
+        noteEditor.IsNull(nameof(noteEditor));
+        musicPlayer.IsNull(nameof(musicPlayer));
+        noteDataConverter.IsNull(nameof(noteDataConverter));
     }
 }

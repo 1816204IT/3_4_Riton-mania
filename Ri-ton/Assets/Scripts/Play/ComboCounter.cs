@@ -17,12 +17,7 @@ public class ComboCounter : MonoBehaviour
     void Start()
     {
         text = this.GetComponent<Text>();
-
-        if (text == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         defauliFontSize = text.fontSize;
         fontSize = defauliFontSize;
     }
@@ -51,5 +46,10 @@ public class ComboCounter : MonoBehaviour
     {
         comboCnt = 0;
         text.text = "";
+    }
+
+    private void NullCheck()
+    {
+        text.IsNull(nameof(text));
     }
 }

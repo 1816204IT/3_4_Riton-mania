@@ -23,7 +23,7 @@ public class AttentionTween : MonoBehaviour
 
     void Start()
     {
-        TryGetComponent(out rectTransform);
+        rectTransform = GetComponent<RectTransform>();
 
         NullCheck();
 
@@ -87,9 +87,6 @@ public class AttentionTween : MonoBehaviour
 
     private void NullCheck()
     {
-        if (rectTransform == null)
-        {
-            Debug.LogError("rectTransform is Null");
-        }
+        rectTransform.IsNull(nameof(rectTransform));
     }
 }

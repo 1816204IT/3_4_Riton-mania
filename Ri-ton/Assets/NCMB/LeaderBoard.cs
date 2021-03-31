@@ -13,7 +13,7 @@ public class LeaderBoard
     public void FetchRank(int currentScore)
     {
         // データスコアの「HighScore」から検索
-        string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance._difficultyName;
+        string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance.difficultyName;
         NCMBQuery<NCMBObject> rankQuery = new NCMBQuery<NCMBObject>(className);
         rankQuery.WhereGreaterThan("Score", currentScore);
         rankQuery.CountAsync((int count, NCMBException e) => {
@@ -38,7 +38,7 @@ public class LeaderBoard
         viewRankingNum = 0;
 
         // データストアの「HighScore」クラスから検索
-        string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance._difficultyName;
+        string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance.difficultyName;
         NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
         query.OrderByDescending("Score");
         query.Limit = viewRankingNumMax; // 何人まで取得するか

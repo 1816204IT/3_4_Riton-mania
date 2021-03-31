@@ -12,10 +12,7 @@ public class SetCursor : MonoBehaviour
 
     void Start()
     {
-        if (cursor == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        cursor.IsNull(nameof(cursor));
 
         Vector2 hotSpot = new Vector2(180 / 2, 180 / 2);
         Cursor.SetCursor(cursor, hotSpot, CursorMode.ForceSoftware);

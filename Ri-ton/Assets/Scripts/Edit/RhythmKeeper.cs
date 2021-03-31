@@ -18,11 +18,7 @@ public class RhythmKeeper : MonoBehaviour
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         audioSource = this.GetComponent<AudioSource>();
         mapInfoSettings = GameObject.FindGameObjectWithTag("MapInfoSettings").GetComponent<MapInfoSettings>();
-
-        if (audioSource == null || musicPlayer == null || mapInfoSettings == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
 
         pool += musicPlayer._clapSpan;
     }
@@ -57,5 +53,12 @@ public class RhythmKeeper : MonoBehaviour
             float ajustTime = time - (time % span);
             pool = time + span;
         }
+    }
+
+    private void NullCheck()
+    {
+        audioSource.IsNull(nameof(audioSource));
+        musicPlayer.IsNull(nameof(musicPlayer));
+        mapInfoSettings.IsNull(nameof(mapInfoSettings));
     }
 }

@@ -49,13 +49,8 @@ public class ResultDataInput : MonoBehaviour
 
     void Start()
     {
-        if (scoreText == null || accText == null || comboText == null || perfectText == null
-             || goodText == null || missText == null || characterImage == null || rankImage == null
-             || difficultyText == null || musicTitleText == null || newRecordText == null)
-        {
-            Debug.Log("nullを検知");
-        }
-    
+        NullCheck();
+ 
         scoreText.text = data.score.ToString("N0");
         accText.text = (data.acc / 100.0f).ToString();
         comboText.text = data.combo.ToString() + "/" + data.maxCombo.ToString();
@@ -72,8 +67,8 @@ public class ResultDataInput : MonoBehaviour
             newRecordText.text = "";
         }
 
-        musicTitleText.text = SelectedMap.instance._musicName;
-        difficultyText.text = SelectedMap.instance._difficultyName;
+        musicTitleText.text = SelectedMap.instance.musicName;
+        difficultyText.text = SelectedMap.instance.difficultyName;
         characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.instance._characterNum);
 
         // -----最高成績なら文字色を黄色にする-----
@@ -107,5 +102,20 @@ public class ResultDataInput : MonoBehaviour
     public int GetScore()
     { 
         return data.score;
+    }
+
+    private void NullCheck()
+    {
+        scoreText.IsNull(nameof(scoreText));
+        accText.IsNull(nameof(accText));
+        comboText.IsNull(nameof(comboText));
+        perfectText.IsNull(nameof(perfectText));
+        goodText.IsNull(nameof(goodText));
+        missText.IsNull(nameof(missText));
+        characterImage.IsNull(nameof(characterImage));
+        rankImage.IsNull(nameof(rankImage));
+        difficultyText.IsNull(nameof(difficultyText));
+        musicTitleText.IsNull(nameof(musicTitleText));
+        newRecordText.IsNull(nameof(newRecordText));
     }
 }

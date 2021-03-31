@@ -22,11 +22,7 @@ public class SettingSliderMask : MonoBehaviour
     private void Init()
     {
         rt = this.GetComponent<RectTransform>();
-
-        if (slider == null || rt == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
         sliderWidth = slider.GetComponent<RectTransform>().sizeDelta.x;
         sliderMaxValue = slider.GetComponent<Slider>().maxValue;
     }
@@ -43,5 +39,11 @@ public class SettingSliderMask : MonoBehaviour
         Vector2 tmpSizeDelta = rt.sizeDelta;
         float deltaX = value / sliderMaxValue * sliderWidth;
         rt.sizeDelta = new Vector2(deltaX, tmpSizeDelta.y);
+    }
+
+    private void NullCheck()
+    {
+        slider.IsNull(nameof(slider));
+        rt.IsNull(nameof(rt));
     }
 }

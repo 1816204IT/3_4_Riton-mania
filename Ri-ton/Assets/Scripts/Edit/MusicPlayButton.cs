@@ -22,11 +22,7 @@ public class MusicPlayButton : MonoBehaviour
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         button = this.GetComponent<Button>();
         image = this.GetComponent<Image>();
-
-        if (button == null || image == null || musicPlayer == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
@@ -58,5 +54,12 @@ public class MusicPlayButton : MonoBehaviour
                 musicPlayer.audioSource.UnPause();
             }
         }
+    }
+
+    private void NullCheck()
+    {
+        button.IsNull(nameof(button));
+        image.IsNull(nameof(image));
+        musicPlayer.IsNull(nameof(musicPlayer));
     }
 }

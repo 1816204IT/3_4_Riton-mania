@@ -16,15 +16,17 @@ public class RecttransformFollow : MonoBehaviour
     void Start()
     {
         rt = GetComponent<RectTransform>();
-
-        if (target == null || rt == null)
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
     }
 
     void Update()
     {
         rt.position = target.position;
+    }
+
+    private void NullCheck()
+    {
+        target.IsNull(nameof(target));
+        rt.IsNull(nameof(rt));
     }
 }
