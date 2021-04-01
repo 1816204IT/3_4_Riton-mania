@@ -21,13 +21,13 @@ public class MusicNodeInstance : MonoBehaviour
 
     private void PrefabInstance()
     {
-        for(int i = 0; i < MusicInfoList.instance.MusicNum; i++)
+        for(int i = 0; i < MusicInfoList.instance.MusicNum(); i++)
         {
             nodeGameObjectList.Add(Instantiate(prefab, this.transform, false));
             nodeRectTransformList.Add(nodeGameObjectList[i].GetComponent<RectTransform>());
         }
 
-        for(int i = 0; i < MusicInfoList.instance.MusicNum; i++)
+        for(int i = 0; i < MusicInfoList.instance.MusicNum(); i++)
         {
             MusicNode musicNode = nodeGameObjectList[i].GetComponent<MusicNode>();
             musicNode.myNodeNum = i;

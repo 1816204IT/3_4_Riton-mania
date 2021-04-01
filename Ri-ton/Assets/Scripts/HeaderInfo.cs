@@ -20,7 +20,7 @@ public class HeaderInfo : MonoBehaviour
 
     private void Update()
     {
-        string playerName = FindObjectOfType<UserAuth>()._playerName;
+        string playerName = FindObjectOfType<UserAuth>().playerName;
         if (playerName == null)
         {
             playerName = "NOT LOGIN";
@@ -30,7 +30,7 @@ public class HeaderInfo : MonoBehaviour
 
     public void SetPlayerNameColor()
     {
-        int charaNum = UserPreference.instance._characterNum;
+        int charaNum = UserPreference.instance.GetCharacterNumber();
         Color color = CharacterInfoList.instance.GetColor(charaNum);
         playerNameText.color = color;
     }

@@ -74,7 +74,7 @@ public class LogInManager : MonoBehaviour
         if (logInState == LogInState.trying)
         {
             // ログイン成功
-            if (userAuth._logInState == LogInState.succeeded)
+            if (userAuth.logInState == LogInState.succeeded)
             {
                 logInState = LogInState.non;
                 SucceededLogInFunc();
@@ -82,11 +82,11 @@ public class LogInManager : MonoBehaviour
                 reactionText.text = "ログイン成功!";
                 titleSceneManager.buttonState = ButtonState.IconFetching;
                 titleSceneManager.ButtonInit();
-                UserPreference.instance._characterIconName = id;
+                UserPreference.instance.SetCharacterIconName(id);
                 UserPreference.instance.CharacterIconFetch(); // サーバーからキャラクター画像を取得
             }
             // ログイン失敗
-            if (userAuth._logInState == LogInState.failed)
+            if (userAuth.logInState == LogInState.failed)
             {
                 logInState = LogInState.non;
                 reactionText.color = Color.red;
@@ -97,7 +97,7 @@ public class LogInManager : MonoBehaviour
         if (signUpState == SignUpState.trying)
         {
             // サインアップ成功
-            if (userAuth._signUpState == SignUpState.succeeded)
+            if (userAuth.signUpState == SignUpState.succeeded)
             {
                 signUpState = SignUpState.non;
                 SucceededLogInFunc();
@@ -105,11 +105,11 @@ public class LogInManager : MonoBehaviour
                 reactionText.text = "ユーザー登録成功!";
                 titleSceneManager.buttonState = ButtonState.IconSetting;    // キャラクター画像未登録なのでButtonState.IconSettingとする
                 titleSceneManager.ButtonInit();
-                UserPreference.instance._characterIconName = id;
+                UserPreference.instance.SetCharacterIconName(id);
                 UserPreference.instance.CharacterIconFetch(); // サーバーからキャラクター画像を取得
             }
             // サインアップ失敗
-            if (userAuth._signUpState == SignUpState.failed)
+            if (userAuth.signUpState == SignUpState.failed)
             {
                 signUpState = SignUpState.non;
                 reactionText.color = Color.red;
@@ -122,7 +122,7 @@ public class LogInManager : MonoBehaviour
     {
         logIningObj.SetActive(true);
         logOutingObj.SetActive(false);
-        logIningText.text = userAuth._playerName + "  " + "でログイン中";
+        logIningText.text = userAuth.playerName + "  " + "でログイン中";
     }
 
     public void InitLogOuting()
@@ -193,7 +193,7 @@ public class LogInManager : MonoBehaviour
     {
         logOutingObj.SetActive(false);
         logIningObj.SetActive(true);
-        userAuth._password = inputFieldPassword.text;
+        userAuth.password = inputFieldPassword.text;
         UserPreference.instance.Save();
         logIningText.text = id + "  " + "でログイン中";
         time = waitTime;    // ログイン後の待ち時間

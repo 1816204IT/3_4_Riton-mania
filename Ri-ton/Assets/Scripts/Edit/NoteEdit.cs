@@ -199,21 +199,21 @@ public class NoteEdit : MonoBehaviour
     private int GetLaneNum(float posX)
     {
         posX += 300; // この300は何だろう
-        return (int)(posX / UserPreference.instance._note_size_x);
+        return (int)(posX / UserPreference.instance.NoteSizeX());
     }
 
     //クリックしたY座標がaudioSource.timeの何秒に当たるかを返す
     private float GetAudioSourceTime(float mousePosY)
     {
         float len = mousePosY - judgmentBar.transform.position.y;
-        len -= musicPlayer.offset * UserPreference.instance._noteSpeed;
-        return musicPlayer.audioSource.time + (len / UserPreference.instance._noteSpeed);
+        len -= musicPlayer.offset * UserPreference.instance.NoteSpeed();
+        return musicPlayer.audioSource.time + (len / UserPreference.instance.NoteSpeed());
     }
 
     public Vector3 GetSnappedPos(Vector3 pos)
     {
-        float posX = UserPreference.instance._notePosXOfLaneZero + GetLaneNum(pos.x) * UserPreference.instance._note_size_x;
-        float unit = musicPlayer._clapSpan * (UserPreference.instance._noteSpeed / LPB);
+        float posX = UserPreference.instance.NotePosXOfLaneZero() + GetLaneNum(pos.x) * UserPreference.instance.NoteSizeX()  ;
+        float unit = musicPlayer.ClapSpan() * (UserPreference.instance.NoteSpeed() / LPB);
         float basePos = timingBar.barBasePosY;
         float num = basePos - pos.y;
         float len = num % unit;

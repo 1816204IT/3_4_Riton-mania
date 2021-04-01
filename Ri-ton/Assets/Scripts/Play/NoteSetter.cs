@@ -173,7 +173,7 @@ public class NoteSetter : MonoBehaviour
             if (num > usedNoteNum)
             {
                 Vector3 tmpPos = n.transform.position;
-                float posX = UserPreference.instance._notePosXOfLaneZero + note.lane * UserPreference.instance._note_size_x;
+                float posX = UserPreference.instance.NotePosXOfLaneZero() + note.lane * UserPreference.instance.NoteSizeX();
                 float posY = noteDataConverter.ConvertDistance(note.LPB, note.num);
                 posY += judgmentBarTransform.position.y;
                 if (posY > 0 && posY < 2400)
@@ -286,7 +286,7 @@ public class NoteSetter : MonoBehaviour
         float endNotePosY = noteDataConverter.ConvertDistance(eNote.LPB, eNote.num);
         endNotePosY += judgmentBarTransform.position.y;
         scale = endNotePosY - startNotePosY + 1;
-        float notePosX = UserPreference.instance._notePosXOfLaneZero + note.lane * UserPreference.instance._note_size_x;
+        float notePosX = UserPreference.instance.NotePosXOfLaneZero() + note.lane * UserPreference.instance.NoteSizeX();
         return new Vector3(notePosX, (startNotePosY + scale / 2), 1); ;
     }
 

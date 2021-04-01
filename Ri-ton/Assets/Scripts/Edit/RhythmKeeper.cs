@@ -20,13 +20,13 @@ public class RhythmKeeper : MonoBehaviour
         mapInfoSettings = GameObject.FindGameObjectWithTag("MapInfoSettings").GetComponent<MapInfoSettings>();
         NullCheck();
 
-        pool += musicPlayer._clapSpan;
+        pool += musicPlayer.ClapSpan();
     }
 
     void Update()
     {
         float time = musicPlayer.offsetedTime;
-        float span = musicPlayer._clapSpan;
+        float span = musicPlayer.ClapSpan();
 
         //シークバー操作で曲が巻き戻された場合
         if (time < prevPool)

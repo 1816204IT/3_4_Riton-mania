@@ -62,7 +62,7 @@ public class TimingJudgment : MonoBehaviour
         SortNoteData();
 
         // 1秒間で進む距離
-        secondDistance = musicPlayer._clapSpan * UserPreference.instance._noteSpeed;
+        secondDistance = musicPlayer.ClapSpan() * UserPreference.instance.NoteSpeed();
 
         // 判定の長さを代入(秒)
         missLen = secondDistance / 60.0f * (float)missFrame;

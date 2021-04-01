@@ -9,16 +9,14 @@ using UnityEngine;
 public class TapEffect : MonoBehaviour
 {
     [SerializeField]
-    private ParticleSystem hexParticle_L = null;
+    private ParticleSystem hexParticleLeft = null;
     [SerializeField]
-    private ParticleSystem hexParticle_R = null;
-    [SerializeField]
-    private Camera p_camera = null; // パーティクル専用カメラ
+    private ParticleSystem hexParticleRight = null;
 
-    private Vector3 pos_lane_0 = new Vector3(-4.0f, -3.0f, 0.0f);
-    private Vector3 pos_lane_1 = new Vector3(-1.3f, -3.0f, 0.0f);
-    private Vector3 pos_lane_2 = new Vector3(1.3f, -3.0f, 0.0f);
-    private Vector3 pos_lane_3 = new Vector3(4.0f, -3.0f, 0.0f);
+    private Vector3 posLane0 = new Vector3(-4.0f, -3.0f, 0.0f);
+    private Vector3 posLane1 = new Vector3(-1.3f, -3.0f, 0.0f);
+    private Vector3 posLane2 = new Vector3(1.3f, -3.0f, 0.0f);
+    private Vector3 posLane3 = new Vector3(4.0f, -3.0f, 0.0f);
 
     void Start()
     {
@@ -29,30 +27,29 @@ public class TapEffect : MonoBehaviour
     {
         if (Input.GetButtonDown("Lane0"))
         {
-            hexParticle_L.transform.position = pos_lane_0;
-            hexParticle_L.Emit(1);
+            hexParticleLeft.transform.position = posLane0;
+            hexParticleLeft.Emit(1);
         }
         if (Input.GetButtonDown("Lane1"))
         {
-            hexParticle_L.transform.position = pos_lane_1;
-            hexParticle_L.Emit(1);
+            hexParticleLeft.transform.position = posLane1;
+            hexParticleLeft.Emit(1);
         }
         if (Input.GetButtonDown("Lane2"))
         {
-            hexParticle_R.transform.position = pos_lane_2;
-            hexParticle_R.Emit(1);
+            hexParticleRight.transform.position = posLane2;
+            hexParticleRight.Emit(1);
         }
         if (Input.GetButtonDown("Lane3"))
         {
-            hexParticle_R.transform.position = pos_lane_3;
-            hexParticle_R.Emit(1);
+            hexParticleRight.transform.position = posLane3;
+            hexParticleRight.Emit(1);
         }
     }
 
     private void NullCheck()
     {
-        hexParticle_L.IsNull(nameof(hexParticle_L));
-        hexParticle_R.IsNull(nameof(hexParticle_R));
-        p_camera.IsNull(nameof(p_camera));
+        hexParticleLeft.IsNull(nameof(hexParticleLeft));
+        hexParticleRight.IsNull(nameof(hexParticleRight));
     }
 }

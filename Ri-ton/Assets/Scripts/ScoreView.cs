@@ -44,7 +44,7 @@ public class ScoreView : MonoBehaviour
         isRankFetched = false;
         isLeaderBoardFetched = false;
 
-        string name = FindObjectOfType<UserAuth>()._playerName;
+        string name = FindObjectOfType<UserAuth>().playerName;
         highScore = new NCMB.HighScore(name, -1);
     }
 
@@ -131,7 +131,7 @@ public class ScoreView : MonoBehaviour
     private void DoUpdate()
     {
         // ハイスコアを取得
-        string name = FindObjectOfType<UserAuth>()._playerName;
+        string name = FindObjectOfType<UserAuth>().playerName;
         highScore = new NCMB.HighScore(name, -1);
         highScore.Fetch();
         // フラグ初期化
@@ -157,7 +157,7 @@ public class ScoreView : MonoBehaviour
         PathBuilder.AppendFormat("{0}%", (highScore.acc / 100.0f).ToString("f2"));
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
         //アイコン画像を設定
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(UserPreference.instance._characterNum);
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(UserPreference.instance.GetCharacterNumber());
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.instance.GetSmallSprite(highScore.rank);
         //順位を設定

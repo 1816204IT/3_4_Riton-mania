@@ -1,12 +1,16 @@
 ﻿using NCMB;
 using System.Collections.Generic;
+using Ritonmania;
 
-public enum FetchState
+namespace Ritonmania
 {
-    non,
-    trying,
-    succeeded,
-    failed
+    public enum FetchState
+    {
+        non,
+        trying,
+        succeeded,
+        failed
+    }
 }
 
 // ユーザーIDをキーにしてキャラクター番号を取得する

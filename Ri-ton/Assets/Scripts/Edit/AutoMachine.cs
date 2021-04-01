@@ -40,7 +40,7 @@ public class AutoMachine : MonoBehaviour
 
     void Update()
     {
-        if (musicPlayer._offsetedTimeOrigin < 0)
+        if (musicPlayer.OffsetedTimeOrigin() < 0)
         {
             return;
         }
@@ -53,8 +53,8 @@ public class AutoMachine : MonoBehaviour
 
     private void ClapCheck(ref float pool, ref float prevPool, int LPB, ref bool isClaped)
     {
-        float time = musicPlayer._offsetedTimeOrigin;
-        float span = (musicPlayer._clapSpan / LPB);
+        float time = musicPlayer.OffsetedTimeOrigin();
+        float span = (musicPlayer.ClapSpan() / LPB);
 
         //シークバー操作で曲が巻き戻された場合
         if (time < prevPool)

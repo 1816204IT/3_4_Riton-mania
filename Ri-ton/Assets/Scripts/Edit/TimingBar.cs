@@ -48,8 +48,8 @@ public class TimingBar : MonoBehaviour
 
     void Update()
     {
-        float jPosY = judgmentBar.transform.position.y + UserPreference.instance._userOffset;
-        float length = (musicPlayer.offsetedTime % (musicPlayer._clapSpan * 4)) * UserPreference.instance._noteSpeed;
+        float jPosY = judgmentBar.transform.position.y + UserPreference.instance.UserOffset();
+        float length = (musicPlayer.offsetedTime % (musicPlayer.ClapSpan() * 4)) * UserPreference.instance.NoteSpeed();
 
         //判定バーに最も近いタイミングバーを基点とする
         barBasePosY = jPosY - length;
@@ -118,7 +118,7 @@ public class TimingBar : MonoBehaviour
                         if ((whiteBarPutNum % 4) == 0)
                         {
                             // この場合は小節線(太い線)を別Scriptで配置するためskipする
-                            float len = musicPlayer._clapSpan * (UserPreference.instance._noteSpeed / noteEditor.LPB);
+                            float len = musicPlayer.ClapSpan() * (UserPreference.instance.NoteSpeed() / noteEditor.LPB);
                             tmpPosY = isSetUpper ? (tmpPosY + len) : (tmpPosY - len);
                         }
                         else
@@ -228,7 +228,7 @@ public class TimingBar : MonoBehaviour
     ///@param isSetUpper 上方向にセットしていくか
     private void SetBarPosition(GameObject bar, ref float tmpPosY, bool isSetUpper, int LPB)
     {
-        float len = musicPlayer._clapSpan * (UserPreference.instance._noteSpeed / noteEditor.LPB);
+        float len = musicPlayer.ClapSpan() * (UserPreference.instance.NoteSpeed() / noteEditor.LPB);
 
         tmpPosY = isSetUpper ? (tmpPosY + len) : (tmpPosY - len);
         if ((tmpPosY > 0) && (tmpPosY < 1500))

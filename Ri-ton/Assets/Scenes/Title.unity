@@ -6107,7 +6107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085542e02ffd19f42a5d15b094a9786a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anglePerFrame: 0.002
+  anglePerFrame: 0.01
 --- !u!1 &1951871574
 GameObject:
   m_ObjectHideFlags: 0

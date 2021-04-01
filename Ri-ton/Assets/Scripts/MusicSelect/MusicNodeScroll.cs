@@ -134,7 +134,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             scrollInputList.RemoveAt(i);
             if (dir == ScrollDir.LEFT)
             {
-                if (musicIndex < MusicInfoList.instance.MusicNum - 1)
+                if (musicIndex < MusicInfoList.instance.MusicNum() - 1)
                 {
                     musicIndex++;
                     SelectedNodeChangesFunc(musicIndex, MusicInfoList.instance.GetMusicName(musicIndex));
@@ -161,7 +161,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        int musicNum = MusicInfoList.instance.MusicNum;
+        int musicNum = MusicInfoList.instance.MusicNum();
         int moveEndNodeCnt = 0;
         for (int i = 0; i < musicNum; i++)
         {
@@ -262,7 +262,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         movementInfoList.Clear();   // リストクリア
         isMoving = true;
         float posX = 0;
-        int musicNum = MusicInfoList.instance.MusicNum;
+        int musicNum = MusicInfoList.instance.MusicNum();
 
         for (int i = 0; i < musicNum; i++)
         {

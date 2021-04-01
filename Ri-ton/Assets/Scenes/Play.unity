@@ -5782,9 +5782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8741e9cc338d714ebf11b8d37bfd054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexParticle_L: {fileID: 1631622438}
-  hexParticle_R: {fileID: 1343331274}
-  p_camera: {fileID: 483687845}
+  hexParticleLeft: {fileID: 1631622438}
+  hexParticleRight: {fileID: 1343331274}
 --- !u!4 &351401510
 Transform:
   m_ObjectHideFlags: 0
@@ -17018,7 +17017,7 @@ GameObject:
   - component: {fileID: 1343331274}
   - component: {fileID: 1343331273}
   m_Layer: 1
-  m_Name: Particle-TapHex_RightRotation
+  m_Name: HexParticleRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17045,7 +17044,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 08b3c151f43a6034a9894e11c6941c74, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25919,7 +25917,7 @@ GameObject:
   - component: {fileID: 1631622438}
   - component: {fileID: 1631622437}
   m_Layer: 1
-  m_Name: Particle-TapHex_LeftRotation
+  m_Name: HexParticleLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25946,7 +25944,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 08b3c151f43a6034a9894e11c6941c74, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

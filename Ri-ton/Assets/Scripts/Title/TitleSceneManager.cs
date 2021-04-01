@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Ritonmania;
 
 public enum ButtonState
 {
@@ -76,9 +77,9 @@ public class TitleSceneManager : MonoBehaviour
         if (buttonState == ButtonState.IconFetching)
         {
             // アイコンフェッチ終了したか
-            if (UserPreference.instance._iconFetchState == FetchState.succeeded)
+            if (UserPreference.instance.GetIconFetchState() == FetchState.succeeded)
             {
-                int characterNum = UserPreference.instance._characterNum;
+                int characterNum = UserPreference.instance.GetCharacterNumber();
 
                 // キャラクター番号が正常に設定されているか
                 if ( (characterNum >= 0) && (characterNum <= 4) )
@@ -105,7 +106,7 @@ public class TitleSceneManager : MonoBehaviour
         }
 
         // キャラクター画像が正しく設定されているか
-        if (UserPreference.instance._characterNum != 5)
+        if (UserPreference.instance.GetCharacterNumber() != 5)
         {
             return;
         }
@@ -113,7 +114,7 @@ public class TitleSceneManager : MonoBehaviour
         // アイコンフェッチ中か
         if (buttonState == ButtonState.IconFetching)
         {
-            FetchState nowFecthState = UserPreference.instance._iconFetchState;
+            FetchState nowFecthState = UserPreference.instance.GetIconFetchState();
             if ((nowFecthState == FetchState.non) || (nowFecthState == FetchState.failed))
             {
                 UserPreference.instance.CharacterIconFetch();

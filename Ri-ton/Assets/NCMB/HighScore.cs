@@ -1,5 +1,6 @@
 ﻿using NCMB;
 using System.Collections.Generic;
+using Ritonmania;
 
 // ユーザーIDをキーにしてハイスコアを取得する
 namespace NCMB
@@ -12,7 +13,7 @@ namespace NCMB
         public int acc { get; set; }
         public int rank { get; set; }
 
-        private FetchState fetchState = FetchState.non;
+        public FetchState fetchState { get; private set; } = FetchState.non;
 
         // コンストラクタ -----------------------------------
         public HighScore(string _name, int _score, int _combo, int _acc, int _rank)
@@ -39,7 +40,7 @@ namespace NCMB
             string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance.difficultyName;
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
             query.WhereEqualTo("Name", name);
-            query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
+            query.FindAsync((NCMBQueryCallback<NCMBObject>)((List<NCMBObject> objList, NCMBException e) =>
             {
                 // 検索成功したら
                 if (e == null)
@@ -65,13 +66,13 @@ namespace NCMB
                         objList[0].SaveAsync();
                     }
 
-                    fetchState = FetchState.succeeded;
+                    this.fetchState = FetchState.succeeded;
                 }
                 else
                 {
-                    fetchState = FetchState.succeeded;
+                    this.fetchState = FetchState.succeeded;
                 }
-            });
+            }));
         }
 
         // サーバーからハイスコアを取得
@@ -83,7 +84,7 @@ namespace NCMB
             string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance.difficultyName;
             NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
             query.WhereEqualTo("Name", name);
-            query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
+            query.FindAsync((NCMBQueryCallback<NCMBObject>)((List<NCMBObject> objList, NCMBException e) =>
             {
                 // 検索成功したら
                 if (e == null)
@@ -102,18 +103,13 @@ namespace NCMB
                         rank = System.Convert.ToInt32(objList[0]["Rank"]);
                     }
 
-                    fetchState = FetchState.succeeded;
+                    this.fetchState = FetchState.succeeded;
                 }
                 else
                 {
-                    fetchState = FetchState.failed;
+                    this.fetchState = FetchState.failed;
                 }
-            });
-        }
-
-        public FetchState _fetchState
-        { 
-            get { return fetchState; }
+            }));
         }
     }
 }

@@ -12,15 +12,9 @@ public class Text_OneByOne_Animation : MonoBehaviour
     [System.Serializable]
     public struct JuiceInfo
     {
+        public bool isStarted { get; set; }
         public float startDelay;
         public JuicedText juiceText;
-        private bool isStarted;
-
-        public bool _isStarted
-        { 
-            set { isStarted = value; }
-            get { return isStarted; }
-        }
     }
 
     [SerializeField]
@@ -33,7 +27,7 @@ public class Text_OneByOne_Animation : MonoBehaviour
     {
         for (int i = 0; i < juiceInfos.Length; i++)
         {
-            juiceInfos[i]._isStarted = false;
+            juiceInfos[i].isStarted = false;
         }
     }
 
@@ -48,7 +42,7 @@ public class Text_OneByOne_Animation : MonoBehaviour
 
         for (int i = 0; i < juiceInfos.Length; i++)
         {
-            if (juiceInfos[i]._isStarted)
+            if (juiceInfos[i].isStarted)
             {
                 continue;
             }
@@ -56,7 +50,7 @@ public class Text_OneByOne_Animation : MonoBehaviour
             if (time >= juiceInfos[i].startDelay)
             {
                 juiceInfos[i].juiceText.Play();
-                juiceInfos[i]._isStarted = true;
+                juiceInfos[i].isStarted = true;
                 startedCnt++;
             }
         }

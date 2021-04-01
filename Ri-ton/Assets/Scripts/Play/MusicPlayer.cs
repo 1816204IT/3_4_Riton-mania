@@ -43,7 +43,7 @@ public class MusicPlayer : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name != "Edit")
         {
-            offset += UserPreference.instance._userOffset;
+            offset += UserPreference.instance.UserOffset();
         }
 
         bpm = mapInfo.bpm / 100.0f;
@@ -173,14 +173,14 @@ public class MusicPlayer : MonoBehaviour
     // オフセットを考慮した時間(AudioSorce.timeを参照しているので更新頻度が低いが正確)
     // オートに叩かせるときに使用している
 
-    public float _offsetedTimeOrigin
+    public float OffsetedTimeOrigin()
     {
-        get { return audioSource.time - offset; }
+        return audioSource.time - offset;
     }
 
-    public float _clapSpan
+    public float ClapSpan()
     {
-        get { return 60.0f / bpm; }
+        return 60.0f / bpm;
     }
 
     private void NullCheck()

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NCMB;
+using Ritonmania;
 
 namespace Ritonmania
 {
     [System.Serializable]
     public class LocalUserData
     {
+        // ※データ保存の際に整数値にする必要があるため10～100倍します。
+        // 例 0.15は100倍して15にしてから保存。値として使用する時は100で割って0.15に戻す。
         public string playerName;
         public string password;
         public int noteSpeedNum;    // 10～100(/10して使用する)
@@ -93,10 +96,10 @@ public class UserPreference : MonoBehaviour
         var data = jsonManager.LoadUserPreference();
         Convert(data);
         // 過去にログインしている場合
-        if (userAuth._playerName != "")
+        if (userAuth.playerName != "")
         {
-            userAuth.logIn(userAuth._playerName, userAuth._password);
-            characterIcon.name = userAuth._playerName;
+            userAuth.logIn(userAuth.playerName, userAuth.password);
+            characterIcon.name = userAuth.playerName;
             CharacterIconFetch();
             return true;
         }
@@ -150,48 +153,52 @@ public class UserPreference : MonoBehaviour
         offsetValueNum = (offsetValueNum > -100.0f) ? offsetValueNum - 2 : offsetValueNum;
     }
 
-    public float _noteSpeed
+    public float NoteSpeed()
     {
-        get { return noteSpeedUnit * noteSpeedNum; }
+        return noteSpeedUnit * noteSpeedNum;
     }
 
-    public float _userOffset
+    public float UserOffset()
     {
-        get { return offsetValueUnit * offsetValueNum; }
+        return offsetValueUnit * offsetValueNum;
     }
 
-    public float _note_size_x
+    public float NoteSizeX()
     {
-        get { return note_size_x; }
+        return note_size_x;
     }
 
-    public int _characterNum
+    public int GetCharacterNumber()
     {
-        get { return characterIcon.character; }
-        set { characterIcon.character = value; }
+        return characterIcon.character;
     }
 
-    public string _characterIconName
+    public void SetCharacterNumber(int num)
     {
-        set { characterIcon.name = value; }
+        characterIcon.character = num;
     }
 
-    public FetchState _iconFetchState
-    { 
-        get { return characterIcon._iconFetchState; }
+    public void SetCharacterIconName(string name)
+    {
+        characterIcon.name = name;
+    }
+
+    public FetchState GetIconFetchState()
+    {
+        return characterIcon._iconFetchState;
     }
 
     // 0レーン目のノーツX座標
-    public float _notePosXOfLaneZero
+    public float NotePosXOfLaneZero()
     {
-        get { return -(note_size_x * (max_lane_num / 2)) + (note_size_x / 2); }
+        return -(note_size_x * (max_lane_num / 2)) + (note_size_x / 2);
     }
 
     private Ritonmania.LocalUserData GetCovertData()
     {
         Ritonmania.LocalUserData data = new Ritonmania.LocalUserData();
-        data.playerName = userAuth._playerName;
-        data.password = userAuth._password;
+        data.playerName = userAuth.playerName;
+        data.password = userAuth.password;
         data.noteSpeedNum = (int)(noteSpeedNum * 10);
         data.offsetValueNum = (int)offsetValueNum;
         data.musicVolume = (int)(musicVolume * 100);
@@ -202,8 +209,8 @@ public class UserPreference : MonoBehaviour
 
     private void Convert(Ritonmania.LocalUserData data)
     {
-        userAuth._playerName = data.playerName;
-        userAuth._password = data.password;
+        userAuth.playerName = data.playerName;
+        userAuth.password = data.password;
         noteSpeedNum = data.noteSpeedNum / 10.0f;
         offsetValueNum = (float)data.offsetValueNum;
         musicVolume = data.musicVolume / 100.0f;

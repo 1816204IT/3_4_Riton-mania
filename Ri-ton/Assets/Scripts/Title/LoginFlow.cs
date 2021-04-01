@@ -29,7 +29,7 @@ public class LoginFlow : MonoBehaviour
 
         // ゲーム起動時かどうか
         bool isGameStart;
-        if (FindObjectOfType<UserAuth>()._playerName == null)
+        if (FindObjectOfType<UserAuth>().playerName == null)
         {
             isGameStart = true;
         }

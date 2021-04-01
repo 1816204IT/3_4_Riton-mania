@@ -69,7 +69,8 @@ public class ResultDataInput : MonoBehaviour
 
         musicTitleText.text = SelectedMap.instance.musicName;
         difficultyText.text = SelectedMap.instance.difficultyName;
-        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.instance._characterNum);
+        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.instance.GetCharacterNumber());
+        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.instance.GetCharacterNumber());
 
         // -----最高成績なら文字色を黄色にする-----
         if ((data.acc / 100.0f) == 100.0f)

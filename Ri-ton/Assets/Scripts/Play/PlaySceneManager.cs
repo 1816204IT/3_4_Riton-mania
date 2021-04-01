@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using Ritonmania;
 
 public enum RankNumber
 { 
@@ -77,7 +78,7 @@ public class PlaySceneManager : MonoBehaviour
         tutorialCanvas.SetActive(true);
 
         // ハイスコアクラスのインスタンス
-        string name = FindObjectOfType<UserAuth>()._playerName;
+        string name = FindObjectOfType<UserAuth>().playerName;
         highScore = new NCMB.HighScore(name, 0);
 
         // 前回のハイスコア
@@ -144,7 +145,7 @@ public class PlaySceneManager : MonoBehaviour
             if (isAchieveHishScore)
             {
                 // サーバーにリザルトデータの送信が完了したか
-                if (highScore._fetchState == FetchState.succeeded)
+                if (highScore.fetchState == FetchState.succeeded)
                 {
                     SceneManager.sceneLoaded += ResultSceneLoaded;
                     SceneManager.LoadScene("Result");

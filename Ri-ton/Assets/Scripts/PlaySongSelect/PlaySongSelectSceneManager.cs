@@ -25,13 +25,13 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         TitleSceneManager.prevSceneName = "PlaySongSelect";
         NullCheck();
 
-        playerName.text = FindObjectOfType<UserAuth>()._playerName;
+        playerName.text = FindObjectOfType<UserAuth>().playerName;
 
         // カーソルの表示をONにする
         Cursor.visible = true;
 
         // キャラクター表示
-        int charaNum = UserPreference.instance._characterNum;
+        int charaNum = UserPreference.instance.GetCharacterNumber();
         myCharacter.sprite = CharacterInfoList.instance.GetSprite(charaNum);
     }
 

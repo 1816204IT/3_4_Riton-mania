@@ -21,10 +21,10 @@ public enum SignUpState
 // ユーザー認証
 public class UserAuth : MonoBehaviour
 {
-    private string playerName = null;
-    private string password = null;
-    private LogInState loginState = LogInState.non;
-    private SignUpState signUpState = SignUpState.non;
+    public string playerName { get; set; } = null;
+    public string password { get; set; } = null;
+    public LogInState logInState { get; set; } = LogInState.non;
+    public SignUpState signUpState { get; set; } = SignUpState.non;
     
     private UserAuth instance = null;
     void Awake()
@@ -56,20 +56,20 @@ public class UserAuth : MonoBehaviour
     // mobile backendに接続してログイン ------------------------
     public void logIn(string id, string pw)
     {
-        loginState = LogInState.trying;
+        logInState = LogInState.trying;
 
         NCMBUser.LogInAsync(id, pw, (NCMBException e) => 
         {
             // 接続成功したら
             if (e == null)
             {
-                loginState = LogInState.succeeded;
+                logInState = LogInState.succeeded;
                 playerName = id;
             }
             // 接続失敗したら
             else
             {
-                loginState = LogInState.failed;
+                logInState = LogInState.failed;
             }
         });
     }
@@ -82,20 +82,20 @@ public class UserAuth : MonoBehaviour
         NCMBUser user = new NCMBUser();
         user.UserName = id;
         user.Password = pw;
-        user.SignUpAsync((NCMBException e) => 
+        user.SignUpAsync((NCMBCallback)((NCMBException e) => 
         {
             // 新規会員登録に成功したら
             if (e == null)
             {
-                signUpState = SignUpState.succeeded;
+                this.signUpState = SignUpState.succeeded;
                 playerName = id;
             }
             // 新規会員登録に失敗したら
             else
             {
-                signUpState = SignUpState.failed;
+                this.signUpState = SignUpState.failed;
             }
-        });
+        }));
     }
 
     // mobile backendに接続してログアウト ------------------------
@@ -108,28 +108,5 @@ public class UserAuth : MonoBehaviour
                 playerName = null;
             }
         });
-    }
-
-    public string _playerName
-    {
-        get { return playerName; }
-        set { playerName = value; }
-    }
-
-    public string _password
-    {
-        get { return password; }
-        set { password = value; }
-    }
-
-    public LogInState _logInState
-    { 
-        get { return loginState; }
-    }
-
-    public SignUpState _signUpState
-    {
-        get { return signUpState; }
-        set { signUpState = value; }
     }
 }

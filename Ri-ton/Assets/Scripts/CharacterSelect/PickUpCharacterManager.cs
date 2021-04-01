@@ -65,7 +65,7 @@ public class PickUpCharacterManager : MonoBehaviour
         NullCheck();
         profile.SetActive(false);
         // キャラクターの番号を取得
-        pickingCharacterNum = UserPreference.instance._characterNum;
+        pickingCharacterNum = UserPreference.instance.GetCharacterNumber();
         // nowの矢印のX座標移動
         MoveNowArrow();
         // 「キャラクターを選んで下さい」のキャンバスを非表示に
@@ -228,7 +228,7 @@ public class PickUpCharacterManager : MonoBehaviour
     public void ChangeCharacter()
     {
         // キャラクターの番号を変更
-        UserPreference.instance._characterNum = pickingCharacterNum;
+        UserPreference.instance.SetCharacterNumber(pickingCharacterNum);
         // ヘッダーのプレイヤー名の文字色を変更
         headerInfo.SetPlayerNameColor();
         // nowの矢印のX座標移動
