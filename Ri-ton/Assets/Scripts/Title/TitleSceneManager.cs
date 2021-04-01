@@ -5,12 +5,15 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Ritonmania;
 
-public enum ButtonState
+namespace Ritonmania
 {
-    LogInWaiting,   // ログイン待ち状態(ログインボタンを表示)
-    IconSetting,    // アイコンが登録されてない状態(キャラクター選択ボタンを表示)
-    IconFetching,   // サーバーにアイコン番号をフェッチ中
-    Normal,         // 通常状態(プレイボタン、キャラクター選択ボタン、ログアウトボタンを表示)
+    public enum ButtonState
+    {
+        LogInWaiting,   // ログイン待ち状態(ログインボタンを表示)
+        IconSetting,    // アイコンが登録されてない状態(キャラクター選択ボタンを表示)
+        IconFetching,   // サーバーにアイコン番号をフェッチ中
+        Normal,         // 通常状態(プレイボタン、キャラクター選択ボタン、ログアウトボタンを表示)
+    }
 }
 
 /// <summary>

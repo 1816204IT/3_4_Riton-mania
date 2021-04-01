@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NCMB;
+using Ritonmania;
 
-public enum LogInState
+namespace Ritonmania
 {
-    non,
-    trying,
-    succeeded,
-    failed
-}
-public enum SignUpState
-{
-    non,
-    trying,
-    succeeded,
-    failed
+    public enum LogInState
+    {
+        non,
+        trying,
+        succeeded,
+        failed
+    }
+    public enum SignUpState
+    {
+        non,
+        trying,
+        succeeded,
+        failed
+    }
+
 }
 
 // ユーザー認証

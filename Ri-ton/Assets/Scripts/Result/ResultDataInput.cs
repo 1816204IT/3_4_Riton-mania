@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Ritonmania;
 
-public struct ResultShowData
+namespace Ritonmania
 {
-    public int score;
-    public float acc;
-    public int maxCombo;
-    public int combo;
-    public int perfectNum;
-    public int goodNum;
-    public int missNum;
-    public int rankImageNum;
-    public bool isAciveHighScore;
+    public struct ResultShowData
+    {
+        public int score;
+        public float acc;
+        public int maxCombo;
+        public int combo;
+        public int perfectNum;
+        public int goodNum;
+        public int missNum;
+        public int rankImageNum;
+        public bool isAciveHighScore;
+    }
 }
 
 /// <summary>

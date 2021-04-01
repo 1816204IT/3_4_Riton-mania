@@ -7,22 +7,22 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using Ritonmania;
 
-public enum RankNumber
-{ 
-    SS,
-    S,
-    A,
-    B,
-    C,
-    D,
-    MAX
-}
-
 /// <summary>
 /// プレイシーン管理クラス
 /// </summary>
 public class PlaySceneManager : MonoBehaviour
 {
+    private enum RankNumber
+    {
+        SS,
+        S,
+        A,
+        B,
+        C,
+        D,
+        MAX
+    }
+
     [SerializeField]
     private GameObject menuObj = null;
     [SerializeField]

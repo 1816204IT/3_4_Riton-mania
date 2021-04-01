@@ -20,7 +20,6 @@ public class CharacterFluffyTween : MonoBehaviour
 
     private RectTransform rectTransform = null;
 
-
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
