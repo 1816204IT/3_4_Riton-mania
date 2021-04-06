@@ -27,7 +27,6 @@ public class TitleSceneManager : MonoBehaviour
     private GameObject logOutingObj = null; // ログアウト中に表示するオブジェクト
     [SerializeField]
     private GameObject iconSettingObj = null;
-
     [SerializeField]
     private SoundVolumeManager soundVolumeManager = null;
     [SerializeField]

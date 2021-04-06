@@ -14,10 +14,10 @@ public class CharacterInfoList : MonoBehaviour
         public Color color;
     }
 
+    public static CharacterInfoList instance { get; private set; }
+
     [SerializeField]
     private CharacterSprite[] infos;
-
-    public static CharacterInfoList instance { get; private set; }
 
     void Awake()
     {

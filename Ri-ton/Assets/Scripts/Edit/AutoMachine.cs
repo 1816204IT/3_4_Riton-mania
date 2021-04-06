@@ -9,6 +9,7 @@ public class AutoMachine : MonoBehaviour
 {
     [SerializeField]
     private int laneNumer = 0;
+
     private AudioSource audioSource = null;
     private NoteSetter noteSetter = null;
     private TimingBar timingBar = null;
@@ -23,8 +24,6 @@ public class AutoMachine : MonoBehaviour
     private float prevPool4 = 0.0f;
     private float prevPool6 = 0.0f;
     private float prevPool8 = 0.0f;
-
-    private int clappedNum = 0;
 
     void Start()
     {
@@ -74,7 +73,6 @@ public class AutoMachine : MonoBehaviour
                 {
                     audioSource.Play();
                     isClaped = true;
-                    clappedNum++;
                 }
             }
             //プール値加算

@@ -8,7 +8,6 @@ public class RecttransformFollow : MonoBehaviour
 {
     [SerializeField]
     private RectTransform target = null;
-
     private RectTransform rt = null;
 
     void Start()

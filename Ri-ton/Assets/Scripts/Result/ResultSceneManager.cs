@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class ResultSceneManager : MonoBehaviour
 {
     private JsonManager jsonManager = null;
-   void Start()
+
+    void Start()
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         NullCheck();

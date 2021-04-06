@@ -33,29 +33,23 @@ public class PlaySceneManager : MonoBehaviour
     private Text musicName = null;
     [SerializeField]
     private Text difficultyName = null;
-
-    private MusicPlayer musicPlayer = null;
-    private JsonManager jsonManager = null;
-
     [SerializeField]
     private Material moveMaskMat = null;
-    private const float hexagonAnimSpeed = 0.5f;
-
-    private NCMB.HighScore highScore;
-
     [SerializeField]
     private GameObject tutorialCanvas = null;
-    private bool isTutorialEnd = false;
-
-    private bool isPlayEnd = false;
-    private bool isAchieveHishScore = false;    // ハイスコアを達成したか
-
-    private NCMB.HighScore prePlayHighScore;
-
     [SerializeField]
     private GameObject bloomCubes = null;
     [SerializeField]
     private GameObject hexagons = null;
+
+    private MusicPlayer musicPlayer = null;
+    private JsonManager jsonManager = null;
+    private const float hexagonAnimSpeed = 0.5f;
+    private NCMB.HighScore highScore;
+    private bool isTutorialEnd = false;
+    private bool isPlayEnd = false;
+    private bool isAchieveHishScore = false;    // ハイスコアを達成したか
+    private NCMB.HighScore prePlayHighScore;
 
     private void Start()
     {

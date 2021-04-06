@@ -5,10 +5,11 @@
 /// </summary>
 public class MusicProgressBar : MonoBehaviour
 {
-    private MusicPlayer musicPlayer = null;
-    private RectTransform rectTransform = null;
     [SerializeField]
     private Canvas canvas = null;
+
+    private MusicPlayer musicPlayer = null;
+    private RectTransform rectTransform = null;
 
     void Start()
     {

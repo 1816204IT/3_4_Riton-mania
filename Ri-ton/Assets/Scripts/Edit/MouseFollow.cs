@@ -11,17 +11,16 @@ public class MouseFollow : MonoBehaviour
     {
         public float xMin, xMax, yMin, yMax;
     }
-    [SerializeField] Bounds bounds = null;
 
+    [SerializeField] 
+    private Bounds bounds = null;
     [SerializeField]
     private LayerMask layerMask = 0;
-
-    private NoteEdit noteEditor = null;
-
     [SerializeField]
     private UnityEngine.UI.Text text = null;
 
-    public NoteDataConverter noteDataConverter = null;
+    private NoteEdit noteEditor = null;
+    private NoteDataConverter noteDataConverter = null;
 
     void Start()
     {

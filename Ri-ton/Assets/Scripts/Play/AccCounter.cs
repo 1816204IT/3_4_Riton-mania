@@ -6,14 +6,14 @@ using UnityEngine.UI;
 /// </summary>
 public class AccCounter : MonoBehaviour
 {
-    private Text text = null;
-
     public float acc { get; private set; } = 0.0f;
-    private float unitAcc = 0.0f; // perfect判定を取った時に増加するAcc量
     public int totalNoteNum { get; private set; } = 0;
     public int totalPerfectNum { get; private set; } = 0;
     public int totalGoodNum { get; private set; } = 0;
     public int totalMissNum { get; private set; } = 0;
+    
+    private float unitAcc = 0.0f; // perfect判定を取った時に増加するAcc量
+    private Text text = null;
 
     void Start()
     {

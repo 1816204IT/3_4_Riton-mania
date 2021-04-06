@@ -6,8 +6,6 @@ using UnityEngine;
 /// </summary>
 public class AttentionTween : MonoBehaviour
 {
-    private Sequence sequence;
-    private Tween tween = default;
     [SerializeField]
     private float duration = 0.35f;
     [SerializeField]
@@ -15,9 +13,10 @@ public class AttentionTween : MonoBehaviour
     [SerializeField]
     private float moveDistance = 15.0f;
 
+    private Sequence sequence;
+    private Tween tween = default;
     private float startPosY = default;
     private float endPosY = default;
-
     private RectTransform rectTransform = null;
 
 

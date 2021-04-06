@@ -9,14 +9,6 @@ using NoteEditor.DTO;
 public class NoteEdit : MonoBehaviour
 {
     public bool noteSetMode { get; private set; }
-
-    private MusicPlayer musicPlayer = null;
-    private GameObject mouseFollowNote = null;
-    private TimingBar timingBar = null;
-    private JsonManager jsonManager = null;
-    private MouseFollow mouseFollow = null;
-    private NoteDataConverter noteDataConverter = null;
-    private PlayingNoteData playingNoteData = null;
     public int LPB { get; private set; } = 1;
 
     [SerializeField]
@@ -27,12 +19,17 @@ public class NoteEdit : MonoBehaviour
     private GameObject verticalLinRight = null;
     [SerializeField]
     private Text beatSpanText = null;
-
-    //設置するノーツデータ
-    MusicDTO.Note clickDownNote = new MusicDTO.Note();
-
     [SerializeField]
     private Text text = null;
+
+    private MusicPlayer musicPlayer = null;
+    private GameObject mouseFollowNote = null;
+    private TimingBar timingBar = null;
+    private JsonManager jsonManager = null;
+    private MouseFollow mouseFollow = null;
+    private NoteDataConverter noteDataConverter = null;
+    private PlayingNoteData playingNoteData = null;
+    private MusicDTO.Note clickDownNote = new MusicDTO.Note();  //設置するノーツデータ
 
     void Start()
     {

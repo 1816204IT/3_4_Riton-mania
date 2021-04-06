@@ -23,8 +23,6 @@ public class UserPrererenceCustm : MonoBehaviour
         public Text name;       // SPEED,TIMING等の名前
     }
 
-    private SliderType sliderType = SliderType.SPEED;
-
     [SerializeField]
     private SoundVolumeManager soundVolumeManager = null;
     [SerializeField]
@@ -44,7 +42,7 @@ public class UserPrererenceCustm : MonoBehaviour
     private SettingItem timingItem;
     private SettingItem musicItem;
     private SettingItem seItem;
-
+    private SliderType sliderType = SliderType.SPEED;
     private AudioSource mouseOverSE = null;
 
     void Start()

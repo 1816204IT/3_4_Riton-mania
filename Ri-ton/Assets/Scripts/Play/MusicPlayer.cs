@@ -13,10 +13,8 @@ public class MusicPlayer : MonoBehaviour
     private float audioSourceOldTime = 0.0f;    // Update毎に更新されない
     private float time = 0.0f;  // Update毎に更新される精度の高いAudioSource.time
     private float timeOld;
-
     private const float startWaitTime = -1.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
     private bool isPlaying = false;
-
     private JsonManager jsonManager = null;
 
     void Awake()

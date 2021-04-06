@@ -12,7 +12,6 @@ public class PlaySongSelectBGMove : MonoBehaviour
 
     private float nowRot = 0.0f;
     private bool isRotAdd = true;   // 現在+の方向に回転しているか
-
     private RectTransform rt = null;
 
     void Start()

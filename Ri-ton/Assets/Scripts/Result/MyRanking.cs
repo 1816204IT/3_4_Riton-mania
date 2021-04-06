@@ -6,13 +6,13 @@ using UnityEngine.UI;
 /// </summary>
 public class MyRanking : MonoBehaviour
 {
-    private LeaderBoard lBoard = new LeaderBoard();
-    bool isRankFetched = false;
-
     [SerializeField]
     private ResultDataInput resultDataInput = null;
     [SerializeField]
     private Text myRankingText = null;
+
+    private LeaderBoard lBoard = new LeaderBoard();
+    private bool isRankFetched = false;
 
     void Start()
     {

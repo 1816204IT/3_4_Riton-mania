@@ -7,8 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class MapInfoSettings : MonoBehaviour
 {
-    private JsonManager jsonManager = null;
-    private MusicPlayer musicPlayer = null;
+    public bool isOffsetChangeMode { get; set; } = true;
 
     [System.Serializable]
     public struct MapInfoGroup
@@ -24,7 +23,9 @@ public class MapInfoSettings : MonoBehaviour
     MapInfoGroup bpmGroup;
     [SerializeField]
     MapInfoGroup diffGroup;
-    public bool isOffsetChangeMode { get; set; } = true;
+
+    private JsonManager jsonManager = null;
+    private MusicPlayer musicPlayer = null;
 
     void Start()
     {

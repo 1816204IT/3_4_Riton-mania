@@ -23,15 +23,13 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private float moveCompleteTime = 0.1f;
     [SerializeField]
     private int max_scroll_input_num = 5; // scrollInputListに記憶させる入力情報の最大数
-
     [SerializeField]
     private ScoreView scoreView = null;
+    [SerializeField]
+    private GameObject tutorialCanvas = null;
 
     private float nodeWidth = 0.0f;
     private bool isMoving = false;
-
-    [SerializeField]
-    private GameObject tutorialCanvas = null;
 
     private enum ScrollDir
     {

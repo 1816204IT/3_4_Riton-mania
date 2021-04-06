@@ -30,6 +30,7 @@ public class UserAuth : MonoBehaviour
     public SignUpState signUpState { get; set; } = SignUpState.non;
     
     private UserAuth instance = null;
+
     void Awake()
     {
         if (instance == null)

@@ -25,9 +25,7 @@ public class PickUpCharacter : MonoBehaviour
     private Sequence sequence;
     private Tween vanishTween = default;
     private Tween appearTween = default;
-
     private Vector3 defaultScale = default;
-
     private RectTransform rectTransform = null;
 
     void Start()

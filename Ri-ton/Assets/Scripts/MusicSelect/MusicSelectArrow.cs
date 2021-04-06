@@ -9,24 +9,22 @@ using UnityEngine.UI;
 /// </summary>
 public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    private bool isOnPointerEnter = false;
-
     [SerializeField]
     private RectTransform arrowRectTransform = null;
     [SerializeField]
     private ArrowAnimationSynchro animSynchro = null;
-
-    private Sequence sequence = default;
-    private Tween expansionTween = default;
-    private Tween shurinkTween = default;
-
     [SerializeField]
     private Image arrowImage = null;
-    private Color defaultColor = Color.white;
-    private Color mouseOverColor = Color.white;
 
     private const float size_default = 0.4f;
     private const float size_extra_rate = 0.5f;
+
+    private bool isOnPointerEnter = false;
+    private Sequence sequence = default;
+    private Tween expansionTween = default;
+    private Tween shurinkTween = default;
+    private Color defaultColor = Color.white;
+    private Color mouseOverColor = Color.white;
 
     void Start()
     {

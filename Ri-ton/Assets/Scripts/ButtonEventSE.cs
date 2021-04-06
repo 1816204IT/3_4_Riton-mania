@@ -8,13 +8,12 @@ using UnityEngine.UI;
 /// </summary>
 public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public bool isUseDefaultSE = true;
-
     [SerializeField]
     private AudioSource mouseOverSE = null;
     [SerializeField]
     private AudioSource menuHitSE = null;
-    private bool isOnPointerEnter = false;
+
+    private bool isUseDefaultSE = true;
 
     private void Start()
     {
@@ -30,13 +29,11 @@ public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        isOnPointerEnter = true;
         mouseOverSE.Play();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        isOnPointerEnter = false;
     }
 
     public void OnPlayMenuHitSE()

@@ -23,22 +23,19 @@ public class DifficultyButtonsManager : MonoBehaviour
     private float normalButtonHeight = 40;
     [SerializeField]
     private float selectingButtonHeight = 70;
-
     [SerializeField]
     private DifficultyButtons buttonImageObj = default;
+    [SerializeField]
+    private Image playButtonImage = null;
+    [SerializeField]
+    private DifficultyColor difficultyColor;
+
     private RectTransform[] buttonsRectTransform = new RectTransform[(int)DifficultyType.MAX];
     private Image[] buttonsImage = new Image[(int)DifficultyType.MAX];
     private Text[] buttonsText = new Text[(int)DifficultyType.MAX];
-
     private Image bigNodeBgImage = default;
     private BigNodeInformation bigNode = null;
     private MusicNodeInformation musicNodeInformation = null;
-
-    [SerializeField]
-    private Image playButtonImage = null;
-
-    [SerializeField]
-    private DifficultyColor difficultyColor;
 
     void Awake()
     {

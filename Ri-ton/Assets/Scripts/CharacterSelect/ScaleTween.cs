@@ -6,10 +6,10 @@ using DG.Tweening;
 /// </summary>
 public class ScaleTween : MonoBehaviour
 {
-    private Tween tween = null;
-    private RectTransform rectTransform = null;
     [SerializeField]
     private float duration = 0.1f;
+    private Tween tween = null;
+    private RectTransform rectTransform = null;
 
     void Start()
     {

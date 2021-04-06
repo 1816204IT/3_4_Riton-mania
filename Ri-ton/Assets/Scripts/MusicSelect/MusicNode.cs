@@ -7,14 +7,16 @@ using UnityEngine.UI;
 public class MusicNode : MonoBehaviour
 {
     public int myNodeNum { get; set; } = -1;
-    private MusicNodeScroll musicNodeScroll = null;
-    private BigNodeInformation bigNode = null;
+
     [SerializeField]
     private Button button = null;
     [SerializeField]
     private Text musicNameText = null;
     [SerializeField]
     private Image jacketImage = null;
+
+    private MusicNodeScroll musicNodeScroll = null;
+    private BigNodeInformation bigNode = null;
 
     private void Start()
     {

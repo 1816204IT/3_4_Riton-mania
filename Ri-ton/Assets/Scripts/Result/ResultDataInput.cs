@@ -23,8 +23,6 @@ namespace Ritonmania
 /// </summary>
 public class ResultDataInput : MonoBehaviour
 {
-    private ResultShowData data = new ResultShowData();
-
     [SerializeField]
     private Text scoreText = null;
     [SerializeField]
@@ -41,13 +39,14 @@ public class ResultDataInput : MonoBehaviour
     private Image rankImage = null;
     [SerializeField]
     private Text newRecordText = null;
-
     [SerializeField]
     private Text musicTitleText = null;
     [SerializeField]
     private Text difficultyText = null;
     [SerializeField]
     private Image characterImage = null;
+
+    private ResultShowData data = new ResultShowData();
 
     void Start()
     {

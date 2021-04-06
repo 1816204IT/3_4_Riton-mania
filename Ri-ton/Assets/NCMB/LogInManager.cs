@@ -10,9 +10,9 @@ public class LogInManager : MonoBehaviour
     private GameObject logOutingObj = null; // ログアウト中に表示するオブジェクト
 
     [SerializeField]
-    private GameObject logInMenu;   // ログインテキスト
+    private GameObject logInMenu;           // ログインテキスト
     [SerializeField]
-    private GameObject createAccountMenu;  // 新規登録テキスト
+    private GameObject createAccountMenu;   // 新規登録テキスト
 
     [SerializeField]
     private InputField inputFieldID;
@@ -20,7 +20,7 @@ public class LogInManager : MonoBehaviour
     private InputField inputFieldPassword;
 
     [SerializeField]
-    private Text logIningText = null;   // ボタンを押したときの結果を表示するテキストボックス(ログイン成功・失敗等)
+    private Text logIningText = null;       // ボタンを押したときの結果を表示するテキストボックス(ログイン成功・失敗等)
 
     [SerializeField]
     private Text reactionText = null;
@@ -42,8 +42,8 @@ public class LogInManager : MonoBehaviour
     private string id = "";
     private string pw = "";
 
-    LogInState logInState = LogInState.non;
-    SignUpState signUpState = SignUpState.non;
+    private LogInState logInState = LogInState.non;
+    private SignUpState signUpState = SignUpState.non;
 
     void Start()
     {

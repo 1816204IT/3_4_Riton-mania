@@ -6,12 +6,11 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayStartTimer : MonoBehaviour
 {
+    public bool isTutorialEnd { get; set; } = false;
+
     private Text text = null;
     private MusicPlayer musicPlayer = null;
-
     private float timer = 3.0f;
-
-    public bool isTutorialEnd { get; set; } = false;
 
     void Start()
     {

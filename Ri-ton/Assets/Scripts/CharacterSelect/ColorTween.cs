@@ -8,10 +8,11 @@ using UnityEngine.UI;
 /// </summary>
 public class ColorTween : MonoBehaviour
 {
-    private Tween tween = null;
     [SerializeField]
     private float duration = 0.1f;
+
     private float alpha = 0.3f;
+    private Tween tween = null;
     private Image image = null;
 
     void Start()

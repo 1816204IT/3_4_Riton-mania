@@ -8,7 +8,7 @@ using System.Text;
 /// </summary>
 public class JsonManager : MonoBehaviour
 {
-    StringBuilder PathBuilder;
+    private StringBuilder PathBuilder;
 
     private void Start()
     {

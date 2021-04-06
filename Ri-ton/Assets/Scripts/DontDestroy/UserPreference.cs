@@ -44,18 +44,15 @@ public class UserPreference : MonoBehaviour
 
     private const int max_note_speed = 4000;    // ノーツ速度の最大値
     private const int min_note_speed = 400;     // ノーツ速度の最小値
-    private float noteSpeedUnit;      
-
     private const float max_offset_value = 0.04f;
     private const float min_offset_value = -0.04f;
-    private float offsetValueUnit;
-
-    private NCMB.CharacterIcon characterIcon = new NCMB.CharacterIcon(null);
-
     private const float note_size_x = 150.0f;
     private const int max_lane_num = 4;
 
-    UserAuth userAuth = null;
+    private float noteSpeedUnit;
+    private float offsetValueUnit;
+    private NCMB.CharacterIcon characterIcon = new NCMB.CharacterIcon(null);
+    private UserAuth userAuth = null;
 
     private void Awake()
     {

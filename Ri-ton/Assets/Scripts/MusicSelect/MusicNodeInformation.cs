@@ -9,13 +9,12 @@ public class MusicNodeInformation : MonoBehaviour
 {
     [SerializeField]
     private DifficultyButtonsManager difficultyButtonsManager = null;
+    [SerializeField]
+    private DifficultyColor difficultyColor;
 
     private List<GameObject> nodeList = new List<GameObject>();
     private List<Image> nodeImages = new List<Image>();
     private Image bigNodeBgImage = null;
-
-    [SerializeField]
-    private DifficultyColor difficultyColor;
 
     void Start()
     {

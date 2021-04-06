@@ -7,15 +7,16 @@ using UnityEngine;
 /// </summary>
 public class MoveTween : MonoBehaviour
 {
-    private Sequence sequence;
-    private Tween tween = default;
     [SerializeField]
     private float duration = 0.35f;
     [SerializeField]
     private float appendInterval = 0.0f;
-    private Vector3 startPos = default;
     [SerializeField]
     private RectTransform endPos = default;
+
+    private Sequence sequence;
+    private Tween tween = default;
+    private Vector3 startPos = default;
 
     private void Start()
     {

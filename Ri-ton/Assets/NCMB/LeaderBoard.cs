@@ -5,10 +5,10 @@ public class LeaderBoard
 {
     public int currentRank { get; private set; } = 0;
     public List<NCMB.HighScore> topRankers { get; private set; } = null;
-    private List<NCMB.CharacterIcon> topRankersIcon = null;
 
     private const int c_viewRankingNumMax = 10; // 何人までランキングに表示するか
     private int viewRankingNum = 0; // 何人表示するか
+    private List<NCMB.CharacterIcon> topRankersIcon = null;
 
     // 現プレイヤーのハイスコアを受けとってランクを取得 ---------------
     public void FetchRank(int currentScore)

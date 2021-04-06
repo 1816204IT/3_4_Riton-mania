@@ -1,5 +1,4 @@
-﻿
-//譜面情報
+﻿//譜面情報
 [System.Serializable]
 public class MapInfo
 {

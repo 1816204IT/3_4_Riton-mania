@@ -6,11 +6,11 @@ using UnityEngine;
 /// </summary>
 public class MusicNodeInstance : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject prefab = null;
-
     public List<GameObject> nodeGameObjectList { get; } = new List<GameObject>();
     public List<RectTransform> nodeRectTransformList { get; } = new List<RectTransform>();
+
+    [SerializeField]
+    private GameObject prefab = null;
 
     void Awake()
     {

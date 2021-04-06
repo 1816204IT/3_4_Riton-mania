@@ -6,6 +6,8 @@ using UnityEngine;
 /// </summary>
 public class TimingBar : MonoBehaviour
 {
+    public float barBasePosY { get; private set; } = 0;
+
     [SerializeField]
     private GameObject judgmentBar = null;
 
@@ -18,7 +20,6 @@ public class TimingBar : MonoBehaviour
     private NoteEdit noteEditor = null;
     private bool isShowBar = true;
     private int whiteBarPutNum = 0;
-    public float barBasePosY { get; private set; } = 0;
 
     void Start()
     {

@@ -9,16 +9,8 @@ public class NoteSetter : MonoBehaviour
 {
     [SerializeField]
     private NoteColor noteColor = null;
-    
     [SerializeField]
     private Transform judgmentBarTransform = null;
-
-    // PlayingNoteDataクラスが持っているnowMapDataの参照
-    private MusicDTO.MapData mapData = new MusicDTO.MapData();
-
-    // ノーツオブジェクトのリスト
-    private List<GameObject> evenNumberNoteList = new List<GameObject>();
-    private List<GameObject> oddNumberNoteList = new List<GameObject>();
 
     public struct LongNoteInfo
     {
@@ -28,8 +20,13 @@ public class NoteSetter : MonoBehaviour
 
     private LongNoteInfo evenNumberNongNoteInfo;
     private LongNoteInfo oddNumberNongNoteInfo;
-
     private List<MusicDTO.Note> holdingLongNoteList = new List<MusicDTO.Note>();
+
+    // PlayingNoteDataクラスが持っているnowMapDataの参照
+    private MusicDTO.MapData mapData = new MusicDTO.MapData();
+    // ノーツオブジェクトのリスト
+    private List<GameObject> evenNumberNoteList = new List<GameObject>();
+    private List<GameObject> oddNumberNoteList = new List<GameObject>();
 
     private MusicPlayer musicPlayer = null;
     private JsonManager jsonManager = null;

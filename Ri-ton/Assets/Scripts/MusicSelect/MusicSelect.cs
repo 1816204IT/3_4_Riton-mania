@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MusicSelect : MonoBehaviour
 {
-    private int musicNameIndex = 0;
-
     [SerializeField]
     private AudioSource audioPlayer = null;
+
+    private int musicNameIndex = 0;
 
     void Start()
     {

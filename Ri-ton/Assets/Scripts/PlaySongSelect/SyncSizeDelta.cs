@@ -7,8 +7,8 @@ public class SyncSizeDelta : MonoBehaviour
 {
     [SerializeField]
     private RectTransform targetRectTransform = null;
-    private RectTransform myRectTransform;
 
+    private RectTransform myRectTransform;
 
     void Start()
     {

@@ -17,20 +17,18 @@ public class ScoreView : MonoBehaviour
     [SerializeField]
     private Text noDataText = null;
 
-    private List<GameObject> nodeObjList = new List<GameObject>();
-    StringBuilder PathBuilder;
+    private const float reFetchRankersTime = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
 
+    private List<GameObject> nodeObjList = new List<GameObject>();
+    private StringBuilder PathBuilder;
     private LeaderBoard lBoard;
     private NCMB.HighScore highScore;
-    public List<NCMB.HighScore> topRankers = new List<NCMB.HighScore>();
-    public List<NCMB.CharacterIcon> topRankersIcon = new List<NCMB.CharacterIcon>();
+    private List<NCMB.HighScore> topRankers = new List<NCMB.HighScore>();
+    private List<NCMB.CharacterIcon> topRankersIcon = new List<NCMB.CharacterIcon>();
     private GameObject highScoreNode = null;
-
     private bool isScoreFetched;
     private bool isRankFetched;
     private bool isLeaderBoardFetched;
-
-    private const float reFetchRankersTime = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
     private int rankersNum = -1;
     private float noRankersTimer = 0.0f;
 

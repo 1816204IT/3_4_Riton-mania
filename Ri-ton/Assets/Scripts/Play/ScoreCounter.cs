@@ -6,14 +6,14 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreCounter : MonoBehaviour
 {
-    private Text text = null;
-    private float unitScore = 0;      // Good判定の時に加算されるスコア量(perfectは2倍)
-    private float score = 0;
-
     [SerializeField]
     private TimingJudgment timingJudgment = null;
     [SerializeField]
     private AccCounter accCounter = null;
+
+    private Text text = null;
+    private float unitScore = 0;      // Good判定の時に加算されるスコア量(perfectは2倍)
+    private float score = 0;
 
     void Start()
     {

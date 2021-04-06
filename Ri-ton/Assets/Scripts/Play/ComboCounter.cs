@@ -6,9 +6,10 @@ using UnityEngine.UI;
 /// </summary>
 public class ComboCounter : MonoBehaviour
 {
+    public int maxCombo { get; private set; } = 0;
+
     private Text text = null;
     private int comboCnt = 0;
-    public int maxCombo { get; private set; } = 0;
     private int defauliFontSize = 0;
     private float fontSize = 0;
 

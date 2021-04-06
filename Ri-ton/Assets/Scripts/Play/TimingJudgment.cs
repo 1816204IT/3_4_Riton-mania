@@ -50,7 +50,7 @@ public class TimingJudgment : MonoBehaviour
     private MusicDTO.Note judgmentingLongNote;  // 判定中のロングノーツ
 
     private MusicDTO.MapData mapData = new MusicDTO.MapData();
-    float secondDistance = 0.0f; // 1秒間で進む距離
+    private float secondDistance = 0.0f; // 1秒間で進む距離
 
     void Start()
     {

@@ -11,10 +11,8 @@ public class PlaySongSelectSceneManager : MonoBehaviour
     private Text playerName = null;
     [SerializeField]
     private GameObject settingCanvas = null;
-
     [SerializeField]
     private Image myCharacter = null;
-
     [SerializeField]
     private GameObject tutorialCanvas = null;
 

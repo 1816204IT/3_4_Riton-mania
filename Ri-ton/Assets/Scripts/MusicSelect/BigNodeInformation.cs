@@ -20,7 +20,6 @@ public class BigNodeInformation : MonoBehaviour
     private Text mapperText = null;
     [SerializeField]
     private Text difficultyText = null;
-
     [SerializeField]
     private Font englishFont = null;
     [SerializeField]

@@ -22,7 +22,6 @@ public class SelectedMap : MonoBehaviour
     public int musicIndex { get; set; } = 0;
     public string musicName { get; set; } = "";
     public string difficultyName { get; set; } = "";
-
     public DifficultyType nowDifficulty { get; set; } = DifficultyType.EASY;
 
     void Awake()

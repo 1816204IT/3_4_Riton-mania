@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PickUpCharacterManager : MonoBehaviour
 {
+    public int pickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号
+
     [SerializeField]
     private GameObject[] hideObjects = null;
 
@@ -16,16 +18,11 @@ public class PickUpCharacterManager : MonoBehaviour
     [SerializeField]
     private GameObject moveEndPos = null;
 
-    private GameObject moveCharacter = null;
-    private int vanishCompNum = 0;
-
     [SerializeField]
     private ScaleTween[] scaleTweens = null;
 
     [SerializeField]
     private HeaderInfo headerInfo = null;
-
-    public int pickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号
 
     [SerializeField]
     private MoveTween whiteBackImage = null;
@@ -43,11 +40,13 @@ public class PickUpCharacterManager : MonoBehaviour
 
     [SerializeField]
     private RectTransform nowArrow = null;
-    private float nowArrowDistanceX = 220;  // 配置しているキャラクター同士の距離
 
     [SerializeField]
     private GameObject pleasePickCharacter = null;
 
+    private float nowArrowDistanceX = 220;  // 配置しているキャラクター同士の距離
+    private GameObject moveCharacter = null;
+    private int vanishCompNum = 0;
 
     // キャラクター選択画面のホーム(初期画面)にいるか？　ホーム画面とそれ以外でEscapeキーを押した時の挙動が変わる
     enum NOW_STATE
