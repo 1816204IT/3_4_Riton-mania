@@ -3,11 +3,12 @@ using System.Collections.Generic;
 
 public class LeaderBoard
 {
-    private const int viewRankingNumMax = 10; // 何人までランキングに表示するか
+    public int currentRank { get; private set; } = 0;
+    public List<NCMB.HighScore> topRankers { get; private set; } = null;
+    private List<NCMB.CharacterIcon> topRankersIcon = null;
+
+    private const int c_viewRankingNumMax = 10; // 何人までランキングに表示するか
     private int viewRankingNum = 0; // 何人表示するか
-    public int currentRank = 0;
-    public List<NCMB.HighScore> topRankers = null;
-    public List<NCMB.CharacterIcon> topRankersIcon = null;
 
     // 現プレイヤーのハイスコアを受けとってランクを取得 ---------------
     public void FetchRank(int currentScore)
@@ -41,7 +42,7 @@ public class LeaderBoard
         string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance.difficultyName;
         NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
         query.OrderByDescending("Score");
-        query.Limit = viewRankingNumMax; // 何人まで取得するか
+        query.Limit = c_viewRankingNumMax; // 何人まで取得するか
         query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
 
             if (e != null)

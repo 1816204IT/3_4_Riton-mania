@@ -1,7 +1,6 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 /// <summary>
 /// 透明度を用いた点滅表現を行う

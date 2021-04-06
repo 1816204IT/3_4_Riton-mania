@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 using NoteEditor.DTO;
-using System;
 using System.Text;
 
 /// <summary>

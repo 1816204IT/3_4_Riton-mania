@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// Editシーンにてタイミングバーを配置するクラス

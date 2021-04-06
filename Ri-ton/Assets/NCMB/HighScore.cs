@@ -1,5 +1,4 @@
-﻿using NCMB;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Ritonmania;
 
 // ユーザーIDをキーにしてハイスコアを取得する
@@ -12,7 +11,6 @@ namespace NCMB
         public int combo { get; set; }
         public int acc { get; set; }
         public int rank { get; set; }
-
         public FetchState fetchState { get; private set; } = FetchState.non;
 
         // コンストラクタ -----------------------------------

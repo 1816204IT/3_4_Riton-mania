@@ -1,9 +1,7 @@
 ﻿using NoteEditor.DTO;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 /// <summary>
 /// 現在選択中の曲情報を管理するクラス

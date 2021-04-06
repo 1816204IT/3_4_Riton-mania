@@ -1,5 +1,4 @@
-﻿using NCMB;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Ritonmania;
 
 namespace Ritonmania
