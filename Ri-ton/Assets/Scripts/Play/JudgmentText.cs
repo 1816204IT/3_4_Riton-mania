@@ -3,12 +3,14 @@ using UnityEngine.UI;
 
 /// <summary>
 /// タイミング判定表示クラス
-/// PERFECT,GOOD,MISS
+/// PERFECT,GOOD,MISSを表示する
 /// </summary>
 public class JudgmentText : MonoBehaviour
 {
+    private const float text_show_time = 1.0f;
+
     private Text text = null;
-    private int alpha = 255;
+    private float time = 0.0f;
 
     void Start()
     {
@@ -18,39 +20,38 @@ public class JudgmentText : MonoBehaviour
 
     void Update()
     {
-        if (alpha <= 0)
+        if (time >= text_show_time)
         {
+            text.text = "";
             return;
         }
 
-        alpha = (alpha - 2 < 0) ? 0 : alpha - 2;
-        var color = text.color;
-        text.color = new Color(color.r, color.g, color.b, alpha);
+        time += Time.deltaTime;
     }
 
     public void PerfectJudgment()
     {
-        alpha = 255;
-        text.color = new Color(255, 255, 0, alpha);
+        time = 0.0f;
+        text.color = Color.yellow;
         text.text = "PERFECT";
     }
 
     public void GoodJudgment()
     {
-        alpha = 255;
-        text.color = new Color(0, 0, 255, alpha);
+        time = 0.0f;
+        text.color = Color.blue;
         text.text = "GOOD";
     }
 
     public void MissJudgment()
     {
-        alpha = 255;
-        text.color = new Color(255, 0, 0, alpha);
+        time = 0.0f;
+        text.color = Color.red;
         text.text = "MISS";
     }
 
     private void NullCheck()
     {
-        text.IsNull(nameof(text));
+        text.IsNull();
     }
 }

@@ -44,10 +44,10 @@ public class MusicNode : MonoBehaviour
 
     private void NullCheck()
     {
-        musicNodeScroll.IsNull(nameof(musicNodeScroll));
-        button.IsNull(nameof(button));
-        musicNameText.IsNull(nameof(musicNameText));
-        bigNode.IsNull(nameof(bigNode));
-        jacketImage.IsNull(nameof(jacketImage));
+        musicNodeScroll.IsNull();
+        button.IsNull();
+        musicNameText.IsNull();
+        bigNode.IsNull();
+        jacketImage.IsNull();
     }
 }

@@ -43,7 +43,7 @@ public class MyRanking : MonoBehaviour
 
     private void NullCheck()
     {
-        resultDataInput.IsNull(nameof(resultDataInput));
-        myRankingText.IsNull(nameof(myRankingText));
+        resultDataInput.IsNull();
+        myRankingText.IsNull();
     }
 }

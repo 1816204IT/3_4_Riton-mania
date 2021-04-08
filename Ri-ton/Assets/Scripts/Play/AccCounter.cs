@@ -60,6 +60,6 @@ public class AccCounter : MonoBehaviour
 
     private void NullCheck()
     {
-        text.IsNull(nameof(text));
+        text.IsNull();
     }
 }

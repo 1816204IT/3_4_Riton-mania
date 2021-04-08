@@ -254,7 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &24736963
@@ -3013,7 +3012,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &465531196
@@ -3463,7 +3461,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &534811845
@@ -4624,7 +4621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &704540758
@@ -4843,7 +4839,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &734940663
@@ -7506,7 +7501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &1326546277
@@ -7988,7 +7982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &1505527449
@@ -9017,7 +9010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &1583727279
@@ -9211,14 +9203,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.113000005, g: 0.113000005, b: 0.113000005, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a79d4348c7d7f9f47b43b627ce650f67, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9284,7 +9276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &1591135481
@@ -10497,7 +10488,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!212 &1930111859
@@ -10981,7 +10971,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &1983127546

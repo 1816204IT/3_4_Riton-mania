@@ -8,7 +8,7 @@ using UnityEngine;
 public class MoveTween : MonoBehaviour
 {
     [SerializeField]
-    private float duration = 0.35f;
+    private float duration = 0.0f;
     [SerializeField]
     private float appendInterval = 0.0f;
     [SerializeField]

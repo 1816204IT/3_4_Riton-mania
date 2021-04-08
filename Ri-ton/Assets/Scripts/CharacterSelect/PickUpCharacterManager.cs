@@ -8,22 +8,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PickUpCharacterManager : MonoBehaviour
 {
-    public int pickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号
+    public int pickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号　-1は未選択
 
     [SerializeField]
     private GameObject[] hideObjects = null;
-
     [SerializeField]
     private PickUpCharacter[] characters = null;
     [SerializeField]
     private GameObject moveEndPos = null;
-
     [SerializeField]
     private ScaleTween[] scaleTweens = null;
-
     [SerializeField]
     private HeaderInfo headerInfo = null;
-
     [SerializeField]
     private MoveTween whiteBackImage = null;
     [SerializeField]
@@ -32,19 +28,17 @@ public class PickUpCharacterManager : MonoBehaviour
     private TextMeshProUGUI characterNameText = null;
     [SerializeField]
     private Material characterNameMat = null;
-
     [SerializeField]
     private CharacterProfileData characterProfileData = null;
     [SerializeField]
     private GameObject profile = null;
-
     [SerializeField]
     private RectTransform nowArrow = null;
-
     [SerializeField]
     private GameObject pleasePickCharacter = null;
 
-    private float nowArrowDistanceX = 220;  // 配置しているキャラクター同士の距離
+    private const float c_character_distance_x = 220;  // 配置しているキャラクター同士の距離
+
     private GameObject moveCharacter = null;
     private int vanishCompNum = 0;
 
@@ -243,7 +237,7 @@ public class PickUpCharacterManager : MonoBehaviour
         }
 
         Vector3 p = nowArrow.transform.localPosition;
-        float posX = nowArrowDistanceX * (pickingCharacterNum - 2); // キャラクター番号2のキャラクターが中央に配置されているため -2 する
+        float posX = c_character_distance_x * (pickingCharacterNum - 2); // キャラクター番号2のキャラクターが中央に配置されているため -2 する
         nowArrow.transform.localPosition = new Vector3(posX, p.y, p.z);
     }
 
@@ -254,15 +248,15 @@ public class PickUpCharacterManager : MonoBehaviour
 
     private void NullCheck()
     {
-        moveEndPos.IsNull(nameof(moveEndPos));
-        headerInfo.IsNull(nameof(headerInfo));
-        whiteBackImage.IsNull(nameof(whiteBackImage));
-        colorBackImage.IsNull(nameof(colorBackImage));
-        characterProfileData.IsNull(nameof(characterProfileData));
-        characterNameText.IsNull(nameof(characterNameText));
-        profile.IsNull(nameof(profile));
-        nowArrow.IsNull(nameof(nowArrow));
-        pleasePickCharacter.IsNull(nameof(pleasePickCharacter));
+        moveEndPos.IsNull();
+        headerInfo.IsNull();
+        whiteBackImage.IsNull();
+        colorBackImage.IsNull();
+        characterProfileData.IsNull();
+        characterNameText.IsNull();
+        profile.IsNull();
+        nowArrow.IsNull();
+        pleasePickCharacter.IsNull();
 
         if (characters.Length == 0)
         {

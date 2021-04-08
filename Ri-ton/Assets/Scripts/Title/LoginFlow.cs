@@ -67,7 +67,7 @@ public class LoginFlow : MonoBehaviour
 
     private void NullCheck()
     {
-        logInManager.IsNull(nameof(logInManager));
-        titleSceneManager.IsNull(nameof(titleSceneManager));
+        logInManager.IsNull();
+        titleSceneManager.IsNull();
     }
 }

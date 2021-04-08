@@ -14,15 +14,15 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
     [SerializeField]
     private AudioSource menuHitSE = null;
     [SerializeField]
-    private float midSpacint = 60;
+    private float midSpacint = 0.0f;
     [SerializeField]
-    private float spacing = 30.0f;
+    private float spacing = 0.0f;
     [SerializeField]
-    private float smallScall = 0.8f;
+    private float smallScall = 0.0f;
     [SerializeField]
-    private float moveCompleteTime = 0.1f;
+    private float moveCompleteTime = 0.0f;
     [SerializeField]
-    private int max_scroll_input_num = 5; // scrollInputListに記憶させる入力情報の最大数
+    private int max_scroll_input_num = 0; // scrollInputListに記憶させる入力情報の最大数
     [SerializeField]
     private ScoreView scoreView = null;
     [SerializeField]
@@ -356,9 +356,9 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Debug.LogError("nodeList is Null");
         }
 
-        bigNode.IsNull(nameof(bigNode));
-        musicSelect.IsNull(nameof(musicSelect));
-        menuHitSE.IsNull(nameof(menuHitSE));
-        tutorialCanvas.IsNull(nameof(tutorialCanvas));
+        bigNode.IsNull();
+        musicSelect.IsNull();
+        menuHitSE.IsNull();
+        tutorialCanvas.IsNull();
     }
 }

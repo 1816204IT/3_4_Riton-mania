@@ -108,16 +108,16 @@ public class ResultDataInput : MonoBehaviour
 
     private void NullCheck()
     {
-        scoreText.IsNull(nameof(scoreText));
-        accText.IsNull(nameof(accText));
-        comboText.IsNull(nameof(comboText));
-        perfectText.IsNull(nameof(perfectText));
-        goodText.IsNull(nameof(goodText));
-        missText.IsNull(nameof(missText));
-        characterImage.IsNull(nameof(characterImage));
-        rankImage.IsNull(nameof(rankImage));
-        difficultyText.IsNull(nameof(difficultyText));
-        musicTitleText.IsNull(nameof(musicTitleText));
-        newRecordText.IsNull(nameof(newRecordText));
+        scoreText.IsNull();
+        accText.IsNull();
+        comboText.IsNull();
+        perfectText.IsNull();
+        goodText.IsNull();
+        missText.IsNull();
+        characterImage.IsNull();
+        rankImage.IsNull();
+        difficultyText.IsNull();
+        musicTitleText.IsNull();
+        newRecordText.IsNull();
     }
 }

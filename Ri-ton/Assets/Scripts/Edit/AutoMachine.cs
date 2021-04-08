@@ -17,9 +17,9 @@ public class AutoMachine : MonoBehaviour
     private MusicPlayer musicPlayer = null;
     private NoteDataConverter noteDataConverter = null;
 
-    private float pool4 = 0.0f; //次に音を鳴らすタイミングをプールしていく　1/4間隔
-    private float pool6 = 0.0f; //次に音を鳴らすタイミングをプールしていく　1/6間隔
-    private float pool8 = 0.0f; //次に音を鳴らすタイミングをプールしていく　1/8間隔
+    private float pool4 = 0.0f;     //次に音を鳴らすタイミングをプールしていく　1/4間隔
+    private float pool6 = 0.0f;     //次に音を鳴らすタイミングをプールしていく　1/6間隔
+    private float pool8 = 0.0f;     //次に音を鳴らすタイミングをプールしていく　1/8間隔
 
     private float prevPool4 = 0.0f;
     private float prevPool6 = 0.0f;
@@ -90,10 +90,10 @@ public class AutoMachine : MonoBehaviour
 
     private void NullCheck()
     {
-        audioSource.IsNull(nameof(audioSource));
-        timingBar.IsNull(nameof(timingBar));
-        noteEditor.IsNull(nameof(noteEditor));
-        musicPlayer.IsNull(nameof(musicPlayer));
-        noteDataConverter.IsNull(nameof(noteDataConverter));
+        audioSource.IsNull();
+        timingBar.IsNull();
+        noteEditor.IsNull();
+        musicPlayer.IsNull();
+        noteDataConverter.IsNull();
     }
 }

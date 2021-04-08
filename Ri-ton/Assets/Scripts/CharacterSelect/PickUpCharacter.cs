@@ -10,11 +10,11 @@ public class PickUpCharacter : MonoBehaviour
     [SerializeField]
     private Color myCharacterColor = Color.white;
     [SerializeField]
-    private int characterNum = -1;
+    private int characterNum = -1;  // -1は未選択
     [SerializeField]
-    private float duration = 0.1f;
+    private float duration = 0.0f;
     [SerializeField]
-    private float appendInterval = 0.1f;
+    private float appendInterval = 0.0f;
     [SerializeField]
     private GameObject character = null;
     [SerializeField]
@@ -110,8 +110,8 @@ public class PickUpCharacter : MonoBehaviour
 
     private void NullCheck()
     {
-        character.IsNull(nameof(character));
-        canvas.IsNull(nameof(canvas));
-        pickUpCharacterManager.IsNull(nameof(pickUpCharacterManager));
+        character.IsNull();
+        canvas.IsNull();
+        pickUpCharacterManager.IsNull();
     }
 }

@@ -144,10 +144,10 @@ public class TitleSceneManager : MonoBehaviour
 
     private void NullCheck()
     {
-        logIningObj.IsNull(nameof(logIningObj));
-        logIningObj.IsNull(nameof(logIningObj));
-        iconSettingObj.IsNull(nameof(iconSettingObj));
-        soundVolumeManager.IsNull(nameof(soundVolumeManager));
-        bgm.IsNull(nameof(bgm));
+        logIningObj.IsNull();
+        logIningObj.IsNull();
+        iconSettingObj.IsNull();
+        soundVolumeManager.IsNull();
+        bgm.IsNull();
     }
 }

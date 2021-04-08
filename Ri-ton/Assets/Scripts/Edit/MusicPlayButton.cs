@@ -56,8 +56,8 @@ public class MusicPlayButton : MonoBehaviour
 
     private void NullCheck()
     {
-        button.IsNull(nameof(button));
-        image.IsNull(nameof(image));
-        musicPlayer.IsNull(nameof(musicPlayer));
+        button.IsNull();
+        image.IsNull();
+        musicPlayer.IsNull();
     }
 }

@@ -39,9 +39,9 @@ public class ProfileSetter : MonoBehaviour
 
     private void NullCheck()
     {
-        age.IsNull(nameof(age));
-        birthDay.IsNull(nameof(birthDay));
-        likes.IsNull(nameof(likes));
-        illustrator.IsNull(nameof(illustrator));
+        age.IsNull();
+        birthDay.IsNull();
+        likes.IsNull();
+        illustrator.IsNull();
     }
 }

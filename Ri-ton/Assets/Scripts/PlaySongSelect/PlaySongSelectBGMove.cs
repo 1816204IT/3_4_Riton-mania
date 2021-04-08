@@ -6,9 +6,9 @@
 public class PlaySongSelectBGMove : MonoBehaviour
 {
     [SerializeField]
-    private float rotRadius = 10.0f;
+    private float rotRadius = 0.0f;
     [SerializeField]
-    private float rotSpeed =1.0f;     // 1秒に回転する角度
+    private float rotSpeed =0.0f;     // 1秒に回転する角度
 
     private float nowRot = 0.0f;
     private bool isRotAdd = true;   // 現在+の方向に回転しているか
@@ -47,6 +47,6 @@ public class PlaySongSelectBGMove : MonoBehaviour
 
     private void NullCheck()
     {
-	    rt.IsNull(nameof(rt));
+	    rt.IsNull();
     }
 }

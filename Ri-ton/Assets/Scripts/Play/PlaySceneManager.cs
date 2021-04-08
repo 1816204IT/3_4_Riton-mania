@@ -42,9 +42,10 @@ public class PlaySceneManager : MonoBehaviour
     [SerializeField]
     private GameObject hexagons = null;
 
+    private const float c_hexagon_anim_speed = 0.5f;
+
     private MusicPlayer musicPlayer = null;
     private JsonManager jsonManager = null;
-    private const float hexagonAnimSpeed = 0.5f;
     private NCMB.HighScore highScore;
     private bool isTutorialEnd = false;
     private bool isPlayEnd = false;
@@ -258,7 +259,7 @@ public class PlaySceneManager : MonoBehaviour
     {
         if (moveMaskMat.HasProperty("_MoveSpeed"))
         {
-            moveMaskMat.SetFloat("_MoveSpeed", hexagonAnimSpeed);
+            moveMaskMat.SetFloat("_MoveSpeed", c_hexagon_anim_speed);
         }
         else
         {
@@ -280,18 +281,18 @@ public class PlaySceneManager : MonoBehaviour
 
     private void NullCheck()
     {
-        musicPlayer.IsNull(nameof(musicPlayer));
-        menuObj.IsNull(nameof(menuObj));
-        jsonManager.IsNull(nameof(jsonManager));
-        playStartTimer.IsNull(nameof(playStartTimer));
-        accCounter.IsNull(nameof(accCounter));
-        comboCounter.IsNull(nameof(comboCounter));
-        scoreCounter.IsNull(nameof(scoreCounter));
-        musicName.IsNull(nameof(musicName));
-        difficultyName.IsNull(nameof(difficultyName));
-        moveMaskMat.IsNull(nameof(moveMaskMat));
-        tutorialCanvas.IsNull(nameof(tutorialCanvas));
-        bloomCubes.IsNull(nameof(bloomCubes));
-        hexagons.IsNull(nameof(hexagons));
+        musicPlayer.IsNull();
+        menuObj.IsNull();
+        jsonManager.IsNull();
+        playStartTimer.IsNull();
+        accCounter.IsNull();
+        comboCounter.IsNull();
+        scoreCounter.IsNull();
+        musicName.IsNull();
+        difficultyName.IsNull();
+        moveMaskMat.IsNull();
+        tutorialCanvas.IsNull();
+        bloomCubes.IsNull();
+        hexagons.IsNull();
     }
 }

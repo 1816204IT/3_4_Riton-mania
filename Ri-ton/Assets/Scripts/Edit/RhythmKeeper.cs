@@ -55,8 +55,8 @@ public class RhythmKeeper : MonoBehaviour
 
     private void NullCheck()
     {
-        audioSource.IsNull(nameof(audioSource));
-        musicPlayer.IsNull(nameof(musicPlayer));
-        mapInfoSettings.IsNull(nameof(mapInfoSettings));
+        audioSource.IsNull();
+        musicPlayer.IsNull();
+        mapInfoSettings.IsNull();
     }
 }

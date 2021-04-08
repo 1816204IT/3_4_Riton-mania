@@ -8,9 +8,11 @@ public class PlayStartTimer : MonoBehaviour
 {
     public bool isTutorialEnd { get; set; } = false;
 
+    private const float c_count_down_time = 3.0f;   // 3・2・1のカウントダウン時間
+
     private Text text = null;
     private MusicPlayer musicPlayer = null;
-    private float timer = 3.0f;
+    private float timer = c_count_down_time;
 
     void Start()
     {
@@ -50,13 +52,13 @@ public class PlayStartTimer : MonoBehaviour
 
     public void TimerReset()
     {
-        timer = 3.0f;
+        timer = c_count_down_time;
         text.enabled = true;
     }
 
     private void NullCheck()
     {
-        text.IsNull(nameof(text));
-        musicPlayer.IsNull(nameof(musicPlayer));
+        text.IsNull();
+        musicPlayer.IsNull();
     }
 }

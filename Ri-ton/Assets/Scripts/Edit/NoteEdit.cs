@@ -268,16 +268,16 @@ public class NoteEdit : MonoBehaviour
 
     private void NullCheck()
     {
-        mouseFollowNote.IsNull(nameof(mouseFollowNote));
-        mouseFollow.IsNull(nameof(mouseFollow));
-        timingBar.IsNull(nameof(timingBar));
-        jsonManager.IsNull(nameof(jsonManager));
-        verticalLineLeft.IsNull(nameof(verticalLineLeft));
-        verticalLinRight.IsNull(nameof(verticalLinRight));
-        beatSpanText.IsNull(nameof(beatSpanText));
-        musicPlayer.IsNull(nameof(musicPlayer));
-        noteDataConverter.IsNull(nameof(noteDataConverter));
-        judgmentBar.IsNull(nameof(judgmentBar));
-        playingNoteData.IsNull(nameof(playingNoteData));
+        mouseFollowNote.IsNull();
+        mouseFollow.IsNull();
+        timingBar.IsNull();
+        jsonManager.IsNull();
+        verticalLineLeft.IsNull();
+        verticalLinRight.IsNull();
+        beatSpanText.IsNull();
+        musicPlayer.IsNull();
+        noteDataConverter.IsNull();
+        judgmentBar.IsNull();
+        playingNoteData.IsNull();
     }
 }

@@ -41,8 +41,8 @@ public class MusicProgressBar : MonoBehaviour
 
     private void NullCheck()
     {
-        musicPlayer.IsNull(nameof(musicPlayer));
-        rectTransform.IsNull(nameof(rectTransform));
-        canvas.IsNull(nameof(canvas));
+        musicPlayer.IsNull();
+        rectTransform.IsNull();
+        canvas.IsNull();
     }
 }

@@ -43,7 +43,7 @@ public class SettingSliderMask : MonoBehaviour
 
     private void NullCheck()
     {
-        slider.IsNull(nameof(slider));
-        rt.IsNull(nameof(rt));
+        slider.IsNull();
+        rt.IsNull();
     }
 }

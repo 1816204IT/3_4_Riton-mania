@@ -86,9 +86,9 @@ public class PlaySongSelectSceneManager : MonoBehaviour
 
     private void NullCheck()
     {
-        playerName.IsNull(nameof(playerName));
-        settingCanvas.IsNull(nameof(settingCanvas));
-        myCharacter.IsNull(nameof(myCharacter));
-        tutorialCanvas.IsNull(nameof(tutorialCanvas));
+        playerName.IsNull();
+        settingCanvas.IsNull();
+        myCharacter.IsNull();
+        tutorialCanvas.IsNull();
     }
 }

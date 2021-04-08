@@ -7,11 +7,11 @@ using UnityEngine;
 public class CharacterFluffyTween : MonoBehaviour
 {
     [SerializeField]
-    private float duration = 0.35f;
+    private float duration = 0.0f;
     [SerializeField]
-    private float appendInterval = 1.0f;
+    private float appendInterval = 0.0f;
     [SerializeField]
-    private float moveDistance = 15.0f;
+    private float moveDistance = 0.0f;
 
     private Sequence sequence;
     private Tween tween = default;
@@ -59,6 +59,6 @@ public class CharacterFluffyTween : MonoBehaviour
 
     private void NullCheck()
     {
-        rectTransform.IsNull(nameof(rectTransform));
+        rectTransform.IsNull();
     }
 }

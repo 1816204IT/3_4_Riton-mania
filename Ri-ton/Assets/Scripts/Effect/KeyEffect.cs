@@ -39,6 +39,6 @@ public class KeyEffect : MonoBehaviour
 
     private void NullCheck()
     {
-        spriteRenderer.IsNull(nameof(spriteRenderer));
+        spriteRenderer.IsNull();
     }
 }

@@ -48,6 +48,6 @@ public class MusicSelect : MonoBehaviour
 
     private void NullCheck()
     {
-        audioPlayer.IsNull(nameof(audioPlayer));
+        audioPlayer.IsNull();
     }
 }

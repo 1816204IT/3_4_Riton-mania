@@ -7,11 +7,11 @@ static public class Utility
 {
     // Nullチェック関数
     // スクリプト専用
-    static public bool IsNull<T>(this T target, string scriptName)
+    static public bool IsNull<T>(this T target)
     {
         if (target == null)
         {
-            Debug.LogError(scriptName + " is Null");
+            Debug.LogError("target is Null");
             return true;
         }
         return false;
@@ -19,11 +19,11 @@ static public class Utility
 
     // Nullチェック関数
     // GameObject型専用
-    static public bool IsNull(this GameObject obj, string objectName)
+    static public bool IsNull(this GameObject obj)
     {
         if (obj == null)
         {
-            Debug.LogError(objectName + " is Null");
+            Debug.LogError("object is Null");
             return true;
         }
         return false;

@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class MusicPlayer : MonoBehaviour
 {
     public AudioSource audioSource { get; private set; } = null;
-    public float bpm { get; set; } = 100.0f;
+    public float bpm { get; set; } = 0.0f;
     public float offset { get; set; } = 0.0f;
+
+    private const float c_start_wait_time = 1.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
 
     private float audioSourceOldTime = 0.0f;    // Update毎に更新されない
     private float time = 0.0f;  // Update毎に更新される精度の高いAudioSource.time
     private float timeOld;
-    private const float startWaitTime = -1.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
     private bool isPlaying = false;
     private JsonManager jsonManager = null;
 
@@ -44,7 +45,7 @@ public class MusicPlayer : MonoBehaviour
         bpm = mapInfo.bpm / 100.0f;
 
         audioSourceOldTime = audioSource.time;
-        time = startWaitTime;
+        time = -c_start_wait_time;
         timeOld = time;
     }
 
@@ -114,7 +115,7 @@ public class MusicPlayer : MonoBehaviour
         //audioSource.Play();
         audioSource.time = 0.0f;
         audioSourceOldTime = 0.0f;
-        time = startWaitTime;
+        time = -c_start_wait_time;
         timeOld = time;
         isPlaying = true;
     }
@@ -180,7 +181,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void NullCheck()
     {
-        audioSource.IsNull(nameof(audioSource));
-        jsonManager.IsNull(nameof(jsonManager));
+        audioSource.IsNull();
+        jsonManager.IsNull();
     }
 }

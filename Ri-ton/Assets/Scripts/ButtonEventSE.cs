@@ -43,7 +43,7 @@ public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private void NullCheck()
     {
-        mouseOverSE.IsNull(nameof(mouseOverSE));
-        menuHitSE.IsNull(nameof(menuHitSE));
+        mouseOverSE.IsNull();
+        menuHitSE.IsNull();
     }
 }

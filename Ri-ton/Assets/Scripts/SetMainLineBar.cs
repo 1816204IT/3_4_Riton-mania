@@ -97,9 +97,9 @@ public class SetMainLineBar : MonoBehaviour
 
     private void NullCheck()
     {
-        musicPlayer.IsNull(nameof(musicPlayer));
-        JudgmentBar.IsNull(nameof(JudgmentBar));
-        baseTimingBar.IsNull(nameof(baseTimingBar));
+        musicPlayer.IsNull();
+        JudgmentBar.IsNull();
+        baseTimingBar.IsNull();
 
         if (mainBars.Count == 0)
         {

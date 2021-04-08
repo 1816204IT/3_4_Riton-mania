@@ -81,6 +81,6 @@ public class MouseFollow : MonoBehaviour
 
     private void NullCheck()
     {
-        noteEditor.IsNull(nameof(noteEditor));
+        noteEditor.IsNull();
     }
 }

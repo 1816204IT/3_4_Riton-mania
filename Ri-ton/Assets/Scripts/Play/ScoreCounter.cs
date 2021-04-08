@@ -75,8 +75,8 @@ public class ScoreCounter : MonoBehaviour
 
     private void NullCheck()
     {
-        text.IsNull(nameof(text));
-        timingJudgment.IsNull(nameof(timingJudgment));
-        accCounter.IsNull(nameof(accCounter));
+        text.IsNull();
+        timingJudgment.IsNull();
+        accCounter.IsNull();
     }
 }

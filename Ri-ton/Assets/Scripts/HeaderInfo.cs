@@ -35,6 +35,6 @@ public class HeaderInfo : MonoBehaviour
 
     private void NullCheck()
     {
-	    playerNameText.IsNull(nameof(playerNameText));
+	    playerNameText.IsNull();
     }
 }

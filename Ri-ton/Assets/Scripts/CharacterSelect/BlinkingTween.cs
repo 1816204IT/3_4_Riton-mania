@@ -8,13 +8,10 @@ using UnityEngine.UI;
 /// </summary>
 public class BlinkingTween : MonoBehaviour
 {
-    // 不透明から透明、透明から不透明になるまでの時間
     [SerializeField]
-    private float duration = 0.5f;
-
-    // 次の点滅までのインターバル時間
+    private float duration = 0.0f;          // 不透明から透明、透明から不透明になるまでの時間
     [SerializeField]
-    private float appendInterval = 1.0f;
+    private float appendInterval = 0.0f;    // 次の点滅までのインターバル時間
 
     private MaskableGraphic uiComponent = null;
 
@@ -56,6 +53,6 @@ public class BlinkingTween : MonoBehaviour
     // Nullチェックを行う
     private void NullCheck()
     {
-        uiComponent.IsNull(nameof(uiComponent));
+        uiComponent.IsNull();
     }
 }

@@ -34,20 +34,24 @@ namespace Ritonmania
 /// </summary>
 public class UserPreference : MonoBehaviour
 {
+    private const float c_init_note_speed = 1.0f;
+    private const float c_init_music_volume = 0.5f;
+    private const float c_init_se_volume = 0.5f;
+
     public static UserPreference instance { get; private set; }
     public bool isBloomCubes { get; set; } = true;  // プレイ背景がキューブの方か
-    public float noteSpeedNum { get; private set; } = 1.0f;     // 1.0f～10.0f(0.5刻み)
-    public float offsetValueNum { get; private set; } = 0.0f;   // -10.0f～10.0f(1.0刻み)
-    public float musicVolume { get; set; } = 0.5f;  // 0.0f～1.0f(0.05刻み)
-    public float seVolume { get; set; } = 0.5f;     // 0.0f～1.0f(0.05刻み)
+    public float noteSpeedNum { get; private set; } = c_init_note_speed;    // 1.0f～10.0f(0.5刻み)
+    public float offsetValueNum { get; private set; } = 0.0f;       // -10.0f～10.0f(1.0刻み)
+    public float musicVolume { get; set; } = c_init_music_volume;   // 0.0f～1.0f(0.05刻み)
+    public float seVolume { get; set; } = c_init_se_volume;         // 0.0f～1.0f(0.05刻み)
     public bool isTutorial { get; set; }
 
-    private const int max_note_speed = 4000;    // ノーツ速度の最大値
-    private const int min_note_speed = 400;     // ノーツ速度の最小値
-    private const float max_offset_value = 0.04f;
-    private const float min_offset_value = -0.04f;
-    private const float note_size_x = 150.0f;
-    private const int max_lane_num = 4;
+    private const int c_max_note_speed = 4000;    // ノーツ速度の最大値
+    private const int c_min_note_speed = 400;     // ノーツ速度の最小値
+    private const int c_max_lane_num = 4;
+    private const float c_max_offset_value = 0.04f;
+    private const float c_min_offset_value = -0.04f;
+    private const float c_note_size_x = 150.0f;
 
     private float noteSpeedUnit;
     private float offsetValueUnit;
@@ -67,8 +71,8 @@ public class UserPreference : MonoBehaviour
         userAuth = FindObjectOfType<UserAuth>();
         NullCheck();
 
-        noteSpeedUnit = (max_note_speed - min_note_speed) / 10.0f;
-        offsetValueUnit = (max_offset_value - min_offset_value) / 10.0f;
+        noteSpeedUnit = (c_max_note_speed - c_min_note_speed) / 10.0f;
+        offsetValueUnit = (c_max_offset_value - c_min_offset_value) / 10.0f;
     }
 
     // 現在のユーザー設定をローカルファイルに保存する
@@ -159,7 +163,7 @@ public class UserPreference : MonoBehaviour
 
     public float NoteSizeX()
     {
-        return note_size_x;
+        return c_note_size_x;
     }
 
     public int GetCharacterNumber()
@@ -185,7 +189,7 @@ public class UserPreference : MonoBehaviour
     // 0レーン目のノーツX座標
     public float NotePosXOfLaneZero()
     {
-        return -(note_size_x * (max_lane_num / 2)) + (note_size_x / 2);
+        return -(c_note_size_x * (c_max_lane_num / 2)) + (c_note_size_x / 2);
     }
 
     private Ritonmania.LocalUserData GetCovertData()
@@ -214,6 +218,6 @@ public class UserPreference : MonoBehaviour
 
     private void NullCheck()
     {
-        userAuth.IsNull(nameof(userAuth));
+        userAuth.IsNull();
     }
 }

@@ -349,11 +349,11 @@ public class NoteSetter : MonoBehaviour
 
     private void NullCheck()
     {
-        musicPlayer.IsNull(nameof(musicPlayer));
-        jsonManager.IsNull(nameof(jsonManager));
-        noteDataConverter.IsNull(nameof(noteDataConverter));
-        playingNoteData.IsNull(nameof(playingNoteData));
-        judgmentBarTransform.IsNull(nameof(judgmentBarTransform));
-        noteColor.IsNull(nameof(noteColor));
+        musicPlayer.IsNull();
+        jsonManager.IsNull();
+        noteDataConverter.IsNull();
+        playingNoteData.IsNull();
+        judgmentBarTransform.IsNull();
+        noteColor.IsNull();
     }
 }

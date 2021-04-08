@@ -2,8 +2,8 @@
 [System.Serializable]
 public class MapInfo
 {
-    public string musicName;
+    public string musicName;    // 曲名
     public string authorName;   // 作曲者名
-    public int bpm;
-    public int offset;
+    public int bpm;             // BPM
+    public int offset;          // オフセット値
 }

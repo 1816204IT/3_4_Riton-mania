@@ -8,7 +8,7 @@ using System;
 public class KeyReactCube : MonoBehaviour
 {
     [SerializeField]
-    float maxIntensity = 1.0f;
+    float maxIntensity = 0.0f;
     [SerializeField]
     float minIntensity = 0.0f;
 

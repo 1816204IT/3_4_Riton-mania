@@ -50,6 +50,6 @@ public class OptionSceneManager : MonoBehaviour
 
     private void NullCheck()
     {
-        offsetText.IsNull(nameof(offsetText));
+        offsetText.IsNull();
     }
 }

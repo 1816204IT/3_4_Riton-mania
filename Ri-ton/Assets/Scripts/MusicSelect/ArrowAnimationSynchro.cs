@@ -30,7 +30,7 @@ public class ArrowAnimationSynchro : MonoBehaviour
 
     private void NullCheck()
     {
-        leftArrow.IsNull(nameof(leftArrow));
-        rightArrow.IsNull(nameof(rightArrow));
+        leftArrow.IsNull();
+        rightArrow.IsNull();
     }
 }

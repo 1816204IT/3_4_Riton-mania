@@ -16,8 +16,8 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [SerializeField]
     private Image arrowImage = null;
 
-    private const float size_default = 0.4f;
-    private const float size_extra_rate = 0.5f;
+    private const float c_size_fefault = 0.4f;
+    private const float c_size_extra_rate = 0.5f;
 
     private bool isOnPointerEnter = false;
     private Sequence sequence = default;
@@ -39,10 +39,10 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         sequence.SetLoops(-1, LoopType.Restart);
 
         expansionTween.SetEase(Ease.Linear);
-        expansionTween = arrowRectTransform.DOScale(new Vector2(size_extra_rate, size_extra_rate), 0.1f);
+        expansionTween = arrowRectTransform.DOScale(new Vector2(c_size_extra_rate, c_size_extra_rate), 0.1f);
 
         shurinkTween.SetEase(Ease.Linear);
-        shurinkTween = arrowRectTransform.DOScale(new Vector2(size_default, size_default), 0.1f);
+        shurinkTween = arrowRectTransform.DOScale(new Vector2(c_size_fefault, c_size_fefault), 0.1f);
 
         sequence
             .Append(expansionTween)
@@ -57,7 +57,7 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         isOnPointerEnter = true;
         arrowImage.color = mouseOverColor;
         animSynchro.PauseAnimation();
-        arrowRectTransform.localScale = new Vector2(size_extra_rate, size_extra_rate);
+        arrowRectTransform.localScale = new Vector2(c_size_extra_rate, c_size_extra_rate);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -65,7 +65,7 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         isOnPointerEnter = false;
         arrowImage.color = defaultColor;
         animSynchro.PlayAnimation();
-        arrowRectTransform.localScale = new Vector2(size_default, size_default);
+        arrowRectTransform.localScale = new Vector2(c_size_fefault, c_size_fefault);
     }
 
     public void PauseAnimation()
@@ -80,8 +80,8 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void NullCheck()
     {
-        arrowRectTransform.IsNull(nameof(arrowRectTransform));
-        animSynchro.IsNull(nameof(animSynchro));
-        arrowImage.IsNull(nameof(arrowImage));
+        arrowRectTransform.IsNull();
+        animSynchro.IsNull();
+        arrowImage.IsNull();
     }
 }

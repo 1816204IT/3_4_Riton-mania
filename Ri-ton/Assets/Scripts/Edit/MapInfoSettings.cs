@@ -150,16 +150,16 @@ public class MapInfoSettings : MonoBehaviour
 
     private void NullCheck()
     {
-        jsonManager.IsNull(nameof(jsonManager));
-        musicPlayer.IsNull(nameof(musicPlayer));
-        offsetGroup.obj.IsNull(nameof(offsetGroup.obj));
-        offsetGroup.slider.IsNull(nameof(offsetGroup.slider));
-        offsetGroup.inputField.IsNull(nameof(offsetGroup.inputField));
-        bpmGroup.obj.IsNull(nameof(bpmGroup.obj));
-        bpmGroup.slider.IsNull(nameof(bpmGroup.slider));
-        bpmGroup.inputField.IsNull(nameof(bpmGroup.inputField));
-        diffGroup.obj.IsNull(nameof(diffGroup.obj));
-        diffGroup.slider.IsNull(nameof(diffGroup.slider));
-        diffGroup.inputField.IsNull(nameof(diffGroup.inputField));
+        jsonManager.IsNull();
+        musicPlayer.IsNull();
+        offsetGroup.obj.IsNull();
+        offsetGroup.slider.IsNull();
+        offsetGroup.inputField.IsNull();
+        bpmGroup.obj.IsNull();
+        bpmGroup.slider.IsNull();
+        bpmGroup.inputField.IsNull();
+        diffGroup.obj.IsNull();
+        diffGroup.slider.IsNull();
+        diffGroup.inputField.IsNull();
     }
 }

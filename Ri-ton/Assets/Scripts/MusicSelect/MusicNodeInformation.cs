@@ -43,7 +43,7 @@ public class MusicNodeInformation : MonoBehaviour
 
     private void NullCheck()
     {
-        difficultyButtonsManager.IsNull(nameof(difficultyButtonsManager));
-        bigNodeBgImage.IsNull(nameof(bigNodeBgImage));
+        difficultyButtonsManager.IsNull();
+        bigNodeBgImage.IsNull();
     }
 }

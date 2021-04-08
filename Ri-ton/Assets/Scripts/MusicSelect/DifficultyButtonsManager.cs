@@ -20,9 +20,9 @@ public class DifficultyButtonsManager : MonoBehaviour
     [SerializeField]
     private ScoreView scoreView = null;
     [SerializeField]
-    private float normalButtonHeight = 40;
+    private float normalButtonHeight = 0.0f;
     [SerializeField]
-    private float selectingButtonHeight = 70;
+    private float selectingButtonHeight = 0.0f;
     [SerializeField]
     private DifficultyButtons buttonImageObj = default;
     [SerializeField]
@@ -185,12 +185,12 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     private void NullCheck()
     {
-        buttonImageObj.Easy.IsNull(nameof(buttonImageObj.Easy));
-        buttonImageObj.Normal.IsNull(nameof(buttonImageObj.Normal));
-        buttonImageObj.Hard.IsNull(nameof(buttonImageObj.Hard));
-        buttonImageObj.Expert.IsNull(nameof(buttonImageObj.Expert));
-        bigNodeBgImage.IsNull(nameof(bigNodeBgImage));
-        musicNodeInformation.IsNull(nameof(musicNodeInformation));
-        playButtonImage.IsNull(nameof(playButtonImage));
+        buttonImageObj.Easy.IsNull();
+        buttonImageObj.Normal.IsNull();
+        buttonImageObj.Hard.IsNull();
+        buttonImageObj.Expert.IsNull();
+        bigNodeBgImage.IsNull();
+        musicNodeInformation.IsNull();
+        playButtonImage.IsNull();
     }
 }

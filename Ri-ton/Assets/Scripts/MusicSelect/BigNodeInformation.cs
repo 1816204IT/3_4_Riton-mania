@@ -88,14 +88,14 @@ public class BigNodeInformation : MonoBehaviour
 
     private void NullCheck()
     {
-        jacketImage.IsNull(nameof(jacketImage));
-        musicNameText.IsNull(nameof(musicNameText));
-        bpmText.IsNull(nameof(bpmText));
-        jsonManager.IsNull(nameof(jsonManager));
-        authorText.IsNull(nameof(authorText));
-        mapperText.IsNull(nameof(mapperText));
-        difficultyText.IsNull(nameof(difficultyText));
-        englishFont.IsNull(nameof(englishFont));
-        jananeseFont.IsNull(nameof(jananeseFont));
+        jacketImage.IsNull();
+        musicNameText.IsNull();
+        bpmText.IsNull();
+        jsonManager.IsNull();
+        authorText.IsNull();
+        mapperText.IsNull();
+        difficultyText.IsNull();
+        englishFont.IsNull();
+        jananeseFont.IsNull();
     }
 }

@@ -43,7 +43,7 @@ public class EditSceneManager : MonoBehaviour
 
     private void NullCheck()
     {
-        noteDataConverter.IsNull(nameof(noteDataConverter));
-        musicPlayButton.IsNull(nameof(musicPlayButton));
+        noteDataConverter.IsNull();
+        musicPlayButton.IsNull();
     }
 }

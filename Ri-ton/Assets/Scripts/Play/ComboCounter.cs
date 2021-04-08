@@ -49,6 +49,6 @@ public class ComboCounter : MonoBehaviour
 
     private void NullCheck()
     {
-        text.IsNull(nameof(text));
+        text.IsNull();
     }
 }

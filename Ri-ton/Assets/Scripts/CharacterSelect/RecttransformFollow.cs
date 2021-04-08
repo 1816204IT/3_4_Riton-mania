@@ -23,7 +23,7 @@ public class RecttransformFollow : MonoBehaviour
 
     private void NullCheck()
     {
-        target.IsNull(nameof(target));
-        rt.IsNull(nameof(rt));
+        target.IsNull();
+        rt.IsNull();
     }
 }

@@ -246,9 +246,9 @@ public class TimingBar : MonoBehaviour
 
     private void NullCheck()
     {
-        judgmentBar.IsNull(nameof(judgmentBar));
-        noteEditor.IsNull(nameof(noteEditor));
-        musicPlayer.IsNull(nameof(musicPlayer));
+        judgmentBar.IsNull();
+        noteEditor.IsNull();
+        musicPlayer.IsNull();
         if (whiteBars.Count == 0)
         {
             Debug.LogError("whiteBars.Count is Null");

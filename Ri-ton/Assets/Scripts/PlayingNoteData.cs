@@ -77,6 +77,6 @@ public class PlayingNoteData : MonoBehaviour
 
     private void NullCheck()
     {
-        jsonManager.IsNull(nameof(jsonManager));
+        jsonManager.IsNull();
     }
 }

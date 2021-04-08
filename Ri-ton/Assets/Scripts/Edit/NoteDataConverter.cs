@@ -44,7 +44,7 @@ public class NoteDataConverter : MonoBehaviour
 
     private void NullCheck()
     {
-        JudgmentBar.IsNull(nameof(JudgmentBar));
-        musicPlayer.IsNull(nameof(musicPlayer));
+        JudgmentBar.IsNull();
+        musicPlayer.IsNull();
     }
 }

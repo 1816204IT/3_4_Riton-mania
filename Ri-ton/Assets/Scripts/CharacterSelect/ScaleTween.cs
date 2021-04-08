@@ -7,7 +7,8 @@ using DG.Tweening;
 public class ScaleTween : MonoBehaviour
 {
     [SerializeField]
-    private float duration = 0.1f;
+    private float duration = 0.0f;
+
     private Tween tween = null;
     private RectTransform rectTransform = null;
 
@@ -44,6 +45,6 @@ public class ScaleTween : MonoBehaviour
 
     private void NullCheck()
     {
-        rectTransform.IsNull(nameof(rectTransform));
+        rectTransform.IsNull();
     }
 }

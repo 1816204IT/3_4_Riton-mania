@@ -53,10 +53,10 @@ public class ScoreViewSwitcher : MonoBehaviour
 
     private void NullCheck()
     {
-        rankingView.IsNull(nameof(rankingView));
-        myBestView.IsNull(nameof(myBestView));
-        rankingTextObj.IsNull(nameof(rankingTextObj));
-        myBestTextObj.IsNull(nameof(myBestTextObj));
-        noDataTextObj.IsNull(nameof(noDataTextObj));
+        rankingView.IsNull();
+        myBestView.IsNull();
+        rankingTextObj.IsNull();
+        myBestTextObj.IsNull();
+        noDataTextObj.IsNull();
     }
 }

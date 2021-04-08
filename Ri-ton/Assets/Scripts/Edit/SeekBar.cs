@@ -9,7 +9,7 @@ public class SeekBar : MonoBehaviour
     private MusicPlayer musicPlayer = null;
     private RhythmKeeper rhythmKeeper = null;
     private Slider seekBar = null;
-    private Color pressedColor = new Color(0.5f, 0.5f, 0.5f);
+    private Color pressedColor = Color.gray;
 
     void Start()
     {
@@ -31,8 +31,8 @@ public class SeekBar : MonoBehaviour
 
     private void NullCheck()
     {
-        musicPlayer.IsNull(nameof(musicPlayer));
-        rhythmKeeper.IsNull(nameof(rhythmKeeper));
-        musicPlayer.IsNull(nameof(musicPlayer));
+        musicPlayer.IsNull();
+        rhythmKeeper.IsNull();
+        musicPlayer.IsNull();
     }
 }

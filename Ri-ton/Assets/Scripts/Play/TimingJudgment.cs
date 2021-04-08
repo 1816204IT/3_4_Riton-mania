@@ -36,9 +36,9 @@ public class TimingJudgment : MonoBehaviour
     private NoteDataConverter noteDataConverter = null;
 
     // 判定フレーム数
-    private const int missFrame = 14;
-    private const int goodFrame = 10;
-    private const int perfectFrame = 6;
+    private const int c_miss_frame = 14;
+    private const int c_good_frame = 10;
+    private const int c_perfect_frame = 6;
     private float missLen = 0.0f;
     private float goodLen = 0.0f;
     private float perfectLen = 0.0f;
@@ -65,9 +65,9 @@ public class TimingJudgment : MonoBehaviour
         secondDistance = musicPlayer.ClapSpan() * UserPreference.instance.NoteSpeed();
 
         // 判定の長さを代入(秒)
-        missLen = secondDistance / 60.0f * (float)missFrame;
-        goodLen = secondDistance / 60.0f * (float)goodFrame;
-        perfectLen = secondDistance / 60.0f * (float)perfectFrame;
+        missLen = secondDistance / 60.0f * (float)c_miss_frame;
+        goodLen = secondDistance / 60.0f * (float)c_good_frame;
+        perfectLen = secondDistance / 60.0f * (float)c_perfect_frame;
     }
 
     void Update()
@@ -108,7 +108,7 @@ public class TimingJudgment : MonoBehaviour
         if (Input.GetButtonUp(key))
         {
             isHoldValid = true;
-            holdUpedCheatTime = goodFrame / 60.0f;
+            holdUpedCheatTime = c_good_frame / 60.0f;
 
             if (judgmentingLongNote != null)
             {
@@ -418,18 +418,18 @@ public class TimingJudgment : MonoBehaviour
     // Nullチェックを行う
     private void NullCheck()
     {
-        jsonManager.IsNull(nameof(jsonManager));
-        musicPlayer.IsNull(nameof(musicPlayer));
-        judgmentText.IsNull(nameof(judgmentText));
-        audioSource.IsNull(nameof(audioSource));
-        comboCounter.IsNull(nameof(comboCounter));
-        accCounter.IsNull(nameof(accCounter));
-        scoreCounter.IsNull(nameof(scoreCounter));
-        keyEffect.IsNull(nameof(keyEffect));
-        playingNoteData.IsNull(nameof(playingNoteData));
-        noteSetter.IsNull(nameof(noteSetter));
-        timingText.IsNull(nameof(timingText));
-        noteDataConverter.IsNull(nameof(noteDataConverter));
-        fastSlowText.IsNull(nameof(fastSlowText));
+        jsonManager.IsNull();
+        musicPlayer.IsNull();
+        judgmentText.IsNull();
+        audioSource.IsNull();
+        comboCounter.IsNull();
+        accCounter.IsNull();
+        scoreCounter.IsNull();
+        keyEffect.IsNull();
+        playingNoteData.IsNull();
+        noteSetter.IsNull();
+        timingText.IsNull();
+        noteDataConverter.IsNull();
+        fastSlowText.IsNull();
     }
 }

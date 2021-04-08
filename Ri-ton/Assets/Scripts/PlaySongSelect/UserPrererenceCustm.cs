@@ -207,9 +207,9 @@ public class UserPrererenceCustm : MonoBehaviour
 
     private void NullCheck()
     {
-        slider.IsNull(nameof(slider));
-        sliderMinValueText.IsNull(nameof(sliderMinValueText));
-        mouseOverSE.IsNull(nameof(mouseOverSE));
-        soundVolumeManager.IsNull(nameof(soundVolumeManager));
+        slider.IsNull();
+        sliderMinValueText.IsNull();
+        mouseOverSE.IsNull();
+        soundVolumeManager.IsNull();
     }
 }

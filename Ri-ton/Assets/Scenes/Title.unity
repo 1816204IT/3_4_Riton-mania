@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &4399689
@@ -1341,7 +1340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!1 &313295876
@@ -1489,7 +1487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!850595691 &408318983
@@ -3487,7 +3484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!114 &1093043129
@@ -4138,7 +4134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1345248056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2a7daef59e80c489500d2df0ef5a1d, type: 3}
+  m_Script: {fileID: 11500000, guid: 89db046c23fb5ca479091d829e70c687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   logIningObj: {fileID: 1627638230}
@@ -4151,7 +4147,6 @@ MonoBehaviour:
   reactionText: {fileID: 1263067690}
   titleSceneManager: {fileID: 1943366978}
   moveTween: {fileID: 1924251848}
-  headerInfo: {fileID: 142524616}
 --- !u!1001 &1395344329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4364,7 +4359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!1 &1437062055
@@ -5941,7 +5935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!1 &1924251844
@@ -6741,7 +6734,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
 --- !u!1001 &3871329435322393632

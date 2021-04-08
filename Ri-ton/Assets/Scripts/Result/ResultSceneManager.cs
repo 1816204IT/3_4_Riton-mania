@@ -32,6 +32,6 @@ public class ResultSceneManager : MonoBehaviour
 
     private void NullCheck()
     {
-        jsonManager.IsNull(nameof(jsonManager));
+        jsonManager.IsNull();
     }
 }

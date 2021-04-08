@@ -23,7 +23,7 @@ public class SyncSizeDelta : MonoBehaviour
 
     private void NullCheck()
     {
-        myRectTransform.IsNull(nameof(myRectTransform));
-        targetRectTransform.IsNull(nameof(targetRectTransform));
+        myRectTransform.IsNull();
+        targetRectTransform.IsNull();
     }
 }

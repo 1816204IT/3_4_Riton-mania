@@ -17,7 +17,7 @@ public class ScoreView : MonoBehaviour
     [SerializeField]
     private Text noDataText = null;
 
-    private const float reFetchRankersTime = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
+    private const float c_re_fetch_rankers_time = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
 
     private List<GameObject> nodeObjList = new List<GameObject>();
     private StringBuilder PathBuilder;
@@ -52,7 +52,7 @@ public class ScoreView : MonoBehaviour
         if (rankersNum == 0)
         {
             noRankersTimer += Time.deltaTime;
-            if (noRankersTimer >= reFetchRankersTime)
+            if (noRankersTimer >= c_re_fetch_rankers_time)
             {
                 noRankersTimer = 0.0f;
                 UpdateResultData();
@@ -192,8 +192,8 @@ public class ScoreView : MonoBehaviour
 
     private void NullCheck()
     {
-        nodePrefab.IsNull(nameof(nodePrefab));
-        rankingContent.IsNull(nameof(rankingContent));
-        noDataText.IsNull(nameof(noDataText));
+        nodePrefab.IsNull();
+        rankingContent.IsNull();
+        noDataText.IsNull();
     }
 }

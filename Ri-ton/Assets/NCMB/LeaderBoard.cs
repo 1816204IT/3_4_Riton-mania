@@ -6,8 +6,9 @@ public class LeaderBoard
     public int currentRank { get; private set; } = 0;
     public List<NCMB.HighScore> topRankers { get; private set; } = null;
 
-    private const int c_viewRankingNumMax = 10; // 何人までランキングに表示するか
-    private int viewRankingNum = 0; // 何人表示するか
+    private const int c_view_ranking_num_max = 10; // ランキングの最大表示人数
+
+    private int viewRankingNum = 0; // ランキングの現在の表示人数
     private List<NCMB.CharacterIcon> topRankersIcon = null;
 
     // 現プレイヤーのハイスコアを受けとってランクを取得 ---------------
@@ -42,7 +43,7 @@ public class LeaderBoard
         string className = SelectedMap.instance.GetMusicEnglishName() + "_" + SelectedMap.instance.difficultyName;
         NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(className);
         query.OrderByDescending("Score");
-        query.Limit = c_viewRankingNumMax; // 何人まで取得するか
+        query.Limit = c_view_ranking_num_max; // 何人まで取得するか
         query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
 
             if (e != null)

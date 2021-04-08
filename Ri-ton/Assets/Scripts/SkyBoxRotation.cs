@@ -6,7 +6,7 @@
 public class SkyBoxRotation : MonoBehaviour
 {
     [SerializeField]
-    private float anglePerFrame = 0.1f;    // 1フレームに何度回転するか
+    private float anglePerFrame = 0.0f;    // 1フレームに何度回転するか
 
     private float rot = 0.0f;
 
