@@ -19,12 +19,12 @@ public class ScoreView : MonoBehaviour
 
     private const float c_re_fetch_rankers_time = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
 
-    private List<GameObject> nodeObjList = new List<GameObject>();
+    private List<GameObject> nodeObjLists = new List<GameObject>();
     private StringBuilder PathBuilder;
     private LeaderBoard lBoard;
     private NCMB.HighScore highScore;
     private List<NCMB.HighScore> topRankers = new List<NCMB.HighScore>();
-    private List<NCMB.CharacterIcon> topRankersIcon = new List<NCMB.CharacterIcon>();
+    private List<NCMB.CharacterIcon> topRankersIcons = new List<NCMB.CharacterIcon>();
     private GameObject highScoreNode = null;
     private bool isScoreFetched;
     private bool isRankFetched;
@@ -91,7 +91,7 @@ public class ScoreView : MonoBehaviour
         {
             // 取得したトップランキングを表示
             topRankers = lBoard.GetTopRankers();
-            topRankersIcon = lBoard.GetTopRankersIcon();
+            topRankersIcons = lBoard.GetTopRankersIcon();
             isLeaderBoardFetched = true;
 
             // 取得したランカーの人数を保存
@@ -103,7 +103,7 @@ public class ScoreView : MonoBehaviour
                 obj.transform.SetParent(rankingContent.transform);
                 //ノード情報を更新
                 SetRankingNode(obj, i);
-                nodeObjList.Add(obj);
+                nodeObjLists.Add(obj);
             }
         }
     }
@@ -111,14 +111,14 @@ public class ScoreView : MonoBehaviour
     public void UpdateResultData()
     {
         topRankers.Clear();
-        topRankersIcon.Clear();
+        topRankersIcons.Clear();
 
-        for (int i = 0; i < nodeObjList.Count; i++)
+        for (int i = 0; i < nodeObjLists.Count; i++)
         {
-            Destroy(nodeObjList[i]);
+            Destroy(nodeObjLists[i]);
         }
         Destroy(highScoreNode);
-        nodeObjList.Clear();
+        nodeObjLists.Clear();
         noDataText.text = "";
         rankersNum = 0;
 
@@ -182,7 +182,7 @@ public class ScoreView : MonoBehaviour
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
 
         //アイコン画像を設定
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(topRankersIcon[i].character);
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(topRankersIcons[i].character);
 
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.instance.GetSmallSprite(rankers.rank);

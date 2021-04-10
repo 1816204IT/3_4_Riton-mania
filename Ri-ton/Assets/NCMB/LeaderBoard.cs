@@ -9,7 +9,7 @@ public class LeaderBoard
     private const int c_view_ranking_num_max = 10; // ランキングの最大表示人数
 
     private int viewRankingNum = 0; // ランキングの現在の表示人数
-    private List<NCMB.CharacterIcon> topRankersIcon = null;
+    private List<NCMB.CharacterIcon> topRankersIcons = null;
 
     // 現プレイヤーのハイスコアを受けとってランクを取得 ---------------
     public void FetchRank(int currentScore)
@@ -36,7 +36,7 @@ public class LeaderBoard
     public void FetchTopRankers()
     {
         topRankers = null;
-        topRankersIcon = null;
+        topRankersIcons = null;
         viewRankingNum = 0;
 
         // データストアの「HighScore」クラスから検索
@@ -76,7 +76,7 @@ public class LeaderBoard
                     iconList.Add(icon);
                 }
                 topRankers = list;
-                topRankersIcon = iconList;
+                topRankersIcons = iconList;
             }
         });
     }
@@ -88,19 +88,19 @@ public class LeaderBoard
 
     public List<NCMB.CharacterIcon> GetTopRankersIcon()
     {
-        return topRankersIcon;
+        return topRankersIcons;
     }
 
     // トップランカーのアイコン取得が完了しているか
     public bool IsIconFetchEnd()
     {
-        if (topRankersIcon == null)
+        if (topRankersIcons == null)
         {
             return false;
         }
 
         int fetchEndNum = 0;
-        foreach (NCMB.CharacterIcon icon in topRankersIcon)
+        foreach (NCMB.CharacterIcon icon in topRankersIcons)
         {
             if (icon.character != 5)
             {

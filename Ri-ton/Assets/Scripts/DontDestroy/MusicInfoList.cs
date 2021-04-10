@@ -14,7 +14,7 @@ public class MusicInfoList : MonoBehaviour
     [SerializeField]
     private Sprite[] bgImages = null;
     [SerializeField]
-    private AudioClip[] music = null;
+    private AudioClip[] musics = null;
 
     void Awake()
     {
@@ -68,7 +68,7 @@ public class MusicInfoList : MonoBehaviour
 
     public AudioClip GetMusic(int musicIndex)
     {
-        return music[musicIndex];
+        return musics[musicIndex];
     }
 
     public AudioClip GetMusic(string musicName)
@@ -87,6 +87,6 @@ public class MusicInfoList : MonoBehaviour
         {
             Debug.Log("無効な曲名です");
         }
-        return music[i];
+        return musics[i];
     }
 }

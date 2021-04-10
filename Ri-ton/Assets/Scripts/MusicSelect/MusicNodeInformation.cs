@@ -12,7 +12,7 @@ public class MusicNodeInformation : MonoBehaviour
     [SerializeField]
     private DifficultyColor difficultyColor;
 
-    private List<GameObject> nodeList = new List<GameObject>();
+    private List<GameObject> nodeLists = new List<GameObject>();
     private List<Image> nodeImages = new List<Image>();
     private Image bigNodeBgImage = null;
 
@@ -21,8 +21,8 @@ public class MusicNodeInformation : MonoBehaviour
         bigNodeBgImage = GameObject.FindGameObjectWithTag("BigNode").GetComponent<Image>();
         NullCheck();
 
-        nodeList = this.GetComponent<MusicNodeInstance>().nodeGameObjectList;
-        foreach (GameObject obj in nodeList)
+        nodeLists = this.GetComponent<MusicNodeInstance>().nodeGameObjectList;
+        foreach (GameObject obj in nodeLists)
         {
             nodeImages.Add(obj.GetComponent<Image>());
         }

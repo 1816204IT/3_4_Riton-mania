@@ -30,9 +30,9 @@ public class DifficultyButtonsManager : MonoBehaviour
     [SerializeField]
     private DifficultyColor difficultyColor;
 
-    private RectTransform[] buttonsRectTransform = new RectTransform[(int)DifficultyType.MAX];
-    private Image[] buttonsImage = new Image[(int)DifficultyType.MAX];
-    private Text[] buttonsText = new Text[(int)DifficultyType.MAX];
+    private RectTransform[] buttonsRectTransforms = new RectTransform[(int)DifficultyType.MAX];
+    private Image[] buttonsImages = new Image[(int)DifficultyType.MAX];
+    private Text[] buttonsTexts = new Text[(int)DifficultyType.MAX];
     private Image bigNodeBgImage = default;
     private BigNodeInformation bigNode = null;
     private MusicNodeInformation musicNodeInformation = null;
@@ -55,20 +55,20 @@ public class DifficultyButtonsManager : MonoBehaviour
             }
         }
 
-        buttonsRectTransform[(int)DifficultyType.EASY] = buttonImageObj.Easy.GetComponent<RectTransform>();
-        buttonsRectTransform[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.GetComponent<RectTransform>();
-        buttonsRectTransform[(int)DifficultyType.HARD] = buttonImageObj.Hard.GetComponent<RectTransform>();
-        buttonsRectTransform[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.GetComponent<RectTransform>();
+        buttonsRectTransforms[(int)DifficultyType.EASY] = buttonImageObj.Easy.GetComponent<RectTransform>();
+        buttonsRectTransforms[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.GetComponent<RectTransform>();
+        buttonsRectTransforms[(int)DifficultyType.HARD] = buttonImageObj.Hard.GetComponent<RectTransform>();
+        buttonsRectTransforms[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.GetComponent<RectTransform>();
 
-        buttonsImage[(int)DifficultyType.EASY] = buttonImageObj.Easy.GetComponent<Image>();
-        buttonsImage[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.GetComponent<Image>();
-        buttonsImage[(int)DifficultyType.HARD] = buttonImageObj.Hard.GetComponent<Image>();
-        buttonsImage[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.GetComponent<Image>();
+        buttonsImages[(int)DifficultyType.EASY] = buttonImageObj.Easy.GetComponent<Image>();
+        buttonsImages[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.GetComponent<Image>();
+        buttonsImages[(int)DifficultyType.HARD] = buttonImageObj.Hard.GetComponent<Image>();
+        buttonsImages[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.GetComponent<Image>();
 
-        buttonsText[(int)DifficultyType.EASY] = buttonImageObj.Easy.transform.Find("Text").GetComponent<Text>();
-        buttonsText[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.transform.Find("Text").GetComponent<Text>();
-        buttonsText[(int)DifficultyType.HARD] = buttonImageObj.Hard.transform.Find("Text").GetComponent<Text>();
-        buttonsText[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.transform.Find("Text").GetComponent<Text>();
+        buttonsTexts[(int)DifficultyType.EASY] = buttonImageObj.Easy.transform.Find("Text").GetComponent<Text>();
+        buttonsTexts[(int)DifficultyType.NORMAL] = buttonImageObj.Normal.transform.Find("Text").GetComponent<Text>();
+        buttonsTexts[(int)DifficultyType.HARD] = buttonImageObj.Hard.transform.Find("Text").GetComponent<Text>();
+        buttonsTexts[(int)DifficultyType.EXPERT] = buttonImageObj.Expert.transform.Find("Text").GetComponent<Text>();
     }
 
     private void Update()
@@ -124,7 +124,7 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     private void AllButtonsHeightReset()
     {
-        foreach (RectTransform rt in buttonsRectTransform)
+        foreach (RectTransform rt in buttonsRectTransforms)
         {
             Vector2 tmpSize = rt.sizeDelta;
             rt.sizeDelta = new Vector2(tmpSize.x, normalButtonHeight);
@@ -137,12 +137,12 @@ public class DifficultyButtonsManager : MonoBehaviour
         //大画面情報の更新
         bigNode.InformationUpdate();
         //ボタンの色を灰色にする
-        foreach (Image img in buttonsImage)
+        foreach (Image img in buttonsImages)
         {
             img.color = new Color(0.84f, 0.84f, 0.84f);
         }
         //ボタンの文字を灰色にする
-        foreach (Text text in buttonsText)
+        foreach (Text text in buttonsTexts)
         {
             text.color = new Color(0.84f, 0.84f, 0.84f);
         }
@@ -153,10 +153,10 @@ public class DifficultyButtonsManager : MonoBehaviour
         SelectedMap.instance.difficultyName = diffName;
         SelectedMap.instance.nowDifficulty = diffType;
         AllButtonsHeightReset();
-        Vector2 tmpSize = buttonsRectTransform[(int)diffType].sizeDelta;
-        buttonsRectTransform[(int)diffType].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
-        buttonsImage[(int)diffType].color = diffColor;
-        buttonsText[(int)diffType].color = Color.white;
+        Vector2 tmpSize = buttonsRectTransforms[(int)diffType].sizeDelta;
+        buttonsRectTransforms[(int)diffType].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
+        buttonsImages[(int)diffType].color = diffColor;
+        buttonsTexts[(int)diffType].color = Color.white;
         bigNodeBgImage.color = diffColor;
         bigNodeBgImage.transform.Find("inLine").gameObject.GetComponent<Image>().color = diffColor;
         playButtonImage.color = diffColor;
