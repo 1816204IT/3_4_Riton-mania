@@ -16,8 +16,6 @@ public class MouseFollow : MonoBehaviour
     private Bounds bounds = null;
     [SerializeField]
     private LayerMask layerMask = 0;
-    [SerializeField]
-    private UnityEngine.UI.Text text = null;
 
     private NoteEdit noteEditor = null;
     private NoteDataConverter noteDataConverter = null;
@@ -49,7 +47,6 @@ public class MouseFollow : MonoBehaviour
 
         float time = 0.0f;
         noteEditor.IsClickedPosValid(ref pos, ref time);
-        text.text = "FollowNoteNumber = " + noteDataConverter.ConvertBeatNum(time, noteEditor.LPB);
     }
 
     //マウス座標をプレイエリア平面座標に変換する

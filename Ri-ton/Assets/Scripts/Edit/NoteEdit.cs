@@ -19,8 +19,6 @@ public class NoteEdit : MonoBehaviour
     private GameObject verticalLinRight = null;
     [SerializeField]
     private Text beatSpanText = null;
-    [SerializeField]
-    private Text text = null;
 
     private MusicPlayer musicPlayer = null;
     private GameObject mouseFollowNote = null;
@@ -96,8 +94,6 @@ public class NoteEdit : MonoBehaviour
             //クリック開始位置と終了位置が同じ場合
             if ((clickDownNote.lane == clickUpNote.lane) && (clickDownNote.num == clickUpNote.num))
             {
-                text.text = "WriteNoteNumber = " + clickUpNote.num.ToString();
-
                 clickUpNote.type = 0;
                 clickUpNote.isLongNote = false;
                 playingNoteData.AddNote(clickUpNote);
@@ -174,7 +170,6 @@ public class NoteEdit : MonoBehaviour
     {
         if (mouseFollow.IsMousePosValid() == false)
         {
-            Debug.LogError("MousePos not Valid");
             return false;
         }
 
@@ -183,7 +178,6 @@ public class NoteEdit : MonoBehaviour
 
         if (time < 0)
         {
-            Debug.LogError("time < 0 reutrn");
             return false;
         }
 
