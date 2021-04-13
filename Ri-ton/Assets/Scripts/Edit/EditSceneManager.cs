@@ -31,13 +31,13 @@ public class EditSceneManager : MonoBehaviour
 
     public void NoteSpeedUp()
     {
-        UserPreference.instance.NoteSpeedUp();
+        UserPreference.Instance.NoteSpeedUp();
         noteDataConverter.Init();
     }
 
     public void NoteSpeedDown()
     {
-        UserPreference.instance.NoteSpeedDown();
+        UserPreference.Instance.NoteSpeedDown();
         noteDataConverter.Init();
     }
 

@@ -58,8 +58,8 @@ public class PlaySceneManager : MonoBehaviour
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         NullCheck();
 
-        musicName.text = SelectedMap.instance.musicName;
-        difficultyName.text = SelectedMap.instance.difficultyName;
+        musicName.text = SelectedMap.Instance.MusicName;
+        difficultyName.text = SelectedMap.Instance.DifficultyName;
 
         // カーソルの表示をOFFにする
         Cursor.visible = false;
@@ -77,15 +77,15 @@ public class PlaySceneManager : MonoBehaviour
         prePlayHighScore.Fetch();
 
         // 背景の選択
-        if (UserPreference.instance.isBloomCubes)
+        if (UserPreference.Instance.IsBloomCubes)
         {
-            UserPreference.instance.isBloomCubes = false;
+            UserPreference.Instance.IsBloomCubes = false;
             bloomCubes.SetActive(true);
             hexagons.SetActive(false);
         }
         else
         {
-            UserPreference.instance.isBloomCubes = true;
+            UserPreference.Instance.IsBloomCubes = true;
             bloomCubes.SetActive(false);
             hexagons.SetActive(true);
         }
@@ -99,7 +99,7 @@ public class PlaySceneManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 isTutorialEnd = true;
-                playStartTimer.isTutorialEnd = true;
+                playStartTimer.IsTutorialEnd = true;
                 tutorialCanvas.SetActive(false);
             }
         }
@@ -123,9 +123,9 @@ public class PlaySceneManager : MonoBehaviour
 
         // 曲が終了したらリザルトデータをサーバーに送信する
         // 曲が終わった瞬間にaudioSource.time = 0になるので曲の長さの0.1秒前に終了させることで安全に判定する
-        if (musicPlayer.audioSource.time + 0.1f >= musicPlayer.audioSource.clip.length)
+        if (musicPlayer.AudioSource.time + 0.1f >= musicPlayer.AudioSource.clip.length)
         {
-            musicPlayer.audioSource.Stop();
+            musicPlayer.AudioSource.Stop();
             SaveResultData();
         }
 
@@ -158,15 +158,15 @@ public class PlaySceneManager : MonoBehaviour
         // デバッグ用、曲を指定時間までスキップする
         if (Input.GetKeyDown(KeyCode.T))
         {
-            musicPlayer.audioSource.time = 80.0f;
+            musicPlayer.AudioSource.time = 80.0f;
         }
     }
 
     void SaveResultData()
     {
         highScore.score = scoreCounter.GetScore();
-        highScore.combo = comboCounter.maxCombo;
-        highScore.acc = (int)(accCounter.acc * 100);      // accの100倍を代入
+        highScore.combo = comboCounter.MaxCombo;
+        highScore.acc = (int)(accCounter.Acc * 100);      // accの100倍を代入
 
         RankNumber rankNum;
         if (highScore.score >= 1000000)
@@ -218,11 +218,11 @@ public class PlaySceneManager : MonoBehaviour
         ResultShowData data = new ResultShowData();
         data.score = highScore.score;
         data.acc = highScore.acc;
-        data.maxCombo = accCounter.totalNoteNum;
+        data.maxCombo = accCounter.TotalNoteNum;
         data.combo = highScore.combo;
-        data.perfectNum = accCounter.totalPerfectNum;
-        data.goodNum = accCounter.totalGoodNum;
-        data.missNum = accCounter.totalMissNum;
+        data.perfectNum = accCounter.TotalPerfectNum;
+        data.goodNum = accCounter.TotalGoodNum;
+        data.missNum = accCounter.TotalMissNum;
         data.rankImageNum = highScore.rank;
         data.isAciveHighScore = isAchieveHishScore;
         resultDataInput.SetResultShowData(data);

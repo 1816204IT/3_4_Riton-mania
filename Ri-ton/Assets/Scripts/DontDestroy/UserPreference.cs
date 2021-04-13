@@ -38,13 +38,13 @@ public class UserPreference : MonoBehaviour
     private const float c_init_music_volume = 0.5f;
     private const float c_init_se_volume = 0.5f;
 
-    public static UserPreference instance { get; private set; }
-    public bool isBloomCubes { get; set; } = true;  // プレイ背景がキューブの方か
-    public float noteSpeedNum { get; private set; } = c_init_note_speed;    // 1.0f～10.0f(0.5刻み)
-    public float offsetValueNum { get; private set; } = 0.0f;       // -10.0f～10.0f(1.0刻み)
-    public float musicVolume { get; set; } = c_init_music_volume;   // 0.0f～1.0f(0.05刻み)
-    public float seVolume { get; set; } = c_init_se_volume;         // 0.0f～1.0f(0.05刻み)
-    public bool isTutorial { get; set; }
+    public static UserPreference Instance { get; private set; }
+    public bool IsBloomCubes { get; set; } = true;  // プレイ背景がキューブの方か
+    public float NoteSpeedNum { get; private set; } = c_init_note_speed;    // 1.0f～10.0f(0.5刻み)
+    public float OffsetValueNum { get; private set; } = 0.0f;       // -10.0f～10.0f(1.0刻み)
+    public float MusicVolume { get; set; } = c_init_music_volume;   // 0.0f～1.0f(0.05刻み)
+    public float SeVolume { get; set; } = c_init_se_volume;         // 0.0f～1.0f(0.05刻み)
+    public bool IsTutorial { get; set; }
 
     private const int c_max_note_speed = 4000;    // ノーツ速度の最大値
     private const int c_min_note_speed = 400;     // ノーツ速度の最小値
@@ -60,12 +60,12 @@ public class UserPreference : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
         userAuth = FindObjectOfType<UserAuth>();
@@ -123,42 +123,42 @@ public class UserPreference : MonoBehaviour
 
     public void ChangeNoteSpeed(float settingNum)
     {
-        noteSpeedNum = settingNum;
+        NoteSpeedNum = settingNum;
     }
 
     public void ChangeOffsetValue(float offsetNum)
     {
-        offsetValueNum = offsetNum;
+        OffsetValueNum = offsetNum;
     }
 
     public void NoteSpeedUp()
     {
-        noteSpeedNum = (noteSpeedNum <= 9.5f) ? noteSpeedNum + 0.5f : noteSpeedNum;
+        NoteSpeedNum = (NoteSpeedNum <= 9.5f) ? NoteSpeedNum + 0.5f : NoteSpeedNum;
     }
 
     public void NoteSpeedDown()
     {
-        noteSpeedNum = (noteSpeedNum > 1.0f) ? noteSpeedNum - 0.5f : noteSpeedNum;
+        NoteSpeedNum = (NoteSpeedNum > 1.0f) ? NoteSpeedNum - 0.5f : NoteSpeedNum;
     }
 
     public void AddOffset()
     {
-        offsetValueNum = (offsetValueNum < 100.0f) ? offsetValueNum + 2 : offsetValueNum;
+        OffsetValueNum = (OffsetValueNum < 100.0f) ? OffsetValueNum + 2 : OffsetValueNum;
     }
 
     public void SubtractOffset()
     {
-        offsetValueNum = (offsetValueNum > -100.0f) ? offsetValueNum - 2 : offsetValueNum;
+        OffsetValueNum = (OffsetValueNum > -100.0f) ? OffsetValueNum - 2 : OffsetValueNum;
     }
 
     public float NoteSpeed()
     {
-        return noteSpeedUnit * noteSpeedNum;
+        return noteSpeedUnit * NoteSpeedNum;
     }
 
     public float UserOffset()
     {
-        return offsetValueUnit * offsetValueNum;
+        return offsetValueUnit * OffsetValueNum;
     }
 
     public float NoteSizeX()
@@ -197,11 +197,11 @@ public class UserPreference : MonoBehaviour
         Ritonmania.LocalUserData data = new Ritonmania.LocalUserData();
         data.playerName = userAuth.playerName;
         data.password = userAuth.password;
-        data.noteSpeedNum = (int)(noteSpeedNum * 10);
-        data.offsetValueNum = (int)offsetValueNum;
-        data.musicVolume = (int)(musicVolume * 100);
-        data.seVolume = (int)(seVolume * 100);
-        data.isTutorial = isTutorial;
+        data.noteSpeedNum = (int)(NoteSpeedNum * 10);
+        data.offsetValueNum = (int)OffsetValueNum;
+        data.musicVolume = (int)(MusicVolume * 100);
+        data.seVolume = (int)(SeVolume * 100);
+        data.isTutorial = IsTutorial;
         return data;
     }
 
@@ -209,11 +209,11 @@ public class UserPreference : MonoBehaviour
     {
         userAuth.playerName = data.playerName;
         userAuth.password = data.password;
-        noteSpeedNum = data.noteSpeedNum / 10.0f;
-        offsetValueNum = (float)data.offsetValueNum;
-        musicVolume = data.musicVolume / 100.0f;
-        seVolume = data.seVolume / 100.0f;
-        isTutorial = data.isTutorial;
+        NoteSpeedNum = data.noteSpeedNum / 10.0f;
+        OffsetValueNum = (float)data.offsetValueNum;
+        MusicVolume = data.musicVolume / 100.0f;
+        SeVolume = data.seVolume / 100.0f;
+        IsTutorial = data.isTutorial;
     }
 
     private void NullCheck()

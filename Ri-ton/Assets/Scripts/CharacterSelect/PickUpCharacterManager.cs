@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PickUpCharacterManager : MonoBehaviour
 {
-    public int pickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号　-1は未選択
+    public int PickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号　-1は未選択
 
     [SerializeField]
     private GameObject[] hideObjects = null;
@@ -56,7 +56,7 @@ public class PickUpCharacterManager : MonoBehaviour
         NullCheck();
         profile.SetActive(false);
         // キャラクターの番号を取得
-        pickingCharacterNum = UserPreference.instance.GetCharacterNumber();
+        PickingCharacterNum = UserPreference.Instance.GetCharacterNumber();
         // nowの矢印のX座標移動
         MoveNowArrow();
         // 「キャラクターを選んで下さい」のキャンバスを非表示に
@@ -124,8 +124,8 @@ public class PickUpCharacterManager : MonoBehaviour
     public void OnCharacterMoveComplete()
     {
         // キャラクターデータの取得
-        Ritonmania.CharacterData data = characterProfileData.GetCharacterData(pickingCharacterNum);
-        Color color = CharacterInfoList.instance.GetColor(pickingCharacterNum);
+        Ritonmania.CharacterData data = characterProfileData.GetCharacterData(PickingCharacterNum);
+        Color color = CharacterInfoList.instance.GetColor(PickingCharacterNum);
 
         // 背景の名前の色とtextを指定
         characterNameText.color = color;
@@ -183,7 +183,7 @@ public class PickUpCharacterManager : MonoBehaviour
         if (nowState == NOW_STATE.HOME)
         {
             // キャラクター未選択なら催促分を表示
-            if ((pickingCharacterNum < 0) || (pickingCharacterNum > 4))
+            if ((PickingCharacterNum < 0) || (PickingCharacterNum > 4))
             {
                 pleasePickCharacter.SetActive(true);
                 // 催促分を指定秒数後に消す
@@ -192,7 +192,7 @@ public class PickUpCharacterManager : MonoBehaviour
             // キャラクター選択済みならタイトルへ戻る
             else
             {
-                UserPreference.instance.AsyncCharacterIcon();   // サーバー同期
+                UserPreference.Instance.AsyncCharacterIcon();   // サーバー同期
                 SceneManager.LoadScene("Title");
             }
         }
@@ -219,7 +219,7 @@ public class PickUpCharacterManager : MonoBehaviour
     public void ChangeCharacter()
     {
         // キャラクターの番号を変更
-        UserPreference.instance.SetCharacterNumber(pickingCharacterNum);
+        UserPreference.Instance.SetCharacterNumber(PickingCharacterNum);
         // ヘッダーのプレイヤー名の文字色を変更
         headerInfo.SetPlayerNameColor();
         // nowの矢印のX座標移動
@@ -231,13 +231,13 @@ public class PickUpCharacterManager : MonoBehaviour
     // nowの矢印のX座標移動
     private void MoveNowArrow()
     {
-        if ((pickingCharacterNum < 0)  || (pickingCharacterNum > 4))
+        if ((PickingCharacterNum < 0)  || (PickingCharacterNum > 4))
         {
             return;
         }
 
         Vector3 p = nowArrow.transform.localPosition;
-        float posX = c_character_distance_x * (pickingCharacterNum - 2); // キャラクター番号2のキャラクターが中央に配置されているため -2 する
+        float posX = c_character_distance_x * (PickingCharacterNum - 2); // キャラクター番号2のキャラクターが中央に配置されているため -2 する
         nowArrow.transform.localPosition = new Vector3(posX, p.y, p.z);
     }
 

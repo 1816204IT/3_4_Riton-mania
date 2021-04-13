@@ -5,7 +5,7 @@
 /// </summary>
 public class MusicInfoList : MonoBehaviour
 {
-    public static MusicInfoList instance { get; private set; }
+    public static MusicInfoList Instance { get; private set; }
 
     [SerializeField]
     private string[] musicNames = null;
@@ -18,12 +18,12 @@ public class MusicInfoList : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
     

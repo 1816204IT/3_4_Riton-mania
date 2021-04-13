@@ -25,7 +25,7 @@ public class MusicPlayButton : MonoBehaviour
 
     void Update()
     {
-        if (musicPlayer.audioSource.isPlaying)
+        if (musicPlayer.AudioSource.isPlaying)
         {
             image.sprite = stopButton;
         }
@@ -37,19 +37,19 @@ public class MusicPlayButton : MonoBehaviour
 
     public void MusicPlayAndStop()
     {
-        if (musicPlayer.audioSource.isPlaying)
+        if (musicPlayer.AudioSource.isPlaying)
         {
-            musicPlayer.audioSource.Pause();
+            musicPlayer.AudioSource.Pause();
         }
         else
         {
-            if (musicPlayer.audioSource.time == 0.0f)
+            if (musicPlayer.AudioSource.time == 0.0f)
             {
-                musicPlayer.audioSource.Play();
+                musicPlayer.AudioSource.Play();
             }
             else
             {
-                musicPlayer.audioSource.UnPause();
+                musicPlayer.AudioSource.UnPause();
             }
         }
     }

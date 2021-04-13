@@ -13,9 +13,9 @@ public class OptionSceneManager : MonoBehaviour
     void Awake()
     {
         NullCheck();
-        SelectedMap.instance.musicName = "castle";
-        SelectedMap.instance.difficultyName = "Easy";
-        offsetText.text = UserPreference.instance.UserOffset().ToString();
+        SelectedMap.Instance.MusicName = "castle";
+        SelectedMap.Instance.DifficultyName = "Easy";
+        offsetText.text = UserPreference.Instance.UserOffset().ToString();
     }
 
     void Update()
@@ -28,24 +28,24 @@ public class OptionSceneManager : MonoBehaviour
 
     public void NoteSpeedUp()
     {
-        UserPreference.instance.NoteSpeedUp();
+        UserPreference.Instance.NoteSpeedUp();
     }
 
     public void NoteSpeedDown()
     {
-        UserPreference.instance.NoteSpeedDown();
+        UserPreference.Instance.NoteSpeedDown();
     }
 
     public void AddOffset()
     {
-        UserPreference.instance.AddOffset();
-        offsetText.text = UserPreference.instance.UserOffset().ToString();
+        UserPreference.Instance.AddOffset();
+        offsetText.text = UserPreference.Instance.UserOffset().ToString();
     }
 
     public void SubtractOffset()
     {
-        UserPreference.instance.SubtractOffset();
-        offsetText.text = UserPreference.instance.UserOffset().ToString();
+        UserPreference.Instance.SubtractOffset();
+        offsetText.text = UserPreference.Instance.UserOffset().ToString();
     }
 
     private void NullCheck()

@@ -14,13 +14,13 @@ public class MusicSelect : MonoBehaviour
     void Start()
     {
         NullCheck();
-        SetNewMusic(SelectedMap.instance.musicIndex);
+        SetNewMusic(SelectedMap.Instance.MusicIndex);
     }
 
     public void SetNewMusic(int inMusicNameIndex)
     {
         musicNameIndex = inMusicNameIndex;
-        audioPlayer.clip = MusicInfoList.instance.GetMusic(inMusicNameIndex);
+        audioPlayer.clip = MusicInfoList.Instance.GetMusic(inMusicNameIndex);
         audioPlayer.Play();
     }
 

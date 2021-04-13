@@ -16,7 +16,7 @@ public class PlayingNoteData : MonoBehaviour
         NullCheck();
 
         // ノーツデータの読み込み
-        nowMapData = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
+        nowMapData = jsonManager.LoadMapData(SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName);
     }
 
     public ref MusicDTO.MapData GetNowMapData()
@@ -72,7 +72,7 @@ public class PlayingNoteData : MonoBehaviour
 
     public void SaveNoteData()
     {
-        jsonManager.SaveNoteData(nowMapData, SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
+        jsonManager.SaveNoteData(nowMapData, SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName);
     }
 
     private void NullCheck()

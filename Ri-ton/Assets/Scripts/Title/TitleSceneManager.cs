@@ -76,9 +76,9 @@ public class TitleSceneManager : MonoBehaviour
         if (buttonState == ButtonState.IconFetching)
         {
             // アイコンフェッチ終了したか
-            if (UserPreference.instance.GetIconFetchState() == FetchState.succeeded)
+            if (UserPreference.Instance.GetIconFetchState() == FetchState.succeeded)
             {
-                int characterNum = UserPreference.instance.GetCharacterNumber();
+                int characterNum = UserPreference.Instance.GetCharacterNumber();
 
                 // キャラクター番号が正常に設定されているか
                 if ( (characterNum >= 0) && (characterNum <= 4) )
@@ -105,7 +105,7 @@ public class TitleSceneManager : MonoBehaviour
         }
 
         // キャラクター画像が正しく設定されているか
-        if (UserPreference.instance.GetCharacterNumber() != 5)
+        if (UserPreference.Instance.GetCharacterNumber() != 5)
         {
             return;
         }
@@ -113,10 +113,10 @@ public class TitleSceneManager : MonoBehaviour
         // アイコンフェッチ中か
         if (buttonState == ButtonState.IconFetching)
         {
-            FetchState nowFecthState = UserPreference.instance.GetIconFetchState();
+            FetchState nowFecthState = UserPreference.Instance.GetIconFetchState();
             if ((nowFecthState == FetchState.non) || (nowFecthState == FetchState.failed))
             {
-                UserPreference.instance.CharacterIconFetch();
+                UserPreference.Instance.CharacterIconFetch();
             }
             return;
         }

@@ -12,23 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4b7997f755e27a4e964a96b018c2d26, type: 3}
   m_Name: DifficultyColor
   m_EditorClassIdentifier: 
-  <easy>k__BackingField:
-    r: 0.5019608
-    g: 1
-    b: 0.5019608
-    a: 1
-  <normal>k__BackingField:
-    r: 0.5019608
-    g: 0.5019608
-    b: 1
-    a: 1
-  <hard>k__BackingField:
-    r: 1
-    g: 1
-    b: 0.5019608
-    a: 1
-  <expert>k__BackingField:
-    r: 1
-    g: 0.5019608
-    b: 0.5019608
-    a: 1
+  <Easy>k__BackingField: {r: 0.5019608, g: 1, b: 0.5019608, a: 1}
+  <Normal>k__BackingField: {r: 0.5019608, g: 0.5019608, b: 1, a: 1}
+  <Hard>k__BackingField: {r: 1, g: 1, b: 0.5019608, a: 1}
+  <Expert>k__BackingField: {r: 1, g: 0.5019608, b: 0.5019608, a: 1}

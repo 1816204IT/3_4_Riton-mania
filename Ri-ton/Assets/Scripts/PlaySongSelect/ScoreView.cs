@@ -155,9 +155,9 @@ public class ScoreView : MonoBehaviour
         PathBuilder.AppendFormat("{0}%", (highScore.acc / 100.0f).ToString("f2"));
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
         //アイコン画像を設定
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(UserPreference.instance.GetCharacterNumber());
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(UserPreference.Instance.GetCharacterNumber());
         //ランク画像を設定
-        node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.instance.GetSmallSprite(highScore.rank);
+        node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.Instance.GetSmallSprite(highScore.rank);
         //順位を設定
         node.transform.Find("RankNumber").GetComponent<Text>().text = "";
     }
@@ -185,7 +185,7 @@ public class ScoreView : MonoBehaviour
         node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(topRankersIcons[i].character);
 
         //ランク画像を設定
-        node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.instance.GetSmallSprite(rankers.rank);
+        node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.Instance.GetSmallSprite(rankers.rank);
         //順位を設定
         node.transform.Find("RankNumber").GetComponent<Text>().text = (i + 1).ToString();
     }

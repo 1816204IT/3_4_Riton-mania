@@ -43,7 +43,7 @@ public class LoginFlow : MonoBehaviour
         // ゲーム起動時なら、ローカルデータのユーザー設定を取得する
         if (isGameStart)
         {
-            isUserRegistered = UserPreference.instance.Load();
+            isUserRegistered = UserPreference.Instance.Load();
         }
 
         // ゲーム起動時かつユーザー登録を1度も行っていないなら

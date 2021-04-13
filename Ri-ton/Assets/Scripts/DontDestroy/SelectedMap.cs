@@ -18,31 +18,31 @@ namespace Ritonmania
 /// </summary>
 public class SelectedMap : MonoBehaviour
 {
-    public static SelectedMap instance { get; private set; }
-    public int musicIndex { get; set; } = 0;
-    public string musicName { get; set; } = "";
-    public string difficultyName { get; set; } = "";
-    public DifficultyType nowDifficulty { get; set; } = DifficultyType.EASY;
+    public static SelectedMap Instance { get; private set; }
+    public int MusicIndex { get; set; } = 0;
+    public string MusicName { get; set; } = "";
+    public string DifficultyName { get; set; } = "";
+    public DifficultyType NowDifficulty { get; set; } = DifficultyType.EASY;
 
     void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
 
         //起動時にデフォルトで選択される曲と難易度
-        musicIndex = 0;
+        MusicIndex = 0;
 
-        musicName = MusicInfoList.instance.GetMusicName(musicIndex);
-        difficultyName = "Easy";
+        MusicName = MusicInfoList.Instance.GetMusicName(MusicIndex);
+        DifficultyName = "Easy";
     }
 
     public string GetMusicEnglishName()
     {
-        return MusicInfoList.instance.GetMusicEnglishName(musicIndex);
+        return MusicInfoList.Instance.GetMusicEnglishName(MusicIndex);
     }
 }

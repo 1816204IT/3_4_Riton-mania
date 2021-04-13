@@ -27,7 +27,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         Cursor.visible = true;
 
         // キャラクター表示
-        int charaNum = UserPreference.instance.GetCharacterNumber();
+        int charaNum = UserPreference.Instance.GetCharacterNumber();
         myCharacter.sprite = CharacterInfoList.instance.GetSprite(charaNum);
     }
 
@@ -70,7 +70,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         {
             settingCanvas.SetActive(false);
             // ユーザー設定をローカルデータとして保存
-            UserPreference.instance.Save();
+            UserPreference.Instance.Save();
             return;
         }
         SceneManager.LoadScene("Title");

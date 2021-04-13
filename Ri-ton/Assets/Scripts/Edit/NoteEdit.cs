@@ -8,8 +8,8 @@ using NoteEditor.DTO;
 /// </summary>
 public class NoteEdit : MonoBehaviour
 {
-    public bool noteSetMode { get; private set; }
-    public int LPB { get; private set; } = 1;
+    public bool NoteSetMode { get; private set; }
+    public int Lpb { get; private set; } = 1;
 
     [SerializeField]
     private GameObject judgmentBar = null;
@@ -66,8 +66,8 @@ public class NoteEdit : MonoBehaviour
             var debugPos = mouseFollow.GetMouseFollowNotePos();
 
             //設置ノーツデータを作成
-            clickDownNote.LPB = LPB;
-            clickDownNote.num = noteDataConverter.ConvertBeatNum(time, LPB);
+            clickDownNote.LPB = Lpb;
+            clickDownNote.num = noteDataConverter.ConvertBeatNum(time, Lpb);
             clickDownNote.lane = GetLaneNum(mousePos.x);
             clickDownNote.isJudgment = false;
         }
@@ -86,8 +86,8 @@ public class NoteEdit : MonoBehaviour
             //設置ノーツデータを作成
             MusicDTO.Note clickUpNote = new MusicDTO.Note();
             clickUpNote.endNote = new List<MusicDTO.Note>();
-            clickUpNote.LPB = LPB;
-            clickUpNote.num = noteDataConverter.ConvertBeatNum(time, LPB);
+            clickUpNote.LPB = Lpb;
+            clickUpNote.num = noteDataConverter.ConvertBeatNum(time, Lpb);
             clickUpNote.lane = GetLaneNum(mousePos.x);
             clickDownNote.isJudgment = false;
 
@@ -156,8 +156,8 @@ public class NoteEdit : MonoBehaviour
             }
 
             //設置ノーツデータを作成
-            clickDownNote.LPB = LPB;
-            clickDownNote.num = noteDataConverter.ConvertBeatNum(time, LPB);
+            clickDownNote.LPB = Lpb;
+            clickDownNote.num = noteDataConverter.ConvertBeatNum(time, Lpb);
             clickDownNote.lane = GetLaneNum(mousePos.x);
             clickDownNote.type = 0;
             playingNoteData.RemoveNote(clickDownNote);
@@ -188,22 +188,22 @@ public class NoteEdit : MonoBehaviour
     private int GetLaneNum(float posX)
     {
         posX += 300; // この300は何だろう
-        return (int)(posX / UserPreference.instance.NoteSizeX());
+        return (int)(posX / UserPreference.Instance.NoteSizeX());
     }
 
     //クリックしたY座標がaudioSource.timeの何秒に当たるかを返す
     private float GetAudioSourceTime(float mousePosY)
     {
         float len = mousePosY - judgmentBar.transform.position.y;
-        len -= musicPlayer.offset * UserPreference.instance.NoteSpeed();
-        return musicPlayer.audioSource.time + (len / UserPreference.instance.NoteSpeed());
+        len -= musicPlayer.Offset * UserPreference.Instance.NoteSpeed();
+        return musicPlayer.AudioSource.time + (len / UserPreference.Instance.NoteSpeed());
     }
 
     public Vector3 GetSnappedPos(Vector3 pos)
     {
-        float posX = UserPreference.instance.NotePosXOfLaneZero() + GetLaneNum(pos.x) * UserPreference.instance.NoteSizeX()  ;
-        float unit = musicPlayer.ClapSpan() * (UserPreference.instance.NoteSpeed() / LPB);
-        float basePos = timingBar.barBasePosY;
+        float posX = UserPreference.Instance.NotePosXOfLaneZero() + GetLaneNum(pos.x) * UserPreference.Instance.NoteSizeX()  ;
+        float unit = musicPlayer.ClapSpan() * (UserPreference.Instance.NoteSpeed() / Lpb);
+        float basePos = timingBar.BarBasePosY;
         float num = basePos - pos.y;
         float len = num % unit;
         float posY = pos.y + len;
@@ -214,8 +214,8 @@ public class NoteEdit : MonoBehaviour
     //配置モードON/OFF切り替え
     public void ToggleNoteSetMode()
     {
-        noteSetMode = !noteSetMode;
-        if (noteSetMode)
+        NoteSetMode = !NoteSetMode;
+        if (NoteSetMode)
         {
             mouseFollowNote.SetActive(true);
         }
@@ -228,34 +228,34 @@ public class NoteEdit : MonoBehaviour
     //ビートスナップ間隔変更
     public void ChangeBeatSpanInterval()
     {
-        if (LPB == 1)
+        if (Lpb == 1)
         {
-            LPB = 2;
+            Lpb = 2;
             beatSpanText.text = "1/2";
         }
-        else if (LPB == 2)
+        else if (Lpb == 2)
         {
-            LPB = 3;
+            Lpb = 3;
             beatSpanText.text = "1/3";
         }
-        else if (LPB == 3)
+        else if (Lpb == 3)
         {
-            LPB = 4;
+            Lpb = 4;
             beatSpanText.text = "1/4";
         }
-        else if (LPB == 4)
+        else if (Lpb == 4)
         {
-            LPB = 6;
+            Lpb = 6;
             beatSpanText.text = "1/6";
         }
-        else if (LPB == 6)
+        else if (Lpb == 6)
         {
-            LPB = 8;
+            Lpb = 8;
             beatSpanText.text = "1/8";
         }
         else
         {
-            LPB = 1;
+            Lpb = 1;
             beatSpanText.text = "1/1";
         }
     }

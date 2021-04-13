@@ -6,8 +6,8 @@ using UnityEngine;
 /// </summary>
 public class MusicNodeInstance : MonoBehaviour
 {
-    public List<GameObject> nodeGameObjectList { get; } = new List<GameObject>();
-    public List<RectTransform> nodeRectTransformList { get; } = new List<RectTransform>();
+    public List<GameObject> NodeGameObjectList { get; } = new List<GameObject>();
+    public List<RectTransform> NodeRectTransformList { get; } = new List<RectTransform>();
 
     [SerializeField]
     private GameObject prefab = null;
@@ -19,16 +19,16 @@ public class MusicNodeInstance : MonoBehaviour
 
     private void PrefabInstance()
     {
-        for(int i = 0; i < MusicInfoList.instance.MusicNum(); i++)
+        for(int i = 0; i < MusicInfoList.Instance.MusicNum(); i++)
         {
-            nodeGameObjectList.Add(Instantiate(prefab, this.transform, false));
-            nodeRectTransformList.Add(nodeGameObjectList[i].GetComponent<RectTransform>());
+            NodeGameObjectList.Add(Instantiate(prefab, this.transform, false));
+            NodeRectTransformList.Add(NodeGameObjectList[i].GetComponent<RectTransform>());
         }
 
-        for(int i = 0; i < MusicInfoList.instance.MusicNum(); i++)
+        for(int i = 0; i < MusicInfoList.Instance.MusicNum(); i++)
         {
-            MusicNode musicNode = nodeGameObjectList[i].GetComponent<MusicNode>();
-            musicNode.myNodeNum = i;
+            MusicNode musicNode = NodeGameObjectList[i].GetComponent<MusicNode>();
+            musicNode.MyNodeNum = i;
             musicNode.SetMusicNameText();
             musicNode.SetJacketImage();
         }

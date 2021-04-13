@@ -58,7 +58,7 @@ public class ScoreCounter : MonoBehaviour
 
     private void AllPerfectCheck()
     {
-        float acc = accCounter.acc;
+        float acc = accCounter.Acc;
 
         // 仮にMax4000コンボだとすると1コンボ辺りのscore = 250となる
         if (score >= 999750 && acc == 100.0f)

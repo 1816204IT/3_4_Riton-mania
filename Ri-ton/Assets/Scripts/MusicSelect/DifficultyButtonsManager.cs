@@ -75,7 +75,7 @@ public class DifficultyButtonsManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            int num = (int)SelectedMap.instance.nowDifficulty;
+            int num = (int)SelectedMap.Instance.NowDifficulty;
             num = (num + 1) % (int)DifficultyType.MAX;
             
             if (num == (int)DifficultyType.EASY)
@@ -99,7 +99,7 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     public void Initialize()
     {
-        string diffName = SelectedMap.instance.difficultyName;
+        string diffName = SelectedMap.Instance.DifficultyName;
         if (diffName == "Easy")
         {
             OnClickEasyButton();
@@ -150,8 +150,8 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     private void OnClickDifficultyButton(string diffName, DifficultyType diffType, Color diffColor)
     {
-        SelectedMap.instance.difficultyName = diffName;
-        SelectedMap.instance.nowDifficulty = diffType;
+        SelectedMap.Instance.DifficultyName = diffName;
+        SelectedMap.Instance.NowDifficulty = diffType;
         AllButtonsHeightReset();
         Vector2 tmpSize = buttonsRectTransforms[(int)diffType].sizeDelta;
         buttonsRectTransforms[(int)diffType].sizeDelta = new Vector2(tmpSize.x, selectingButtonHeight);
@@ -165,22 +165,22 @@ public class DifficultyButtonsManager : MonoBehaviour
 
     public void OnClickEasyButton()
     {
-        OnClickDifficultyButton("Easy", DifficultyType.EASY, difficultyColor.easy);
+        OnClickDifficultyButton("Easy", DifficultyType.EASY, difficultyColor.Easy);
     }
 
     public void OnClickNormalButton()
     {
-        OnClickDifficultyButton("Normal", DifficultyType.NORMAL, difficultyColor.normal);
+        OnClickDifficultyButton("Normal", DifficultyType.NORMAL, difficultyColor.Normal);
     }
 
     public void OnClickHardButton()
     {
-        OnClickDifficultyButton("Hard", DifficultyType.HARD, difficultyColor.hard);
+        OnClickDifficultyButton("Hard", DifficultyType.HARD, difficultyColor.Hard);
     }
 
     public void OnClickExpertButton()
     {
-        OnClickDifficultyButton("Expert", DifficultyType.EXPERT, difficultyColor.expert);
+        OnClickDifficultyButton("Expert", DifficultyType.EXPERT, difficultyColor.Expert);
     }
 
     private void NullCheck()

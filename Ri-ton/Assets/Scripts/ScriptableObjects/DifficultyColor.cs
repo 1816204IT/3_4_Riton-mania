@@ -7,31 +7,31 @@
 public class DifficultyColor : ScriptableObject
 {
     [field: SerializeField]
-    public Color easy { get; private set; }
+    public Color Easy { get; private set; }
     [field: SerializeField]
-    public Color normal { get; private set; }
+    public Color Normal { get; private set; }
     [field: SerializeField]
-    public Color hard { get; private set; }
+    public Color Hard { get; private set; }
     [field: SerializeField]
-    public Color expert { get; private set; }
+    public Color Expert { get; private set; }
 
     public Color GetDifficultyColor(string difficultyName)
     {
         if (difficultyName == "Easy")
         {
-            return easy;
+            return Easy;
         }
         else if (difficultyName == "Normal")
         {
-            return normal;
+            return Normal;
         }
         else if (difficultyName == "Hard")
         {
-            return hard;
+            return Hard;
         }
         else if (difficultyName == "Expert")
         {
-            return expert;
+            return Expert;
         }
 
         Debug.LogError("無効な難易度名です");

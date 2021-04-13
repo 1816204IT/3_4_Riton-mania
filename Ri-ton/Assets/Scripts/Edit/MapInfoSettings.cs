@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class MapInfoSettings : MonoBehaviour
 {
-    public bool isOffsetChangeMode { get; set; } = true;
+    public bool IsOffsetChangeMode { get; set; } = true;
 
     [System.Serializable]
     public struct MapInfoGroup
@@ -33,15 +33,15 @@ public class MapInfoSettings : MonoBehaviour
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         NullCheck();
 
-        offsetGroup.slider.value = musicPlayer.offset * 100;
+        offsetGroup.slider.value = musicPlayer.Offset * 100;
         float textValue = offsetGroup.slider.value / 100.0f;
         offsetGroup.inputField.text = textValue.ToString();
 
-        bpmGroup.slider.value = musicPlayer.bpm * 100;
+        bpmGroup.slider.value = musicPlayer.Bpm * 100;
         textValue = bpmGroup.slider.value / 100.0f;
         bpmGroup.inputField.text = textValue.ToString();
 
-        diffGroup.slider.value = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName).difficulty;
+        diffGroup.slider.value = jsonManager.LoadMapData(SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName).difficulty;
 
         textValue = diffGroup.slider.value / 10.0f;
         diffGroup.inputField.text = textValue.ToString();
@@ -60,7 +60,7 @@ public class MapInfoSettings : MonoBehaviour
         }
 
         offsetGroup.slider.value = num; ;
-        musicPlayer.offset = offsetGroup.slider.value / 100.0f;
+        musicPlayer.Offset = offsetGroup.slider.value / 100.0f;
     }
 
     public void OnEndEditBpmInputField()
@@ -74,7 +74,7 @@ public class MapInfoSettings : MonoBehaviour
         }
 
         bpmGroup.slider.value = num;
-        musicPlayer.offset = bpmGroup.slider.value / 100.0f;
+        musicPlayer.Offset = bpmGroup.slider.value / 100.0f;
     }
 
     public void OnEndEditDifficultyInputField()
@@ -92,14 +92,14 @@ public class MapInfoSettings : MonoBehaviour
 
     public void OnValueChangedOffsetSlider()
     {
-        musicPlayer.offset = offsetGroup.slider.value / 100.0f;
+        musicPlayer.Offset = offsetGroup.slider.value / 100.0f;
         float textValue = offsetGroup.slider.value / 100.0f;
         offsetGroup.inputField.text = textValue.ToString();
     }
 
     public void OnValueChangedBpmSlider()
     {
-        musicPlayer.bpm = bpmGroup.slider.value / 100.0f;
+        musicPlayer.Bpm = bpmGroup.slider.value / 100.0f;
         float textValue = bpmGroup.slider.value / 100.0f;
         bpmGroup.inputField.text = textValue.ToString();
     }
@@ -112,8 +112,8 @@ public class MapInfoSettings : MonoBehaviour
 
     public void ToggleOffsetChangeMode()
     {
-        isOffsetChangeMode = !isOffsetChangeMode;
-        if (isOffsetChangeMode)
+        IsOffsetChangeMode = !IsOffsetChangeMode;
+        if (IsOffsetChangeMode)
         {
             offsetGroup.obj.SetActive(true);
             bpmGroup.obj.SetActive(true);
@@ -129,23 +129,23 @@ public class MapInfoSettings : MonoBehaviour
 
     public void SaveOffset()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
         mapInfo.offset = (int)offsetGroup.slider.value;
         jsonManager.SaveMapInfo(mapInfo);
     }
 
     public void SaveBPM()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
         mapInfo.bpm = (int)bpmGroup.slider.value;
         jsonManager.SaveMapInfo(mapInfo);
     }
 
     public void SaveDifficulty()
     {
-        var mapData = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
+        var mapData = jsonManager.LoadMapData(SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName);
         mapData.difficulty = (int)diffGroup.slider.value;
-        jsonManager.SaveNoteData(mapData, SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
+        jsonManager.SaveNoteData(mapData, SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName);
     }
 
     private void NullCheck()

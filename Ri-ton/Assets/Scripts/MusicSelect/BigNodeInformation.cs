@@ -36,11 +36,11 @@ public class BigNodeInformation : MonoBehaviour
 
     public void InformationUpdate()
     {
-        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
-        MusicDTO.MapData mapData = jsonManager.LoadMapData(SelectedMap.instance.musicName, SelectedMap.instance.difficultyName);
+        MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
+        MusicDTO.MapData mapData = jsonManager.LoadMapData(SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName);
 
         //曲名の更新
-        musicNameText.text = SelectedMap.instance.musicName;
+        musicNameText.text = SelectedMap.Instance.MusicName;
         //BPMの更新
         float bpmTextValue = mapInfo.bpm / 100.0f;
         bpmText.text = bpmTextValue.ToString();
@@ -53,7 +53,7 @@ public class BigNodeInformation : MonoBehaviour
         mapperText.font = englishFont;
         mapperText.text = mapData.mapperName;
         //ジャケット画像の変更
-        jacketImage.sprite = MusicInfoList.instance.GetBgImage(SelectedMap.instance.musicIndex);
+        jacketImage.sprite = MusicInfoList.Instance.GetBgImage(SelectedMap.Instance.MusicIndex);
 
         //文字化け対策用チェック
         MapperNameSpecialCheck();
@@ -62,8 +62,8 @@ public class BigNodeInformation : MonoBehaviour
     // マッパー名の日本語が文字化けするので特別にチェック関数を用意
     private void MapperNameSpecialCheck()
     {
-        string musicName = SelectedMap.instance.musicName;
-        string diffName = SelectedMap.instance.difficultyName;
+        string musicName = SelectedMap.Instance.MusicName;
+        string diffName = SelectedMap.Instance.DifficultyName;
 
         // 出汁男のチェック
         if ( (musicName == "くるくる" && diffName == "Hard") 

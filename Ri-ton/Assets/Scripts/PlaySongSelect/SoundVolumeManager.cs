@@ -25,7 +25,7 @@ public class SoundVolumeManager : MonoBehaviour
 
     public void ChangeMusicVolume()
     {
-        float volume = UserPreference.instance.musicVolume;
+        float volume = UserPreference.Instance.MusicVolume;
         foreach(AudioSource audio in musicAudioSources)
         {
             audio.volume = volume;
@@ -34,7 +34,7 @@ public class SoundVolumeManager : MonoBehaviour
 
     public void ChangeSEVolume()
     {
-        float volume = UserPreference.instance.seVolume;
+        float volume = UserPreference.Instance.SeVolume;
         foreach (AudioSource audio in seAudioSources)
         {
             audio.volume = volume;

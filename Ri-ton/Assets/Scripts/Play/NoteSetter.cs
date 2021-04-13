@@ -51,8 +51,8 @@ public class NoteSetter : MonoBehaviour
         LongNoteMoveOutOfScreen(oddNumberNongNoteInfo.objList);
 
         // 全てのロングノーツの色をリセット
-        ResetLongNoteBrightness(ref evenNumberNongNoteInfo.spriteRendererList, noteColor.evenLongDefault);
-        ResetLongNoteBrightness(ref oddNumberNongNoteInfo.spriteRendererList, noteColor.oddLongDefault);
+        ResetLongNoteBrightness(ref evenNumberNongNoteInfo.spriteRendererList, noteColor.EvenLongDefault);
+        ResetLongNoteBrightness(ref oddNumberNongNoteInfo.spriteRendererList, noteColor.OddLongDefault);
 
         SetNote();
         SetLongNote();
@@ -170,7 +170,7 @@ public class NoteSetter : MonoBehaviour
             if (num > usedNoteNum)
             {
                 Vector3 tmpPos = n.transform.position;
-                float posX = UserPreference.instance.NotePosXOfLaneZero() + note.lane * UserPreference.instance.NoteSizeX();
+                float posX = UserPreference.Instance.NotePosXOfLaneZero() + note.lane * UserPreference.Instance.NoteSizeX();
                 float posY = noteDataConverter.ConvertDistance(note.LPB, note.num);
                 posY += judgmentBarTransform.position.y;
                 if (posY > 0 && posY < 2400)
@@ -244,7 +244,7 @@ public class NoteSetter : MonoBehaviour
 
                 if (CheckExistHoldingNote(note))
                 {
-                    Color color = (isEvenNumber) ? noteColor.evenLongHolding : noteColor.oddLongHolding;
+                    Color color = (isEvenNumber) ? noteColor.EvenLongHolding : noteColor.OddLongHolding;
                     info.spriteRendererList[i].color = color;
                 }
 
@@ -283,7 +283,7 @@ public class NoteSetter : MonoBehaviour
         float endNotePosY = noteDataConverter.ConvertDistance(eNote.LPB, eNote.num);
         endNotePosY += judgmentBarTransform.position.y;
         scale = endNotePosY - startNotePosY + 1;
-        float notePosX = UserPreference.instance.NotePosXOfLaneZero() + note.lane * UserPreference.instance.NoteSizeX();
+        float notePosX = UserPreference.Instance.NotePosXOfLaneZero() + note.lane * UserPreference.Instance.NoteSizeX();
         return new Vector3(notePosX, (startNotePosY + scale / 2), 1); ;
     }
 

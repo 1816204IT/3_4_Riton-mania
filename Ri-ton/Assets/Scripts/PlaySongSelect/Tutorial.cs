@@ -40,7 +40,7 @@ public class Tutorial : MonoBehaviour
         NullCheck();
         TutorialScenarioInit();
 
-        if (UserPreference.instance.isTutorial == false)
+        if (UserPreference.Instance.IsTutorial == false)
         {
             TutorialStart();
         }
@@ -152,8 +152,8 @@ public class Tutorial : MonoBehaviour
             {
                 tutorialCanvas.SetActive(false);
                 // チュートリアル終了フラグを立てて保存する
-                UserPreference.instance.isTutorial = true;
-                UserPreference.instance.Save();
+                UserPreference.Instance.IsTutorial = true;
+                UserPreference.Instance.Save();
             }
         }
     }

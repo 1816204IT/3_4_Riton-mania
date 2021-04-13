@@ -6,11 +6,11 @@ using UnityEngine.UI;
 /// </summary>
 public class AccCounter : MonoBehaviour
 {
-    public float acc { get; private set; } = 0.0f;
-    public int totalNoteNum { get; private set; } = 0;
-    public int totalPerfectNum { get; private set; } = 0;
-    public int totalGoodNum { get; private set; } = 0;
-    public int totalMissNum { get; private set; } = 0;
+    public float Acc { get; private set; } = 0.0f;
+    public int TotalNoteNum { get; private set; } = 0;
+    public int TotalPerfectNum { get; private set; } = 0;
+    public int TotalGoodNum { get; private set; } = 0;
+    public int TotalMissNum { get; private set; } = 0;
     
     private float unitAcc = 0.0f; // perfect判定を取った時に増加するAcc量
     private Text text = null;
@@ -24,38 +24,38 @@ public class AccCounter : MonoBehaviour
 
     public void AddPerfect()
     {
-        totalNoteNum++;
-        totalPerfectNum++;
+        TotalNoteNum++;
+        TotalPerfectNum++;
         CalculateAcc();
     }
     
     public void AddGood()
     {
-        totalNoteNum++;
-        totalGoodNum++;
+        TotalNoteNum++;
+        TotalGoodNum++;
         CalculateAcc();
     }
 
     public void AddMiss()
     {
-        totalNoteNum++;
-        totalMissNum++;
+        TotalNoteNum++;
+        TotalMissNum++;
         CalculateAcc();
     }
 
     private void CalculateAcc()
     {
-        unitAcc = 100.0f / (float)totalNoteNum;
-        float accurateAcc = totalPerfectNum * unitAcc + totalGoodNum / 2.0f * unitAcc;
-        acc = accurateAcc;
+        unitAcc = 100.0f / (float)TotalNoteNum;
+        float accurateAcc = TotalPerfectNum * unitAcc + TotalGoodNum / 2.0f * unitAcc;
+        Acc = accurateAcc;
 
         // 全てPerfectならAcc100%とする
-        if ( (totalMissNum == 0) && (totalGoodNum == 0) )
+        if ( (TotalMissNum == 0) && (TotalGoodNum == 0) )
         {
-            acc = 100.0f;
+            Acc = 100.0f;
         }
 
-        text.text = acc.ToString("f2") + "%";
+        text.text = Acc.ToString("f2") + "%";
     }
 
     private void NullCheck()

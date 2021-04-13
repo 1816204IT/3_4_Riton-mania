@@ -21,7 +21,7 @@ public class MusicNodeInformation : MonoBehaviour
         bigNodeBgImage = GameObject.FindGameObjectWithTag("BigNode").GetComponent<Image>();
         NullCheck();
 
-        nodeLists = this.GetComponent<MusicNodeInstance>().nodeGameObjectList;
+        nodeLists = this.GetComponent<MusicNodeInstance>().NodeGameObjectList;
         foreach (GameObject obj in nodeLists)
         {
             nodeImages.Add(obj.GetComponent<Image>());
@@ -32,7 +32,7 @@ public class MusicNodeInformation : MonoBehaviour
 
     public void UpdateInformationByChangeDifficulty()
     {
-        Color color = difficultyColor.GetDifficultyColor(SelectedMap.instance.difficultyName);
+        Color color = difficultyColor.GetDifficultyColor(SelectedMap.Instance.DifficultyName);
 
         bigNodeBgImage.color = color;
         foreach (Image image in nodeImages)

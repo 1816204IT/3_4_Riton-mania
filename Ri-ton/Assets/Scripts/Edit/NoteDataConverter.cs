@@ -23,8 +23,8 @@ public class NoteDataConverter : MonoBehaviour
 
     public void Init()
     {
-        basePos = JudgmentBar.transform.position.y + UserPreference.instance.UserOffset();
-        baseBeatSpanLen = (musicPlayer.ClapSpan() * UserPreference.instance.NoteSpeed());
+        basePos = JudgmentBar.transform.position.y + UserPreference.Instance.UserOffset();
+        baseBeatSpanLen = (musicPlayer.ClapSpan() * UserPreference.Instance.NoteSpeed());
     }
 
     //曲の位置をbeatNumに変換する
@@ -38,7 +38,7 @@ public class NoteDataConverter : MonoBehaviour
     public float ConvertDistance(int LPB, int num)
     {
         float timeIgnoredPos =  (baseBeatSpanLen / LPB) * num; // 曲再生時間0の時のY座標
-        float timeLen = musicPlayer.offsetedTime * UserPreference.instance.NoteSpeed(); // 現在の曲の再生で進んだ距離
+        float timeLen = musicPlayer.offsetedTime * UserPreference.Instance.NoteSpeed(); // 現在の曲の再生で進んだ距離
         return timeIgnoredPos - timeLen;
     }
 

@@ -5,7 +5,7 @@
 /// </summary>
 public class RankImageList : MonoBehaviour
 {
-    public static RankImageList instance { get; private set; }
+    public static RankImageList Instance { get; private set; }
 
     [System.Serializable]
     struct CharacterSprite
@@ -19,12 +19,12 @@ public class RankImageList : MonoBehaviour
 
     void Awake()
     {
-        if (instance != null)
+        if (Instance != null)
         {
             Destroy(this.gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 

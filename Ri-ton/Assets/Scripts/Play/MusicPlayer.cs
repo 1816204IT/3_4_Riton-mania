@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MusicPlayer : MonoBehaviour
 {
-    public AudioSource audioSource { get; private set; } = null;
-    public float bpm { get; set; } = 0.0f;
-    public float offset { get; set; } = 0.0f;
+    public AudioSource AudioSource { get; private set; } = null;
+    public float Bpm { get; set; } = 0.0f;
+    public float Offset { get; set; } = 0.0f;
 
     private const float c_start_wait_time = 1.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
 
@@ -20,7 +20,7 @@ public class MusicPlayer : MonoBehaviour
 
     void Awake()
     {
-        audioSource = this.GetComponent<AudioSource>();
+        AudioSource = this.GetComponent<AudioSource>();
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         NullCheck();
 
@@ -31,20 +31,20 @@ public class MusicPlayer : MonoBehaviour
         }
         else
         {
-            mapInfo = jsonManager.LoadMapInfo(SelectedMap.instance.musicName);
-            audioSource.clip = MusicInfoList.instance.GetMusic(mapInfo.musicName);
+            mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
+            AudioSource.clip = MusicInfoList.Instance.GetMusic(mapInfo.musicName);
         }
 
-        offset = mapInfo.offset / 100.0f;
+        Offset = mapInfo.offset / 100.0f;
 
         if (SceneManager.GetActiveScene().name != "Edit")
         {
-            offset += UserPreference.instance.UserOffset();
+            Offset += UserPreference.Instance.UserOffset();
         }
 
-        bpm = mapInfo.bpm / 100.0f;
+        Bpm = mapInfo.bpm / 100.0f;
 
-        audioSourceOldTime = audioSource.time;
+        audioSourceOldTime = AudioSource.time;
         time = -c_start_wait_time;
         timeOld = time;
     }
@@ -57,7 +57,7 @@ public class MusicPlayer : MonoBehaviour
 
             if ( (time >= 0.0f) &&  (timeOld < 0.0f))
             {
-                audioSource.Play();
+                AudioSource.Play();
             }
 
             timeOld = time;
@@ -65,15 +65,15 @@ public class MusicPlayer : MonoBehaviour
 
         // audioSorce.timeが更新された時にaudioSourceOldTimeを更新
         // timeをaudioSorce.timeに合わせる
-        if (audioSourceOldTime < audioSource.time)
+        if (audioSourceOldTime < AudioSource.time)
         {
-            if (time - Time.deltaTime > audioSource.time)
+            if (time - Time.deltaTime > AudioSource.time)
             {
                 // ここでtimeが巻き戻る
             }
 
-            audioSourceOldTime = audioSource.time;
-            time = audioSource.time;
+            audioSourceOldTime = AudioSource.time;
+            time = AudioSource.time;
         }
 
         if (SceneManager.GetActiveScene().name != "Edit")
@@ -85,35 +85,35 @@ public class MusicPlayer : MonoBehaviour
 
         if (scrollValue < 0.0f)
         {
-            float tmpTime = audioSource.time - 0.2f;
-            audioSource.time = (tmpTime < 0) ? 0.0f : tmpTime;
+            float tmpTime = AudioSource.time - 0.2f;
+            AudioSource.time = (tmpTime < 0) ? 0.0f : tmpTime;
         }
         if (scrollValue > 0.0f)
         {
-            float tmpTime = audioSource.time + 0.2f;
-            audioSource.time = (tmpTime > audioSource.clip.length) ? audioSource.clip.length : tmpTime;
+            float tmpTime = AudioSource.time + 0.2f;
+            AudioSource.time = (tmpTime > AudioSource.clip.length) ? AudioSource.clip.length : tmpTime;
         }
     }
 
     //曲の位置からシークバーの位置を計算し値を返す
     public float GetSeekBarPosition()
     {
-        return audioSource.time / audioSource.clip.length;
+        return AudioSource.time / AudioSource.clip.length;
     }
 
     //シークバーが操作された時に曲の位置を調整する
     public void AdjustAudioSourceTime(float adjustTime)
     {
-        audioSource.time = (float)adjustTime * audioSource.clip.length;
+        AudioSource.time = (float)adjustTime * AudioSource.clip.length;
 
-        time = audioSource.time;
-        timeOld = audioSource.time;
+        time = AudioSource.time;
+        timeOld = AudioSource.time;
     }
 
     public void PlayStart()
     {
         //audioSource.Play();
-        audioSource.time = 0.0f;
+        AudioSource.time = 0.0f;
         audioSourceOldTime = 0.0f;
         time = -c_start_wait_time;
         timeOld = time;
@@ -123,37 +123,37 @@ public class MusicPlayer : MonoBehaviour
     public void PlayPause()
     {
         isPlaying = false;
-        audioSource.Pause();
+        AudioSource.Pause();
     }
 
     public void PlayUnPause()
     {
         isPlaying = true;
-        audioSource.Play();
+        AudioSource.Play();
     }
 
     //曲の再生速度を1.0倍にする
     public void ChangeMusicSpeedDefault()
     {
-        audioSource.pitch = 1.0f;
+        AudioSource.pitch = 1.0f;
     }
 
     //曲の再生速度を0.75倍にする
     public void ChangeMusicSpeedThreeQuarter()
     {
-        audioSource.pitch = 0.75f;
+        AudioSource.pitch = 0.75f;
     }
 
     //曲の再生速度を0.5倍にする
     public void ChangeMusicSpeedHalf()
     {
-        audioSource.pitch = 0.5f;
+        AudioSource.pitch = 0.5f;
     }
 
     //曲の再生速度を0.25倍にする
     public void ChangeMusicSpeedOneQuarter()
     {
-        audioSource.pitch = 0.25f;
+        AudioSource.pitch = 0.25f;
     }
 
     ///====================以下プロパティ====================
@@ -163,7 +163,7 @@ public class MusicPlayer : MonoBehaviour
     public float offsetedTime
     {
         
-        get { return time - offset; }
+        get { return time - Offset; }
     }
 
     // オフセットを考慮した時間(AudioSorce.timeを参照しているので更新頻度が低いが正確)
@@ -171,17 +171,17 @@ public class MusicPlayer : MonoBehaviour
 
     public float OffsetedTimeOrigin()
     {
-        return audioSource.time - offset;
+        return AudioSource.time - Offset;
     }
 
     public float ClapSpan()
     {
-        return 60.0f / bpm;
+        return 60.0f / Bpm;
     }
 
     private void NullCheck()
     {
-        audioSource.IsNull();
+        AudioSource.IsNull();
         jsonManager.IsNull();
     }
 }

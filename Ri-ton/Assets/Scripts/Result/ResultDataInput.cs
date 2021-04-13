@@ -58,7 +58,7 @@ public class ResultDataInput : MonoBehaviour
         perfectText.text = data.perfectNum.ToString();
         goodText.text = data.goodNum.ToString();
         missText.text = data.missNum.ToString();
-        rankImage.sprite = RankImageList.instance.GetSprite(data.rankImageNum);
+        rankImage.sprite = RankImageList.Instance.GetSprite(data.rankImageNum);
         if (data.isAciveHighScore)
         {
             newRecordText.text = "new record!!";
@@ -68,10 +68,10 @@ public class ResultDataInput : MonoBehaviour
             newRecordText.text = "";
         }
 
-        musicTitleText.text = SelectedMap.instance.musicName;
-        difficultyText.text = SelectedMap.instance.difficultyName;
-        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.instance.GetCharacterNumber());
-        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.instance.GetCharacterNumber());
+        musicTitleText.text = SelectedMap.Instance.MusicName;
+        difficultyText.text = SelectedMap.Instance.DifficultyName;
+        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.Instance.GetCharacterNumber());
+        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.Instance.GetCharacterNumber());
 
         // -----最高成績なら文字色を黄色にする-----
         if ((data.acc / 100.0f) == 100.0f)

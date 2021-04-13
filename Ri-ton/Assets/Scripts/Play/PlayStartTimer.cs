@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// </summary>
 public class PlayStartTimer : MonoBehaviour
 {
-    public bool isTutorialEnd { get; set; } = false;
+    public bool IsTutorialEnd { get; set; } = false;
 
     private const float c_count_down_time = 3.0f;   // 3・2・1のカウントダウン時間
 
@@ -26,7 +26,7 @@ public class PlayStartTimer : MonoBehaviour
 
     void Update()
     {
-        if ( (timer <= 0.0f) || (isTutorialEnd == false) )
+        if ( (timer <= 0.0f) || (IsTutorialEnd == false) )
         {
             return;
         }
@@ -39,7 +39,7 @@ public class PlayStartTimer : MonoBehaviour
         {
             text.enabled = false;
 
-            if (musicPlayer.audioSource.time <= 0.0f)
+            if (musicPlayer.AudioSource.time <= 0.0f)
             {
                 musicPlayer.PlayStart();
             }
