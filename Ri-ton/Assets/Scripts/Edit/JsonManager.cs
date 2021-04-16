@@ -23,7 +23,10 @@ public class JsonManager : MonoBehaviour
         }
     }
 
-    //曲別に譜面データをセーブ
+    /// <summary>
+    /// 曲別に譜面データをセーブする
+    /// </summary>
+    /// <param name="mapInfo">セーブする譜面情報</param>
     public void SaveMapInfo(MapInfo mapInfo)
     {
         CreatePathBuilder();
@@ -38,7 +41,10 @@ public class JsonManager : MonoBehaviour
         writer.Close();
     }
 
-    //曲別に譜面データのロード
+    /// <summary>
+    /// 曲別に譜面データをロードする
+    /// </summary>
+    /// <param name="musicName">ロードする曲名</param>
     public MapInfo LoadMapInfo(string musicName)
     {
         CreatePathBuilder();
@@ -73,7 +79,12 @@ public class JsonManager : MonoBehaviour
         return JsonUtility.FromJson<MapInfo>(readData);
     }
 
-    //難易度別にノーツデータをセーブ
+    /// <summary>
+    /// 難易度別にノーツデータをセーブする
+    /// </summary>
+    /// <param name="mapData">譜面データ</param>
+    /// <param name="musicName">曲名</param>
+    /// <param name="difficultyName">難易度名</param>
     public void SaveNoteData(MusicDTO.MapData mapData, string musicName, string difficultyName)
     {
         CreatePathBuilder();
@@ -88,7 +99,11 @@ public class JsonManager : MonoBehaviour
         writer.Close();
     }
 
-    //難易度別にノーツデータをロード
+    /// <summary>
+    /// 難易度別にノーツデータをロードする
+    /// </summary>
+    /// <param name="musicName">曲名</param>
+    /// <param name="difficultyName">難易度名</param>
     public MusicDTO.MapData LoadMapData(string musicName, string difficultyName)
     {
         CreatePathBuilder();

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class PickUpCharacterManager : MonoBehaviour
 {
-    public int PickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター画像番号　-1は未選択
+    public int PickingCharacterNum { private get; set; } = -1; // 選択中のキャラクター番号　-1は未選択
 
     [SerializeField]
     private GameObject[] hideObjects = null;
@@ -41,25 +41,25 @@ public class PickUpCharacterManager : MonoBehaviour
 
     private GameObject moveCharacter = null;
     private int vanishCompNum = 0;
+    private NowScreenState nowState = NowScreenState.HOME;
 
-    // キャラクター選択画面のホーム(初期画面)にいるか？　ホーム画面とそれ以外でEscapeキーを押した時の挙動が変わる
-    enum NOW_STATE
+    /// <summary>
+    /// キャラクター選択シーンの中で、現在どの画面にいるか。
+    /// 現在の場面によってEscapeキーの処理を変更しています
+    /// </summary>
+    private enum NowScreenState
     {
         HOME,               // キャラクター選択シーンのホーム画面
         TWEENING,           // tweenアニメーションの最中
-        CHARACTER_DECIDE,   // 「このキャラクターにしますか？」　の画面
+        CHARACTER_DECIDE,   // キャラクター決定画面
     }
-    private NOW_STATE nowState = NOW_STATE.HOME;
 
     void Start()
     {
         NullCheck();
         profile.SetActive(false);
-        // キャラクターの番号を取得
         PickingCharacterNum = UserPreference.Instance.GetCharacterNumber();
-        // nowの矢印のX座標移動
         MoveNowArrow();
-        // 「キャラクターを選んで下さい」のキャンバスを非表示に
         pleasePickCharacter.SetActive(false);
     }
 
@@ -71,11 +71,14 @@ public class PickUpCharacterManager : MonoBehaviour
         }
     }
 
-    // キャラクターを選んだとき
-    public void OnPickUp(GameObject createObj, Color selectedCharacterColor)
+    /// <summary>
+    /// キャラクターを選択した際の処理
+    /// </summary>
+    /// <param name="characterImageObj">キャラクター画像オブジェクト</param>
+    public void OnPickUp(GameObject characterImageObj)
     {
-        nowState = NOW_STATE.TWEENING;
-        moveCharacter = createObj;
+        nowState = NowScreenState.TWEENING;
+        moveCharacter = characterImageObj;
         vanishCompNum = 0;
         foreach (PickUpCharacter c in characters)
         {
@@ -88,6 +91,9 @@ public class PickUpCharacterManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// キャラクター決定画面からキャラクター選択ホーム画面へ戻る際の処理
+    /// </summary>
     public void OnPickDown()
     {
         foreach (PickUpCharacter c in characters)
@@ -101,7 +107,9 @@ public class PickUpCharacterManager : MonoBehaviour
         }
     }
 
-    // キャラクターの消滅完了
+    /// <summary>
+    /// キャラクター選択後、キャラクター選択ボックスが消滅した際の処理
+    /// </summary>
     public void OnVanishComplete()
     {
         vanishCompNum++;
@@ -114,37 +122,41 @@ public class PickUpCharacterManager : MonoBehaviour
         }
     }
 
-    // キャラクターの出現完了
+    /// <summary>
+    /// キャラクター決定画面からキャラクター選択ホーム画面へ戻った際に、キャラクター選択ボックスが出現した際の処理
+    /// </summary>
     public void OnAppearComplete()
     {
-        nowState = NOW_STATE.HOME;
+        nowState = NowScreenState.HOME;
     }
 
-    // キャラクターの中央移動完了
+    /// <summary>
+    /// キャラクターの中央移動完了後の処理
+    /// </summary>
     public void OnCharacterMoveComplete()
     {
         // キャラクターデータの取得
         Ritonmania.CharacterData data = characterProfileData.GetCharacterData(PickingCharacterNum);
         Color color = CharacterInfoList.instance.GetColor(PickingCharacterNum);
 
-        // 背景の名前の色とtextを指定
+        // 名前の色とtextを指定
         characterNameText.color = color;
-        //characterNameText.text = data.name;
-
         characterNameText.text = data.name;
         characterNameMat.SetColor("_FaceColor", color);
 
         // 背景の色を指定
         colorBackImage.GetComponent<Image>().color = color;
         // 背景のTween開始
-        whiteBackImage.MoveBG(this.GetComponent<PickUpCharacterManager>());
-        colorBackImage.MoveBG(this.GetComponent<PickUpCharacterManager>());
+        whiteBackImage.SlideBG(this.GetComponent<PickUpCharacterManager>());
+        colorBackImage.SlideBG(this.GetComponent<PickUpCharacterManager>());
 
         // キャラクタープロフィールテキスト更新
         profile.GetComponent<ProfileSetter>().UpdateProfile(data);
     }
 
-    // キャラクターの定位置移動完了
+    /// <summary>
+    /// キャラクターの定位置移動完了後の処理
+    /// </summary>
     public void OnCharacterMoveRevertComplete()
     {
         // moveCharacterを削除する(クローンなので削除しないと増えていく)
@@ -153,7 +165,9 @@ public class PickUpCharacterManager : MonoBehaviour
         OnPickDown();
     }
 
-    // 背景の出現完了
+    /// <summary>
+    /// 背景の出現完了後の処理
+    /// </summary>
     public void OnAppearBGComplete()
     {
         // SELECTボタンTween開始
@@ -162,13 +176,13 @@ public class PickUpCharacterManager : MonoBehaviour
             tween.PlayExpandTween();
         }
 
-        // プロフィール表示
         profile.SetActive(true);
-
-        nowState = NOW_STATE.CHARACTER_DECIDE;
+        nowState = NowScreenState.CHARACTER_DECIDE;
     }
 
-    // 背景の消滅完了
+    /// <summary>
+    /// 背景の消滅完了後の処理
+    /// </summary>
     public void OnVanishBGComplete()
     {
         // キャラクターの定位置への移動開始
@@ -176,14 +190,17 @@ public class PickUpCharacterManager : MonoBehaviour
         pickUpCharacter.MoveRevertCharacter(this);
     }
 
-    // Backボタンが押された時の処理
+    /// <summary>
+    /// Backボタンが押された時の処理
+    /// </summary>
     public void OnClickBackButton()
     {
         // キャラクター選択シーンのホーム画面にいる場合タイトルシーンへ遷移
-        if (nowState == NOW_STATE.HOME)
+        if (nowState == NowScreenState.HOME)
         {
+            int characterNum = UserPreference.Instance.GetCharacterNumber();
             // キャラクター未選択なら催促分を表示
-            if ((PickingCharacterNum < 0) || (PickingCharacterNum > 4))
+            if (characterNum == -1)
             {
                 pleasePickCharacter.SetActive(true);
                 // 催促分を指定秒数後に消す
@@ -197,11 +214,11 @@ public class PickUpCharacterManager : MonoBehaviour
             }
         }
         // 「このキャラクターにしますか？」の画面にいる場合はホームシーンへ遷移
-        else if (nowState == NOW_STATE.CHARACTER_DECIDE)
+        else if (nowState == NowScreenState.CHARACTER_DECIDE)
         {
             // 背景のTween開始
-            whiteBackImage.MoveRevertBG(this.GetComponent<PickUpCharacterManager>());
-            colorBackImage.MoveRevertBG(this.GetComponent<PickUpCharacterManager>());
+            whiteBackImage.RevertSlideBG(this.GetComponent<PickUpCharacterManager>());
+            colorBackImage.RevertSlideBG(this.GetComponent<PickUpCharacterManager>());
 
             // SELECTボタン縮小Tween開始
             foreach (ScaleTween tween in scaleTweens)
@@ -216,6 +233,9 @@ public class PickUpCharacterManager : MonoBehaviour
         else { }
     }
 
+    /// <summary>
+    /// キャラクターを変更した際の処理
+    /// </summary>
     public void ChangeCharacter()
     {
         // キャラクターの番号を変更
@@ -228,7 +248,9 @@ public class PickUpCharacterManager : MonoBehaviour
         OnClickBackButton();
     }
 
-    // nowの矢印のX座標移動
+    /// <summary>
+    /// nowの矢印を移動させる
+    /// </summary>
     private void MoveNowArrow()
     {
         if ((PickingCharacterNum < 0)  || (PickingCharacterNum > 4))
@@ -239,11 +261,6 @@ public class PickUpCharacterManager : MonoBehaviour
         Vector3 p = nowArrow.transform.localPosition;
         float posX = c_character_distance_x * (PickingCharacterNum - 2); // キャラクター番号2のキャラクターが中央に配置されているため -2 する
         nowArrow.transform.localPosition = new Vector3(posX, p.y, p.z);
-    }
-
-    private void UnEnablePleasePickCharacterObj()
-    {
-        pleasePickCharacter.SetActive(false);
     }
 
     private void NullCheck()

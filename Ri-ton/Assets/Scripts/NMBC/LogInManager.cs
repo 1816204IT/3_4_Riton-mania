@@ -192,12 +192,12 @@ public class LogInManager : MonoBehaviour
 
     public void AppearLogInBoard()
     {
-        moveTween.Move();
+        moveTween.CreateTween();
     }
 
     public void RemoveLogInBoard()
     {
-        moveTween.MoveRevert();
+        moveTween.CreateRevertTween();
     }
 
     // ログイン中かどうか

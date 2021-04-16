@@ -41,7 +41,7 @@ namespace NCMB.Internal
 		[Conditional("DEBUG")]
 		public static void Log (string message)
 		{
-			UnityEngine.Debug.Log (message);
+			//UnityEngine.Debug.Log (message);
 		}
 
 		/// <summary>
@@ -51,7 +51,7 @@ namespace NCMB.Internal
 		[Conditional("DEBUG")]
 		public static void LogWarning (string message)
 		{
-			UnityEngine.Debug.LogWarning (message);
+			//UnityEngine.Debug.LogWarning (message);
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace NCMB.Internal
 		[Conditional("DEBUG")]
 		public static void LogError (string message)
 		{
-			UnityEngine.Debug.LogError (message);
+			//UnityEngine.Debug.LogError (message);
 		}
 
 		/// <summary>
@@ -88,7 +88,7 @@ namespace NCMB.Internal
 			for (int i = 0; i < list.Count; i++) {
 				result += String.Format ("【" + i + "】" + list [i].ToString () + "{0}", i < list.Count - 1 ? newLine : "");
 			}
-			UnityEngine.Debug.Log (result);
+			//UnityEngine.Debug.Log (result);
 		}
 
 		/// <summary>
@@ -106,7 +106,7 @@ namespace NCMB.Internal
 				result += String.Format ("【" + i + "】" + " Key : " + d.Key.ToString () + " Value : " + d.Value.ToString () + "{0}", i < dictionary.Count - 1 ? newLine : "");
 				i++;
 			}
-			UnityEngine.Debug.Log (result);
+			//UnityEngine.Debug.Log (result);
 		}
 
 	}

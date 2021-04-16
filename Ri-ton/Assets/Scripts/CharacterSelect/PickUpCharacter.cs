@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 
 /// <summary>
-/// キャラクター選択画面にてキャラクターが選択された時にキャラクターを両サイドから消す
+/// キャラクター選択画面にて、キャラクターが選択された時の処理を行うクラス
 /// </summary>
 public class PickUpCharacter : MonoBehaviour
 {
@@ -34,47 +34,40 @@ public class PickUpCharacter : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         NullCheck();
         defaultScale = rectTransform.localScale;
-        // キャラクターが選択された時のコールバックを設定
         button.onClick.AddListener(OnPickUp);
     }
 
+    /// <summary>
+    /// キャラクターが両サイドから消滅するTweenの生成
+    /// </summary>
     private void CreateVanishTween()
     {
-        // 両サイドから消えるTweenの作成
-        vanishTween = rectTransform.DOScale(
-            new Vector3(0.0f, defaultScale.y, defaultScale.z),
-            duration);
-
-        // Easingの設定
+        vanishTween = rectTransform.DOScale(new Vector3(0.0f, defaultScale.y, defaultScale.z), duration);
         vanishTween.SetEase(Ease.OutQuint);
-
         sequence = DOTween.Sequence();
-
         sequence
             .Append(vanishTween)
             .AppendInterval(appendInterval)
             .AppendCallback(() => pickUpCharacterManager.OnVanishComplete());
     }
 
+    /// <summary>
+    /// キャラクターが両サイドから出現するTweenの生成
+    /// </summary>
     private void CreateAppearTween()
     {
-        // 両サイドから現れるTweenの作成
-        appearTween = rectTransform.DOScale(
-            defaultScale,
-            duration);
-
-        // Easingの設定
+        appearTween = rectTransform.DOScale(defaultScale, duration);
         appearTween.SetEase(Ease.OutQuint);
-
         sequence = DOTween.Sequence();
-
         sequence
             .Append(appearTween)
             .AppendInterval(appendInterval)
             .AppendCallback(() => pickUpCharacterManager.OnAppearComplete());
     }
 
-    // 両サイドから消えていく
+    /// <summary>
+    /// キャラクターが両サイドから消滅するTweenの実行
+    /// </summary>
     public void PlayVanishTween()
     {
         CreateVanishTween();
@@ -82,7 +75,9 @@ public class PickUpCharacter : MonoBehaviour
         sequence.Play();
     }
 
-    // 両サイドから現れる
+    /// <summary>
+    /// キャラクターが両サイドから出現するTweenの実行
+    /// </summary>
     public void PlayAppearTween()
     {
         CreateAppearTween();
@@ -90,15 +85,20 @@ public class PickUpCharacter : MonoBehaviour
         sequence.Play();
     }
 
-    // キャラクターが選択された時に呼ばれるコールバック関数
+    /// <summary>
+    /// キャラクターが選択された時に呼ばれるコールバック関数
+    /// </summary>
     private void OnPickUp()
     {
         GameObject obj = CopyMyCharacterImage();
-        pickUpCharacterManager.OnPickUp(obj, myCharacterColor);
+        pickUpCharacterManager.OnPickUp(obj);
         pickUpCharacterManager.PickingCharacterNum = characterNum;
     }
 
-    // 自身のキャラクター画像(image)のクローンを作成する
+    /// <summary>
+    /// 選択されたキャラクター画像(image)のクローンを作成する
+    /// </summary>
+    /// <returns>作成したGameObject</returns>
     public GameObject CopyMyCharacterImage()
     {
         GameObject obj = Instantiate(character);

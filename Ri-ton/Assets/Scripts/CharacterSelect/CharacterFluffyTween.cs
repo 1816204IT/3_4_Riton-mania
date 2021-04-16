@@ -31,6 +31,9 @@ public class CharacterFluffyTween : MonoBehaviour
         CreateTween();
     }
 
+    /// <summary>
+    /// Tweenの生成
+    /// </summary>
     private void CreateTween()
     {
         sequence = DOTween.Sequence();

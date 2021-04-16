@@ -58,9 +58,8 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
         musicSelect = GameObject.FindGameObjectWithTag("MusicSelect").GetComponent<MusicSelect>();
 
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
+
         if (SceneManager.GetActiveScene().name == "PlaySongSelect")
         {
             if (scoreView == null)

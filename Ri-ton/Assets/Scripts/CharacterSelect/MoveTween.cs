@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// Easingを用いた移動を行う
-/// キャラクター選択画面等で使用している
+/// キャラクター選択画面で使用している
 /// </summary>
 public class MoveTween : MonoBehaviour
 {
@@ -23,40 +23,44 @@ public class MoveTween : MonoBehaviour
         startPos = startPos = GetComponent<RectTransform>().position;
     }
 
-    public void Move()
+    /// <summary>
+    /// Tweenの生成
+    /// </summary>
+    public void CreateTween()
     {
         GetComponent<Transform>().position = startPos;
+
         tween = transform.DOMove(endPos.position, duration);
-
-        // Easingの設定
         tween.SetEase(Ease.OutQuint);
-
         sequence = DOTween.Sequence();
         sequence.Append(tween);
-
         sequence.Play();
     }
 
-    public void MoveRevert()
+    /// <summary>
+    /// 逆再生Tweenの生成
+    /// </summary>
+    public void CreateRevertTween()
     {
         tween = transform.DOMove(startPos, duration);
 
-        // Easingの設定
         tween.SetEase(Ease.OutQuint);
-
         sequence = DOTween.Sequence();
         sequence.Append(tween);
-
         sequence.Play();
     }
 
-    // ------------以下キャラクターセレクトシーンで使用しているコールバック付き関数----------------
+    // ------------以下キャラクターセレクトシーンで使用しているコールバック関数----------------
+
+    /// <summary>
+    /// キャラクターを選択した際に画面中央に移動するTween
+    /// </summary>
+    /// <param name="moveEndPosObj"></param>
+    /// <param name="manager"></param>
     public void MoveCharacter(GameObject moveEndPosObj, PickUpCharacterManager manager)
     {
         endPos = moveEndPosObj.GetComponent<RectTransform>();
         tween = transform.DOMove(endPos.position, duration);
-
-        // Easingの設定
         tween.SetEase(Ease.OutQuint);
 
         sequence = DOTween.Sequence();
@@ -68,11 +72,13 @@ public class MoveTween : MonoBehaviour
         sequence.Play();
     }
 
+    /// <summary>
+    ///キャラクターを画面中央から定位置に移動するTween
+    /// </summary>
+    /// <param name="manager"></param>
     public void MoveRevertCharacter(PickUpCharacterManager manager)
     {
         tween = transform.DOMove(startPos, duration);
-
-        // Easingの設定
         tween.SetEase(Ease.OutQuint);
 
         sequence = DOTween.Sequence();
@@ -84,11 +90,13 @@ public class MoveTween : MonoBehaviour
         sequence.Play();
     }
 
-    public void MoveBG(PickUpCharacterManager manager)
+    /// <summary>
+    /// キャラクターを選択した際に背景の画像をスライドさせるTween
+    /// </summary>
+    /// <param name="manager"></param>
+    public void SlideBG(PickUpCharacterManager manager)
     {
         tween = transform.DOMove(endPos.position, duration);
-
-        // Easingの設定
         tween.SetEase(Ease.OutQuint);
 
         sequence = DOTween.Sequence();
@@ -100,7 +108,11 @@ public class MoveTween : MonoBehaviour
         sequence.Play();
     }
 
-    public void MoveRevertBG(PickUpCharacterManager manager)
+    /// <summary>
+    /// キャラクター選択解除時に背景の画像をスライドさせるTween
+    /// </summary>
+    /// <param name="manager"></param>
+    public void RevertSlideBG(PickUpCharacterManager manager)
     {
         tween = transform.DOMove(startPos, duration);
 

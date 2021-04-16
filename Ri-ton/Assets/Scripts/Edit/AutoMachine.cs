@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// オート君クラス
+/// オート君クラス。ノーツのタイミングで音を鳴らします。
+/// 譜面編集画面で使用しています。
 /// </summary>
 public class AutoMachine : MonoBehaviour
 {
@@ -17,13 +18,13 @@ public class AutoMachine : MonoBehaviour
     private MusicPlayer musicPlayer = null;
     private NoteDataConverter noteDataConverter = null;
 
-    private float pool4 = 0.0f;     //次に音を鳴らすタイミングをプールしていく　1/4間隔
-    private float pool6 = 0.0f;     //次に音を鳴らすタイミングをプールしていく　1/6間隔
-    private float pool8 = 0.0f;     //次に音を鳴らすタイミングをプールしていく　1/8間隔
+    private float pool4 = 0.0f;     // 次に音を鳴らすタイミングをプールしていく　1/4間隔
+    private float pool6 = 0.0f;     // 次に音を鳴らすタイミングをプールしていく　1/6間隔
+    private float pool8 = 0.0f;     // 次に音を鳴らすタイミングをプールしていく　1/8間隔
 
-    private float prevPool4 = 0.0f;
-    private float prevPool6 = 0.0f;
-    private float prevPool8 = 0.0f;
+    private float prevPool4 = 0.0f; // 前に音を鳴らしたタイミングをプールしていく　1/4間隔
+    private float prevPool6 = 0.0f; // 前に音を鳴らしたタイミングをプールしていく　1/6間隔
+    private float prevPool8 = 0.0f; // 前に音を鳴らしたタイミングをプールしていく　1/8間隔
 
     void Start()
     {
@@ -44,13 +45,18 @@ public class AutoMachine : MonoBehaviour
             return;
         }
 
-        bool isClaped = false;
-        ClapCheck(ref pool4, ref prevPool4, 4, ref isClaped);
-        ClapCheck(ref pool6, ref prevPool6, 6, ref isClaped);
-        ClapCheck(ref pool8, ref prevPool8, 8, ref isClaped);
+        ClapCheck(ref pool4, ref prevPool4, 4);
+        ClapCheck(ref pool6, ref prevPool6, 6);
+        ClapCheck(ref pool8, ref prevPool8, 8);
     }
 
-    private void ClapCheck(ref float pool, ref float prevPool, int LPB, ref bool isClaped)
+    /// <summary>
+    /// 音を鳴らすタイミングをチェックし、SEを再生する
+    /// </summary>
+    /// <param name="pool">タイミングプール</param>
+    /// <param name="prevPool">前回音を鳴らした時間</param>
+    /// <param name="LPB">判定するノーツのLPB</param>
+    private void ClapCheck(ref float pool, ref float prevPool, int LPB)
     {
         float time = musicPlayer.OffsetedTimeOrigin();
         float span = (musicPlayer.ClapSpan() / LPB);
@@ -69,11 +75,7 @@ public class AutoMachine : MonoBehaviour
             int num = noteDataConverter.ConvertBeatNum(time, LPB);
             if (noteSetter.IsNote(LPB, num, laneNumer))
             {
-                if (isClaped == false)
-                {
-                    audioSource.Play();
-                    isClaped = true;
-                }
+                audioSource.Play();
             }
             //プール値加算
             prevPool = pool;

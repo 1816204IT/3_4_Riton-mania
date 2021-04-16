@@ -22,7 +22,9 @@ public class BlinkingTween : MonoBehaviour
         CreateTween();
     }
 
-    // 点滅表示用Tweenの生成
+    /// <summary>
+    /// Tweenの生成
+    /// </summary>
     private void CreateTween()
     {
         Sequence sequence = DOTween.Sequence();
@@ -50,7 +52,6 @@ public class BlinkingTween : MonoBehaviour
         sequence.Play();
     }
 
-    // Nullチェックを行う
     private void NullCheck()
     {
         uiComponent.IsNull();

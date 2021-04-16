@@ -27,15 +27,24 @@ public class ButtonEventSE : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         GetComponent<Button>().onClick.AddListener(OnPlayMenuHitSE);
     }
 
+    /// <summary>
+    /// ボタン上にマウスカーソルが入った際の処理
+    /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
         mouseOverSE.Play();
     }
 
+    /// <summary>
+    /// ボタン上からマウスカーソルが出た際の処理
+    /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
     }
 
+    /// <summary>
+    /// ボタンフォーカスSE再生
+    /// </summary>
     public void OnPlayMenuHitSE()
     {
         menuHitSE.Play();

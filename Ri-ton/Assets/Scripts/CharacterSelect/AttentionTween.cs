@@ -32,6 +32,9 @@ public class AttentionTween : MonoBehaviour
         CreateTween();
     }
 
+    /// <summary>
+    /// Tweenの生成
+    /// </summary>
     private void CreateTween()
     {
         sequence.Kill();
@@ -59,6 +62,10 @@ public class AttentionTween : MonoBehaviour
         sequence.Play();
     }
 
+    /// <summary>
+    /// Tweenの再設定
+    /// </summary>
+    /// <param name="newStartPos"></param>
     public void TweenReSetting(float newStartPos)
     {
         if (newStartPos != -1)
@@ -68,17 +75,27 @@ public class AttentionTween : MonoBehaviour
         CreateTween();
     }
 
+    /// <summary>
+    /// 初期Y座標を設定する
+    /// </summary>
+    /// <param name="value"></param>
     private void SetStartPosY(float value)
     {
         startPosY = value;
         endPosY = startPosY + moveDistance;
     }
 
+    /// <summary>
+    /// 下方向に動かすように設定する
+    /// </summary>
     public void MoveDirDown()
     {
         moveDistance = Mathf.Abs(moveDistance) * -1;
     }
 
+    /// <summary>
+    /// 上方向に動かすように設定する
+    /// </summary>
     public void MoveDirUp()
     {
         moveDistance = Mathf.Abs(moveDistance);

@@ -29,11 +29,14 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     void Start()
     {
         NullCheck();
-        TweenInit();
+        CreateTween();
         defaultColor = arrowImage.color;
     }
 
-    private void TweenInit()
+    /// <summary>
+    /// Tweenの生成
+    /// </summary>
+    private void CreateTween()
     {
         sequence = DOTween.Sequence();
         sequence.SetLoops(-1, LoopType.Restart);

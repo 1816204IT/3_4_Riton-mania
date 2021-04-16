@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 /// <summary>
 /// ヘッダー情報表示クラス
-/// プレイヤ名
+/// プレイヤ名を表示する
 /// </summary>
 public class HeaderInfo : MonoBehaviour
 {
@@ -26,6 +26,9 @@ public class HeaderInfo : MonoBehaviour
         playerNameText.text = playerName;
     }
 
+    /// <summary>
+    /// プレイヤ名の色を変更する
+    /// </summary>
     public void SetPlayerNameColor()
     {
         int charaNum = UserPreference.Instance.GetCharacterNumber();

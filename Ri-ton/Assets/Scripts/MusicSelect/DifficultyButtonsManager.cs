@@ -44,9 +44,8 @@ public class DifficultyButtonsManager : MonoBehaviour
         bigNode = GameObject.FindGameObjectWithTag("BigNode").GetComponent<BigNodeInformation>();
 
 
-        {
-            Debug.Log("nullを検知");
-        }
+        NullCheck();
+
         if (SceneManager.GetActiveScene().name == "PlaySongSelect")
         {
             if (scoreView == null)

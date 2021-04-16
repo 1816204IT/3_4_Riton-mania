@@ -29,12 +29,18 @@ public class EditSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ノーツ速度を上げる
+    /// </summary>
     public void NoteSpeedUp()
     {
         UserPreference.Instance.NoteSpeedUp();
         noteDataConverter.Init();
     }
 
+    /// <summary>
+    /// ノーツ速度を下げる
+    /// </summary>
     public void NoteSpeedDown()
     {
         UserPreference.Instance.NoteSpeedDown();

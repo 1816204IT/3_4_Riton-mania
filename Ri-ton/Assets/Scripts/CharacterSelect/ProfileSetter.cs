@@ -26,6 +26,10 @@ public class ProfileSetter : MonoBehaviour
         NullCheck();
     }
 
+    /// <summary>
+    /// プロフィール情報を設定する
+    /// </summary>
+    /// <param name="data">プロフィールデータ</param>
     public void UpdateProfile(Ritonmania.CharacterData data)
     {
         height.text         = data.height;

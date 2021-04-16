@@ -26,7 +26,7 @@ namespace NCMB
         public CharacterIcon(string _name)
         {
             name        = _name;
-            character   = 5;    // デフォルトでは画像未選択状態
+            character   = -1;    // デフォルトでは画像未選択状態
         }
 
         // サーバーにキャラクター番号を保存 -----------------------------------
