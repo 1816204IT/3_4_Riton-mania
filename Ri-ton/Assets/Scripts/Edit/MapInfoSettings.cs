@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class MapInfoSettings : MonoBehaviour
 {
-    public bool IsOffsetChangeMode { get; set; } = true;
+    public bool IsMapInfoSettingMode { get; set; } = true;
 
     [System.Serializable]
     public struct MapInfoGroup
@@ -46,10 +46,13 @@ public class MapInfoSettings : MonoBehaviour
         textValue = diffGroup.slider.value / 10.0f;
         diffGroup.inputField.text = textValue.ToString();
 
-        ToggleOffsetChangeMode();
+        ToggleMapIndoSettingMode();
     }
 
-    public void OnEndEditOffsetInputField()
+    /// <summary>
+    /// 譜面オフセット値をInputFieldから設定した際の処理
+    /// </summary>
+    public void OnValueChangedOffset()
     {
         float max = offsetGroup.slider.maxValue;
         float min = offsetGroup.slider.minValue;
@@ -63,7 +66,10 @@ public class MapInfoSettings : MonoBehaviour
         musicPlayer.Offset = offsetGroup.slider.value / 100.0f;
     }
 
-    public void OnEndEditBpmInputField()
+    /// <summary>
+    /// 譜面BPMをInputFieldから設定した際の処理
+    /// </summary>
+    public void OnValueChangedBpm()
     {
         float max = bpmGroup.slider.maxValue;
         float min = bpmGroup.slider.minValue;
@@ -77,7 +83,10 @@ public class MapInfoSettings : MonoBehaviour
         musicPlayer.Offset = bpmGroup.slider.value / 100.0f;
     }
 
-    public void OnEndEditDifficultyInputField()
+    /// <summary>
+    /// 譜面難易度値をInputFieldから設定した際の処理
+    /// </summary>
+    public void OnValueChangedDifficulty()
     {
         float max = diffGroup.slider.maxValue;
         float min = diffGroup.slider.minValue;
@@ -90,6 +99,9 @@ public class MapInfoSettings : MonoBehaviour
         diffGroup.slider.value = num;
     }
 
+    /// <summary>
+    /// オフセット値スライダーを変更した際の処理
+    /// </summary>
     public void OnValueChangedOffsetSlider()
     {
         musicPlayer.Offset = offsetGroup.slider.value / 100.0f;
@@ -97,6 +109,9 @@ public class MapInfoSettings : MonoBehaviour
         offsetGroup.inputField.text = textValue.ToString();
     }
 
+    /// <summary>
+    /// BPM値スライダーを変更した際の処理
+    /// </summary>
     public void OnValueChangedBpmSlider()
     {
         musicPlayer.Bpm = bpmGroup.slider.value / 100.0f;
@@ -104,16 +119,22 @@ public class MapInfoSettings : MonoBehaviour
         bpmGroup.inputField.text = textValue.ToString();
     }
 
+    /// <summary>
+    /// 難易度値スライダーを変更した際の処理
+    /// </summary>
     public void OnValueChangedDifficultySlider()
     {
         float textValue = diffGroup.slider.value / 10.0f;
         diffGroup.inputField.text = textValue.ToString();
     }
 
-    public void ToggleOffsetChangeMode()
+    /// <summary>
+    /// マップ情報変更モード切替
+    /// </summary>
+    public void ToggleMapIndoSettingMode()
     {
-        IsOffsetChangeMode = !IsOffsetChangeMode;
-        if (IsOffsetChangeMode)
+        IsMapInfoSettingMode = !IsMapInfoSettingMode;
+        if (IsMapInfoSettingMode)
         {
             offsetGroup.obj.SetActive(true);
             bpmGroup.obj.SetActive(true);
@@ -127,6 +148,9 @@ public class MapInfoSettings : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// オフセット値の保存
+    /// </summary>
     public void SaveOffset()
     {
         MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
@@ -134,6 +158,9 @@ public class MapInfoSettings : MonoBehaviour
         jsonManager.SaveMapInfo(mapInfo);
     }
 
+    /// <summary>
+    /// BPM値の保存
+    /// </summary>
     public void SaveBPM()
     {
         MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
@@ -141,6 +168,9 @@ public class MapInfoSettings : MonoBehaviour
         jsonManager.SaveMapInfo(mapInfo);
     }
 
+    /// <summary>
+    /// 難易度値の保存
+    /// </summary>
     public void SaveDifficulty()
     {
         var mapData = jsonManager.LoadMapData(SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName);

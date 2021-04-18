@@ -137,7 +137,10 @@ public class JsonManager : MonoBehaviour
         return JsonUtility.FromJson<MusicDTO.MapData>(readData);
     }
 
-    // ユーザー設定の保存
+    /// <summary>
+    /// ユーザー設定を保存する
+    /// </summary>
+    /// <param name="data">ユーザーデータ</param>
     public void SaveUserPreference(Ritonmania.LocalUserData data)
     {
         CreatePathBuilder();
@@ -152,7 +155,9 @@ public class JsonManager : MonoBehaviour
         writer.Close();
     }
 
-    // ユーザー設定の読み込み1
+    /// <summary>
+    /// ユーザーデータをロードする
+    /// </summary>
     public Ritonmania.LocalUserData LoadUserPreference()
     {
         CreatePathBuilder();

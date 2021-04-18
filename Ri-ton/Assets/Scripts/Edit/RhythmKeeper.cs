@@ -39,7 +39,7 @@ public class RhythmKeeper : MonoBehaviour
             prevPool = pool;
             pool += span;
 
-            if (mapInfoSettings.IsOffsetChangeMode)
+            if (mapInfoSettings.IsMapInfoSettingMode)
             {
                 audioSource.Play();
             }
