@@ -182,6 +182,8 @@ public class ScoreView : MonoBehaviour
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
 
         //アイコン画像を設定
+        var a = topRankersIcons[i].character;
+        var test = CharacterInfoList.instance.GetIconSprite(topRankersIcons[i].character);
         node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(topRankersIcons[i].character);
 
         //ランク画像を設定

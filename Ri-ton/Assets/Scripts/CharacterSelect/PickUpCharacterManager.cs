@@ -200,7 +200,7 @@ public class PickUpCharacterManager : MonoBehaviour
         {
             int characterNum = UserPreference.Instance.GetCharacterNumber();
             // キャラクター未選択なら催促分を表示
-            if (characterNum == -1)
+            if ((PickingCharacterNum < 0) || (PickingCharacterNum > 4))
             {
                 pleasePickCharacter.SetActive(true);
                 // 催促分を指定秒数後に消す
