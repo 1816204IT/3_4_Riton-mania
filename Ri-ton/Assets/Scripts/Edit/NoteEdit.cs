@@ -165,7 +165,12 @@ public class NoteEdit : MonoBehaviour
         }
     }
 
-    //クリックした際のマウス座標が有効かどうか
+    /// <summary>
+    /// クリックした際のマウス座標が有効かどうかを返す
+    /// </summary>
+    /// <param name="mousePos">マウス座標</param>
+    /// <param name="time">現在の曲の再生時間</param>
+    /// <returns></returns>
     public bool IsClickedPosValid(ref Vector3 mousePos, ref float time)
     {
         if (mouseFollow.IsMousePosValid() == false)
@@ -184,14 +189,20 @@ public class NoteEdit : MonoBehaviour
         return true;
     }
 
-    //クリックしたX座標が第何レーンかを返す
+    /// <summary>
+    /// クリックした座標が第何レーンかを返す
+    /// </summary>
+    /// <param name="posX">クリックしたX座標</param>
     private int GetLaneNum(float posX)
     {
-        posX += 300; // この300は何だろう
+        posX += 300;
         return (int)(posX / UserPreference.Instance.NoteSizeX());
     }
 
-    //クリックしたY座標がaudioSource.timeの何秒に当たるかを返す
+    /// <summary>
+    /// クリックしたY座標がaudioSource.timeの何秒に当たるかを返す
+    /// </summary>
+    /// <param name="mousePosY">クリックしたY座標</param>
     private float GetAudioSourceTime(float mousePosY)
     {
         float len = mousePosY - judgmentBar.transform.position.y;
@@ -199,6 +210,10 @@ public class NoteEdit : MonoBehaviour
         return musicPlayer.AudioSource.time + (len / UserPreference.Instance.NoteSpeed());
     }
 
+    /// <summary>
+    /// 小節線にスナップした座標を返す
+    /// </summary>
+    /// <param name="pos">クリックした座標</param>
     public Vector3 GetSnappedPos(Vector3 pos)
     {
         float posX = UserPreference.Instance.NotePosXOfLaneZero() + GetLaneNum(pos.x) * UserPreference.Instance.NoteSizeX()  ;
@@ -211,7 +226,9 @@ public class NoteEdit : MonoBehaviour
         return new Vector3(posX, posY, 0);
     }
 
-    //配置モードON/OFF切り替え
+    /// <summary>
+    /// 配置モードON/Off切替
+    /// </summary>
     public void ToggleNoteSetMode()
     {
         NoteSetMode = !NoteSetMode;
@@ -225,7 +242,9 @@ public class NoteEdit : MonoBehaviour
         }
     }
 
-    //ビートスナップ間隔変更
+    /// <summary>
+    /// ビートスナップ間隔変更
+    /// </summary>
     public void ChangeBeatSpanInterval()
     {
         if (Lpb == 1)

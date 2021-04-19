@@ -27,16 +27,25 @@ public class MusicNode : MonoBehaviour
         button.onClick.AddListener(OnClickNode);
     }
 
+    /// <summary>
+    /// 曲パネルを選択した際の処理
+    /// </summary>
     void OnClickNode()
     {
         musicNodeScroll.SelectedNodeChangesFunc(MyNodeNum, MusicInfoList.Instance.GetMusicName(MyNodeNum));
     }
 
+    /// <summary>
+    /// 曲名を設定する
+    /// </summary>
     public void SetMusicNameText()
     {
         musicNameText.text = MusicInfoList.Instance.GetMusicName(MyNodeNum);
     }
 
+    /// <summary>
+    /// 曲の画像を設定する
+    /// </summary>
     public void SetJacketImage()
     {
         jacketImage.sprite = MusicInfoList.Instance.GetBgImage(MyNodeNum);

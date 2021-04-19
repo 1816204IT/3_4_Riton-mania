@@ -16,12 +16,18 @@ public class ArrowAnimationSynchro : MonoBehaviour
         NullCheck();
     }
 
+    /// <summary>
+    /// アニメーション一時停止
+    /// </summary>
     public void PauseAnimation()
     {
         leftArrow.PauseAnimation();
         rightArrow.PauseAnimation();
     }
 
+    /// <summary>
+    /// アニメーション開始
+    /// </summary>
     public void PlayAnimation()
     {
         leftArrow.PlayAnimation();

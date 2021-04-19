@@ -84,6 +84,9 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         NodeMove();
     }
 
+    /// <summary>
+    /// 矢印キーやマウスホイールの入力を検知して選択曲を変更する
+    /// </summary>
     private void AddScrollInput()
     {
         if (tutorialCanvas.activeSelf == true)
@@ -91,10 +94,12 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
+        // 左キーの入力検知
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             AddRightScrollInput();
         }
+        // 右キーの入力検知
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             AddLeftScrollInput();
@@ -116,9 +121,12 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    // movementInfoListを元に次の移動先を決定
+    /// <summary>
+    /// 曲パネルの移動情報リストを実行する
+    /// </summary>
     private void ExcuteMovementInfoList()
     {
+        // 移動中または移動先ナシ
         if (isMoving || (scrollInputList.Count == 0))
         {
             return;
@@ -150,7 +158,9 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
-    // ノードの移動を行う
+    /// <summary>
+    /// 曲パネルの移動を行う
+    /// </summary>
     private void NodeMove()
     {
         if (isMoving == false)
@@ -164,11 +174,11 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             Vector3 nowPos = nodeList[i].localPosition;
             Vector3 nowScale = nodeList[i].localScale;
-            if (AddPos(ref nowPos, movementInfoList[i].movedPos, movementInfoList[i].addPos))
+            if (UpdatePos(ref nowPos, movementInfoList[i].movedPos, movementInfoList[i].addPos))
             {
                 moveEndNodeCnt++;
             }
-            AddScale(ref nowScale, movementInfoList[i].movedScale, movementInfoList[i].addScale);
+            UpdateScale(ref nowScale, movementInfoList[i].movedScale, movementInfoList[i].addScale);
             nodeList[i].localPosition = nowPos;
             nodeList[i].localScale = nowScale;
         }
@@ -176,18 +186,20 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (moveEndNodeCnt >= musicNum)
         {
             isMoving = false;
-            //曲を再生
+            // 曲を再生
             musicSelect.SetNewMusic(SelectedMap.Instance.MusicIndex);
-            //ランキング更新
+            // ランキング更新
             if (SceneManager.GetActiveScene().name == "PlaySongSelect")
             {
                 scoreView.UpdateResultData();
             }
         }
     }
-
-    //返り値 true 最終座標まで移動完了
-    private bool AddPos(ref Vector3 nowPos, Vector3 endPos, Vector3 addPos)
+    /// <summary>
+    /// 曲パネルの座標を更新する
+    /// </summary>
+    /// <returns>ture:移動完了</returns>
+    private bool UpdatePos(ref Vector3 nowPos, Vector3 endPos, Vector3 addPos)
     {
         float sing = endPos.x - nowPos.x;   //右にスクロールしているか左にスクロールしているか符号で判断する
         nowPos += addPos * Time.deltaTime;
@@ -214,7 +226,13 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         return false;
     }
 
-    private void AddScale(ref Vector3 nowScale, Vector3 endScale, Vector3 addScale)
+    /// <summary>
+    /// 今日パネルの拡大率を更新する
+    /// </summary>
+    /// <param name="nowScale"></param>
+    /// <param name="endScale"></param>
+    /// <param name="addScale"></param>
+    private void UpdateScale(ref Vector3 nowScale, Vector3 endScale, Vector3 addScale)
     {
         float sing = endScale.x - nowScale.x;   //右にスクロールしているか左にスクロールしているか符号で判断する
         nowScale += addScale * Time.deltaTime;
@@ -237,6 +255,11 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         }
     }
 
+    /// <summary>
+    /// 選択曲が変更された際の処理
+    /// </summary>
+    /// <param name="musicIndex">変更後曲の番号</param>
+    /// <param name="musicName">変更後曲の曲名</param>
     public void SelectedNodeChangesFunc(int musicIndex, string musicName)
     {
         if (isMoving)
@@ -254,9 +277,12 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         menuHitSE.Play();      
     }
 
+    /// <summary>
+    /// ノードの移動情報をセットする
+    /// </summary>
     public void SetMovementInfo()
     {
-        movementInfoList.Clear();   // リストクリア
+        movementInfoList.Clear();
         isMoving = true;
         float posX = 0;
         int musicNum = MusicInfoList.Instance.MusicNum();
@@ -265,7 +291,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         {
             MovementInfo info = new MovementInfo();
             
-            //座標の移動
+            // 座標の移動
             int distanceFromMedian = i - SelectedMap.Instance.MusicIndex;
             posX = nodeWidth * distanceFromMedian;
             posX += spacing * distanceFromMedian;
@@ -281,7 +307,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             info.movedPos = new Vector3(posX, nowPos.y, nowPos.z);
             info.addPos = (info.movedPos - nowPos) * (1.0f / moveCompleteTime);
 
-            //スケーリング
+            // スケーリング
             if (i == SelectedMap.Instance.MusicIndex)
             {
                 info.movedScale = Vector3.one;
@@ -293,29 +319,40 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             Vector3 nowScale = nodeList[i].localScale;
             info.addScale = (info.movedScale - nowScale) * (1.0f / moveCompleteTime);
 
-            //リストに追加する
+            // リストに追加する
             movementInfoList.Add(info);
         }
     }
 
+    /// <summary>
+    /// 左方向への入力を追加
+    /// </summary>
     private void AddLeftScrollInput()
     {
         if (scrollInputList.Count >= max_scroll_input_num - 1)
         {
             scrollInputList.RemoveAt(0);
         }
+
         scrollInputList.Add(ScrollDir.LEFT);
     }
 
+    /// <summary>
+    /// 右方向への入力を追加
+    /// </summary>
     private void AddRightScrollInput()
     {
         if (scrollInputList.Count >= max_scroll_input_num - 1)
         {
             scrollInputList.RemoveAt(0);
         }
+
         scrollInputList.Add(ScrollDir.RIGHT);
     }
 
+    /// <summary>
+    /// 左矢印入力検知イベント
+    /// </summary>
     public void OnClickLeftArrow()
     {
         if (isMoving)
@@ -327,6 +364,9 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         AddRightScrollInput();
     }
 
+    /// <summary>
+    /// 右矢印入力検知イベント
+    /// </summary>
     public void OnClickRightArrow()
     {
         if (isMoving)
@@ -338,11 +378,17 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         AddLeftScrollInput();
     }
 
+    /// <summary>
+    /// 曲パネルをマウスホイールで操作できるエリアにマウスカーソルが入った際の検知イベント
+    /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
         isOnPointerEnter = true;
     }
 
+    /// <summary>
+    /// 曲パネルをマウスホイールで操作できるエリアからマウスカーソルが出た際の検知イベント
+    /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
         isOnPointerEnter = false;

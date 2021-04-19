@@ -34,6 +34,9 @@ public class BigNodeInformation : MonoBehaviour
         InformationUpdate();
     }
 
+    /// <summary>
+    /// 譜面情報を更新する
+    /// </summary>
     public void InformationUpdate()
     {
         MapInfo mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
@@ -59,7 +62,9 @@ public class BigNodeInformation : MonoBehaviour
         MapperNameSpecialCheck();
     }
 
-    // マッパー名の日本語が文字化けするので特別にチェック関数を用意
+    /// <summary>
+    /// マッパー名の日本語が文字化けするので特別にチェック関数を用意
+    /// </summary>
     private void MapperNameSpecialCheck()
     {
         string musicName = SelectedMap.Instance.MusicName;

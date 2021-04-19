@@ -30,6 +30,10 @@ public class MusicNodeInformation : MonoBehaviour
         difficultyButtonsManager.Initialize();
     }
 
+    /// <summary>
+    /// 難易度を変更した際に曲パネルの情報を更新する
+    /// 現状は色のみ変更しています
+    /// </summary>
     public void UpdateInformationByChangeDifficulty()
     {
         Color color = difficultyColor.GetDifficultyColor(SelectedMap.Instance.DifficultyName);

@@ -55,6 +55,9 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         sequence.Play();
     }
 
+    /// <summary>
+    /// 矢印をクリック可能エリアにマウスカーソルが入った際の検知イベント
+    /// </summary>
     public void OnPointerEnter(PointerEventData eventData)
     {
         isOnPointerEnter = true;
@@ -63,6 +66,9 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         arrowRectTransform.localScale = new Vector2(c_size_extra_rate, c_size_extra_rate);
     }
 
+    /// <summary>
+    /// 矢印をクリック可能エリアからマウスカーソルが出た際の検知イベント
+    /// </summary>
     public void OnPointerExit(PointerEventData eventData)
     {
         isOnPointerEnter = false;
@@ -71,11 +77,17 @@ public class MusicSelectArrow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         arrowRectTransform.localScale = new Vector2(c_size_fefault, c_size_fefault);
     }
 
+    /// <summary>
+    /// アニメーション停止
+    /// </summary>
     public void PauseAnimation()
     {
         sequence.Pause();
     }
 
+    /// <summary>
+    /// アニメーション再生
+    /// </summary>
     public void PlayAnimation()
     {
         sequence.Play();

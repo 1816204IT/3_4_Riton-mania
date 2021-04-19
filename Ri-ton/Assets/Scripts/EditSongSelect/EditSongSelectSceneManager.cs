@@ -19,6 +19,9 @@ public class EditSongSelectSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 譜面編集シーンへ遷移
+    /// </summary>
     public void OnClickEditButton()
     {
         SceneManager.LoadScene("Edit");

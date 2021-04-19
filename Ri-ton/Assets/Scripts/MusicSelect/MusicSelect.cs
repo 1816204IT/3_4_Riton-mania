@@ -17,6 +17,10 @@ public class MusicSelect : MonoBehaviour
         SetNewMusic(SelectedMap.Instance.MusicIndex);
     }
 
+    /// <summary>
+    /// 曲名を変更する
+    /// </summary>
+    /// <param name="inMusicNameIndex">曲番号</param>
     public void SetNewMusic(int inMusicNameIndex)
     {
         musicNameIndex = inMusicNameIndex;
@@ -24,11 +28,17 @@ public class MusicSelect : MonoBehaviour
         audioPlayer.Play();
     }
 
+    /// <summary>
+    /// 曲編集シーンへ遷移する
+    /// </summary>
     public void SceneChangeToEdit()
     {
         SceneManager.LoadScene("Edit");
     }
 
+    /// <summary>
+    /// プレイシーンへ遷移する
+    /// </summary>
     public void SceneChangeToPlay()
     {
         string sceneName = SceneManager.GetActiveScene().name;

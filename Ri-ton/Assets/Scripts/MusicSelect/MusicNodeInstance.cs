@@ -17,6 +17,9 @@ public class MusicNodeInstance : MonoBehaviour
         PrefabInstance();
     }
 
+    /// <summary>
+    /// プレハブからインスタンスを生成する
+    /// </summary>
     private void PrefabInstance()
     {
         for(int i = 0; i < MusicInfoList.Instance.MusicNum(); i++)

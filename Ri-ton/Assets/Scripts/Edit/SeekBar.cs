@@ -24,6 +24,9 @@ public class SeekBar : MonoBehaviour
         seekBar.value = musicPlayer.GetSeekBarPosition();
     }
 
+    /// <summary>
+    /// 曲の再生位置をシークバーの位置に合わせる
+    /// </summary>
     public void AdjustMusicOfSeekBar()
     {
         musicPlayer.AdjustAudioSourceTime(seekBar.value);

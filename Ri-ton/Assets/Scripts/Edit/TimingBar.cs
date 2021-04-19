@@ -49,14 +49,17 @@ public class TimingBar : MonoBehaviour
         float jPosY = judgmentBar.transform.position.y + UserPreference.Instance.UserOffset();
         float length = (musicPlayer.offsetedTime % (musicPlayer.ClapSpan() * 4)) * UserPreference.Instance.NoteSpeed();
 
-        //判定バーに最も近いタイミングバーを基点とする
+        // 判定バーに最も近いタイミングバーを基点とする
         BarBasePosY = jPosY - length;
 
-        //カラーバーバーを配置していく
+        // カラーバーバーを配置していく
         SetBar(BarBasePosY);
     }
 
-    //1/1以下のカラーバーを配置を配置していく
+    /// <summary>
+    /// 1/1以下のカラーバーを配置を配置していく
+    /// </summary>
+    /// <param name="basePosY">判定バーに最も近いタイミングバー</param>
     private void SetBar(float basePosY)
     {
         float tmpPosY = basePosY;
@@ -92,8 +95,10 @@ public class TimingBar : MonoBehaviour
         } 
     }
 
-    //バーを色分けして配置する
-    private void DivideCaseLPB(ref float tmpPosY, ref int usedBarNumMain, ref int usedBarNumWhite, ref int usedBarNumRed, ref int usedBarNumBlue, ref int usedBarNumPurple, ref int usedBarNumYellow, bool isSetUpper)
+    /// <summary>
+    /// バーを色分けして配置する
+    /// </summary>
+    private void DivideCaseLPB(ref float tempPosY, ref int usedBarNumMain, ref int usedBarNumWhite, ref int usedBarNumRed, ref int usedBarNumBlue, ref int usedBarNumPurple, ref int usedBarNumYellow, bool isSetUpper)
     {
         for (int i = 0; i < noteEditor.Lpb +1; i++)
         {
@@ -113,16 +118,7 @@ public class TimingBar : MonoBehaviour
                     {
                         whiteBarPutNum++;
                         usedBarNumWhite++;
-                        if ((whiteBarPutNum % 4) == 0)
-                        {
-                            // この場合は小節線(太い線)を別Scriptで配置するためskipする
-                            float len = musicPlayer.ClapSpan() * (UserPreference.Instance.NoteSpeed() / noteEditor.Lpb);
-                            tmpPosY = isSetUpper ? (tmpPosY + len) : (tmpPosY - len);
-                        }
-                        else
-                        {
-                            SetBarPosition(bar, ref tmpPosY, isSetUpper, 4);
-                        }
+                        SetBarPosition(bar, ref tempPosY, isSetUpper, 4);
                         break;
                     }
                 }
@@ -140,7 +136,7 @@ public class TimingBar : MonoBehaviour
                     if (num > usedBarNumRed)
                     {
                         usedBarNumRed++;
-                        SetBarPosition(bar, ref tmpPosY, isSetUpper, 4);
+                        SetBarPosition(bar, ref tempPosY, isSetUpper, 4);
                         break;
                     }
                 }
@@ -158,7 +154,7 @@ public class TimingBar : MonoBehaviour
                     if (num > usedBarNumPurple)
                     {
                         usedBarNumPurple++;
-                        SetBarPosition(bar, ref tmpPosY, isSetUpper, 3);
+                        SetBarPosition(bar, ref tempPosY, isSetUpper, 3);
                         break;
                     }
                 }
@@ -185,7 +181,7 @@ public class TimingBar : MonoBehaviour
                     if (num > usedBarNumBlue)
                     {
                         usedBarNumBlue++;
-                        SetBarPosition(bar, ref tmpPosY, isSetUpper, 4);
+                        SetBarPosition(bar, ref tempPosY, isSetUpper, 4);
                         break;
                     }
                 }
@@ -203,7 +199,7 @@ public class TimingBar : MonoBehaviour
                     if (num > usedBarNumYellow)
                     {
                         usedBarNumYellow++;
-                        SetBarPosition(bar, ref tmpPosY, isSetUpper, 8);
+                        SetBarPosition(bar, ref tempPosY, isSetUpper, 8);
                         break;
                     }
                 }
@@ -212,7 +208,10 @@ public class TimingBar : MonoBehaviour
         }
     }
 
-    //全てのタイミングバーを画面外に移動(setActiveは重い処理のようなので座標移動で誤魔化す)
+    /// <summary>
+    /// 全てのタイミングバーを画面外に移動
+    /// </summary>
+    /// <param name="bars"></param>
     private void BarMoveOutOfScreen(List<GameObject> bars)
     {
         foreach (GameObject bar in bars)
@@ -222,8 +221,9 @@ public class TimingBar : MonoBehaviour
         }
     }
 
-    //タイミングバーのY座標をセットしていく
-    ///@param isSetUpper 上方向にセットしていくか
+    /// <summary>
+    /// タイミングバーのY座標をセットしていく
+    /// </summary>
     private void SetBarPosition(GameObject bar, ref float tmpPosY, bool isSetUpper, int LPB)
     {
         float len = musicPlayer.ClapSpan() * (UserPreference.Instance.NoteSpeed() / noteEditor.Lpb);
@@ -239,6 +239,9 @@ public class TimingBar : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// バーの表示非表示切替
+    /// </summary>
     public void ToggleShowColorBar()
     {
         isShowBar = !isShowBar;

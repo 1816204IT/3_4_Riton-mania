@@ -31,6 +31,9 @@ public class KeyEffect : MonoBehaviour
         spriteRenderer.color = new Color(color.r, color.g, color.b, alpha);
     }
 
+    /// <summary>
+    /// キー入力エフェクト表示開始
+    /// </summary>
     public void EffictStart()
     {
         alpha = 1.0f;

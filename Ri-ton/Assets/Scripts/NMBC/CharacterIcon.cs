@@ -12,9 +12,11 @@ namespace Ritonmania
     }
 }
 
-// ユーザーIDをキーにしてキャラクター番号を取得する
 namespace NCMB
-{
+{  
+    /// <summary>
+    /// ユーザーIDをキーにしてキャラクター番号を取得する 
+    /// </summary>
     public class CharacterIcon
     {
         public string name { get; set; }

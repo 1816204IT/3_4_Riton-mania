@@ -96,6 +96,9 @@ public class DifficultyButtonsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 初期化処理
+    /// </summary>
     public void Initialize()
     {
         string diffName = SelectedMap.Instance.DifficultyName;
@@ -121,6 +124,9 @@ public class DifficultyButtonsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 全ての難易度ボタンの高さをリセットする
+    /// </summary>
     private void AllButtonsHeightReset()
     {
         foreach (RectTransform rt in buttonsRectTransforms)
@@ -147,6 +153,12 @@ public class DifficultyButtonsManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 難易度ボタンをクリックした際の処理
+    /// </summary>
+    /// <param name="diffName">難易度名</param>
+    /// <param name="diffType">難易度タイプ</param>
+    /// <param name="diffColor">難易度に対応した色</param>
     private void OnClickDifficultyButton(string diffName, DifficultyType diffType, Color diffColor)
     {
         SelectedMap.Instance.DifficultyName = diffName;
