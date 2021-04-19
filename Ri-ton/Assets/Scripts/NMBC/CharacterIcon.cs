@@ -64,7 +64,7 @@ namespace NCMB
                     {
                         NCMBObject obj = new NCMBObject("CharacterIcon");
                         obj["Name"] = name;
-                        obj["Character"] = character;   // コンストラクタで初期化してるのでcharacter == 5のはず
+                        obj["Character"] = character;
                         obj.SaveAsync();
                     }
                     // キャラクター番号が登録済みだったら

@@ -35,6 +35,9 @@ public class MusicPlayButton : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 曲の再生と停止
+    /// </summary>
     public void MusicPlayAndStop()
     {
         if (musicPlayer.AudioSource.isPlaying)

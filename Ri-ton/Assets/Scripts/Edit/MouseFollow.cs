@@ -5,7 +5,7 @@
 /// </summary>
 public class MouseFollow : MonoBehaviour
 {
-    //X, Y座標の移動可能範囲
+    // X, Y座標の移動可能範囲
     [System.Serializable]
     public class Bounds
     {
@@ -28,7 +28,7 @@ public class MouseFollow : MonoBehaviour
 
     void Update()
     {
-        //マウス座標を取得
+        // マウス座標を取得
         var targetPos = ConvertMousePos();
 
         if (targetPos == new Vector3())
@@ -36,12 +36,12 @@ public class MouseFollow : MonoBehaviour
             return;
         }
 
-        //X,Y座標の範囲を制限する
+        // X,Y座標の範囲を制限する
         targetPos.x = Mathf.Clamp(targetPos.x, (float)bounds.xMin, bounds.xMax);
         targetPos.y = Mathf.Clamp(targetPos.y, bounds.yMin, bounds.yMax);
 
-        //このスクリプトがアタッチされたゲームオブジェクトを、マウス位置に追従
-        //ノーツが置ける位置にスナップさせる
+        // このスクリプトがアタッチされたゲームオブジェクトを、マウス位置に追従
+        // ノーツが置ける位置にスナップさせる
         Vector3 pos = noteEditor.GetSnappedPos(targetPos);
         transform.position = pos;
 
@@ -49,7 +49,9 @@ public class MouseFollow : MonoBehaviour
         noteEditor.IsClickedPosValid(ref pos, ref time);
     }
 
-    //マウス座標をプレイエリア平面座標に変換する
+    /// <summary>
+    /// マウス座標をプレイエリア平面座標に変換する
+    /// </summary>
     public Vector3 ConvertMousePos()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -61,7 +63,9 @@ public class MouseFollow : MonoBehaviour
         return new Vector3();
     }
 
-    //マウスの座標がプレイエリア上にあるかどうか
+    /// <summary>
+    /// マウス座標がプレイエリア上にあるかどうか
+    /// </summary>
     public bool IsMousePosValid()
     {
         if (ConvertMousePos() == new Vector3())
@@ -71,6 +75,9 @@ public class MouseFollow : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// このスクリプトがアタッチされたオブジェクトの座標を取得する
+    /// </summary>
     public Vector3 GetMouseFollowNotePos()
     {
         return transform.position;

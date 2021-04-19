@@ -27,14 +27,18 @@ public class NoteDataConverter : MonoBehaviour
         baseBeatSpanLen = (musicPlayer.ClapSpan() * UserPreference.Instance.NoteSpeed());
     }
 
-    //曲の位置をbeatNumに変換する
+    /// <summary>
+    /// 曲の再生位置をbeatNumに変換する
+    /// </summary>
     public int ConvertBeatNum(float time, int LPB)
     {
         float lenY = musicPlayer.ClapSpan() / LPB;
         return (int)(time / lenY);
     }
 
-    //曲の再生位置に対応するノーツのY座標(0からの距離)を計算する
+    /// <summary>
+    /// 曲の再生位置に対応するノーツのY座標(0からの距離)を計算する
+    /// </summary>
     public float ConvertDistance(int LPB, int num)
     {
         float timeIgnoredPos =  (baseBeatSpanLen / LPB) * num; // 曲再生時間0の時のY座標
