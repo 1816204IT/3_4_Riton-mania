@@ -42,31 +42,50 @@ public class Tutorial : MonoBehaviour
 
         if (UserPreference.Instance.IsTutorial == false)
         {
-            TutorialStart();
+            Init();
         }
     }
 
-    public void TutorialStart()
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (index < words.Count - 1)
+            {
+                index++;
+                DoTutorial();
+            }
+            // チュートリアル終了
+            else
+            {
+                tutorialCanvas.SetActive(false);
+                // チュートリアル終了フラグを立てて保存する
+                UserPreference.Instance.IsTutorial = true;
+                UserPreference.Instance.Save();
+            }
+        }
+    }
+
+    public void Init()
     {
         index = 0;
 
         // Canvas有効化
         tutorialCanvas.SetActive(true);
-
         // 背景の黒を濃くする
         blackUnderLay.color = Color.black;
-
         // 矢印画像を表示しない
         arrow.SetActive(false);
-
         // ナビゲーションキャラを表示する
         navigationCharacter.enabled = true;
-
         // シナリオ開始
-        Set();
+        DoTutorial();
     }
 
-    private void Set()
+    /// <summary>
+    /// チュートリアル進行
+    /// </summary>
+    private void DoTutorial()
     {
         if ( (index == 5) || (index == 10) || (index == 17))
         {
@@ -124,6 +143,9 @@ public class Tutorial : MonoBehaviour
         textNowTween.TweenReSetting(textRt.position.y); // ここではlocalPositionではなくPositionを入れる
     }
 
+    /// <summary>
+    /// 注視矢印を下方向に設定する
+    /// </summary>
     private void ArrowButtomSetting()
     {
         RectTransform rt = arrow.GetComponent<RectTransform>();
@@ -131,6 +153,9 @@ public class Tutorial : MonoBehaviour
         rt.localPosition = new Vector3(0, -30, 0);
     }
 
+    /// <summary>
+    /// 注視矢印を上方向に設定する
+    /// </summary>
     private void ArrowTopSetting()
     {
         RectTransform rt = arrow.GetComponent<RectTransform>();
@@ -138,26 +163,9 @@ public class Tutorial : MonoBehaviour
         rt.localPosition = new Vector3(0, 70, 0);
     }
 
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (index < words.Count - 1)
-            {
-                index++;
-                Set();
-            }
-            // チュートリアル終了
-            else
-            {
-                tutorialCanvas.SetActive(false);
-                // チュートリアル終了フラグを立てて保存する
-                UserPreference.Instance.IsTutorial = true;
-                UserPreference.Instance.Save();
-            }
-        }
-    }
-
+    /// <summary>
+    /// チュートリアル文章
+    /// </summary>
     private void TutorialScenarioInit()
     {
         TutorialData data = new TutorialData();

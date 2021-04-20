@@ -15,6 +15,10 @@ public class DifficultyColor : ScriptableObject
     [field: SerializeField]
     public Color Expert { get; private set; }
 
+    /// <summary>
+    /// 難易度に対応した色を取得する
+    /// </summary>
+    /// <param name="difficultyName">難易度名</param>
     public Color GetDifficultyColor(string difficultyName)
     {
         if (difficultyName == "Easy")

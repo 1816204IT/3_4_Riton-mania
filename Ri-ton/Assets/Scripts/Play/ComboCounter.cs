@@ -30,6 +30,9 @@ public class ComboCounter : MonoBehaviour
         text.fontSize = (int)fontSize;
     }
 
+    /// <summary>
+    /// コンボ追加
+    /// </summary>
     public void AddCombo()
     {
         comboCnt++;
@@ -41,6 +44,9 @@ public class ComboCounter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// コンボ数をゼロで初期化する
+    /// </summary>
     public void ComboZero()
     {
         comboCnt = 0;

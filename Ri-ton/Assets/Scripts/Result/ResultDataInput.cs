@@ -96,11 +96,18 @@ public class ResultDataInput : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 今回のスコアをdata変数に代入する
+    /// </summary>
+    /// <param name="inData">今回のスコア</param>
     public void SetResultShowData(ResultShowData inData)
     {
         data = inData;
     }
 
+    /// <summary>
+    /// スコアを取得する
+    /// </summary>
     public int GetScore()
     { 
         return data.score;

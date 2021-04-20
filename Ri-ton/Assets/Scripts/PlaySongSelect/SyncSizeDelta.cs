@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 指定のオブジェクトのサイズと同期する
+/// オブジェクトのサイズをターゲットと同期する
 /// </summary>
 public class SyncSizeDelta : MonoBehaviour
 {

@@ -24,21 +24,27 @@ public class PlayingNoteData : MonoBehaviour
         return ref nowMapData;
     }
 
-    //ノーツデータを追加する
+    /// <summary>
+    /// ノーツデータを追加する
+    /// </summary>
+    /// <param name="note">追加対象ノーツ</param>
     public void AddNote(MusicDTO.Note note)
     {
         if (IsNoteExist(note))
         {
             return;
         }
-        //ノーツを追加&昇順ソートしてセーブ
+        // ノーツを追加&昇順ソートしてセーブ
         nowMapData.noteList.Add(note);
         nowMapData.noteList.Sort((a, b) => (int)(a.num / (float)a.LPB * 1000) - (int)(b.num / (float)b.LPB * 1000));
-        //セーブ
+        // セーブ
         SaveNoteData();
     }
 
-    //追加するノーツデータに被りがないかチェックする
+    /// <summary>
+    /// 追加するノーツデータに被りがないかチェックする
+    /// </summary>
+    /// <param name="note">チェック対象ノーツ</param>
     private bool IsNoteExist(MusicDTO.Note note)
     {
         foreach (MusicDTO.Note n in nowMapData.noteList)
@@ -54,7 +60,10 @@ public class PlayingNoteData : MonoBehaviour
         return false;
     }
 
-    //ノーツデータを削除する
+    /// <summary>
+    /// ノーツデータを削除する
+    /// </summary>
+    /// <param name="note">削除対象ノーツ</param>
     public void RemoveNote(MusicDTO.Note note)
     {
         foreach (MusicDTO.Note n in nowMapData.noteList)
@@ -70,6 +79,9 @@ public class PlayingNoteData : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 譜面データを保存する
+    /// </summary>
     public void SaveNoteData()
     {
         jsonManager.SaveNoteData(nowMapData, SelectedMap.Instance.MusicName, SelectedMap.Instance.DifficultyName);

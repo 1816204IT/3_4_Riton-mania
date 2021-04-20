@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 曲進捗バークラス
+/// 曲プログレスバークラス。プレイ中の曲がどの程度まで進んでいるかを表現する。
 /// </summary>
 public class MusicProgressBar : MonoBehaviour
 {
@@ -10,33 +10,22 @@ public class MusicProgressBar : MonoBehaviour
 
     private MusicPlayer musicPlayer = null;
     private RectTransform rectTransform = null;
+    private Vector2 canvasSize = Vector2.zero;
 
     void Start()
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
         rectTransform = this.GetComponent<RectTransform>();
         NullCheck();
+        canvasSize = canvas.GetComponent<RectTransform>().sizeDelta;
     }
 
     void Update()
     {
         Vector3 pos = this.transform.position;
-        float posX = musicPlayer.GetSeekBarPosition() * 1280.0f;
+        float posX = musicPlayer.GetSeekBarPosition() * canvasSize.x;
+        Debug.Log(canvasSize.x);
         this.transform.position = new Vector3(posX, pos.y, pos.z);
-    }
-
-    private Vector3 GetWorldPositionFromRectPosition(RectTransform rect)
-    {
-        //UI座標からスクリーン座標に変換
-        Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, rect.position);
-
-        //ワールド座標
-        Vector3 result = Vector3.zero;
-
-        //スクリーン座標→ワールド座標に変換
-        RectTransformUtility.ScreenPointToWorldPointInRectangle(rect, screenPos, canvas.worldCamera, out result);
-
-        return result;
     }
 
     private void NullCheck()

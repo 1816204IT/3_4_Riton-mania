@@ -24,14 +24,15 @@ namespace NCMB
 
         private FetchState fetchState = FetchState.non;
 
-        // コンストラクタ -----------------------------------
         public CharacterIcon(string _name)
         {
             name        = _name;
             character = 5;  // デフォルトでは画像未選択状態
         }
 
-        // サーバーにキャラクター番号を保存 -----------------------------------
+        /// <summary>
+        /// サーバーにキャラクター番号を保存する
+        /// </summary>
         public void Save()
         {
             // データストアの「CharacterIcon」クラスから、Nameをキーにして検索
@@ -48,7 +49,9 @@ namespace NCMB
             });
         }
 
-        // サーバーからキャラクター番号を取得
+        /// <summary>
+        /// サーバーからキャラクター番号を取得
+        /// </summary>
         public void Fetch()
         {
             fetchState = FetchState.trying;
@@ -84,6 +87,9 @@ namespace NCMB
             });
         }
 
+        /// <summary>
+        /// フェッチ状況を取得する
+        /// </summary>
         public FetchState _iconFetchState
         { 
             get { return fetchState; }

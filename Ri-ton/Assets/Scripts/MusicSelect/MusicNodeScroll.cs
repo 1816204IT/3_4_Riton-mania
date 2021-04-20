@@ -191,7 +191,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             // ランキング更新
             if (SceneManager.GetActiveScene().name == "PlaySongSelect")
             {
-                scoreView.UpdateResultData();
+                scoreView.GetMyHighScore();
             }
         }
     }

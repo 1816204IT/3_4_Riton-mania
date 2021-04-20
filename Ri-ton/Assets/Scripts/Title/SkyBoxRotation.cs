@@ -17,6 +17,6 @@ public class SkyBoxRotation : MonoBehaviour
         {
             rot -= 360.0f;
         }
-        RenderSettings.skybox.SetFloat("_Rotation", rot);    // 回す
+        RenderSettings.skybox.SetFloat("_Rotation", rot);
     }
 }

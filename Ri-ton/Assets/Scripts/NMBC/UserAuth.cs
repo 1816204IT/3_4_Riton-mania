@@ -6,22 +6,24 @@ namespace Ritonmania
 {
     public enum LogInState
     {
-        non,
-        trying,
-        succeeded,
-        failed
+        non,        // ログアウト中
+        trying,     // ログイン接続中
+        succeeded,  // ログイン成功
+        failed      // ログイン失敗
     }
     public enum SignUpState
     {
-        non,
-        trying,
-        succeeded,
-        failed
+        non,        // サインアップしてない状態
+        trying,     // サインアップ中(新規ユーザーデータ作成中)
+        succeeded,  // サインアップ成功
+        failed      // サインアップ失敗
     }
 
 }
 
-// ユーザー認証
+/// <summary>
+/// ユーザー認証クラス
+/// </summary>
 public class UserAuth : MonoBehaviour
 {
     public string playerName { get; set; } = null;
@@ -57,7 +59,11 @@ public class UserAuth : MonoBehaviour
         }
     }
 
-    // mobile backendに接続してログイン ------------------------
+    /// <summary>
+    /// mobile backendに接続してログインする
+    /// </summary>
+    /// <param name="id">ユーザーID</param>
+    /// <param name="pw">ユーザーパスワード</param>
     public void logIn(string id, string pw)
     {
         logInState = LogInState.trying;
@@ -78,7 +84,11 @@ public class UserAuth : MonoBehaviour
         });
     }
 
-    // mobile backendに接続して新規会員登録 ------------------------
+    /// <summary>
+    /// mobile backendに接続して新規会員登録する
+    /// </summary>
+    /// <param name="id">ユーザーID</param>
+    /// <param name="pw">ユーザーパスワード</param>
     public void signUp(string id, string pw)
     {
         signUpState = SignUpState.trying;
@@ -102,7 +112,9 @@ public class UserAuth : MonoBehaviour
         }));
     }
 
-    // mobile backendに接続してログアウト ------------------------
+    /// <summary>
+    /// mobile backendに接続してログアウトする
+    /// </summary>
     public void logOut()
     {
         NCMBUser.LogOutAsync((NCMBException e) => 

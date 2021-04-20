@@ -19,11 +19,14 @@ public class SoundVolumeManager : MonoBehaviour
 
     public void Init()
     {
-        ChangeMusicVolume();
-        ChangeSEVolume();
+        ChangedMusicVolume();
+        ChangedSEVolume();
     }
 
-    public void ChangeMusicVolume()
+    /// <summary>
+    /// 曲音量が変更された際の処理
+    /// </summary>
+    public void ChangedMusicVolume()
     {
         float volume = UserPreference.Instance.MusicVolume;
         foreach(AudioSource audio in musicAudioSources)
@@ -32,7 +35,10 @@ public class SoundVolumeManager : MonoBehaviour
         }
     }
 
-    public void ChangeSEVolume()
+    /// <summary>
+    /// SE音量が変更された際の処理
+    /// </summary>
+    public void ChangedSEVolume()
     {
         float volume = UserPreference.Instance.SeVolume;
         foreach (AudioSource audio in seAudioSources)

@@ -2,6 +2,9 @@
 using UnityEngine.UI;
 using Ritonmania;
 
+/// <summary>
+/// ログイン管理クラス
+/// </summary>
 public class LogInManager : MonoBehaviour
 {
     [SerializeField]
@@ -29,7 +32,7 @@ public class LogInManager : MonoBehaviour
     [SerializeField]
     private MoveTween moveTween = null;     // ログインボードが左右に動くTween
 
-    private const float c_wait_time = 1.0f;  // ログイン完了後に自動でログインボードを消すまでの待ち時間
+    private const float c_wait_time = 1.0f; // ログイン完了後に自動でログインボードを消すまでの待ち時間
 
     private UserAuth userAuth = null;
     private float time = 0.0f;
@@ -40,12 +43,7 @@ public class LogInManager : MonoBehaviour
 
     void Start()
     {
-        if(logIningObj == null || logOutingObj == null || logInMenu == null || createAccountMenu == null || inputFieldID == null
-            || inputFieldPassword == null || logIningText == null || reactionText == null || titleSceneManager == null)
-        {
-            Debug.Log("nullを検知");
-        }
-
+        NullCheck();
         userAuth = FindObjectOfType<UserAuth>();
         reactionText.text = "";
     }
@@ -109,6 +107,9 @@ public class LogInManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ログイン中の初期化処理
+    /// </summary>
     public void InitLogIning()
     {
         logIningObj.SetActive(true);
@@ -116,6 +117,9 @@ public class LogInManager : MonoBehaviour
         logIningText.text = userAuth.playerName + "  " + "でログイン中";
     }
 
+    /// <summary>
+    /// ログアウト中の初期化処理
+    /// </summary>
     public void InitLogOuting()
     {
         logIningObj.SetActive(false);
@@ -125,26 +129,34 @@ public class LogInManager : MonoBehaviour
         createAccountMenu.SetActive(false);
     }
 
-    // IDが変更されたら
+    /// <summary>
+    /// IDの入力を検知して更新する
+    /// </summary>
     public void OnValueChangedID()
     {
         id = inputFieldID.text;
     }
 
-    // パスワードが変更されたら
+    /// <summary>
+    /// パスワードの入力を検知して更新する
+    /// </summary>
     public void OnValueChangedPassword()
     {
         pw = inputFieldPassword.text;
     }
 
-    // ログインボタンが押されたら
+    /// <summary>
+    /// ログインボタン押下時の処理
+    /// </summary>
     public void OnClickLogInButton()
     {
         userAuth.logIn(id, pw);
         logInState = LogInState.trying;
     }
 
-    // ログアウトボタンが押されたら
+    /// <summary>
+    /// ログアウトボタン押下時の処理
+    /// </summary>
     public void OnClickLogOutButton()
     {
         userAuth.logOut();
@@ -156,14 +168,18 @@ public class LogInManager : MonoBehaviour
         UserPreference.Instance.characterIconLogOut();
     }
 
-    // 新規登録ボタンが押されたら
+    /// <summary>
+    /// 新規登録ボタン押下時の処理
+    /// </summary>
     public void OnClickSignUpButton()
     {
         userAuth.signUp(id, pw);
         signUpState = SignUpState.trying;
     }
 
-    // 戻るボタンが押されたら
+    /// <summary>
+    /// 戻るボタン押下時の処理
+    /// </summary>
     public void OnClickBackButton()
     {
         createAccountMenu.SetActive(false);
@@ -171,7 +187,9 @@ public class LogInManager : MonoBehaviour
         reactionText.text = "";
     }
 
-    // 新規登録画面に移動するボタンが押されたら
+    /// <summary>
+    /// 新規登録画面へ遷移するボタン押下時の処理
+    /// </summary>
     public void OnClickSignUpMenuButton()
     {
         logInMenu.SetActive(false);
@@ -179,7 +197,9 @@ public class LogInManager : MonoBehaviour
         reactionText.text = "";
     }
 
-    // ログインに成功したときの共通処理
+    /// <summary>
+    /// ログイン成功時の処理
+    /// </summary>
     private void SucceededLogInFunc()
     {
         logOutingObj.SetActive(false);
@@ -190,17 +210,25 @@ public class LogInManager : MonoBehaviour
         time = c_wait_time;    // ログイン後の待ち時間
     }
 
+    /// <summary>
+    /// ログインボードを出現させる
+    /// </summary>
     public void AppearLogInBoard()
     {
         moveTween.CreateTween();
     }
 
+    /// <summary>
+    /// ログインボードを隠す
+    /// </summary>
     public void RemoveLogInBoard()
     {
         moveTween.CreateRevertTween();
     }
 
-    // ログイン中かどうか
+    /// <summary>
+    /// ログイン中かどうかを取得する
+    /// </summary>
     public bool IsLogIn()
     {
         if ((logInState == LogInState.succeeded) || (signUpState == SignUpState.succeeded))
@@ -208,5 +236,18 @@ public class LogInManager : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private void NullCheck()
+    {
+        logIningObj.IsNull();
+        logOutingObj.IsNull();
+        logInMenu.IsNull();
+        createAccountMenu.IsNull();
+        inputFieldID.IsNull();
+        inputFieldPassword.IsNull();
+        logIningText.IsNull();
+        reactionText.IsNull();
+        titleSceneManager.IsNull();
     }
 }

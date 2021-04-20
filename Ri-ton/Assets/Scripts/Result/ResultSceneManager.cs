@@ -12,9 +12,6 @@ public class ResultSceneManager : MonoBehaviour
     {
         jsonManager = GameObject.FindGameObjectWithTag("JsonManager").GetComponent<JsonManager>();
         NullCheck();
-
-        // カーソルの表示をONにする
-        Cursor.visible = true;
     }
 
     void Update()
@@ -25,6 +22,9 @@ public class ResultSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 戻るボタン押下時に曲選択画面へ遷移する
+    /// </summary>
     public void OnClickBackButton()
     {
         SceneManager.LoadScene("PlaySongSelect");

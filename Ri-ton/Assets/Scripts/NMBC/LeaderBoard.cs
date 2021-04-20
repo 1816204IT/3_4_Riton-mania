@@ -11,7 +11,10 @@ public class LeaderBoard
     private int viewRankingNum = 0; // ランキングの現在の表示人数
     private List<NCMB.CharacterIcon> topRankersIcons = null;
 
-    // 現プレイヤーのハイスコアを受けとってランクを取得 ---------------
+    /// <summary>
+    /// 現プレイヤーのハイスコアを受けとってランクを取得 
+    /// </summary>
+    /// <param name="currentScore">現在のスコア</param>
     public void FetchRank(int currentScore)
     {
         // データスコアの「HighScore」から検索
@@ -31,8 +34,10 @@ public class LeaderBoard
             }
         });
     }
-
-    // サーバーからトップランカーを取得 ---------------    
+   
+    /// <summary>
+    /// サーバーからトップランカーを取得
+    /// </summary>
     public void FetchTopRankers()
     {
         topRankers = null;
@@ -81,17 +86,27 @@ public class LeaderBoard
         });
     }
 
+    /// <summary>
+    /// トップランカーリストを取得する
+    /// </summary>
+    /// <returns></returns>
     public List<NCMB.HighScore> GetTopRankers()
     {
         return topRankers;
     }
 
+    /// <summary>
+    /// トップランカーのアイコンを取得する
+    /// </summary>
+    /// <returns></returns>
     public List<NCMB.CharacterIcon> GetTopRankersIcon()
     {
         return topRankersIcons;
     }
 
-    // トップランカーのアイコン取得が完了しているか
+    /// <summary>
+    /// トップランカーのアイコン取得が完了しているかを取得する
+    /// </summary>
     public bool IsIconFetchEnd()
     {
         if (topRankersIcons == null)

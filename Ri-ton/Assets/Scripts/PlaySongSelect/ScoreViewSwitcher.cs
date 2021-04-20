@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 自己ベストとオンラインランキングを切り替える
+/// 自己ベストとオンラインランキングの表示を切り替える
 /// </summary>
 public class ScoreViewSwitcher : MonoBehaviour
 {
@@ -16,8 +16,7 @@ public class ScoreViewSwitcher : MonoBehaviour
     [SerializeField]
     private GameObject noDataTextObj = null;
 
-    // 自身のハイスコア表示中か(falseならランキング表示中)
-    private bool isModeHighScore = false;
+    private bool isModeHighScore = false;  // 自身のハイスコア表示中か(falseならランキング表示中)
 
     void Start()
     {
@@ -45,6 +44,9 @@ public class ScoreViewSwitcher : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 表示を切り替える
+    /// </summary>
     public void ToggleViewMode()
     {
         isModeHighScore = !isModeHighScore;

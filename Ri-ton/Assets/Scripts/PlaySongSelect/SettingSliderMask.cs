@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
 
+/// <summary>
+/// スライダーの値に合わせてRectTransformのサイズを変更する
+/// ユーザー設定のスライダーで使用しています。
+/// </summary>
 public class SettingSliderMask : MonoBehaviour
 {
     [SerializeField]

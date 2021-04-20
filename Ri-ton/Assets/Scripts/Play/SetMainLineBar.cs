@@ -29,7 +29,7 @@ public class SetMainLineBar : MonoBehaviour
 
     void Update()
     {
-        //全てのタイミングバーを画面外に移動(setActiveは重い処理のようなので座標移動で誤魔化す)
+        // 全てのタイミングバーを画面外に移動(setActiveは重い処理のようなので座標移動で誤魔化す)
         var tmpPos = baseTimingBar.transform.position;
         baseTimingBar.transform.position = new Vector3(tmpPos.x, 4000, tmpPos.z);
         foreach (GameObject bar in mainBars)
@@ -40,8 +40,8 @@ public class SetMainLineBar : MonoBehaviour
 
         float jPosY = JudgmentBar.transform.position.y + UserPreference.Instance.UserOffset();
         float length = (musicPlayer.offsetedTime % (musicPlayer.ClapSpan() * 4)) * UserPreference.Instance.NoteSpeed();
-
-        //判定バーに最も近いタイミングバーを基点とする
+        
+        // 判定バーに最も近いタイミングバーを基点とする
         Vector3 tPos = baseTimingBar.transform.position;
         Vector3 basePos = new Vector3(tPos.x, jPosY - length, tPos.z);
         baseTimingBar.transform.position = basePos;
@@ -49,13 +49,14 @@ public class SetMainLineBar : MonoBehaviour
         SetMianLineBar(basePos.y);
     }
 
+    // バーを配置する
     void SetMianLineBar(float basePosY)
     {
         float len = musicPlayer.ClapSpan() * 4 * UserPreference.Instance.NoteSpeed();
         float tmpPosY = basePosY;
         int usedMainBarNum = 0;
 
-        //基準のY座標より下方向のバーを配置
+        // 基準のY座標より下方向のバーを配置
         tmpPosY -= len;
         while (tmpPosY > 0)
         {
@@ -76,7 +77,7 @@ public class SetMainLineBar : MonoBehaviour
 
         tmpPosY = basePosY;
         tmpPosY += len;
-        //基準のY座標より上方向のバーを配置
+        // 基準のY座標より上方向のバーを配置
         while (tmpPosY < 3100)
         {
             int num = 0;

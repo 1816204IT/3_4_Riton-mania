@@ -22,6 +22,9 @@ public class AccCounter : MonoBehaviour
         text.text = "100.00%";
     }
 
+    /// <summary>
+    /// Perfect判定追加
+    /// </summary>
     public void AddPerfect()
     {
         TotalNoteNum++;
@@ -29,6 +32,9 @@ public class AccCounter : MonoBehaviour
         CalculateAcc();
     }
     
+    /// <summary>
+    /// Good判定追加
+    /// </summary>
     public void AddGood()
     {
         TotalNoteNum++;
@@ -36,6 +42,9 @@ public class AccCounter : MonoBehaviour
         CalculateAcc();
     }
 
+    /// <summary>
+    /// Miss判定追加
+    /// </summary>
     public void AddMiss()
     {
         TotalNoteNum++;
@@ -43,6 +52,9 @@ public class AccCounter : MonoBehaviour
         CalculateAcc();
     }
 
+    /// <summary>
+    /// 精度更新
+    /// </summary>
     private void CalculateAcc()
     {
         unitAcc = 100.0f / (float)TotalNoteNum;

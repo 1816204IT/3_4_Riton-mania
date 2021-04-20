@@ -119,7 +119,9 @@ public class TimingJudgment : MonoBehaviour
         holdUpedCheatTime = (holdUpedCheatTime > 0) ? holdUpedCheatTime - Time.deltaTime : 0;
     }
 
-    // 単発ノーツの判定を行う(ロングノーツの始点を含む)
+    /// <summary>
+    /// 単発ノーツの判定を行う(ロングノーツの始点を含む)
+    /// </summary>
     private void NoteJudgment()
     {
         foreach (MusicDTO.Note note in mapData.noteList)
@@ -193,7 +195,9 @@ public class TimingJudgment : MonoBehaviour
         }
     }
 
-    // ロングノーツの判定を行う
+    /// <summary>
+    /// ロングノーツの判定を行う
+    /// </summary>
     private void LongNoteJudgment()
     {
         if (isHoldValid == false)
@@ -229,7 +233,9 @@ public class TimingJudgment : MonoBehaviour
         }
     }
 
-    // 叩き損なったノーツを判定する
+    /// <summary>
+    /// 叩き損なったノーツを判定する
+    /// </summary>
     private void CheckLostNote()
     {
         foreach (MusicDTO.Note note in mapData.noteList)
@@ -345,7 +351,9 @@ public class TimingJudgment : MonoBehaviour
         timingText.text = frame.ToString();
     }
 
-    // ロングノーツを単発ノーツに分解する
+    /// <summary>
+    /// ロングノーツを単発ノーツに分解する
+    /// </summary>
     private void LongNoteDisassembly()
     {
         List<MusicDTO.Note> addNoteList = new List<MusicDTO.Note>();
@@ -385,14 +393,18 @@ public class TimingJudgment : MonoBehaviour
         }
     }
 
-    // ヒットサウンドを鳴らす
+    /// <summary>
+    /// ヒットサウンドを鳴らす
+    /// </summary>
     private void PlayHitSound()
     {
         audioSource.Stop();
         audioSource.PlayOneShot(audioSource.clip);
     }
 
-    // オブジェクトの検索を行う
+    /// <summary>
+    /// オブジェクトの検索を行う
+    /// </summary>
     private void FindObjects()
     {
         audioSource = this.GetComponent<AudioSource>();
@@ -403,13 +415,17 @@ public class TimingJudgment : MonoBehaviour
         noteDataConverter = GameObject.FindGameObjectWithTag("NoteDataConverter").GetComponent<NoteDataConverter>();
     }
 
-    //ノーツデータを昇順ソートする
+    /// <summary>
+    /// ノーツデータを昇順ソートする
+    /// </summary>
     private void SortNoteData()
     {
         mapData.noteList.Sort((a, b) => (int)(a.num / (float)a.LPB * 1000) - (int)(b.num / (float)b.LPB * 1000));
     }
 
-    //最大コンボ数(ノーツの総数)を返す
+    /// <summary>
+    /// 最大コンボ数(ノーツの総数)を取得する
+    /// </summary>
     public int GetMaxComboNum()
     {
         return mapData.noteList.Count;

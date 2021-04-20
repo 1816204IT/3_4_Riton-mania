@@ -55,7 +55,7 @@ public class ScoreView : MonoBehaviour
             if (noRankersTimer >= c_re_fetch_rankers_time)
             {
                 noRankersTimer = 0.0f;
-                UpdateResultData();
+                GetMyHighScore();
             }
         }
 
@@ -101,14 +101,17 @@ public class ScoreView : MonoBehaviour
             {
                 var obj = Instantiate(nodePrefab);
                 obj.transform.SetParent(rankingContent.transform);
-                //ノード情報を更新
+                // ノード情報を更新
                 SetRankingNode(obj, i);
                 nodeObjLists.Add(obj);
             }
         }
     }
 
-    public void UpdateResultData()
+    /// <summary>
+    /// 自分のハイスコアを取得する
+    /// </summary>
+    public void GetMyHighScore()
     {
         topRankers.Clear();
         topRankersIcons.Clear();
@@ -122,12 +125,6 @@ public class ScoreView : MonoBehaviour
         noDataText.text = "";
         rankersNum = 0;
 
-        // データ取得開始
-        DoUpdate();
-    }
-
-    private void DoUpdate()
-    {
         // ハイスコアを取得
         string name = FindObjectOfType<UserAuth>().playerName;
         highScore = new NCMB.HighScore(name, -1);
@@ -138,6 +135,9 @@ public class ScoreView : MonoBehaviour
         isLeaderBoardFetched = false;
     }
 
+    /// <summary>
+    /// ハイスコア情報を設定する
+    /// </summary>
     private void SetHighScoreNode(GameObject node)
     {
         //プレイヤ名を設定
@@ -162,9 +162,13 @@ public class ScoreView : MonoBehaviour
         node.transform.Find("RankNumber").GetComponent<Text>().text = "";
     }
 
-    private void SetRankingNode(GameObject node, int i)
+    /// <summary>
+    /// TOP10ランキングデータを設定する
+    /// </summary>
+    /// <param name="ranking">順位</param>
+    private void SetRankingNode(GameObject node, int ranking)
     {
-        NCMB.HighScore rankers = topRankers[i];
+        NCMB.HighScore rankers = topRankers[ranking];
 
         //プレイヤ名を設定
         node.transform.Find("PlayerNameText").GetComponent<Text>().text = rankers.name;
@@ -180,16 +184,13 @@ public class ScoreView : MonoBehaviour
         PathBuilder.Clear();
         PathBuilder.AppendFormat("{0}%", (rankers.acc / 100.0f).ToString("f2"));
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
-
         //アイコン画像を設定
-        var a = topRankersIcons[i].character;
-        var test = CharacterInfoList.instance.GetIconSprite(topRankersIcons[i].character);
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(topRankersIcons[i].character);
-
+        var characterIcon = topRankersIcons[ranking].character;
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(characterIcon);
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.Instance.GetSmallSprite(rankers.rank);
         //順位を設定
-        node.transform.Find("RankNumber").GetComponent<Text>().text = (i + 1).ToString();
+        node.transform.Find("RankNumber").GetComponent<Text>().text = (ranking + 1).ToString();
     }
 
     private void NullCheck()

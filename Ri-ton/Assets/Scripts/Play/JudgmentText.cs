@@ -29,6 +29,9 @@ public class JudgmentText : MonoBehaviour
         time += Time.deltaTime;
     }
 
+    /// <summary>
+    /// Perfectを表示する
+    /// </summary>
     public void PerfectJudgment()
     {
         time = 0.0f;
@@ -36,6 +39,9 @@ public class JudgmentText : MonoBehaviour
         text.text = "PERFECT";
     }
 
+    /// <summary>
+    /// Goodを表示する
+    /// </summary>
     public void GoodJudgment()
     {
         time = 0.0f;
@@ -43,6 +49,9 @@ public class JudgmentText : MonoBehaviour
         text.text = "GOOD";
     }
 
+    /// <summary>
+    /// Missを表示する
+    /// </summary>
     public void MissJudgment()
     {
         time = 0.0f;

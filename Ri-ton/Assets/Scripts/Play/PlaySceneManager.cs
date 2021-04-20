@@ -148,20 +148,11 @@ public class PlaySceneManager : MonoBehaviour
                 SceneManager.LoadScene("Result");
             }
         }
-
-        // デバッグ用　Rキーでリザルト画面へ遷移
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SaveResultData();
-        }
-
-        // デバッグ用、曲を指定時間までスキップする
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            musicPlayer.AudioSource.time = 80.0f;
-        }
     }
 
+    /// <summary>
+    /// リザルトスコアをサーバーに保存する
+    /// </summary>
     void SaveResultData()
     {
         highScore.score = scoreCounter.GetScore();
@@ -210,7 +201,9 @@ public class PlaySceneManager : MonoBehaviour
         isPlayEnd = true;
     }
 
-    // リザルトシーンの変数[resultDataInput]に値をセットする
+    /// <summary>
+    /// リザルトシーンの変数[resultDataInput]に値をセットする
+    /// </summary>
     private void ResultSceneLoaded(Scene next,LoadSceneMode mode)
     {
         ResultDataInput resultDataInput = GameObject.FindGameObjectWithTag("ResultDataInput").GetComponent<ResultDataInput>();
@@ -229,6 +222,9 @@ public class PlaySceneManager : MonoBehaviour
         SceneManager.sceneLoaded -= ResultSceneLoaded;
     }
 
+    /// <summary>
+    /// プレイを再開する
+    /// </summary>
     public void Continue()
     {
         playStartTimer.enabled = true;
@@ -241,7 +237,9 @@ public class PlaySceneManager : MonoBehaviour
         PlayHexAnim();
     }
 
-    // 六角形のアニメーションを停止する
+    /// <summary>
+    /// 六角形のアニメーションを停止する
+    /// </summary>
     private void PoseHexAnim()
     {
         if (moveMaskMat.HasProperty("_MoveSpeed"))
@@ -254,7 +252,9 @@ public class PlaySceneManager : MonoBehaviour
         }
     }
 
-    // 六角形のアニメーションを再開する
+    /// <summary>
+    /// 六角形のアニメーションを再開する
+    /// </summary>
     private void PlayHexAnim()
     {
         if (moveMaskMat.HasProperty("_MoveSpeed"))
@@ -267,12 +267,18 @@ public class PlaySceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// プレイを中断し、曲の初めから再開する
+    /// </summary>
     public void Retry()
     {
         PlayHexAnim();
         SceneManager.LoadScene("Play");
     }
 
+    /// <summary>
+    /// プレイを中断し、前のシーンへ戻る
+    /// </summary>
     public void Quit()
     {
         PlayHexAnim();

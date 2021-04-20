@@ -37,6 +37,9 @@ public class TitleSceneManager : MonoBehaviour
         NullCheck();
     }
 
+    /// <summary>
+    /// ログイン状況によってアクティブにするボタンを変更する
+    /// </summary>
     public void ButtonInit()
     {
         if (buttonState == ButtonState.LogInWaiting)
@@ -122,21 +125,33 @@ public class TitleSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// BGMを再生する
+    /// </summary>
     public void PlayBGM()
     {
-        bgm.Play(); // BGM再生スタート
+        bgm.Play();
     }
 
+    /// <summary>
+    /// 編集譜面選択シーンへ遷移する
+    /// </summary>
     public void ChangeEditSongSelectScene()
     {
         SceneManager.LoadScene("EditSongSelect");
     }
 
+    /// <summary>
+    /// プレイ曲選択シーンへ遷移する
+    /// </summary>
     public void ChangePlaySongSelectScene()
     {
         SceneManager.LoadScene("PlaySongSelect");
     }
 
+    /// <summary>
+    /// キャラクター選択画面へ遷移する
+    /// </summary>
     public void ChangeCharacterSelectScene()
     {
         SceneManager.LoadScene("CharacterSelect");

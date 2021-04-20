@@ -19,7 +19,6 @@ public class MyRanking : MonoBehaviour
         NullCheck();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isRankFetched == false)

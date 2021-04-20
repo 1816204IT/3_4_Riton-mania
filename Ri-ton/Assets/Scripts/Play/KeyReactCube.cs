@@ -40,11 +40,20 @@ public class KeyReactCube : MonoBehaviour
 
     void Update()
     {
+        // キー入力に応じてランダムなキューブを発光させる
         for (int laneNum = 0; laneNum <= 3; laneNum++)
         {
-            KeyCheck(laneNum);
+            BrightRandomCube(laneNum);
         }
 
+        CubeEmissionColorUpdate();
+    }
+
+    /// <summary>
+    /// キューブの発光度合いの更新
+    /// </summary>
+    private void CubeEmissionColorUpdate()
+    {
         for (int i = 0; i < cubeBloomList.Length; i++)
         {
             if (cubeBloomList[i].intensity >= minIntensity)
@@ -74,7 +83,10 @@ public class KeyReactCube : MonoBehaviour
         }
     }
 
-    private void KeyCheck(int laneNum)
+    /// <summary>
+    /// キー入力に応じてランダムなキューブを発光させる
+    /// </summary>
+    private void BrightRandomCube(int laneNum)
     {
         string key = "Lane" + laneNum.ToString();
         if (Input.GetButtonDown(key))
@@ -101,7 +113,7 @@ public class KeyReactCube : MonoBehaviour
                 }
                 else
                 {
-                    indexList.RemoveAt(randNum);//indexListのrandNum番目の要素を削除
+                    indexList.RemoveAt(randNum); // indexListのrandNum番目の要素を削除
                 }
             }
         }

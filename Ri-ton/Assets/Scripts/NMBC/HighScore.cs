@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using Ritonmania;
 
-// ユーザーIDをキーにしてハイスコアを取得する
+/// <summary>
+/// ユーザーIDをキーにしてハイスコアを取得する
+/// </summary>
 namespace NCMB
 {
     public class HighScore
@@ -13,7 +15,7 @@ namespace NCMB
         public int rank { get; set; }
         public FetchState fetchState { get; private set; } = FetchState.non;
 
-        // コンストラクタ -----------------------------------
+        // コンストラクタ
         public HighScore(string _name, int _score, int _combo, int _acc, int _rank)
         {
             name        = _name;
@@ -22,14 +24,16 @@ namespace NCMB
             acc         = _acc;
             rank        = _rank;
         }
-        // コンストラクタ(初期化用) -----------------------------------
+
         public HighScore(string _name, int _score)
         {
             name = _name;
             score = _score;
         }
 
-        // サーバーにハイスコアを保存 -----------------------------------
+        /// <summary>
+        /// サーバーにハイスコアを保存する
+        /// </summary>
         public void Save()
         {
             fetchState = FetchState.trying;
@@ -73,7 +77,9 @@ namespace NCMB
             }));
         }
 
-        // サーバーからハイスコアを取得
+        /// <summary>
+        /// サーバーからハイスコアを取得する
+        /// </summary>
         public void Fetch()
         {
             fetchState = FetchState.trying;

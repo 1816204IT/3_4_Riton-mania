@@ -54,16 +54,25 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// PLAYボタン押下時にプレイシーンへ遷移する
+    /// </summary>
     public void OnClickPlayButton()
     {
         SceneManager.LoadScene("Play");
     }
 
+    /// <summary>
+    /// EDITボタン押下時に曲編集シーンへ遷移する
+    /// </summary>
     public void OnClickEditButton()
     {
         SceneManager.LoadScene("Edit");
     }
 
+    /// <summary>
+    /// 戻るボタン押下時に前のシーンへ遷移する
+    /// </summary>
     public void OnClickBackButton()
     {
         if (settingCanvas.activeSelf)
@@ -76,6 +85,9 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         SceneManager.LoadScene("Title");
     }
 
+    /// <summary>
+    /// 設定ボタン押下時に設定画面を開く
+    /// </summary>
     public void OnClickSettingButton()
     {
         if (settingCanvas.activeSelf == false)

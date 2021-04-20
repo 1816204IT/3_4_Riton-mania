@@ -14,8 +14,8 @@ public class NoteSetter : MonoBehaviour
 
     public struct LongNoteInfo
     {
-        public List<GameObject> objList;
-        public List<SpriteRenderer> spriteRendererList;
+        public List<GameObject> objList;                // ロングノーツのGameObjectを保持する
+        public List<SpriteRenderer> spriteRendererList; // ロングノーツのSpriteRendererをリストとして保持する(ロングノーツを発行させる際に使用する)
     }
 
     private LongNoteInfo evenNumberNongNoteInfo;
@@ -44,9 +44,9 @@ public class NoteSetter : MonoBehaviour
     void Update()
     {
         // 全てのノーツを画面外に移動(setActiveは重い処理のようなので座標移動で誤魔化す)
-        NoteMoveOutOfScreen(evenNumberNoteList);
-        NoteMoveOutOfScreen(oddNumberNoteList);
-        NoteMoveOutOfScreen(evenNumberNoteList);
+        MoveNoteOutOfScreen(evenNumberNoteList);
+        MoveNoteOutOfScreen(oddNumberNoteList);
+        MoveNoteOutOfScreen(evenNumberNoteList);
         LongNoteMoveOutOfScreen(evenNumberNongNoteInfo.objList);
         LongNoteMoveOutOfScreen(oddNumberNongNoteInfo.objList);
 
@@ -58,6 +58,9 @@ public class NoteSetter : MonoBehaviour
         SetLongNote();
     }
 
+    /// <summary>
+    /// ゲームオブジェクトの検索
+    /// </summary>
     private void FindObjects()
     {
         musicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer").GetComponent<MusicPlayer>();
@@ -70,16 +73,21 @@ public class NoteSetter : MonoBehaviour
         oddNumberNongNoteInfo.objList = new List<GameObject>();
         oddNumberNongNoteInfo.spriteRendererList = new List<SpriteRenderer>();
 
-        FindAndAddList(ref evenNumberNoteList, "NoteEvenNumber");
-        FindAndAddList(ref oddNumberNoteList, "NoteOddNumber");
-        FindAndAddList(ref evenNumberNongNoteInfo.objList, "LongNoteEvenNumber");
-        FindAndAddList(ref oddNumberNongNoteInfo.objList, "LongNoteOddNumber");
+        FindNoteObjects(ref evenNumberNoteList, "NoteEvenNumber");
+        FindNoteObjects(ref oddNumberNoteList, "NoteOddNumber");
+        FindNoteObjects(ref evenNumberNongNoteInfo.objList, "LongNoteEvenNumber");
+        FindNoteObjects(ref oddNumberNongNoteInfo.objList, "LongNoteOddNumber");
 
         AddSpriteRendererList(ref evenNumberNongNoteInfo);
         AddSpriteRendererList(ref oddNumberNongNoteInfo);
     }
 
-    private void FindAndAddList(ref List<GameObject> list, string tagName)
+    /// <summary>
+    /// ヒエラルキーに存在するノーツオブジェクトを検索しリストに追加する
+    /// </summary>
+    /// <param name="list">検索対象を追加するリスト</param>
+    /// <param name="tagName">検索対象のタグ名</param>
+    private void FindNoteObjects(ref List<GameObject> list, string tagName)
     {
         var findObjects = GameObject.FindGameObjectsWithTag(tagName);
         if (findObjects.Length == 0)
@@ -92,6 +100,9 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ロングノーツのSpriteRendererをリストとして保持する
+    /// </summary>
     private void AddSpriteRendererList(ref LongNoteInfo info)
     {
         foreach (GameObject obj in info.objList)
@@ -100,7 +111,11 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
-    private void NoteMoveOutOfScreen(List<GameObject> list)
+    /// <summary>
+    /// ノーツを画面外へ移動させる
+    /// </summary>
+    /// <param name="list">移動対象のノーツのリスト</param>
+    private void MoveNoteOutOfScreen(List<GameObject> list)
     {
         foreach (GameObject note in list)
         {
@@ -109,6 +124,10 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ロングノーツを画面外へ移動させ、サイズの縮小を行う
+    /// </summary>
+    /// <param name="list">移動対象のノーツリスト</param>
     private void LongNoteMoveOutOfScreen(List<GameObject> list)
     {
         foreach (GameObject note in list)
@@ -120,6 +139,11 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ロングノーツの色を初期化する
+    /// </summary>
+    /// <param name="color">初期化色</param>
+
     private void ResetLongNoteBrightness(ref List<SpriteRenderer> srList, Color color)
     {
         foreach (SpriteRenderer sr in srList)
@@ -128,7 +152,9 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
-    //単発ノーツを設置していく
+    /// <summary>
+    /// 単発ノーツを設置していく
+    /// </summary>
     private void SetNote()
     {
         int usedEvenNumberNoteNum = 0;
@@ -160,7 +186,13 @@ public class NoteSetter : MonoBehaviour
             }
         }
     }
-
+    
+    /// <summary>
+    /// ノーツ配置の共通処理
+    /// </summary>
+    /// <param name="note">配置するノーツ情報</param>
+    /// <param name="list">ノーツオブジェクトリスト</param>
+    /// <param name="usedNoteNum">既に使用しているノーツオブジェクト数</param>
     private void SetNoteFunc(MusicDTO.Note note, ref List<GameObject> list, ref int usedNoteNum)
     {
         int num = 0;
@@ -183,7 +215,9 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
-    //ロングノーツを設置していく
+    /// <summary>
+    /// ロングノーツを設置していく
+    /// </summary>
     private void SetLongNote()
     {
         //画面に表示するロングノーツをvalidNoteListに入れていく
@@ -227,25 +261,32 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
-    private void SetLongNoteFunc(MusicDTO.Note note, ref LongNoteInfo info, ref int usedNoteNum, bool isEvenNumber)
+    /// <summary>
+    /// ロングノーツ配置の共通処理
+    /// </summary>
+    /// <param name="note">配置するノーツ情報</param>
+    /// <param name="list">ノーツオブジェクトリスト</param>
+    /// <param name="usedNoteNum">既に使用しているロングノーツオブジェクト数</param>
+    /// <param name="isEvenNumber">偶数レーンかどうか</param>
+    private void SetLongNoteFunc(MusicDTO.Note note, ref LongNoteInfo list, ref int usedNoteNum, bool isEvenNumber)
     {
         int num = 0;
 
-        for (int i = 0; i < info.objList.Count; i++)
+        for (int i = 0; i < list.objList.Count; i++)
         {
             num++;
             if (num > usedNoteNum)
             {
                 float scale = 0;
-                info.objList[i].transform.position = GetLongNotePosition(note, ref scale);
-                var tmpScale = info.objList[i].transform.localScale;
-                info.objList[i].transform.localScale = new Vector3(tmpScale.x, scale, tmpScale.z);
+                list.objList[i].transform.position = GetLongNotePosition(note, ref scale);
+                var tmpScale = list.objList[i].transform.localScale;
+                list.objList[i].transform.localScale = new Vector3(tmpScale.x, scale, tmpScale.z);
                 usedNoteNum++;
 
-                if (CheckExistHoldingNote(note))
+                if (IsLongNoteHolding(note))
                 {
                     Color color = (isEvenNumber) ? noteColor.EvenLongHolding : noteColor.OddLongHolding;
-                    info.spriteRendererList[i].color = color;
+                    list.spriteRendererList[i].color = color;
                 }
 
                 break;
@@ -253,7 +294,10 @@ public class NoteSetter : MonoBehaviour
         }
     }
 
-    private bool CheckExistHoldingNote(MusicDTO.Note note)
+    /// <summary>
+    /// ロングノーツがホールド中かを取得する
+    /// </summary>
+    private bool IsLongNoteHolding(MusicDTO.Note note)
     {
         foreach (MusicDTO.Note n in holdingLongNoteList)
         {
@@ -267,8 +311,11 @@ public class NoteSetter : MonoBehaviour
         return false;
     }
 
-    //ロングノーツの座標(中心座標)を返す
-    //@param [in]scale ロングノーツのscale値
+    /// <summary>
+    /// ロングノーツの座標(中心座標)を返す
+    /// </summary>
+    /// <param name="note">対象ロングノーツ</param>
+    /// <param name="scale">ロングノーツのscale値</param>
     private Vector3 GetLongNotePosition(MusicDTO.Note note, ref float scale)
     {
         float startNotePosY = noteDataConverter.ConvertDistance(note.LPB, note.num);
@@ -287,8 +334,10 @@ public class NoteSetter : MonoBehaviour
         return new Vector3(notePosX, (startNotePosY + scale / 2), 1); ;
     }
 
-    //指定した時間指定したレーンにノーツがあるかを判定する
-    //オートプレイで使用する
+    /// <summary>
+    /// 指定した時間指定したレーンにノーツがあるかを判定する
+    /// オートプレイで使用しています
+    /// </summary>
     public bool IsNote(int LPB, int num, int lane)
     {
         foreach (MusicDTO.Note note in mapData.noteList)
@@ -319,11 +368,15 @@ public class NoteSetter : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// ホールド中ロングノーツをリストに追加する
+    /// </summary>
+    /// <param name="note">追加対象ロングノーツ</param>
     public void AddHoldingLongNote(MusicDTO.Note note)
     {
         foreach (MusicDTO.Note n in holdingLongNoteList)
         {
-            //同一位置のノーツをはじく
+            // 同一位置のノーツをはじく
             if ((note.lane == n.lane) && (note.LPB == n.LPB) && (note.num == n.num))
             {
                 return;
@@ -333,13 +386,17 @@ public class NoteSetter : MonoBehaviour
         holdingLongNoteList.Add(note);
     }
 
+    /// <summary>
+    /// ホールド中ロングノーツリストから対象ノーツを除外する
+    /// </summary>
+    /// <param name="note">除外対象ロングノーツ</param>
     public void RemoveHoldingLongNote(MusicDTO.Note note)
     {
         // 同一ノーツをはじく
         for (int i = 0; i < holdingLongNoteList.Count; i++)
         {
             var n = holdingLongNoteList[i];
-            //同一位置のノーツをはじく
+            // 同一位置のノーツをはじく
             if ((note.lane == n.lane) && (note.LPB == n.LPB) && (note.num == n.num))
             {
                 holdingLongNoteList.RemoveAt(i);

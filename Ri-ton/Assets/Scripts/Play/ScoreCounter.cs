@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 /// <summary>
 /// スコア計算クラス
+/// 100%のプレイをするとスコアが丁度100万点となる。
+/// PerfectはGoodの2倍のスコアとし、Missは加点しない。
+/// 例　コンボ数100なら、Perfect = 1000000 / 100 = 10000点となり、Good = 5000点となる。
 /// </summary>
 public class ScoreCounter : MonoBehaviour
 {
@@ -20,7 +23,7 @@ public class ScoreCounter : MonoBehaviour
         text = this.GetComponent<Text>();
         NullCheck();
 
-        //0.1秒後にunitScoreを設定する
+        // 0.1秒後にunitScoreを設定する
         Invoke("SetUnitScore", 0.1f);
     }
 
@@ -29,6 +32,9 @@ public class ScoreCounter : MonoBehaviour
         AllPerfectCheck();
     }
 
+    /// <summary>
+    /// スコアの1単位(Good1個の加算値)を計算する
+    /// </summary>
     private void SetUnitScore()
     {
         int maxComboNum = timingJudgment.GetMaxComboNum();
@@ -42,6 +48,9 @@ public class ScoreCounter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Perfect判定のスコアを加算する
+    /// </summary>
     public void AddPerfect()
     {
         score += unitScore * 2.0f;
@@ -49,6 +58,9 @@ public class ScoreCounter : MonoBehaviour
         text.text = intScore.ToString();
     }
 
+    /// <summary>
+    /// Good判定のスコアを加算する
+    /// </summary>
     public void AddGood()
     {
         score += unitScore;
@@ -56,6 +68,10 @@ public class ScoreCounter : MonoBehaviour
         text.text = intScore.ToString();
     }
 
+    /// <summary>
+    /// Acc100%で曲をクリアした際にスコアを最大の100万点とする
+    /// 計算誤差により100万点にならない場合のチェック処理
+    /// </summary>
     private void AllPerfectCheck()
     {
         float acc = accCounter.Acc;
@@ -68,6 +84,9 @@ public class ScoreCounter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// スコアを取得する
+    /// </summary>
     public int GetScore()
     { 
         return (int)score;

@@ -137,7 +137,7 @@ public class DifficultyButtonsManager : MonoBehaviour
         //ランキング更新
         if (SceneManager.GetActiveScene().name == "PlaySongSelect")
         {
-            scoreView.UpdateResultData();
+            scoreView.GetMyHighScore();
         }
         //大画面情報の更新
         bigNode.InformationUpdate();

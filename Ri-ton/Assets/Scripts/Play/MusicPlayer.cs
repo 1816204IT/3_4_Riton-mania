@@ -95,21 +95,30 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    //曲の位置からシークバーの位置を計算し値を返す
+    /// <summary>
+    /// 曲の位置からシークバーの位置を計算し値を返す
+    /// </summary>
+    /// <returns></returns>
     public float GetSeekBarPosition()
     {
         return AudioSource.time / AudioSource.clip.length;
     }
 
-    //シークバーが操作された時に曲の位置を調整する
-    public void AdjustAudioSourceTime(float adjustTime)
+    /// <summary>
+    /// シークバーが操作された時に曲の位置を調整する
+    /// </summary>
+    /// <param name="seekBarValue">シークバーの値</param>
+    public void AdjustAudioSourceTime(float seekBarValue)
     {
-        AudioSource.time = (float)adjustTime * AudioSource.clip.length;
+        AudioSource.time = (float)seekBarValue * AudioSource.clip.length;
 
         time = AudioSource.time;
         timeOld = AudioSource.time;
     }
 
+    /// <summary>
+    /// 曲を再生する
+    /// </summary>
     public void PlayStart()
     {
         //audioSource.Play();
@@ -120,60 +129,79 @@ public class MusicPlayer : MonoBehaviour
         isPlaying = true;
     }
 
+    /// <summary>
+    /// 曲を一時停止する
+    /// </summary>
     public void PlayPause()
     {
         isPlaying = false;
         AudioSource.Pause();
     }
 
+    /// <summary>
+    /// 曲を一時停止状態から再生する
+    /// </summary>
     public void PlayUnPause()
     {
         isPlaying = true;
         AudioSource.Play();
     }
 
-    //曲の再生速度を1.0倍にする
+    /// <summary>
+    /// 曲の再生速度を1.0倍にする
+    /// </summary>
     public void ChangeMusicSpeedDefault()
     {
         AudioSource.pitch = 1.0f;
     }
 
-    //曲の再生速度を0.75倍にする
+    /// <summary>
+    /// 曲の再生速度を0.75倍にする
+    /// </summary>
     public void ChangeMusicSpeedThreeQuarter()
     {
         AudioSource.pitch = 0.75f;
     }
 
-    //曲の再生速度を0.5倍にする
+    /// <summary>
+    /// 曲の再生速度を0.5倍にする
+    /// </summary>
     public void ChangeMusicSpeedHalf()
     {
         AudioSource.pitch = 0.5f;
     }
 
-    //曲の再生速度を0.25倍にする
+    /// <summary>
+    /// 曲の再生速度を0.5倍にする
+    /// </summary>
     public void ChangeMusicSpeedOneQuarter()
     {
         AudioSource.pitch = 0.25f;
     }
 
-    ///====================以下プロパティ====================
-
-    // オフセットを考慮した時間(毎フレーム更新しているので更新頻度は高いが低いが不正確で時間が巻き戻るフレームがある)
-    // ゲーム中で使用している(時間が巻き戻るフレームがあるが気にならないので現状維持)
+    /// <summary>
+    /// オフセットを考慮した時間(毎フレーム更新しているので更新頻度は高いが低いが不正確で時間が巻き戻るフレームがある)
+    /// ゲーム中で使用している(時間が巻き戻るフレームがあるが気にならないので現状維持)
+    /// </summary>
     public float offsetedTime
     {
         
         get { return time - Offset; }
     }
 
-    // オフセットを考慮した時間(AudioSorce.timeを参照しているので更新頻度が低いが正確)
-    // オートに叩かせるときに使用している
+    /// <summary>
+    /// オフセットを考慮した時間(AudioSorce.timeを参照しているので更新頻度が低いが正確)
+    /// オートに叩かせるときに使用している
+    /// </summary>
 
     public float OffsetedTimeOrigin()
     {
         return AudioSource.time - Offset;
     }
 
+    /// <summary>
+    /// 毎秒の拍(BPMは毎分の拍)
+    /// </summary>
     public float ClapSpan()
     {
         return 60.0f / Bpm;

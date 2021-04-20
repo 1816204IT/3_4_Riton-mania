@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 /// <summary>
-/// 曲開始前のカウントダウン
+/// 曲開始前のカウントダウンを表示する
 /// </summary>
 public class PlayStartTimer : MonoBehaviour
 {
@@ -50,6 +50,9 @@ public class PlayStartTimer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// カウントダウンタイマーを初期化する
+    /// </summary>
     public void TimerReset()
     {
         timer = c_count_down_time;

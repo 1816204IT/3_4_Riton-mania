@@ -15,7 +15,7 @@ public class NoteColor : ScriptableObject
     [field: SerializeField]
     public Color EvenLongHolding { get; private set; }  // 偶数レーンロングノーツのホールド中の色
     [field: SerializeField]
-    public Color OddLongDefault { get; private set; }  // 奇数レーンロングノーツの通常色
+    public Color OddLongDefault { get; private set; }   // 奇数レーンロングノーツの通常色
     [field: SerializeField]
-    public Color OddLongHolding { get; private set; }  // 奇数レーンロングノーツのホールド中の色
+    public Color OddLongHolding { get; private set; }   // 奇数レーンロングノーツのホールド中の色
 }

@@ -2,16 +2,16 @@
 using UnityEngine.UI;
 
 /// <summary>
-/// ユーザーオプションクラス
+/// ユーザーオプションカスタマイズ
 /// </summary>
 public class UserPrererenceCustm : MonoBehaviour
 {
     private enum SliderType
     {
-        SPEED,
-        TIMING,
-        MUSIC,
-        SE,
+        SPEED,  // ノーツ落下速度
+        TIMING, // タイミングオフセット
+        MUSIC,  // 音量
+        SE,     // 効果音
         MAX
     }
 
@@ -74,14 +74,6 @@ public class UserPrererenceCustm : MonoBehaviour
         seItem.num.text = seVolume.ToString("f1");
     }
 
-    private void SettingItemInit(ref SettingItem item, ref GameObject obj)
-    {
-        item.obj = obj;
-        item.image = obj.GetComponent<Image>();
-        item.num = obj.transform.Find("Num").GetComponent<Text>();
-        item.name = obj.transform.Find("SettingName").GetComponent<Text>();
-    }
-
     private void Update()
     {
         float scrollValue = Input.GetAxis("Mouse ScrollWheel");
@@ -101,6 +93,21 @@ public class UserPrererenceCustm : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 設定項目の初期化
+    /// </summary>
+    /// <param name="obj">初期化対象のGameObject</param>
+    private void SettingItemInit(ref SettingItem item, ref GameObject obj)
+    {
+        item.obj = obj;
+        item.image = obj.GetComponent<Image>();
+        item.num = obj.transform.Find("Num").GetComponent<Text>();
+        item.name = obj.transform.Find("SettingName").GetComponent<Text>();
+    }
+
+    /// <summary>
+    /// スライダーの値が変更された時の処理
+    /// </summary>
     public void OnSliderValueChanged()
     {
         float value = slider.value;
@@ -129,20 +136,23 @@ public class UserPrererenceCustm : MonoBehaviour
             value /= 2.0f;
             musicItem.num.text = value.ToString("f1");
             UserPreference.Instance.MusicVolume = value / 10.0f;
-            soundVolumeManager.ChangeMusicVolume();
+            soundVolumeManager.ChangedMusicVolume();
         }
         else
         {
             value /= 2.0f;
             seItem.num.text = value.ToString("f1");
             UserPreference.Instance.SeVolume = value / 10.0f;
-            soundVolumeManager.ChangeSEVolume();
+            soundVolumeManager.ChangedSEVolume();
         }
 
         // SEの再生
         mouseOverSE.Play();
     }
 
+    /// <summary>
+    /// 画像とテキストの色をグレーアウトする
+    /// </summary>
     private void AlphaOffCircleImageAndText()
     {
         Color color = Color.white;
