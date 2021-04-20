@@ -47,6 +47,8 @@ public class ResultDataInput : MonoBehaviour
     private Image characterImage = null;
     [SerializeField]
     private CharactersInfo charactersInfo = null;
+    [SerializeField]
+    private RankImages rankImages = null;
 
     private ResultShowData data = new ResultShowData();
 
@@ -60,7 +62,7 @@ public class ResultDataInput : MonoBehaviour
         perfectText.text = data.perfectNum.ToString();
         goodText.text = data.goodNum.ToString();
         missText.text = data.missNum.ToString();
-        rankImage.sprite = RankImageList.Instance.GetSprite(data.rankImageNum);
+        rankImage.sprite = rankImages.images[data.rankImageNum].sprite;
         if (data.isAciveHighScore)
         {
             newRecordText.text = "new record!!";
@@ -129,5 +131,6 @@ public class ResultDataInput : MonoBehaviour
         musicTitleText.IsNull();
         newRecordText.IsNull();
         charactersInfo.IsNull();
+        rankImages.IsNull();
     }
 }

@@ -3490,6 +3490,7 @@ MonoBehaviour:
   difficultyText: {fileID: 388631537}
   characterImage: {fileID: 1465756318}
   charactersInfo: {fileID: 11400000, guid: fb05be0ec4a3bca478865b625ebbb316, type: 2}
+  rankImages: {fileID: 11400000, guid: dc511961a6e69bb4db47fe2c67cb74ca, type: 2}
 --- !u!4 &1693801451
 Transform:
   m_ObjectHideFlags: 0

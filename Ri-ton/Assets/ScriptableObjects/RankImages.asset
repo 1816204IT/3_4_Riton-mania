@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd94a1456af9984cb1d4adc26b12b0f, type: 3}
+  m_Name: RankImages
+  m_EditorClassIdentifier: 
+  <images>k__BackingField:
+  - <sprite>k__BackingField: {fileID: 21300000, guid: f382a2a06ec36ea4f8f4eff3481f93aa,
+      type: 3}
+    <smallSprite>k__BackingField: {fileID: 21300000, guid: 3900389c78d32f740b5368b96cbbd7c0,
+      type: 3}
+  - <sprite>k__BackingField: {fileID: 21300000, guid: 05bce500cb1ffc04291239ec58aca17e,
+      type: 3}
+    <smallSprite>k__BackingField: {fileID: 21300000, guid: 5ce6bb2ec39f4a64aacedf2300ccec62,
+      type: 3}
+  - <sprite>k__BackingField: {fileID: 21300000, guid: 981e9a9be8092074aac6d7820d3ae7ec,
+      type: 3}
+    <smallSprite>k__BackingField: {fileID: 21300000, guid: a41dfa17546ce7f418b9581d00dedae3,
+      type: 3}
+  - <sprite>k__BackingField: {fileID: 21300000, guid: 5cebbe89c3974044fa585d580eee6341,
+      type: 3}
+    <smallSprite>k__BackingField: {fileID: 21300000, guid: 7d835eefbf9bde3468d8758ea9260414,
+      type: 3}
+  - <sprite>k__BackingField: {fileID: 21300000, guid: b20d6fd6cf583364ab48c2851275e792,
+      type: 3}
+    <smallSprite>k__BackingField: {fileID: 21300000, guid: fdd165981dc575e44aeb9718afdce88c,
+      type: 3}
+  - <sprite>k__BackingField: {fileID: 21300000, guid: 9d04a5e436d26ef46ae83e46d5834ef0,
+      type: 3}
+    <smallSprite>k__BackingField: {fileID: 21300000, guid: 9ba4f694ad31c2d488e164d87d850148,
+      type: 3}

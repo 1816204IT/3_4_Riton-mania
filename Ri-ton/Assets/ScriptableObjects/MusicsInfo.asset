@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Info>k__BackingField:
   - <musicName>k__BackingField: "\u304F\u308B\u304F\u308B"
-    <musicEnglishName>k__BackingField: Kurukuru
+    <musicEnglishName>k__BackingField: kurukuru
     <bgImage>k__BackingField: {fileID: 21300000, guid: 51e1a045d89549744ae84469ea4122e0,
       type: 3}
     <audioClip>k__BackingField: {fileID: 8300000, guid: 4d6c7bece9cd42445bdf1ee64121c307,

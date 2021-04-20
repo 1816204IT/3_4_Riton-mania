@@ -63,6 +63,13 @@ public class MusicPlayer : MonoBehaviour
 
     private void Update()
     {
+        // Debug-----------------------
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AudioSource.time = AudioSource.clip.length - 1;
+        }
+        // Debug-----------------------
+
         if (isPlaying)
         {
             time += Time.deltaTime;

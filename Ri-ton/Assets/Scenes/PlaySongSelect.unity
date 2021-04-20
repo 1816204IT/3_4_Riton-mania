@@ -1321,8 +1321,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 263301118}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: TutorialStart
+        m_TargetAssemblyTypeName: Tutorial, Assembly-CSharp
+        m_MethodName: StartTutorial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2469,7 +2469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5883,7 +5883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11201,6 +11201,7 @@ MonoBehaviour:
   myBestContent: {fileID: 890602874}
   noDataText: {fileID: 1840166641}
   charactersInfo: {fileID: 11400000, guid: fb05be0ec4a3bca478865b625ebbb316, type: 2}
+  rankImages: {fileID: 11400000, guid: dc511961a6e69bb4db47fe2c67cb74ca, type: 2}
 --- !u!224 &2027241568 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8583353341775074274, guid: dc707200955f51146a809d65f239adb3,

@@ -42,7 +42,7 @@ public class Tutorial : MonoBehaviour
 
         if (UserPreference.Instance.IsTutorial == false)
         {
-            Init();
+            StartTutorial();
         }
     }
 
@@ -66,7 +66,7 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    public void Init()
+    public void StartTutorial()
     {
         index = 0;
 

@@ -18,6 +18,8 @@ public class ScoreView : MonoBehaviour
     private Text noDataText = null;
     [SerializeField]
     private CharactersInfo charactersInfo = null;
+    [SerializeField]
+    private RankImages rankImages = null;
 
     private const float c_re_fetch_rankers_time = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
 
@@ -50,7 +52,6 @@ public class ScoreView : MonoBehaviour
 
     public void Update()
     {
-        // ランカー0人なら一定時間後に再度フェッチする
         if (rankersNum == 0)
         {
             noRankersTimer += Time.deltaTime;
@@ -160,7 +161,7 @@ public class ScoreView : MonoBehaviour
         int characterNum = UserPreference.Instance.GetCharacterNumber();
         node.transform.Find("PlayerImage").GetComponent<Image>().sprite = charactersInfo.Info[characterNum].iconSprite;
         //ランク画像を設定
-        node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.Instance.GetSmallSprite(highScore.rank);
+        node.transform.Find("RankImage").GetComponent<Image>().sprite = rankImages.images[highScore.rank].smallSprite;
         //順位を設定
         node.transform.Find("RankNumber").GetComponent<Text>().text = "";
     }
@@ -191,7 +192,7 @@ public class ScoreView : MonoBehaviour
         int characterNum = topRankersIcons[ranking].character;
         node.transform.Find("PlayerImage").GetComponent<Image>().sprite = charactersInfo.Info[characterNum].iconSprite;
         //ランク画像を設定
-        node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.Instance.GetSmallSprite(rankers.rank);
+        node.transform.Find("RankImage").GetComponent<Image>().sprite = rankImages.images[rankers.rank].smallSprite;
         //順位を設定
         node.transform.Find("RankNumber").GetComponent<Text>().text = (ranking + 1).ToString();
     }
@@ -202,5 +203,6 @@ public class ScoreView : MonoBehaviour
         rankingContent.IsNull();
         noDataText.IsNull();
         charactersInfo.IsNull();
+        rankImages.IsNull();
     }
 }
