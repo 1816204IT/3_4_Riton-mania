@@ -23,6 +23,12 @@ public class MoveTween : MonoBehaviour
         startPos = startPos = GetComponent<RectTransform>().position;
     }
 
+    public void InitSetting(float inDuration, float inAppendInterval)
+    {
+        duration = inDuration;
+        appendInterval = inAppendInterval;
+    }
+
     /// <summary>
     /// Tweenの生成
     /// </summary>

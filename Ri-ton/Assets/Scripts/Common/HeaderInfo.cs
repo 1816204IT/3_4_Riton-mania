@@ -21,10 +21,7 @@ public class HeaderInfo : MonoBehaviour
     private void Update()
     {
         string playerName = FindObjectOfType<UserAuth>().playerName;
-        if (playerName == null)
-        {
-            playerName = "NOT LOGIN";
-        }
+        NullCheck();
         playerNameText.text = playerName;
     }
 
@@ -34,8 +31,22 @@ public class HeaderInfo : MonoBehaviour
     public void SetPlayerNameColor()
     {
         int characterNum = UserPreference.Instance.GetCharacterNumber();
-        Color color = charactersInfo.Info[characterNum].color;
-        playerNameText.color = color;
+        Color headerNameColor = Color.white;
+        if (CharacterIsAlreadySelected(characterNum))
+        {
+            headerNameColor = charactersInfo.Info[characterNum].color;
+        }
+        
+        playerNameText.color = headerNameColor;
+    }
+
+    /// <summary>
+    /// キャラクター選択済みか
+    /// ログインして最初にキャラクター選択画面を開いた場合はキャラクター未選択状態となるためチェックが必要
+    /// </summary>
+    private bool CharacterIsAlreadySelected(int characterNum)
+    {
+        return (characterNum >= 0 && characterNum <= 4);
     }
 
     private void NullCheck()

@@ -980,7 +980,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -3322,7 +3323,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -4474,7 +4476,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
         type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
@@ -4490,7 +4492,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 5200196545119050171, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_TextStyleHashCode
@@ -5225,7 +5228,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -6356,7 +6360,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Map Edit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
+  m_fontAsset: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54, type: 2}
   m_sharedMaterial: {fileID: 5200196545119050171, guid: 6d72a11c16ceeb24791584c288b85f54,
     type: 2}
   m_fontSharedMaterials: []
@@ -6421,7 +6425,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2093870929
@@ -6720,7 +6724,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+        type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged

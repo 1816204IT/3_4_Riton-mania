@@ -40,6 +40,8 @@ public class PickUpCharacterManager : MonoBehaviour
     private CharactersInfo charactersInfo = null;
 
     private const float c_character_distance_x = 220;  // 配置しているキャラクター同士の距離
+    private const float c_character_move_duration = 0.5f;           // キャラクターを中央に移動させるTweenの移動完了にかかる時間
+    private const float c_character_move_append_interval = 0.1f;    // キャラクターを中央に移動させるTweenの他Tweenとの接続待ち時間
 
     private GameObject moveCharacter = null;
     private int vanishCompNum = 0;
@@ -120,6 +122,7 @@ public class PickUpCharacterManager : MonoBehaviour
             // キャラクターを移動させる為、moveCharacterにコンポーネントを追加
             moveCharacter.AddComponent<MoveTween>();
             MoveTween pickUpCharacter = moveCharacter.GetComponent<MoveTween>();
+            pickUpCharacter.InitSetting(c_character_move_duration, c_character_move_append_interval);
             pickUpCharacter.MoveCharacter(moveEndPos, this.GetComponent<PickUpCharacterManager>());
         }
     }
