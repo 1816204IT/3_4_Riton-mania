@@ -24,7 +24,6 @@ public class MusicProgressBar : MonoBehaviour
     {
         Vector3 pos = this.transform.position;
         float posX = musicPlayer.GetSeekBarPosition() * canvasSize.x;
-        Debug.Log(canvasSize.x);
         this.transform.position = new Vector3(posX, pos.y, pos.z);
     }
 

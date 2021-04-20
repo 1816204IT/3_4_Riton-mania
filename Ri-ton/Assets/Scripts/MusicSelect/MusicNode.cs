@@ -14,6 +14,8 @@ public class MusicNode : MonoBehaviour
     private Text musicNameText = null;
     [SerializeField]
     private Image jacketImage = null;
+    [SerializeField]
+    private MusicsInfo musicsInfo = null;
 
     private MusicNodeScroll musicNodeScroll = null;
     private BigNodeInformation bigNode = null;
@@ -32,7 +34,7 @@ public class MusicNode : MonoBehaviour
     /// </summary>
     void OnClickNode()
     {
-        musicNodeScroll.SelectedNodeChangesFunc(MyNodeNum, MusicInfoList.Instance.GetMusicName(MyNodeNum));
+        musicNodeScroll.SelectedNodeChangesFunc(MyNodeNum, musicsInfo.Info[MyNodeNum].musicName);
     }
 
     /// <summary>
@@ -40,7 +42,7 @@ public class MusicNode : MonoBehaviour
     /// </summary>
     public void SetMusicNameText()
     {
-        musicNameText.text = MusicInfoList.Instance.GetMusicName(MyNodeNum);
+        musicNameText.text = musicsInfo.Info[MyNodeNum].musicName;
     }
 
     /// <summary>
@@ -48,7 +50,7 @@ public class MusicNode : MonoBehaviour
     /// </summary>
     public void SetJacketImage()
     {
-        jacketImage.sprite = MusicInfoList.Instance.GetBgImage(MyNodeNum);
+        jacketImage.sprite = musicsInfo.Info[MyNodeNum].bgImage;
     }
 
     private void NullCheck()
@@ -58,5 +60,6 @@ public class MusicNode : MonoBehaviour
         musicNameText.IsNull();
         bigNode.IsNull();
         jacketImage.IsNull();
+        musicsInfo.IsNull();
     }
 }

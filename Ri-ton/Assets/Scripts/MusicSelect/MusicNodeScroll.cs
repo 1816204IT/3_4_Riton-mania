@@ -27,6 +27,8 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
     private ScoreView scoreView = null;
     [SerializeField]
     private GameObject tutorialCanvas = null;
+    [SerializeField]
+    private MusicsInfo musicsInfo = null;
 
     private float nodeWidth = 0.0f;
     private bool isMoving = false;
@@ -139,10 +141,10 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             scrollInputList.RemoveAt(i);
             if (dir == ScrollDir.LEFT)
             {
-                if (musicIndex < MusicInfoList.Instance.MusicNum() - 1)
+                if (musicIndex < musicsInfo.Info.Length - 1)
                 {
                     musicIndex++;
-                    SelectedNodeChangesFunc(musicIndex, MusicInfoList.Instance.GetMusicName(musicIndex));
+                    SelectedNodeChangesFunc(musicIndex, musicsInfo.Info[musicIndex].musicName);
                     break;
                 }
             }
@@ -151,7 +153,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
                 if (musicIndex > 0)
                 {
                     musicIndex--;
-                    SelectedNodeChangesFunc(musicIndex, MusicInfoList.Instance.GetMusicName(musicIndex));
+                    SelectedNodeChangesFunc(musicIndex, musicsInfo.Info[musicIndex].musicName);
                     break;
                 }
             }
@@ -168,7 +170,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             return;
         }
 
-        int musicNum = MusicInfoList.Instance.MusicNum();
+        int musicNum = musicsInfo.Info.Length;
         int moveEndNodeCnt = 0;
         for (int i = 0; i < musicNum; i++)
         {
@@ -285,7 +287,7 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         movementInfoList.Clear();
         isMoving = true;
         float posX = 0;
-        int musicNum = MusicInfoList.Instance.MusicNum();
+        int musicNum = musicsInfo.Info.Length;
 
         for (int i = 0; i < musicNum; i++)
         {
@@ -405,5 +407,6 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
         musicSelect.IsNull();
         menuHitSE.IsNull();
         tutorialCanvas.IsNull();
+        musicsInfo.IsNull();
     }
 }

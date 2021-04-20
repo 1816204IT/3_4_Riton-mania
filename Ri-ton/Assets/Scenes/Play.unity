@@ -12006,6 +12006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d01f82275ff804d8f3e68bcb72ed7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!82 &944972632
 AudioSource:
   m_ObjectHideFlags: 0
@@ -37372,7 +37373,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!212 &6625645701040814037
@@ -37423,7 +37424,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6625645701040814056
@@ -37562,7 +37563,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6625645702047846620
@@ -37657,6 +37658,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

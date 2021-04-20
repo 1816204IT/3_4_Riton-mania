@@ -8,6 +8,8 @@ public class MusicSelect : MonoBehaviour
 {
     [SerializeField]
     private AudioSource audioPlayer = null;
+    [SerializeField]
+    private MusicsInfo musicsInfo = null;
 
     private int musicNameIndex = 0;
 
@@ -24,7 +26,7 @@ public class MusicSelect : MonoBehaviour
     public void SetNewMusic(int inMusicNameIndex)
     {
         musicNameIndex = inMusicNameIndex;
-        audioPlayer.clip = MusicInfoList.Instance.GetMusic(inMusicNameIndex);
+        audioPlayer.clip = musicsInfo.Info[musicNameIndex].audioClip;
         audioPlayer.Play();
     }
 
@@ -59,5 +61,6 @@ public class MusicSelect : MonoBehaviour
     private void NullCheck()
     {
         audioPlayer.IsNull();
+        musicsInfo.IsNull();
     }
 }

@@ -755,6 +755,7 @@ MonoBehaviour:
   difficultyText: {fileID: 523677982}
   englishFont: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
   jananeseFont: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!114 &185134188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8997,6 +8998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPlayer: {fileID: 1482146966}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!4 &1674073411
 Transform:
   m_ObjectHideFlags: 0
@@ -10398,6 +10400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1616938147814756862, guid: 616230b892dbe9740909021028231856, type: 3}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!114 &1910739252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10418,6 +10421,7 @@ MonoBehaviour:
   max_scroll_input_num: 4
   scoreView: {fileID: 2018883665}
   tutorialCanvas: {fileID: 1078585752}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!114 &1910739253
 MonoBehaviour:
   m_ObjectHideFlags: 0

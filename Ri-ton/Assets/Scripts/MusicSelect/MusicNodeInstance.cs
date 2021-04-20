@@ -11,6 +11,8 @@ public class MusicNodeInstance : MonoBehaviour
 
     [SerializeField]
     private GameObject prefab = null;
+    [SerializeField]
+    private MusicsInfo musicsInfo = null;
 
     void Awake()
     {
@@ -22,13 +24,13 @@ public class MusicNodeInstance : MonoBehaviour
     /// </summary>
     private void PrefabInstance()
     {
-        for(int i = 0; i < MusicInfoList.Instance.MusicNum(); i++)
+        for(int i = 0; i < musicsInfo.Info.Length; i++)
         {
             NodeGameObjectList.Add(Instantiate(prefab, this.transform, false));
             NodeRectTransformList.Add(NodeGameObjectList[i].GetComponent<RectTransform>());
         }
 
-        for(int i = 0; i < MusicInfoList.Instance.MusicNum(); i++)
+        for(int i = 0; i < musicsInfo.Info.Length; i++)
         {
             MusicNode musicNode = NodeGameObjectList[i].GetComponent<MusicNode>();
             musicNode.MyNodeNum = i;

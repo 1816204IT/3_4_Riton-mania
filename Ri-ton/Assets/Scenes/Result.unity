@@ -3489,7 +3489,7 @@ MonoBehaviour:
   musicTitleText: {fileID: 375675686}
   difficultyText: {fileID: 388631537}
   characterImage: {fileID: 1465756318}
-  characterInfo: []
+  charactersInfo: {fileID: 11400000, guid: fb05be0ec4a3bca478865b625ebbb316, type: 2}
 --- !u!4 &1693801451
 Transform:
   m_ObjectHideFlags: 0

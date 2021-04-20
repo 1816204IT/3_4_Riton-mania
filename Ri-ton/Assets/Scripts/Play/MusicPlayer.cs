@@ -10,6 +10,9 @@ public class MusicPlayer : MonoBehaviour
     public float Bpm { get; set; } = 0.0f;
     public float Offset { get; set; } = 0.0f;
 
+    [SerializeField]
+    private MusicsInfo musicsInfo = null;
+
     private const float c_start_wait_time = 1.0f;   // 321カウント終了後、0小説目が判定ラインにくるまでの猶予時間
 
     private float audioSourceOldTime = 0.0f;    // Update毎に更新されない
@@ -31,8 +34,17 @@ public class MusicPlayer : MonoBehaviour
         }
         else
         {
-            mapInfo = jsonManager.LoadMapInfo(SelectedMap.Instance.MusicName);
-            AudioSource.clip = MusicInfoList.Instance.GetMusic(mapInfo.musicName);
+            string musicName = SelectedMap.Instance.MusicName;
+            mapInfo = jsonManager.LoadMapInfo(musicName);
+
+            int index = 0;
+            for (int i = 0; i < musicsInfo.Info.Length; i++)
+            {
+                if (musicsInfo.Info[i].musicName == musicName) break;
+                index++;
+            }
+
+            AudioSource.clip = musicsInfo.Info[index].audioClip;
         }
 
         Offset = mapInfo.offset / 100.0f;

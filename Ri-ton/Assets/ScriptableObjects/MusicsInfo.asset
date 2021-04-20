@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22116bdbee5f4eb4d90d55ddc80f3a11, type: 3}
+  m_Name: MusicsInfo
+  m_EditorClassIdentifier: 
+  <Info>k__BackingField:
+  - <musicName>k__BackingField: "\u304F\u308B\u304F\u308B"
+    <musicEnglishName>k__BackingField: Kurukuru
+    <bgImage>k__BackingField: {fileID: 21300000, guid: 51e1a045d89549744ae84469ea4122e0,
+      type: 3}
+    <audioClip>k__BackingField: {fileID: 8300000, guid: 4d6c7bece9cd42445bdf1ee64121c307,
+      type: 3}
+  - <musicName>k__BackingField: "\u30A2\u30F3\u30C1\u30AF\u30EF\u30A4\u30A2"
+    <musicEnglishName>k__BackingField: AntiChoir
+    <bgImage>k__BackingField: {fileID: 21300000, guid: 6fd9f9ee5e572ad42941d02f9033501d,
+      type: 3}
+    <audioClip>k__BackingField: {fileID: 8300000, guid: 46bcc15679b43e6498c20d498983f9a2,
+      type: 3}
+  - <musicName>k__BackingField: "\u30B3\u30A4\u30F3\u30E9\u30F3\u30C9\u30EA\u30FC"
+    <musicEnglishName>k__BackingField: CoinLaundry
+    <bgImage>k__BackingField: {fileID: 21300000, guid: 0914343bc3575a44f900976a130bb9c3,
+      type: 3}
+    <audioClip>k__BackingField: {fileID: 8300000, guid: 6b7dee7049ca1a542b91ddf744b52334,
+      type: 3}

@@ -24,6 +24,8 @@ public class BigNodeInformation : MonoBehaviour
     private Font englishFont = null;
     [SerializeField]
     private Font jananeseFont = null;
+    [SerializeField]
+    private MusicsInfo musicsInfo = null;
 
     private JsonManager jsonManager = null;
 
@@ -56,7 +58,8 @@ public class BigNodeInformation : MonoBehaviour
         mapperText.font = englishFont;
         mapperText.text = mapData.mapperName;
         //ジャケット画像の変更
-        jacketImage.sprite = MusicInfoList.Instance.GetBgImage(SelectedMap.Instance.MusicIndex);
+        int musicIndex = SelectedMap.Instance.MusicIndex;
+        jacketImage.sprite = musicsInfo.Info[musicIndex].bgImage;
 
         //文字化け対策用チェック
         MapperNameSpecialCheck();
@@ -102,5 +105,6 @@ public class BigNodeInformation : MonoBehaviour
         difficultyText.IsNull();
         englishFont.IsNull();
         jananeseFont.IsNull();
+        musicsInfo.IsNull();
     }
 }

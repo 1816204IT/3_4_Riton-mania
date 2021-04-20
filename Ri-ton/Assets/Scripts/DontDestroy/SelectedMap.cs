@@ -24,8 +24,13 @@ public class SelectedMap : MonoBehaviour
     public string DifficultyName { get; set; } = "";
     public DifficultyType NowDifficulty { get; set; } = DifficultyType.EASY;
 
+    [SerializeField]
+    private MusicsInfo musicsInfo = null;
+
     void Awake()
     {
+        musicsInfo.IsNull();
+
         if (Instance != null)
         {
             Destroy(this.gameObject);
@@ -37,12 +42,12 @@ public class SelectedMap : MonoBehaviour
         //起動時にデフォルトで選択される曲と難易度
         MusicIndex = 0;
 
-        MusicName = MusicInfoList.Instance.GetMusicName(MusicIndex);
+        MusicName = musicsInfo.Info[MusicIndex].musicName;
         DifficultyName = "Easy";
     }
 
     public string GetMusicEnglishName()
     {
-        return MusicInfoList.Instance.GetMusicEnglishName(MusicIndex);
+        return musicsInfo.Info[MusicIndex].musicEnglishName;
     }
 }

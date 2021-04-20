@@ -94,6 +94,7 @@ MonoBehaviour:
   button: {fileID: 1543203915664671302}
   musicNameText: {fileID: 5306616772199828957}
   jacketImage: {fileID: 7827498287373567327}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!1 &3981996030088167438
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +381,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f348ed79974443a4ab8ad28af4ab712a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isUseDefaultSE: 1
   mouseOverSE: {fileID: 0}
   menuHitSE: {fileID: 0}
