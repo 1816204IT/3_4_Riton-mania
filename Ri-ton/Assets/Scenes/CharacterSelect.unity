@@ -1013,12 +1013,7 @@ MonoBehaviour:
   profile: {fileID: 888288630}
   nowArrow: {fileID: 2030883066}
   pleasePickCharacter: {fileID: 455235205}
-  characterInfo:
-  - {fileID: 11400000, guid: 59f6f6e4644cdc647835cc920803f270, type: 2}
-  - {fileID: 11400000, guid: b739959ac9098f84ab3c883b8dd1b04e, type: 2}
-  - {fileID: 11400000, guid: 3b338067e95bd844ca2e8018eb190ebb, type: 2}
-  - {fileID: 11400000, guid: c79342e439f0a034aa5bc1dda85e5732, type: 2}
-  - {fileID: 11400000, guid: 61c91b5d9d7456d4890caf778383002b, type: 2}
+  charactersInfo: {fileID: 11400000, guid: fb05be0ec4a3bca478865b625ebbb316, type: 2}
 --- !u!4 &327922410
 Transform:
   m_ObjectHideFlags: 0

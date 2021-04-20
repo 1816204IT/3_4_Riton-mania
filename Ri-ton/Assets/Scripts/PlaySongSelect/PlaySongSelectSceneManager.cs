@@ -16,7 +16,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
     [SerializeField]
     private GameObject tutorialCanvas = null;
     [SerializeField]
-    private CharacterInfo[] characterInfo = null;
+    private CharactersInfo charactersInfo = null;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class PlaySongSelectSceneManager : MonoBehaviour
 
         // キャラクター表示
         int charaNum = UserPreference.Instance.GetCharacterNumber();
-        myCharacter.sprite = characterInfo[charaNum].sprite;
+        myCharacter.sprite = charactersInfo.Info[charaNum].sprite;
     }
 
     void Update()
@@ -104,9 +104,6 @@ public class PlaySongSelectSceneManager : MonoBehaviour
         settingCanvas.IsNull();
         myCharacter.IsNull();
         tutorialCanvas.IsNull();
-        if (characterInfo.Length == 0)
-        {
-            Debug.LogError("charanterInfo is Null");
-        }
+        charactersInfo.IsNull();
     }
 }

@@ -37,7 +37,7 @@ public class PickUpCharacterManager : MonoBehaviour
     [SerializeField]
     private GameObject pleasePickCharacter = null;
     [SerializeField]
-    private CharacterInfo[] characterInfo = null;
+    private CharactersInfo charactersInfo = null;
 
     private const float c_character_distance_x = 220;  // 配置しているキャラクター同士の距離
 
@@ -139,7 +139,7 @@ public class PickUpCharacterManager : MonoBehaviour
     {
         // キャラクターデータの取得
         Ritonmania.CharacterData data = characterProfileData.GetCharacterData(PickingCharacterNum);
-        Color color = characterInfo[PickingCharacterNum].color;
+        Color color = charactersInfo.Info[PickingCharacterNum].color;
 
         // 名前の色とtextを指定
         characterNameText.color = color;
@@ -276,14 +276,10 @@ public class PickUpCharacterManager : MonoBehaviour
         profile.IsNull();
         nowArrow.IsNull();
         pleasePickCharacter.IsNull();
-
+        charactersInfo.IsNull();
         if (characters.Length == 0)
         {
             Debug.LogError("characters is Null");
-        }
-        if (characterInfo.Length == 0)
-        {
-            Debug.LogError("charanterInfo is Null");
         }
     }
 }
