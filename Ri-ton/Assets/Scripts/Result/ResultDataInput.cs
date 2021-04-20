@@ -45,13 +45,15 @@ public class ResultDataInput : MonoBehaviour
     private Text difficultyText = null;
     [SerializeField]
     private Image characterImage = null;
+    [SerializeField]
+    private CharacterInfo[] characterInfo = null;
 
     private ResultShowData data = new ResultShowData();
 
     void Start()
     {
         NullCheck();
- 
+
         scoreText.text = data.score.ToString("N0");
         accText.text = (data.acc / 100.0f).ToString();
         comboText.text = data.combo.ToString() + "/" + data.maxCombo.ToString();
@@ -70,8 +72,8 @@ public class ResultDataInput : MonoBehaviour
 
         musicTitleText.text = SelectedMap.Instance.MusicName;
         difficultyText.text = SelectedMap.Instance.DifficultyName;
-        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.Instance.GetCharacterNumber());
-        characterImage.sprite = CharacterInfoList.instance.GetSprite(UserPreference.Instance.GetCharacterNumber());
+        int characterNum = UserPreference.Instance.GetCharacterNumber();
+        characterImage.sprite = characterInfo[characterNum].sprite;
 
         // -----最高成績なら文字色を黄色にする-----
         if ((data.acc / 100.0f) == 100.0f)
@@ -126,5 +128,9 @@ public class ResultDataInput : MonoBehaviour
         difficultyText.IsNull();
         musicTitleText.IsNull();
         newRecordText.IsNull();
+        if (characterInfo.Length == 0)
+        {
+            Debug.LogError("charanterInfo is Null");
+        }
     }
 }

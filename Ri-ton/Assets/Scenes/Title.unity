@@ -979,8 +979,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -3144,7 +3143,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &945549892 stripped
 GameObject:
@@ -3437,8 +3436,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -3627,7 +3625,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1116803900
 GameObject:
@@ -4421,7 +4419,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1437316516
 PrefabInstance:
@@ -4589,7 +4587,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee,
         type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
@@ -4605,8 +4603,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 5200196545119050171, guid: 6d72a11c16ceeb24791584c288b85f54,
-        type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_TextStyleHashCode
@@ -5341,8 +5338,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -5674,65 +5670,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1790231316
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1790231318}
-  - component: {fileID: 1790231317}
-  m_Layer: 0
-  m_Name: CharacterInfoList
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1790231317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790231316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e310542b0aeca844a6fb20982666d7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  infos:
-  - sprite: {fileID: 21300000, guid: 3ab52741b87210b44b18db1c9f27d8c8, type: 3}
-    iconSprite: {fileID: 21300000, guid: 232c17c8cc1748e48bcf3cbd1aaec0b9, type: 3}
-    color: {r: 0.6, g: 1, b: 1, a: 1}
-  - sprite: {fileID: 21300000, guid: 5bf6b2b37c59b344c9641579ca1acfc5, type: 3}
-    iconSprite: {fileID: 21300000, guid: 5c12dbeacb7b0b4408351adaa1d1987f, type: 3}
-    color: {r: 1, g: 1, b: 0.3137255, a: 1}
-  - sprite: {fileID: 21300000, guid: 188ff62bc928a1042a5108894b715287, type: 3}
-    iconSprite: {fileID: 21300000, guid: 3465c1555041afe43bef1d2ee34b739e, type: 3}
-    color: {r: 0.6, g: 1, b: 0.6, a: 1}
-  - sprite: {fileID: 21300000, guid: 6d023ede823155942aed770c943d856c, type: 3}
-    iconSprite: {fileID: 21300000, guid: ab4ecf869f53a7549ab0523e530077a3, type: 3}
-    color: {r: 1, g: 0.6, b: 0.6, a: 1}
-  - sprite: {fileID: 21300000, guid: e326af7042702fe4a80721f88c1a88fc, type: 3}
-    iconSprite: {fileID: 21300000, guid: 8e224fc33122c3641b29198b38907cb1, type: 3}
-    color: {r: 0.8, g: 0.6, b: 1, a: 1}
---- !u!4 &1790231318
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1790231316}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831058923
 GameObject:
@@ -6896,8 +6833,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 6d72a11c16ceeb24791584c288b85f54,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3871329435462769459, guid: 3339c5a78d9241f4cba75b48815e9d02,
         type: 3}
       propertyPath: m_hasFontAssetChanged

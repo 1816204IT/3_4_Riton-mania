@@ -16,6 +16,8 @@ public class ScoreView : MonoBehaviour
     private GameObject myBestContent = null;
     [SerializeField]
     private Text noDataText = null;
+    [SerializeField]
+    private CharacterInfo[] characterInfo = null;
 
     private const float c_re_fetch_rankers_time = 3.0f;  // ランカー0人の時に再度サーバーにフェッチするまでの時間
 
@@ -155,7 +157,8 @@ public class ScoreView : MonoBehaviour
         PathBuilder.AppendFormat("{0}%", (highScore.acc / 100.0f).ToString("f2"));
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
         //アイコン画像を設定
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(UserPreference.Instance.GetCharacterNumber());
+        int characterNum = UserPreference.Instance.GetCharacterNumber();
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = characterInfo[characterNum].iconSprite;
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.Instance.GetSmallSprite(highScore.rank);
         //順位を設定
@@ -185,8 +188,8 @@ public class ScoreView : MonoBehaviour
         PathBuilder.AppendFormat("{0}%", (rankers.acc / 100.0f).ToString("f2"));
         node.transform.Find("AccText").GetComponent<Text>().text = PathBuilder.ToString();
         //アイコン画像を設定
-        var characterIcon = topRankersIcons[ranking].character;
-        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = CharacterInfoList.instance.GetIconSprite(characterIcon);
+        int characterNum = topRankersIcons[ranking].character;
+        node.transform.Find("PlayerImage").GetComponent<Image>().sprite = characterInfo[characterNum].iconSprite;
         //ランク画像を設定
         node.transform.Find("RankImage").GetComponent<Image>().sprite = RankImageList.Instance.GetSmallSprite(rankers.rank);
         //順位を設定
@@ -198,5 +201,9 @@ public class ScoreView : MonoBehaviour
         nodePrefab.IsNull();
         rankingContent.IsNull();
         noDataText.IsNull();
+        if (characterInfo.Length == 0)
+        {
+            Debug.LogError("charanterInfo is Null");
+        }
     }
 }
