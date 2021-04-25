@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// 曲選択画面で曲アイコンを横スクロールさせる
+/// 曲選択画面で曲パネルを横スクロールさせる
 /// </summary>
 public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]
     private AudioSource menuHitSE = null;
-    [SerializeField]
-    private float midSpacint = 0.0f;
-    [SerializeField]
+    [SerializeField, Header("中央のノードとその左右のノードの間隔")]
+    private float midSpacing = 0.0f;
+    [SerializeField, Header("中央以外のノード同士の間隔")]
     private float spacing = 0.0f;
-    [SerializeField]
+    [SerializeField, Header("ノードの縮小率")]
     private float smallScall = 0.0f;
     [SerializeField]
-    private float moveCompleteTime = 0.0f;
+    private float moveCompleteTime = 0.0f;  // 移動完了にかかる時間
     [SerializeField]
-    private int max_scroll_input_num = 0; // scrollInputListに記憶させる入力情報の最大数
+    private int max_scroll_input_num = 0;   // scrollInputListに記憶させる入力情報の最大数
     [SerializeField]
     private ScoreView scoreView = null;
     [SerializeField]
@@ -299,11 +296,11 @@ public class MusicNodeScroll : MonoBehaviour, IPointerEnterHandler, IPointerExit
             posX += spacing * distanceFromMedian;
             if (distanceFromMedian > 0)
             {
-                posX += midSpacint;
+                posX += midSpacing;
             }
             else if (distanceFromMedian < 0)
             {
-                posX -= midSpacint;
+                posX -= midSpacing;
             }
             Vector3 nowPos = nodeList[i].localPosition;
             info.movedPos = new Vector3(posX, nowPos.y, nowPos.z);

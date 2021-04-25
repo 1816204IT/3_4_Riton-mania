@@ -46,12 +46,27 @@ public class NoteEdit : MonoBehaviour
 
     void Update()
     {
+        // ノーツ配置モードでないなら処理しない
         if (mouseFollowNote.activeSelf == false)
         {
             return;
         }
 
-        //マウス左クリック押下でノーツ書き込み開始（左クリックを離した際に確定）
+        // マウス左クリック押下時にノーツデータ生成（左クリックを離した際に確定）
+        CreateClickDownData();
+
+        // マウス左クリックを離した時にノーツデータを書き込む
+        WriteNoteData();
+
+        // マウス右クリックでノーツを削除する
+        DeleteNote();
+    }
+
+    /// <summary>
+    /// マウスクリック時のデータを生成する
+    /// </summary>
+    private void CreateClickDownData()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = new Vector3();
@@ -63,16 +78,19 @@ public class NoteEdit : MonoBehaviour
                 return;
             }
 
-            var debugPos = mouseFollow.GetMouseFollowNotePos();
-
             //設置ノーツデータを作成
             clickDownNote.LPB = Lpb;
             clickDownNote.num = noteDataConverter.ConvertBeatNum(time, Lpb);
             clickDownNote.lane = GetLaneNum(mousePos.x);
             clickDownNote.isJudgment = false;
         }
+    }
 
-        //マウス左クリックを離した時にノーツを書き込む
+    /// <summary>
+    /// ノーツデータを書き込む
+    /// </summary>
+    private void WriteNoteData()
+    {
         if (Input.GetMouseButtonUp(0))
         {
             Vector3 mousePos = new Vector3();
@@ -84,12 +102,7 @@ public class NoteEdit : MonoBehaviour
             }
 
             //設置ノーツデータを作成
-            MusicDTO.Note clickUpNote = new MusicDTO.Note();
-            clickUpNote.endNote = new List<MusicDTO.Note>();
-            clickUpNote.LPB = Lpb;
-            clickUpNote.num = noteDataConverter.ConvertBeatNum(time, Lpb);
-            clickUpNote.lane = GetLaneNum(mousePos.x);
-            clickDownNote.isJudgment = false;
+            MusicDTO.Note clickUpNote = CreateNoteData(mousePos, time);
 
             //クリック開始位置と終了位置が同じ場合
             if ((clickDownNote.lane == clickUpNote.lane) && (clickDownNote.num == clickUpNote.num))
@@ -141,10 +154,16 @@ public class NoteEdit : MonoBehaviour
             longNote.endNote = new List<MusicDTO.Note>();
             longNote.endNote.Add(endNote);
 
+            //ノーツデータを追加する
             playingNoteData.AddNote(longNote);
         }
+    }
 
-        //マウス右クリックでノーツ削除
+    /// <summary>
+    /// ノーツを削除する
+    /// </summary>
+    private void DeleteNote()
+    {
         if (Input.GetMouseButtonDown(1))
         {
             Vector3 mousePos = new Vector3();
@@ -180,11 +199,6 @@ public class NoteEdit : MonoBehaviour
 
         mousePos = mouseFollow.GetMouseFollowNotePos();
         time = GetAudioSourceTime(mousePos.y);
-
-        if (time < 0)
-        {
-            return false;
-        }
 
         return true;
     }
@@ -224,6 +238,20 @@ public class NoteEdit : MonoBehaviour
         float posY = pos.y + len;
 
         return new Vector3(posX, posY, 0);
+    }
+
+    private MusicDTO.Note CreateNoteData(Vector3 mousePos, float time)
+    {
+        MusicDTO.Note note = new MusicDTO.Note();
+        note.LPB = Lpb;
+        note.num = noteDataConverter.ConvertBeatNum(time, Lpb);
+        note.lane = GetLaneNum(mousePos.x);
+        note.type = 0;
+        note.isJudgment = false;
+        note.isLongNote = false;
+        note.endNote = new List<MusicDTO.Note>();
+
+        return note;
     }
 
     /// <summary>

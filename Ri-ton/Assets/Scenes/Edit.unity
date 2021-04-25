@@ -10369,17 +10369,17 @@ PrefabInstance:
     - target: {fileID: 4772248562256129999, guid: a6944487d916d7344883fbf0787828cc,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4772248562256129999, guid: a6944487d916d7344883fbf0787828cc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4772248562256129999, guid: a6944487d916d7344883fbf0787828cc,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4772248562256129999, guid: a6944487d916d7344883fbf0787828cc,
         type: 3}
@@ -19433,8 +19433,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 911794294}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleOffsetChangeMode
+        m_TargetAssemblyTypeName: MapInfoSettings, Assembly-CSharp
+        m_MethodName: ToggleMapIndoSettingMode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25810,6 +25810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d01f82275ff804d8f3e68bcb72ed7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!1 &1200251230
 GameObject:
   m_ObjectHideFlags: 0

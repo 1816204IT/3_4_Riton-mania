@@ -13,7 +13,7 @@ public class BlinkingTween : MonoBehaviour
     [SerializeField]
     private float appendInterval = 0.0f;    // 次の点滅までのインターバル時間
 
-    private MaskableGraphic uiComponent = null;
+    private MaskableGraphic uiComponent = null; // TextかTextMeshProかImage
 
     void Start()
     {

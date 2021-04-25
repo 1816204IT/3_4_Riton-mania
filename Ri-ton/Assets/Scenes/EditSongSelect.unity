@@ -2279,7 +2279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNameText: {fileID: 1007782288}
-  charactersInfo: {fileID: 0}
+  charactersInfo: {fileID: 11400000, guid: fb05be0ec4a3bca478865b625ebbb316, type: 2}
 --- !u!114 &369706055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3205,7 +3205,7 @@ MonoBehaviour:
   max_scroll_input_num: 4
   scoreView: {fileID: 1080054331}
   tutorialCanvas: {fileID: 1832670713}
-  musicsInfo: {fileID: 0}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!114 &498807495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3271,7 +3271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1616938147814756862, guid: 616230b892dbe9740909021028231856, type: 3}
-  musicsInfo: {fileID: 0}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!1 &514649853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3833,7 +3833,7 @@ MonoBehaviour:
   settingCanvas: {fileID: 52002889}
   myCharacter: {fileID: 1859285468}
   tutorialCanvas: {fileID: 1832670713}
-  charactersInfo: {fileID: 0}
+  charactersInfo: {fileID: 11400000, guid: fb05be0ec4a3bca478865b625ebbb316, type: 2}
 --- !u!4 &600542747
 Transform:
   m_ObjectHideFlags: 0
@@ -4193,7 +4193,7 @@ MonoBehaviour:
   difficultyText: {fileID: 913615578}
   englishFont: {fileID: 12800000, guid: 582e07e0c26ee1a40abcfb06ddafff17, type: 3}
   jananeseFont: {fileID: 12800000, guid: 6fb7c3e4ae08660498af6685714a2999, type: 3}
-  musicsInfo: {fileID: 0}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!1 &654938953
 GameObject:
   m_ObjectHideFlags: 0
@@ -6774,8 +6774,8 @@ MonoBehaviour:
   rankingContent: {fileID: 1054962842}
   myBestContent: {fileID: 1522913531}
   noDataText: {fileID: 895894994}
-  charactersInfo: {fileID: 0}
-  rankImages: {fileID: 0}
+  charactersInfo: {fileID: 11400000, guid: fb05be0ec4a3bca478865b625ebbb316, type: 2}
+  rankImages: {fileID: 11400000, guid: dc511961a6e69bb4db47fe2c67cb74ca, type: 2}
 --- !u!1 &1095392763
 GameObject:
   m_ObjectHideFlags: 0
@@ -7227,7 +7227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioPlayer: {fileID: 156492165}
-  musicsInfo: {fileID: 0}
+  musicsInfo: {fileID: 11400000, guid: ec244290d6bcbe047a2e82882adaf7e5, type: 2}
 --- !u!4 &1289616933
 Transform:
   m_ObjectHideFlags: 0

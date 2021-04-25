@@ -10422,8 +10422,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuHitSE: {fileID: 937810062}
-  midSpacint: 140
-  spacing: 10
+  midSpacing: 140
+  spacing: 50
   smallScall: 0.7
   moveCompleteTime: 0.1
   max_scroll_input_num: 4
